@@ -10,12 +10,12 @@
     --bg-secondary: #1A1A1A;
     --bg-tertiary: #262626;
     
-    /* Military Glass Layers */
-    --glass-surface: rgba(255, 255, 255, 0.02);
-    --glass-surface-elevated: rgba(255, 255, 255, 0.04);
-    --glass-surface-hover: rgba(255, 255, 255, 0.06);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --glass-border-light: rgba(255, 255, 255, 0.04);
+    /* High Contrast Glass Layers */
+    --glass-surface: rgba(255, 255, 255, 0.03);
+    --glass-surface-elevated: rgba(255, 255, 255, 0.06);
+    --glass-surface-hover: rgba(255, 255, 255, 0.09);
+    --glass-border: rgba(255, 255, 255, 0.15);
+    --glass-border-light: rgba(255, 255, 255, 0.10);
     
     /* Layered Blur Effects */
     --blur-subtle: blur(8px);
@@ -32,10 +32,10 @@
     --accent-gradient: #00FF41;
     --accent-gradient-soft: rgba(0, 255, 65, 0.1);
     
-    /* Text Hierarchy */
-    --text-primary: rgba(255, 255, 255, 0.90);
-    --text-secondary: rgba(255, 255, 255, 0.70);
-    --text-tertiary: rgba(255, 255, 255, 0.50);
+    /* Text Hierarchy - High Contrast */
+    --text-primary: #FFFFFF;
+    --text-secondary: rgba(255, 255, 255, 0.85);
+    --text-tertiary: rgba(255, 255, 255, 0.65);
     --text-accent: #00FF41;
     
     /* Depth & Elevation */
@@ -183,7 +183,7 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 }
 
 .nav-link {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
     font-size: 0.95rem;
@@ -205,7 +205,7 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
 
 .nav-link:hover,
 .nav-link.active {
-    color: var(--text-primary);
+    color: var(--accent-primary);
 }
 
 .nav-link:hover::after,
@@ -251,9 +251,7 @@ section {
 
 .section-number {
     font-family: 'JetBrains Mono', monospace;
-    background: var(--accent-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    color: var(--accent-primary);
     font-size: 1rem;
 }
 
@@ -283,10 +281,11 @@ section {
 }
 
 .btn-primary {
-    background: var(--glass-surface-elevated);
-    color: var(--text-accent);
+    background: var(--accent-primary);
+    color: var(--bg-primary);
     backdrop-filter: var(--blur-medium);
-    box-shadow: var(--elevation-1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: var(--elevation-1);
+    font-weight: 600;
 }
 
 .btn-primary::before {
@@ -313,17 +312,19 @@ section {
 }
 
 .btn-secondary {
-    background: var(--glass-surface);
+    background: transparent;
     color: var(--text-primary);
     backdrop-filter: var(--blur-medium);
     box-shadow: var(--elevation-1);
+    border: 2px solid var(--text-primary);
 }
 
 .btn-secondary:hover {
-    background: var(--glass-surface-hover);
+    background: var(--text-primary);
+    color: var(--bg-primary);
     transform: translateY(-2px);
     box-shadow: var(--elevation-2), var(--glow-subtle);
-    border-color: var(--glass-border);
+    border-color: var(--text-primary);
 }
 
 /* Custom Scrollbar */
