@@ -56,6 +56,10 @@
     --glow-secondary: 0 0 30px hsla(210, 40%, 95%, 0.2);
     --glow-subtle: 0 0 20px hsla(210, 40%, 95%, 0.1);
     
+    /* Semantic Design Tokens */
+    --muted-rgb: 220, 220, 220;
+    --border-rgb: 255, 255, 255;
+    
     /* Animation Timing */
     --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
