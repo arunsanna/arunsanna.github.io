@@ -97,9 +97,7 @@
     }
 
     .hero-container {
-        padding: 2rem 1.5rem;
-        margin: 0 1rem;
-        border-radius: 16px;
+        padding: 0 1.5rem;
     }
 
     .terminal-header {
@@ -111,9 +109,7 @@
     }
 
     .hero-name {
-        font-size: clamp(2rem, 10vw, 3.5rem);
-        line-height: 1.2;
-        word-break: break-word;
+        font-size: 2.5rem;
     }
 
     .hero-roles {
@@ -349,15 +345,11 @@
 /* Very Small Mobile Screens */
 @media (max-width: 480px) {
     .hero-container {
-        padding: 1.5rem 1rem;
-        margin: 0 0.5rem;
+        padding: 0 1rem;
     }
     
     .hero-name {
-        font-size: clamp(1.75rem, 12vw, 3rem);
-        display: block;
-        white-space: nowrap;
-        overflow: visible;
+        font-size: 2rem;
     }
     
     .role-badge {
@@ -402,6 +394,24 @@
     
     .contact-content {
         padding: 1.5rem 1rem;
+    }
+}
+
+/* Portrait Phone - Specific handling for name */
+@media (max-width: 414px) {
+    .hero-name {
+        font-size: 2.25rem;
+    }
+    
+    .hero-greeting {
+        font-size: 1.1rem;
+    }
+}
+
+/* Small Phone - Even smaller screens */
+@media (max-width: 375px) {
+    .hero-name {
+        font-size: 1.85rem;
     }
 }
 

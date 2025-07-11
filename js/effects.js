@@ -20,6 +20,10 @@ export function initializeGlitchEffect() {
     const glitchElements = document.querySelectorAll('.glitch');
     
     glitchElements.forEach(element => {
+        // Update data-text attribute to match current text content
+        const textContent = element.textContent.trim();
+        element.setAttribute('data-text', textContent);
+        
         setInterval(() => {
             if (Math.random() < 0.1) {
                 element.style.animation = 'none';

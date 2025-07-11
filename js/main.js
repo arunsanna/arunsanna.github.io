@@ -35,7 +35,7 @@ async function loadComponents() {
         initializeSkillBars();
         initializeCounters();
         initializeTypingEffect();
-        initializeGlitchEffect();
+        // initializeGlitchEffect(); // Disabled for simpler design
         initializeEasterEgg();
     } catch (error) {
         console.error('Error in loadComponents:', error);
