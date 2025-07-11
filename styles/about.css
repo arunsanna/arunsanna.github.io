@@ -1,0 +1,66 @@
+/* About Section - Glassmorphic Cards */
+.about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+}
+
+.about-text {
+    padding: 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+}
+
+.about-intro {
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.highlight {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+}
+
+.about-highlights {
+    padding: 2rem;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+}
+
+.achievement-list {
+    list-style: none;
+}
+
+.achievement-list li {
+    display: flex;
+    align-items: start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    background: var(--glass-light);
+    border-radius: 12px;
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.achievement-list li:hover {
+    background: var(--glass-medium);
+    transform: translateX(5px);
+    box-shadow: 0 5px 20px rgba(0, 255, 136, 0.1);
+    border-color: var(--accent-primary);
+}
+
+.achievement-list i {
+    color: var(--accent-primary);
+    font-size: 1.2rem;
+    margin-top: 0.2rem;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 136, 0.5));
+}
