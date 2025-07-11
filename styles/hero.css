@@ -11,7 +11,7 @@
     width: 100%;
 }
 
-/* Military Style Background */
+/* Cloud/DevSecOps Style Background */
 .hero::before {
     content: '';
     position: absolute;
@@ -19,7 +19,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 255, 65, 0.02);
+    background: var(--accent-gradient-soft);
     z-index: -1;
 }
 
@@ -30,8 +30,8 @@
     width: 100%;
     height: 100%;
     background-image: 
-        linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+        linear-gradient(var(--accent-gradient-soft) 1px, transparent 1px),
+        linear-gradient(90deg, var(--accent-gradient-soft) 1px, transparent 1px);
     background-size: 50px 50px;
     opacity: 0.5;
 }
