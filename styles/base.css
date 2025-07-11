@@ -3,40 +3,54 @@
    Sleek & Luxurious Theme
    =========================== */
 
-/* CSS Variables */
+/* CSS Variables - Refined Glassmorphic Design System */
 :root {
-    /* Premium Dark Background */
-    --bg-primary: #050505;
-    --bg-secondary: #0a0a0a;
-    --bg-tertiary: #0f0f0f;
+    /* Sophisticated Dark Backgrounds */
+    --bg-primary: #000000;
+    --bg-secondary: #030303;
+    --bg-tertiary: #080808;
     
-    /* Glass Effects */
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --glass-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    /* Refined Glass Layers */
+    --glass-surface: rgba(255, 255, 255, 0.02);
+    --glass-surface-elevated: rgba(255, 255, 255, 0.04);
+    --glass-surface-hover: rgba(255, 255, 255, 0.06);
+    --glass-border: rgba(255, 255, 255, 0.08);
+    --glass-border-light: rgba(255, 255, 255, 0.04);
     
-    /* Premium Accent Colors */
-    --accent-primary: #00ff88;
-    --accent-secondary: #00d4ff;
-    --accent-gradient: linear-gradient(135deg, #00ff88 0%, #00d4ff 100%);
-    --accent-gradient-reverse: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%);
-    --premium-gold: #ffd700;
-    --premium-purple: #9945ff;
+    /* Layered Blur Effects */
+    --blur-subtle: blur(8px);
+    --blur-medium: blur(16px);
+    --blur-heavy: blur(24px);
+    --blur-ultra: blur(48px);
     
-    /* Text Colors */
-    --text-primary: rgba(255, 255, 255, 0.95);
-    --text-secondary: rgba(255, 255, 255, 0.7);
-    --text-tertiary: rgba(255, 255, 255, 0.5);
+    /* Refined Accent Palette */
+    --accent-primary: #64ffda;
+    --accent-secondary: #7c3aed;
+    --accent-tertiary: #f59e0b;
+    --accent-gradient: linear-gradient(135deg, #64ffda 0%, #7c3aed 50%, #f59e0b 100%);
+    --accent-gradient-soft: linear-gradient(135deg, rgba(100, 255, 218, 0.15) 0%, rgba(124, 58, 237, 0.15) 100%);
     
-    /* Glass Overlays */
-    --glass-light: rgba(255, 255, 255, 0.02);
-    --glass-medium: rgba(255, 255, 255, 0.05);
-    --glass-heavy: rgba(255, 255, 255, 0.08);
+    /* Text Hierarchy */
+    --text-primary: rgba(255, 255, 255, 0.92);
+    --text-secondary: rgba(255, 255, 255, 0.64);
+    --text-tertiary: rgba(255, 255, 255, 0.38);
+    --text-accent: #64ffda;
     
-    /* Premium Shadows */
-    --shadow-glow: 0 0 80px rgba(0, 255, 136, 0.3);
-    --shadow-premium: 0 20px 60px rgba(0, 0, 0, 0.8);
-    --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.3);
+    /* Depth & Elevation */
+    --elevation-1: 0 2px 8px rgba(0, 0, 0, 0.04), 0 4px 16px rgba(0, 0, 0, 0.08);
+    --elevation-2: 0 4px 16px rgba(0, 0, 0, 0.08), 0 8px 32px rgba(0, 0, 0, 0.12);
+    --elevation-3: 0 8px 32px rgba(0, 0, 0, 0.12), 0 16px 64px rgba(0, 0, 0, 0.16);
+    --elevation-4: 0 16px 64px rgba(0, 0, 0, 0.16), 0 32px 128px rgba(0, 0, 0, 0.24);
+    
+    /* Glow Effects */
+    --glow-primary: 0 0 40px rgba(100, 255, 218, 0.4);
+    --glow-secondary: 0 0 40px rgba(124, 58, 237, 0.4);
+    --glow-subtle: 0 0 20px rgba(255, 255, 255, 0.1);
+    
+    /* Animation Timing */
+    --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 /* Reset and Base Styles */
@@ -62,7 +76,7 @@ body {
     position: relative;
 }
 
-/* Premium Background Pattern */
+/* Refined Background Layers */
 body::before {
     content: '';
     position: fixed;
@@ -71,25 +85,42 @@ body::before {
     width: 100%;
     height: 100%;
     background: 
-        radial-gradient(ellipse at top left, rgba(0, 255, 136, 0.1) 0%, transparent 40%),
-        radial-gradient(ellipse at bottom right, rgba(0, 212, 255, 0.1) 0%, transparent 40%),
-        radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.4) 100%);
+        radial-gradient(ellipse at top left, rgba(100, 255, 218, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at top right, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom center, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+    filter: var(--blur-ultra);
     pointer-events: none;
-    z-index: -1;
+    z-index: -3;
 }
 
-/* Animated Gradient Orbs */
+/* Floating Glass Orbs */
 body::after {
     content: '';
     position: fixed;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: 
-        radial-gradient(circle at 20% 50%, rgba(0, 255, 136, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
-    animation: float 20s ease-in-out infinite;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 30% 20%, rgba(100, 255, 218, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(124, 58, 237, 0.1) 0%, transparent 40%),
+        radial-gradient(circle at 20% 80%, rgba(245, 158, 11, 0.1) 0%, transparent 40%);
+    filter: var(--blur-heavy);
+    animation: floatSoft 30s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -2;
+}
+
+/* Additional Decorative Layer */
+.bg-decoration {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.02;
+    background-image: 
+        repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(255,255,255,.01) 35px, rgba(255,255,255,.01) 70px);
     pointer-events: none;
     z-index: -1;
 }
@@ -113,18 +144,35 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
     padding: 0 2rem;
 }
 
-/* Glassmorphic Navigation */
+/* Elevated Glass Navigation */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(5, 5, 5, 0.7);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid var(--glass-border);
+    background: var(--glass-surface);
+    backdrop-filter: var(--blur-heavy) saturate(180%);
+    -webkit-backdrop-filter: var(--blur-heavy) saturate(180%);
+    border-bottom: 1px solid var(--glass-border-light);
     z-index: 1000;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-base);
+    box-shadow: var(--elevation-2);
+}
+
+.navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--accent-gradient-soft);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+    pointer-events: none;
+}
+
+.navbar:hover::before {
+    opacity: 1;
 }
 
 .nav-container {
@@ -251,61 +299,85 @@ section {
     background: var(--glass-border);
 }
 
-/* Premium Glass Buttons */
+/* Refined Glass Buttons */
 .btn {
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
+    padding: 0.875rem 2.25rem;
+    border-radius: 12px;
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 500;
     display: inline-flex;
     align-items: center;
-    gap: 0.5rem;
-    transition: all 0.3s ease;
+    gap: 0.75rem;
+    transition: all var(--transition-base);
     cursor: pointer;
-    border: none;
-    font-size: 1rem;
+    border: 1px solid var(--glass-border-light);
+    font-size: 0.95rem;
     position: relative;
     overflow: hidden;
+    isolation: isolate;
 }
 
 .btn-primary {
-    background: var(--accent-gradient);
-    color: var(--bg-primary);
-    box-shadow: 0 4px 15px rgba(0, 255, 136, 0.4);
+    background: var(--glass-surface-elevated);
+    color: var(--text-accent);
+    backdrop-filter: var(--blur-medium);
+    box-shadow: var(--elevation-1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .btn-primary::before {
     content: '';
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s ease;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--accent-gradient);
+    opacity: 0.1;
+    transition: opacity var(--transition-base);
+    z-index: -1;
 }
 
-.btn-primary:hover::before {
-    left: 100%;
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, var(--accent-primary) 0%, transparent 70%);
+    transform: translate(-50%, -50%);
+    transition: width var(--transition-slow), height var(--transition-slow);
+    border-radius: 50%;
+    z-index: -1;
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(0, 255, 136, 0.6);
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-3), var(--glow-primary);
+    border-color: var(--accent-primary);
+}
+
+.btn-primary:hover::before {
+    opacity: 0.2;
+}
+
+.btn-primary:hover::after {
+    width: 300%;
+    height: 300%;
 }
 
 .btn-secondary {
-    background: var(--glass-bg);
+    background: var(--glass-surface);
     color: var(--text-primary);
-    border: 1px solid var(--glass-border);
-    backdrop-filter: blur(10px);
+    backdrop-filter: var(--blur-medium);
+    box-shadow: var(--elevation-1);
 }
 
 .btn-secondary:hover {
-    background: var(--glass-medium);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 30px rgba(0, 212, 255, 0.3);
-    border-color: var(--accent-secondary);
+    background: var(--glass-surface-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--elevation-2), var(--glow-subtle);
+    border-color: var(--glass-border);
 }
 
 /* Custom Scrollbar */
