@@ -100,12 +100,12 @@
         padding: 0 1.5rem;
     }
 
-    .terminal-header {
-        font-size: 0.8rem;
+    .terminal-line {
+        font-size: 0.85rem;
     }
-
-    .hero-greeting {
-        font-size: 1.2rem;
+    
+    .terminal-prompt {
+        font-size: 0.85rem;
     }
 
     .hero-name {
@@ -403,8 +403,8 @@
         font-size: 2.25rem;
     }
     
-    .hero-greeting {
-        font-size: 1.1rem;
+    .terminal-line {
+        font-size: 0.75rem;
     }
 }
 
