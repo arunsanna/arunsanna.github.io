@@ -14,18 +14,30 @@ async function loadComponents() {
     const components = ['hero', 'about', 'projects', 'skills', 'experience', 'certifications', 'contact', 'footer'];
     const mainContent = document.getElementById('main-content');
 
-    for (const component of components) {
-        const response = await fetch(`components/${component}.html`);
-        const html = await response.text();
-        mainContent.innerHTML += html;
-    }
+    try {
+        for (const component of components) {
+            try {
+                const response = await fetch(`components/${component}.html`);
+                if (!response.ok) {
+                    console.error(`Failed to load ${component}: ${response.status}`);
+                    continue;
+                }
+                const html = await response.text();
+                mainContent.innerHTML += html;
+            } catch (error) {
+                console.error(`Error loading ${component}:`, error);
+            }
+        }
 
-    // After all components are loaded, initialize the scripts
-    initializeNavigation();
-    initializeAnimations();
-    initializeSkillBars();
-    initializeCounters();
-    initializeTypingEffect();
-    initializeGlitchEffect();
-    initializeEasterEgg();
+        // After all components are loaded, initialize the scripts
+        initializeNavigation();
+        initializeAnimations();
+        initializeSkillBars();
+        initializeCounters();
+        initializeTypingEffect();
+        initializeGlitchEffect();
+        initializeEasterEgg();
+    } catch (error) {
+        console.error('Error in loadComponents:', error);
+    }
 }
