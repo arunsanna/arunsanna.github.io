@@ -8,8 +8,23 @@
         max-width: 800px;
     }
 
+    /* About Tablet */
+    .about-hero {
+        padding: 3rem 2rem;
+    }
+    
+    .about-statement {
+        font-size: 2.5rem;
+    }
+    
     .about-content {
         gap: 2rem;
+        grid-template-columns: 1fr;
+        max-width: 900px;
+    }
+    
+    .about-highlights h3 {
+        font-size: 1.25rem;
     }
 
     .projects-grid {
@@ -164,10 +179,16 @@
     }
 
     .section-title {
-        font-size: 2rem;
-        margin-bottom: 2.5rem;
-        flex-wrap: wrap;
-        gap: 0.5rem;
+        margin-bottom: 2rem;
+        transform: none;
+        left: auto;
+        width: 100%;
+    }
+    
+    .section-title span {
+        font-size: 1.5rem;
+        padding: 0.5rem 1.5rem;
+        border-radius: 8px;
     }
 
     .section-line {
@@ -175,9 +196,26 @@
     }
 
     /* About Mobile */
+    .about-hero {
+        padding: 1.5rem 1rem;
+        margin: 0 0 2rem;
+    }
+    
+    .about-statement {
+        font-size: clamp(1.75rem, 5vw, 2.25rem);
+        margin-bottom: 1rem;
+    }
+    
+    .about-subtitle {
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 1rem;
+    }
+    
     .about-content {
         grid-template-columns: 1fr;
         gap: 1.5rem;
+        padding: 0 1rem;
     }
 
     .about-text,
@@ -186,12 +224,25 @@
     }
 
     .about-intro {
-        font-size: 1.1rem;
+        font-size: 1.05rem;
+        margin-bottom: 1rem;
+    }
+    
+    .about-text p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        margin-bottom: 1rem;
     }
 
     .achievement-list li {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
         padding: 0.75rem;
+        gap: 0.5rem;
+    }
+    
+    .achievement-list i {
+        font-size: 1.1rem;
+        flex-shrink: 0;
     }
 
     /* Projects Mobile */
@@ -344,6 +395,51 @@
 
 /* Very Small Mobile Screens */
 @media (max-width: 480px) {
+    /* About Very Small Mobile */
+    .about-hero {
+        padding: 1rem;
+    }
+    
+    .about-statement {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+    
+    .about-subtitle {
+        font-size: 0.95rem;
+        padding: 0;
+    }
+    
+    .section-title span {
+        font-size: 1.25rem;
+        padding: 0.4rem 1.2rem;
+        border-width: 1px;
+    }
+    
+    .about-text,
+    .about-highlights {
+        padding: 1.25rem;
+    }
+    
+    .about-intro {
+        font-size: 1rem;
+    }
+    
+    .about-highlights h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .achievement-list li {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .achievement-list i {
+        font-size: 1.5rem;
+    }
+
     .hero-container {
         padding: 0 1rem;
     }
@@ -417,6 +513,31 @@
 
 /* Landscape Mobile */
 @media (max-width: 768px) and (orientation: landscape) {
+    /* About Landscape Mobile */
+    .about-hero {
+        padding: 1.5rem 2rem;
+        margin: 0 0 1.5rem;
+    }
+    
+    .about-statement {
+        font-size: 2rem;
+    }
+    
+    .about-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    
+    .about-text,
+    .about-highlights {
+        padding: 1.25rem;
+    }
+    
+    .achievement-list li {
+        font-size: 0.85rem;
+        padding: 0.5rem;
+    }
+
     .hero {
         min-height: auto;
         padding: 3rem 0;
