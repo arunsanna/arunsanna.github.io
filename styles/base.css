@@ -248,12 +248,27 @@ section {
 
 .section-title {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     position: relative;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-title span {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    padding: 0.75rem 2rem;
+    border: 2px solid var(--glass-border);
+    border-radius: 12px;
+    background: var(--glass-surface);
+    backdrop-filter: var(--blur-subtle);
+    position: relative;
+    letter-spacing: -0.02em;
 }
 
 .section-number {
