@@ -8,6 +8,7 @@
     padding: 5rem 0;
     overflow: hidden;
     isolation: isolate;
+    width: 100%;
 }
 
 /* Multi-layered Glass Background */
@@ -81,6 +82,8 @@
     margin-bottom: 1.5rem;
     opacity: 0;
     animation: fadeInUp 0.6s ease 0.2s forwards;
+    width: 100%;
+    overflow: visible;
 }
 
 .hero-greeting {

@@ -182,6 +182,8 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
+    z-index: 1001;
 }
 
 .nav-logo {
@@ -256,9 +258,11 @@ h3 { font-size: clamp(1.5rem, 3vw, 2rem); }
     cursor: pointer;
     gap: 4px;
     padding: 0.5rem;
-    background: var(--glass-bg);
+    background: var(--glass-surface);
+    border: 1px solid var(--glass-border-light);
     border-radius: 8px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: var(--blur-subtle);
+    transition: all var(--transition-base);
 }
 
 .hamburger span {

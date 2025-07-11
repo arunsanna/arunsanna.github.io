@@ -51,20 +51,27 @@
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 60px;
+        top: 70px;
         flex-direction: column;
-        background: rgba(5, 5, 5, 0.95);
-        backdrop-filter: blur(20px);
+        background: var(--glass-surface-elevated);
+        backdrop-filter: var(--blur-heavy);
+        -webkit-backdrop-filter: var(--blur-heavy);
         width: 100%;
         text-align: center;
-        transition: 0.3s;
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        transition: left var(--transition-base);
+        box-shadow: var(--elevation-3);
         padding: 2rem 0;
         border-top: 1px solid var(--glass-border);
+        z-index: 999;
     }
 
     .nav-menu.active {
         left: 0;
+    }
+    
+    .nav-menu .nav-link {
+        padding: 1rem 0;
+        font-size: 1.1rem;
     }
 
     .hamburger {
@@ -85,12 +92,14 @@
 
     /* Hero Mobile */
     .hero {
-        padding: 4rem 0 3rem;
+        padding: 5rem 1rem 3rem;
         min-height: auto;
     }
 
     .hero-container {
-        padding: 0 1rem;
+        padding: 2rem 1.5rem;
+        margin: 0 1rem;
+        border-radius: 16px;
     }
 
     .terminal-header {
@@ -103,6 +112,8 @@
 
     .hero-name {
         font-size: clamp(2rem, 10vw, 3.5rem);
+        line-height: 1.2;
+        word-break: break-word;
     }
 
     .hero-roles {
@@ -337,8 +348,16 @@
 
 /* Very Small Mobile Screens */
 @media (max-width: 480px) {
+    .hero-container {
+        padding: 1.5rem 1rem;
+        margin: 0 0.5rem;
+    }
+    
     .hero-name {
         font-size: clamp(1.75rem, 12vw, 3rem);
+        display: block;
+        white-space: nowrap;
+        overflow: visible;
     }
     
     .role-badge {
