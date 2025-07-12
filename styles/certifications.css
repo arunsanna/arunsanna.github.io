@@ -33,47 +33,6 @@
     opacity: 0.8;
 }
 
-/* Category sections */
-.cert-category {
-    margin-bottom: 4rem;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-}
-
-.cert-category:nth-child(2) { animation-delay: 0.1s; }
-.cert-category:nth-child(3) { animation-delay: 0.2s; }
-.cert-category:nth-child(4) { animation-delay: 0.3s; }
-
-.category-title {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 2rem;
-    padding-left: 1rem;
-    position: relative;
-    background: linear-gradient(135deg, 
-        var(--text-primary) 0%, 
-        var(--accent-primary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Category title accent line */
-.category-title::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 4px;
-    height: 100%;
-    background: var(--accent-gradient);
-    border-radius: 2px;
-    box-shadow: 0 0 20px hsla(188, 95%, 55%, 0.5);
-}
-
 .certifications-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -98,7 +57,23 @@
     box-shadow: 
         0 10px 30px -15px rgba(0, 0, 0, 0.3),
         inset 0 1px 0 0 hsla(0, 0%, 100%, 0.05);
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
+/* Staggered animation for cards */
+.cert-card:nth-child(1) { animation-delay: 0.05s; }
+.cert-card:nth-child(2) { animation-delay: 0.1s; }
+.cert-card:nth-child(3) { animation-delay: 0.15s; }
+.cert-card:nth-child(4) { animation-delay: 0.2s; }
+.cert-card:nth-child(5) { animation-delay: 0.25s; }
+.cert-card:nth-child(6) { animation-delay: 0.3s; }
+.cert-card:nth-child(7) { animation-delay: 0.35s; }
+.cert-card:nth-child(8) { animation-delay: 0.4s; }
+.cert-card:nth-child(9) { animation-delay: 0.45s; }
+.cert-card:nth-child(10) { animation-delay: 0.5s; }
+.cert-card:nth-child(11) { animation-delay: 0.55s; }
 
 /* Gradient border effect */
 .cert-card::before {
@@ -224,103 +199,26 @@
     box-shadow: 0 10px 20px hsla(188, 95%, 55%, 0.2);
 }
 
-/* Professional membership section */
-.membership-section {
-    margin-top: 5rem;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+/* Special styling for membership card */
+.cert-card-membership {
+    background: linear-gradient(135deg, 
+        hsla(220, 13%, 10%, 0.8) 0%, 
+        hsla(280, 13%, 15%, 0.6) 100%);
 }
 
-.membership-card {
-    background: hsla(220, 13%, 10%, 0.6);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-radius: 24px;
-    padding: 3rem;
-    border: 1px solid hsla(var(--border-rgb), 0.1);
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-/* Membership glow effect */
-.membership-card::before {
-    content: '';
-    position: absolute;
-    inset: -2px;
-    border-radius: 24px;
-    padding: 2px;
+.cert-card-membership::before {
     background: linear-gradient(135deg, 
         hsla(188, 95%, 55%, 0.4) 0%, 
         hsla(280, 95%, 55%, 0.3) 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 400ms ease;
 }
 
-.membership-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 
-        0 25px 60px -15px rgba(0, 0, 0, 0.5),
-        0 0 50px hsla(188, 95%, 55%, 0.3);
-}
-
-.membership-card:hover::before {
-    opacity: 1;
-}
-
-.membership-icon {
-    font-size: 4rem;
+.cert-card-membership .cert-icon {
     background: linear-gradient(135deg, 
         var(--accent-primary) 0%, 
         hsla(280, 95%, 55%, 1) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    filter: drop-shadow(0 0 30px hsla(188, 95%, 55%, 0.5));
-    flex-shrink: 0;
-    transition: all 400ms ease;
-}
-
-.membership-card:hover .membership-icon {
-    transform: scale(1.1) rotate(5deg);
-    filter: drop-shadow(0 0 40px hsla(188, 95%, 55%, 0.7));
-}
-
-.membership-content h4 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, 
-        var(--text-primary) 0%, 
-        var(--accent-primary) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-.membership-role {
-    font-size: 1.125rem;
-    color: var(--accent-primary);
-    font-weight: 500;
-    margin-bottom: 1rem;
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.05em;
-}
-
-.membership-description {
-    color: var(--text-secondary);
-    line-height: 1.8;
-    font-size: 1rem;
 }
 
 /* Group hover effects */
@@ -345,22 +243,7 @@
         padding: 2rem;
     }
     
-    .membership-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 2rem;
-        gap: 2rem;
-    }
-    
-    .category-title {
-        font-size: 1.25rem;
-    }
-    
     .cert-icon {
-        font-size: 3rem;
-    }
-    
-    .membership-icon {
         font-size: 3rem;
     }
 }
