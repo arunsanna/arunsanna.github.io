@@ -23,18 +23,33 @@
 /* Section subtitle */
 .section-subtitle {
     text-align: center;
-    font-size: clamp(0.9rem, 2vw, 1.25rem);
+    font-size: clamp(0.75rem, 1.5vw, 0.875rem);
     color: var(--text-secondary);
-    margin-top: -1rem;
+    margin-top: -0.5rem;
     margin-bottom: 3rem;
-    font-weight: 300;
-    letter-spacing: 0.05em;
-    opacity: 0.8;
-    line-height: 1.6;
-    max-width: 800px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    line-height: 1.4;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
     padding: 0 1rem;
+    position: relative;
+}
+
+/* Decorative line under subtitle */
+.section-subtitle::after {
+    content: '';
+    position: absolute;
+    bottom: -1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background: var(--accent-gradient);
+    opacity: 0.6;
 }
 
 .certifications-grid {
@@ -72,27 +87,28 @@
     }
 }
 
-/* Enhanced cert card - Smaller rectangular design */
+/* Enhanced cert card - Professional badge style */
 .cert-card {
-    background: hsla(220, 13%, 10%, 0.6);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-radius: 16px;
-    padding: clamp(1rem, 2vw, 1.5rem);
+    background: hsla(220, 13%, 11%, 0.5);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-radius: 20px;
+    padding: clamp(1.25rem, 2vw, 1.75rem);
     text-align: center;
-    border: 1px solid hsla(var(--border-rgb), 0.1);
+    border: 1px solid hsla(188, 95%, 55%, 0.15);
     transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
     cursor: pointer;
     transform-style: preserve-3d;
     box-shadow: 
-        0 10px 30px -15px rgba(0, 0, 0, 0.3),
-        inset 0 1px 0 0 hsla(0, 0%, 100%, 0.05);
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 0 hsla(0, 0%, 100%, 0.03);
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-    min-height: clamp(240px, 25vh, 280px);
+    min-height: clamp(250px, 26vh, 290px);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -114,13 +130,13 @@
 .cert-card::before {
     content: '';
     position: absolute;
-    inset: -2px;
-    border-radius: 16px;
-    padding: 2px;
+    inset: -1px;
+    border-radius: 20px;
+    padding: 1px;
     background: linear-gradient(135deg, 
-        hsla(188, 95%, 55%, 0.5) 0%, 
-        transparent 40%, 
-        hsla(188, 95%, 55%, 0.3) 100%);
+        hsla(188, 95%, 55%, 0.4) 0%, 
+        transparent 50%, 
+        hsla(188, 95%, 55%, 0.2) 100%);
     -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
     -webkit-mask-composite: xor;
     mask-composite: exclude;
@@ -146,12 +162,13 @@
 }
 
 .cert-card:hover {
-    transform: translateY(-8px) scale(1.02);
+    transform: translateY(-6px) scale(1.01);
     box-shadow: 
-        0 20px 40px -10px rgba(0, 0, 0, 0.4),
-        0 0 30px hsla(188, 95%, 55%, 0.15),
-        inset 0 1px 0 0 hsla(188, 95%, 55%, 0.1);
-    background: hsla(220, 13%, 12%, 0.8);
+        0 20px 25px -5px rgba(0, 0, 0, 0.2),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        0 0 20px hsla(188, 95%, 55%, 0.15);
+    background: hsla(220, 13%, 12%, 0.6);
+    border-color: hsla(188, 95%, 55%, 0.3);
 }
 
 .cert-card:hover::before {
