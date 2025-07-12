@@ -1,22 +1,22 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    /* Improve touch targets for outcomes toggle */
+    /* Outcomes always expanded on mobile */
     .outcomes-box h4 {
         padding: 0.75rem 0;
-        min-height: 44px;
-        display: flex;
-        align-items: center;
-        cursor: pointer;
-        -webkit-tap-highlight-color: rgba(2, 215, 242, 0.1);
+        cursor: default;
+        pointer-events: none;
     }
     
-    /* Visual feedback for touch */
-    .outcomes-box h4:active {
-        background: rgba(2, 215, 242, 0.05);
-        border-radius: 4px;
-        margin: 0 -0.5rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+    /* Hide chevron icon on mobile */
+    .outcomes-box h4 i {
+        display: none;
+    }
+    
+    /* Ensure outcomes are visible */
+    .outcomes-box ul {
+        max-height: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
     }
     .projects-header {
         margin-bottom: 3rem;

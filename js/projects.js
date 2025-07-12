@@ -35,13 +35,21 @@ function setupHoverEffects() {
     // Skip hover effects on touch devices
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (isTouchDevice || window.innerWidth <= 768) {
-        // Just ensure initial state is correct for mobile
+        // Expand all outcomes on mobile by default
         const projectIds = ['dod', 'cms', 'oar', 'ai-ml', 'cloud', 'edge'];
         projectIds.forEach(projectId => {
             const outcomesList = document.querySelector(`#${projectId}-outcomes`);
             if (outcomesList) {
-                outcomesList.style.maxHeight = '0';
-                outcomesList.style.opacity = '0';
+                // Expand outcomes on mobile
+                outcomesList.style.maxHeight = '2000px';
+                outcomesList.style.opacity = '1';
+                outcomesList.style.visibility = 'visible';
+                
+                // Update icon to show expanded state
+                const icon = document.querySelector(`#${projectId}-outcomes-icon`);
+                if (icon) {
+                    icon.style.transform = 'rotate(180deg)';
+                }
             }
         });
         return;

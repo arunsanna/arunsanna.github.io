@@ -213,16 +213,18 @@
 
 /* Mobile optimizations for outcomes */
 @media (max-width: 768px) {
-    /* Disable complex animations on mobile */
+    /* Simpler animations on mobile - but still visible */
     .outcomes-box ul li {
         animation: none !important;
-        opacity: 1;
-        transform: none;
+        opacity: 1 !important;
+        transform: none !important;
+        visibility: visible !important;
     }
     
     .bullet-point {
         animation: none !important;
         transform: scale(1) !important;
+        background: var(--accent-primary) !important;
     }
     
     .bullet-point::before {
