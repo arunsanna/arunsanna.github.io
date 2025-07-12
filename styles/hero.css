@@ -1,4 +1,4 @@
-/* Hero Section - Refined Glassmorphic Layers */
+/* Hero Section - Enhanced Professional Design */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -9,17 +9,47 @@
     overflow: hidden;
     isolation: isolate;
     width: 100%;
+    background: linear-gradient(180deg, 
+        var(--bg-primary) 0%, 
+        hsla(220, 13%, 9%, 0.95) 50%, 
+        var(--bg-primary) 100%);
 }
 
-/* Cloud/DevSecOps Style Background */
+/* Animated Background Gradient */
 .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 70%, 
+        hsla(188, 95%, 55%, 0.06) 0%, 
+        transparent 40%,
+        hsla(188, 95%, 55%, 0.03) 70%,
+        transparent 100%);
+    animation: float 30s ease-in-out infinite;
+    z-index: -2;
+}
+
+@keyframes float {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33% { transform: translate(-20px, -30px) rotate(120deg); }
+    66% { transform: translate(20px, -20px) rotate(240deg); }
+}
+
+/* Additional gradient layer */
+.hero::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--accent-gradient-soft);
+    background: radial-gradient(ellipse at top, 
+        hsla(188, 95%, 55%, 0.02) 0%, 
+        transparent 70%);
+    pointer-events: none;
     z-index: -1;
 }
 
@@ -30,10 +60,35 @@
     width: 100%;
     height: 100%;
     background-image: 
-        linear-gradient(var(--accent-gradient-soft) 1px, transparent 1px),
-        linear-gradient(90deg, var(--accent-gradient-soft) 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.5;
+        linear-gradient(hsla(188, 95%, 55%, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(188, 95%, 55%, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0;
+    animation: gridFadeIn 2s ease forwards;
+    transform: translateZ(0);
+}
+
+@keyframes gridFadeIn {
+    to { opacity: 0.6; }
+}
+
+/* Animated grid lines */
+.cyber-grid::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        hsla(188, 95%, 55%, 0.1) 50%, 
+        transparent 100%);
+    animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+    to { transform: translateY(200%); }
 }
 
 .hero-container {
@@ -42,27 +97,95 @@
     text-align: center;
     width: 100%;
     padding: 0 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .hero-content {
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
+    padding: 3rem;
+    background: hsla(220, 13%, 9%, 0.4);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border-radius: 30px;
+    border: 1px solid hsla(var(--border-rgb), 0.1);
+    box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.25),
+        inset 0 1px 0 0 hsla(0, 0%, 100%, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glow effect for content container */
+.hero-content::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 30px;
+    padding: 2px;
+    background: linear-gradient(135deg, 
+        hsla(188, 95%, 55%, 0.3) 0%, 
+        transparent 40%, 
+        hsla(188, 95%, 55%, 0.2) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 600ms ease;
+}
+
+.hero-content:hover::before {
+    opacity: 1;
 }
 
 .terminal-line {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 1rem;
-    font-weight: 400;
+    font-size: 1.125rem;
+    font-weight: 500;
     color: var(--text-primary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     text-align: center;
     opacity: 0;
-    animation: fadeInUp 0.6s ease forwards;
+    animation: terminalType 0.8s ease forwards;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 0.05em;
+}
+
+@keyframes terminalType {
+    0% { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    50% {
+        opacity: 1;
+    }
+    100% { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Blinking cursor effect */
+.terminal-line::after {
+    content: '_';
+    position: absolute;
+    right: -15px;
+    color: var(--accent-primary);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
 
 .terminal-prompt {
     color: var(--accent-primary);
-    margin-right: 0.5rem;
+    margin-right: 0.75rem;
+    text-shadow: 0 0 20px hsla(188, 95%, 55%, 0.5);
+    font-weight: 600;
 }
 
 .terminal-command {
@@ -79,76 +202,270 @@
 
 
 .hero-name {
-    display: block;
+    display: inline-block;
     font-size: clamp(2.5rem, 6vw, 5rem);
     font-weight: 700;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    color: var(--text-primary);
+    background: linear-gradient(135deg, 
+        var(--text-primary) 0%, 
+        var(--accent-primary) 50%, 
+        var(--text-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 200% 200%;
+    animation: shimmerText 4s ease-in-out infinite;
     position: relative;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.03em;
     text-align: center;
-    margin: 0.5rem 0;
+    margin: 1rem 0 2rem;
     line-height: 1.1;
+    filter: drop-shadow(0 4px 20px hsla(188, 95%, 55%, 0.3));
 }
 
-/* Refined Glass Role Badges */
+@keyframes shimmerText {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Underline effect */
+.hero-name::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--accent-primary) 50%, 
+        transparent 100%);
+    transform: scaleX(0);
+    transition: transform 800ms cubic-bezier(0.4, 0, 0.2, 1);
+    animation: expandLine 1s ease forwards;
+    animation-delay: 0.5s;
+}
+
+@keyframes expandLine {
+    to { transform: scaleX(1); }
+}
+
+/* Enhanced Interactive Role Badges */
 .hero-roles {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 1rem;
     justify-content: center;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     opacity: 0;
-    animation: fadeInUp 0.6s ease 0.4s forwards;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+    position: relative;
+    padding: 1rem 0;
+}
+
+/* Hover effect for badge container */
+.hero-roles:hover .role-badge {
+    opacity: 0.7;
+    transform: scale(0.95);
+}
+
+.hero-roles .role-badge:hover {
+    opacity: 1 !important;
+    transform: translateY(-4px) scale(1.05) !important;
 }
 
 .role-badge {
-    padding: 0.625rem 1.25rem;
-    background: var(--glass-surface-elevated);
-    backdrop-filter: var(--blur-subtle);
-    -webkit-backdrop-filter: var(--blur-subtle);
-    border: 1px solid var(--glass-border);
-    border-radius: 12px;
+    padding: 0.75rem 1.5rem;
+    background: hsla(220, 13%, 11%, 0.6);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid hsla(188, 95%, 55%, 0.2);
+    border-radius: 50px;
     font-size: 0.875rem;
     font-weight: 500;
     font-family: 'JetBrains Mono', monospace;
-    color: var(--text-primary);
-    transition: all var(--transition-base);
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
-    box-shadow: var(--elevation-1);
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 0 hsla(0, 0%, 100%, 0.05);
+    cursor: pointer;
+}
+
+/* Gradient border on hover */
+.role-badge::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50px;
+    padding: 2px;
+    background: linear-gradient(135deg, 
+        var(--accent-primary) 0%, 
+        var(--accent-primary-glow) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 400ms ease;
+}
+
+/* Shine effect */
+.role-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        hsla(188, 95%, 55%, 0.3) 50%, 
+        transparent 100%);
+    transition: left 800ms ease;
 }
 
 
 .role-badge:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--elevation-2);
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.2),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        0 0 40px hsla(188, 95%, 55%, 0.3);
     border-color: var(--accent-primary);
     color: var(--accent-primary);
-    background: var(--glass-surface-hover);
+    background: hsla(188, 95%, 55%, 0.1);
+}
+
+.role-badge:hover::before {
+    opacity: 1;
+}
+
+.role-badge:hover::after {
+    left: 100%;
 }
 
 .hero-description {
     font-size: 1.25rem;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
     line-height: 1.8;
     opacity: 0;
-    animation: fadeInUp 0.6s ease 0.6s forwards;
-    font-weight: 300;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+    font-weight: 400;
+    letter-spacing: 0.01em;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    padding: 0 1rem;
+}
+
+/* Highlight key phrases */
+.hero-description strong {
+    color: var(--text-primary);
+    font-weight: 600;
+    position: relative;
+}
+
+.hero-description strong::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-primary);
+    opacity: 0.3;
+    transform: scaleX(0);
+    transition: transform 400ms ease;
+}
+
+.hero-description:hover strong::after {
+    transform: scaleX(1);
 }
 
 
-/* Hero CTA Buttons */
+/* Enhanced Hero CTA Buttons */
 .hero-cta {
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
     opacity: 0;
-    animation: fadeInUp 0.6s ease 0.8s forwards;
+    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.8s forwards;
+    position: relative;
+    z-index: 1;
+}
+
+/* Enhanced button styles */
+.hero-cta .btn {
+    padding: 1rem 2.5rem;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    position: relative;
+    overflow: hidden;
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Primary button enhancement */
+.hero-cta .btn-primary {
+    background: linear-gradient(135deg, 
+        var(--accent-primary) 0%, 
+        var(--accent-primary-dark) 100%);
+    box-shadow: 
+        0 4px 15px hsla(188, 95%, 55%, 0.3),
+        inset 0 1px 0 0 hsla(188, 95%, 65%, 0.5);
+}
+
+.hero-cta .btn-primary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 10px 30px hsla(188, 95%, 55%, 0.4),
+        inset 0 1px 0 0 hsla(188, 95%, 65%, 0.7);
+}
+
+/* Secondary button enhancement */
+.hero-cta .btn-secondary {
+    background: hsla(220, 13%, 14%, 0.6);
+    backdrop-filter: blur(12px);
+    border: 2px solid hsla(var(--border-rgb), 0.3);
+}
+
+.hero-cta .btn-secondary:hover {
+    background: hsla(220, 13%, 14%, 0.8);
+    border-color: var(--accent-primary);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 10px 30px hsla(188, 95%, 55%, 0.2),
+        inset 0 1px 0 0 hsla(188, 95%, 55%, 0.1);
+}
+
+/* Button shine effect */
+.hero-cta .btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        hsla(255, 255%, 255%, 0.2) 50%, 
+        transparent 100%);
+    transition: left 600ms ease;
+}
+
+.hero-cta .btn:hover::before {
+    left: 100%;
 }
 
 
@@ -185,4 +502,150 @@
     left: 50%;
     transform: translateX(-50%);
     animation: scroll 2s infinite;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateX(-50%) translateY(15px);
+        opacity: 0;
+    }
+}
+
+/* Additional Interactive Elements */
+.hero-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-primary);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: particleFloat 20s linear infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.3;
+    }
+    90% {
+        opacity: 0.3;
+    }
+    100% {
+        transform: translateY(-100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Generate random particles */
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 15s; }
+.particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 20s; }
+.particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 18s; }
+.particle:nth-child(4) { left: 40%; animation-delay: 6s; animation-duration: 22s; }
+.particle:nth-child(5) { left: 50%; animation-delay: 8s; animation-duration: 16s; }
+
+/* Enhanced scroll indicator with glow */
+.scroll-indicator:hover .mouse {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 20px hsla(188, 95%, 55%, 0.4);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 4rem 0;
+    }
+    
+    .hero-content {
+        padding: 2rem 1.5rem;
+        border-radius: 20px;
+    }
+    
+    .terminal-line {
+        font-size: 0.875rem;
+    }
+    
+    .hero-name {
+        font-size: 2rem;
+        margin: 0.5rem 0 1.5rem;
+    }
+    
+    .hero-name::after {
+        bottom: -5px;
+        height: 2px;
+    }
+    
+    .hero-roles {
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+    }
+    
+    .role-badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 2rem auto;
+    }
+    
+    .hero-cta .btn {
+        width: 100%;
+        padding: 0.875rem 2rem;
+    }
+    
+    .scroll-indicator {
+        bottom: 1rem;
+    }
+    
+    .mouse {
+        width: 20px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .hero-name {
+        font-size: 1.75rem;
+    }
+    
+    .role-badge {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.7rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
 }
