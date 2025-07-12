@@ -10,12 +10,15 @@
     --bg-primary: hsl(220, 13%, 7%);        /* Very dark blue-gray */
     --bg-secondary: hsl(220, 13%, 14%);     /* Medium dark blue-gray */
     --bg-tertiary: hsl(220, 13%, 18%);      /* Border color shade */
+    --background: hsl(220, 13%, 7%);        /* Main background color */
     
     /* Glass Layers with Cyan Tint */
     --glass-surface: hsl(220, 13%, 9%);     /* Card/Surface color */
+    --glass-surface-rgb: 20, 22, 25;        /* RGB values for glass surface */
     --glass-surface-elevated: hsl(220, 13%, 11%);
     --glass-surface-hover: hsl(220, 13%, 13%);
     --glass-border: hsl(220, 13%, 18%);     /* Subtle border color */
+    --glass-border-rgb: 41, 45, 51;         /* RGB values for glass border */
     --glass-border-light: hsl(220, 13%, 15%);
     
     /* Layered Blur Effects */
@@ -26,6 +29,7 @@
     
     /* Primary Colors - Cyan/Turquoise */
     --accent-primary: hsl(188, 95%, 55%);       /* Bright cyan */
+    --accent-primary-rgb: 2, 215, 242;          /* RGB values for accent primary */
     --accent-primary-glow: hsl(188, 95%, 65%);  /* Lighter cyan for highlights */
     --accent-primary-dark: hsl(188, 95%, 45%);  /* Darker cyan for depth */
     --accent-secondary: hsl(220, 13%, 14%);     /* Secondary color */
@@ -36,8 +40,14 @@
     --accent-warning: hsl(38, 92%, 50%);        /* Orange/amber */
     --accent-danger: hsl(0, 84%, 60%);          /* Red for errors */
     
-    --accent-gradient: hsl(188, 95%, 55%);
+    --accent-gradient: linear-gradient(135deg, hsl(188, 95%, 55%) 0%, hsl(188, 95%, 65%) 100%);
     --accent-gradient-soft: hsla(188, 95%, 55%, 0.1);
+    
+    /* Glass backgrounds */
+    --glass-bg: hsla(220, 13%, 9%, 0.8);        /* Glass background with transparency */
+    --card-gradient: linear-gradient(135deg, 
+        rgba(var(--glass-surface-rgb), 0.9) 0%, 
+        rgba(var(--glass-surface-rgb), 0.7) 100%);
     
     /* Text Hierarchy */
     --text-primary: hsl(210, 40%, 95%);         /* Near white for readability */
