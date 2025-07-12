@@ -1,5 +1,23 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+    /* Improve touch targets for outcomes toggle */
+    .outcomes-box h4 {
+        padding: 0.75rem 0;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(2, 215, 242, 0.1);
+    }
+    
+    /* Visual feedback for touch */
+    .outcomes-box h4:active {
+        background: rgba(2, 215, 242, 0.05);
+        border-radius: 4px;
+        margin: 0 -0.5rem;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
     .projects-header {
         margin-bottom: 3rem;
     }
@@ -25,23 +43,42 @@
         font-size: 1.125rem;
     }
     
-    /* Keep metrics in one row on mobile */
+    /* Adaptive metrics layout on mobile */
     .metrics-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
+        overflow-x: visible !important;
+    }
+    
+    /* For projects with many metrics (6+), use single row with scroll */
+    .project-card:has(.metric-box:nth-child(6)) .metrics-grid {
+        display: flex !important;
         flex-wrap: nowrap !important;
         overflow-x: auto !important;
+        grid-template-columns: none !important;
     }
     
     .metric-box {
-        padding: 0.4rem 0.6rem;
-        min-width: 80px;
+        padding: 0.75rem 0.5rem;
+        min-width: auto;
+        flex: 1 1 calc(50% - 0.25rem);
+    }
+    
+    /* Adjust for scrollable metrics */
+    .project-card:has(.metric-box:nth-child(6)) .metric-box {
+        flex: 0 0 auto;
+        min-width: 85px;
     }
     
     .metric-box .text-2xl {
-        font-size: 1.1rem;
+        font-size: 1.25rem;
+        font-weight: 700;
     }
     
     .metric-box .text-xs {
-        font-size: 0.6rem;
+        font-size: 0.7rem;
+        line-height: 1.2;
     }
     
     .icon-container {
@@ -99,16 +136,26 @@
         padding: 0.875rem;
     }
     
+    /* Keep 2x2 grid for small metrics count */
+    .metrics-grid {
+        gap: 0.4rem !important;
+    }
+    
     .metric-box {
-        padding: 0.3rem 0.5rem;
-        min-width: 70px;
+        padding: 0.6rem 0.4rem;
+    }
+    
+    /* Single row for many metrics */
+    .project-card:has(.metric-box:nth-child(6)) .metric-box {
+        min-width: 75px;
+        padding: 0.4rem 0.3rem;
     }
     
     .metric-box .text-2xl {
-        font-size: 0.95rem;
+        font-size: 1.1rem;
     }
     
     .metric-box .text-xs {
-        font-size: 0.55rem;
+        font-size: 0.65rem;
     }
 }

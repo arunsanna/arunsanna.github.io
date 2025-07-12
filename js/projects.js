@@ -30,8 +30,23 @@ function initializeCollapsibleOutcomes() {
     // Don't auto-expand any outcomes initially
 }
 
-// Setup hover effects for project cards
+// Setup hover effects for project cards (desktop only)
 function setupHoverEffects() {
+    // Skip hover effects on touch devices
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (isTouchDevice || window.innerWidth <= 768) {
+        // Just ensure initial state is correct for mobile
+        const projectIds = ['dod', 'cms', 'oar', 'ai-ml', 'cloud', 'edge'];
+        projectIds.forEach(projectId => {
+            const outcomesList = document.querySelector(`#${projectId}-outcomes`);
+            if (outcomesList) {
+                outcomesList.style.maxHeight = '0';
+                outcomesList.style.opacity = '0';
+            }
+        });
+        return;
+    }
+    
     const projectIds = ['dod', 'cms', 'oar', 'ai-ml', 'cloud', 'edge'];
     
     projectIds.forEach(projectId => {
