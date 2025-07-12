@@ -85,6 +85,9 @@
         margin-left: 0;
         padding: 0;
         align-items: center;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
     }
     
     /* Roles graph mobile optimization */
@@ -179,11 +182,6 @@
     
     .hero-subtitle {
         font-size: 0.875rem;
-    }
-    
-    .profile-image-wrapper {
-        width: 120px;
-        height: 150px;
     }
     
     .hero-description {
