@@ -1,0 +1,51 @@
+/* Enhanced Animation Utilities */
+[data-animation-delay="0"] { --animation-delay: 0s; }
+[data-animation-delay="0.05"] { --animation-delay: 0.05s; }
+[data-animation-delay="0.1"] { --animation-delay: 0.1s; }
+[data-animation-delay="0.15"] { --animation-delay: 0.15s; }
+[data-animation-delay="0.2"] { --animation-delay: 0.2s; }
+[data-animation-delay="0.25"] { --animation-delay: 0.25s; }
+[data-animation-delay="0.3"] { --animation-delay: 0.3s; }
+[data-animation-delay="0.35"] { --animation-delay: 0.35s; }
+[data-animation-delay="0.4"] { --animation-delay: 0.4s; }
+[data-animation-delay="0.45"] { --animation-delay: 0.45s; }
+[data-animation-delay="0.5"] { --animation-delay: 0.5s; }
+[data-animation-delay="0.55"] { --animation-delay: 0.55s; }
+[data-animation-delay="0.6"] { --animation-delay: 0.6s; }
+[data-animation-delay="0.65"] { --animation-delay: 0.65s; }
+[data-animation-delay="0.7"] { --animation-delay: 0.7s; }
+[data-animation-delay="0.75"] { --animation-delay: 0.75s; }
+
+/* Enhanced fade in animation */
+
+
+/* Tech section enhancement */
+.tech-section {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 2rem;
+    background: hsla(220, 13%, 7%, 0.3);
+    border-radius: 24px;
+    border: 1px solid hsla(var(--border-rgb), 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.tech-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center, 
+        hsla(188, 95%, 55%, 0.05) 0%, 
+        transparent 70%);
+    animation: rotate 20s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

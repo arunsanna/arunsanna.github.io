@@ -1,0 +1,42 @@
+/* Projects Section - Enhanced Enterprise Design System */
+.projects {
+    position: relative;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
+.projects::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 20% 50%, hsla(188, 95%, 55%, 0.03) 0%, transparent 70%);
+    pointer-events: none;
+    animation: float 20s ease-in-out infinite;
+}
+
+
+
+/* Utility Classes */
+.py-20 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
+
+.max-w-7xl {
+    max-width: 80rem;
+}
+
+.space-y-8 > * + * {
+    margin-top: 2rem;
+}
+
+.space-y-6 > * + * {
+    margin-top: 1rem; /* Reduced from 1.5rem */
+}
+
+.space-y-2 > * + * {
+    margin-top: 0.375rem; /* Reduced from 0.5rem */
+}

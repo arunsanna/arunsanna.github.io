@@ -1,0 +1,29 @@
+/* About Section - Enhanced Professional Design */
+.about {
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Animated Background Pattern */
+.about::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 80% 20%, hsla(188, 95%, 55%, 0.04) 0%, transparent 60%);
+    animation: float 25s ease-in-out infinite reverse;
+    pointer-events: none;
+}
+
+
+
+/* Semantic Background with Depth */
+.bg-muted-20 {
+    background: linear-gradient(180deg, 
+        rgba(var(--muted-rgb, 220, 220, 220), 0.02) 0%, 
+        rgba(var(--muted-rgb, 220, 220, 220), 0.04) 100%);
+    position: relative;
+}

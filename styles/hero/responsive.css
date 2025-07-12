@@ -1,0 +1,196 @@
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero {
+        padding: 4rem 0;
+    }
+    
+    .hero-content {
+        padding: 2rem 1.5rem;
+        border-radius: 20px;
+    }
+    
+    .terminal-line {
+        font-size: 0.875rem;
+    }
+    
+    .hero-name {
+        font-size: 2rem;
+        margin: 0.5rem 0 1.5rem;
+    }
+    
+    .hero-name::after {
+        bottom: -5px;
+        height: 2px;
+    }
+    
+    .hero-roles {
+        height: 220px;
+        margin: 1.5rem 0;
+    }
+    
+    .roles-graph {
+        transform: scale(0.8);
+        transform-origin: center;
+    }
+    
+    .role-bubble {
+        padding: 0.6rem;
+    }
+    
+    .bubble-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.875rem;
+    }
+    
+    .bubble-text {
+        font-size: 0.6rem;
+    }
+    
+    }
+    
+    .role-badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.75rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 2rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: 1rem;
+        width: 100%;
+        max-width: 300px;
+        margin: 2rem auto;
+    }
+    
+    .hero-cta .btn {
+        width: 100%;
+        padding: 0.875rem 2rem;
+    }
+    
+    .scroll-indicator {
+        bottom: 1rem;
+    }
+    
+    .mouse {
+        width: 20px;
+        height: 35px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 1.5rem 1rem;
+    }
+    
+    .hero-name {
+        font-size: 1.75rem;
+    }
+    
+    .role-badge {
+        padding: 0.375rem 0.75rem;
+        font-size: 0.7rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.6;
+    }
+    
+    .hero-roles {
+        height: 200px;
+    }
+    
+    .roles-graph {
+        transform: scale(0.65);
+    }
+    
+    .role-bubble {
+        padding: 0.5rem;
+    }
+    
+    .bubble-icon {
+        width: 25px;
+        height: 25px;
+        font-size: 0.75rem;
+    }
+    
+    .bubble-text {
+        font-size: 0.55rem;
+    }
+}
+
+/* New Hero Description Styles */
+.hero-description {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 2rem 0;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.5s forwards;
+}
+
+.hero-description .highlight {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+
+/* Button Glow Effect */
+.btn-glow {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-glow::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-dark));
+    opacity: 0.5;
+    filter: blur(10px);
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.btn-glow:hover::after {
+    opacity: 0.8;
+    filter: blur(15px);
+}
+
+/* Responsive Updates */
+@media (max-width: 968px) {
+    .hero-profile {
+        margin-bottom: 2rem;
+        padding-top: 0;
+    }
+    
+    .profile-image-wrapper {
+        width: 200px;
+        height: 250px;
+    }
+    
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-badge {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-image-wrapper {
+        width: 150px;
+        height: 150px;
+    }
+    
+    
+}

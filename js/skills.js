@@ -1,4 +1,23 @@
-export function initializeSkillBars() {
+export async function initializeSkillBars() {
+    const skills = ['cloud', 'containers', 'devops', 'fullstack', 'security', 'platform', 'enterprise', 'ai', 'mobile'];
+    const skillsGrid = document.querySelector('.skills-grid');
+
+    if (skillsGrid) {
+        for (const skill of skills) {
+            try {
+                const response = await fetch(`components/skills/${skill}.html`);
+                if (response.ok) {
+                    const html = await response.text();
+                    skillsGrid.innerHTML += html;
+                } else {
+                    console.error(`Failed to load skill: ${skill}`);
+                }
+            } catch (error) {
+                console.error(`Error loading skill ${skill}:`, error);
+            }
+        }
+    }
+
     // Progress bar animation observer
     const progressObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {

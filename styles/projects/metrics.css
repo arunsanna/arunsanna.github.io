@@ -1,0 +1,80 @@
+/* Enhanced Metrics Grid with Nested Containers */
+.metrics-grid {
+    display: grid;
+    gap: 0.75rem; /* Reduced from 1rem */
+    padding: 1rem; /* Reduced from 1.5rem */
+    background: hsla(220, 13%, 7%, 0.5);
+    border-radius: 16px;
+    border: 1px solid hsla(var(--border-rgb), 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.metrics-grid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        hsla(188, 95%, 55%, 0.3) 50%, 
+        transparent 100%);
+}
+
+.grid {
+    display: grid;
+}
+
+.grid-cols-2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+@media (min-width: 768px) {
+    .md\:grid-cols-4 {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.metric-box {
+    padding: 0.875rem; /* Reduced from 1.25rem */
+    position: relative;
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid transparent;
+    cursor: pointer;
+}
+
+.metric-box::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, 
+        hsla(188, 95%, 55%, 0.1) 0%, 
+        transparent 100%);
+    opacity: 0;
+    transition: opacity 400ms ease;
+}
+
+.metric-box:hover {
+    transform: translateY(-2px);
+    border-color: hsla(188, 95%, 55%, 0.3);
+    background: hsla(188, 95%, 55%, 0.05);
+}
+
+.metric-box:hover::before {
+    opacity: 1;
+}
+
+.metric-box:hover .text-2xl {
+    transform: scale(1.1);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.p-4 {
+    padding: 0.875rem; /* Reduced from 1rem */
+}

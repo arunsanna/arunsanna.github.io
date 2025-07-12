@@ -1,0 +1,292 @@
+/* Animated Roles Graph */
+.hero-roles {
+    margin: 2rem 0;
+    position: relative;
+    height: 300px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.4s forwards;
+}
+
+.roles-graph {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.roles-connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.role-connection {
+    stroke: var(--accent-primary);
+    stroke-width: 2;
+    fill: none;
+    opacity: 0.3;
+    animation: connectionPulse 3s ease-in-out infinite;
+}
+
+.role-connection.cross {
+    stroke-dasharray: 5, 5;
+    animation-delay: 1.5s;
+}
+
+@keyframes connectionPulse {
+    0%, 100% { opacity: 0.2; stroke-width: 1; }
+    50% { opacity: 0.6; stroke-width: 2; }
+}
+
+.roles-bubbles {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.role-bubble {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    background: hsla(220, 13%, 11%, 0.9);
+    backdrop-filter: blur(10px);
+    border: 2px solid hsla(188, 95%, 55%, 0.3);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+    animation: bubbleFloat 4s ease-in-out infinite;
+    animation-delay: var(--bubble-delay, 0s);
+    min-width: 140px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.role-bubble:nth-child(1) { 
+    --bubble-delay: 0s; 
+    animation-name: bubbleFloat1;
+}
+.role-bubble:nth-child(2) { 
+    --bubble-delay: 0.5s; 
+    animation-name: bubbleFloat2;
+}
+.role-bubble:nth-child(3) { 
+    --bubble-delay: 1s; 
+    animation-name: bubbleFloat3;
+}
+.role-bubble:nth-child(4) { 
+    --bubble-delay: 1.5s; 
+    animation-name: bubbleFloat4;
+}
+.role-bubble:nth-child(5) { 
+    --bubble-delay: 2s; 
+    animation-name: bubbleFloat5;
+}
+.role-bubble:nth-child(6) { 
+    --bubble-delay: 2.5s; 
+    animation-name: bubbleFloat6;
+}
+.role-bubble:nth-child(7) { 
+    --bubble-delay: 3s; 
+    animation-name: bubbleFloat7;
+}
+.role-bubble:nth-child(8) { 
+    --bubble-delay: 3.5s; 
+    animation-name: bubbleFloat8;
+}
+
+@keyframes bubbleFloat {
+    0%, 100% { 
+        transform: translateY(0) translateX(0); 
+    }
+    25% { 
+        transform: translateY(-8px) translateX(3px); 
+    }
+    50% { 
+        transform: translateY(-10px) translateX(0); 
+    }
+    75% { 
+        transform: translateY(-8px) translateX(-3px); 
+    }
+}
+
+/* Individual bubble animations for bounce effect */
+@keyframes bubbleFloat1 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-8px) translateX(5px); }
+}
+
+@keyframes bubbleFloat2 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-10px) translateX(-3px); }
+}
+
+@keyframes bubbleFloat3 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-6px) translateX(4px); }
+}
+
+@keyframes bubbleFloat4 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-9px) translateX(-5px); }
+}
+
+@keyframes bubbleFloat5 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-7px) translateX(3px); }
+}
+
+@keyframes bubbleFloat6 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-11px) translateX(-4px); }
+}
+
+@keyframes bubbleFloat7 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-5px) translateX(6px); }
+}
+
+@keyframes bubbleFloat8 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-8px) translateX(-3px); }
+}
+
+.role-bubble.primary {
+    background: hsla(188, 95%, 55%, 0.15);
+    border-color: var(--accent-primary);
+}
+
+.bubble-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: hsla(188, 95%, 55%, 0.1);
+    border-radius: 50%;
+    font-size: 1.25rem;
+    color: var(--accent-primary);
+}
+
+.bubble-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.role-bubble:hover {
+    transform: scale(1.1) translateY(-5px);
+    background: hsla(188, 95%, 55%, 0.2);
+    border-color: var(--accent-primary);
+    box-shadow: 0 10px 30px hsla(188, 95%, 55%, 0.3);
+    z-index: 20;
+    animation-play-state: paused;
+}
+
+.role-bubble:hover .bubble-icon {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    transform: rotate(360deg);
+    transition: all 0.5s ease;
+}
+
+.role-bubble:hover .bubble-text {
+    color: var(--accent-primary);
+}
+
+/* Hover effect for badge container */
+.hero-roles:hover .role-badge {
+    opacity: 0.7;
+    transform: scale(0.95);
+}
+
+.hero-roles .role-badge:hover {
+    opacity: 1 !important;
+    transform: translateY(-4px) scale(1.05) !important;
+}
+
+.role-badge {
+    padding: 0.75rem 1.5rem;
+    background: hsla(220, 13%, 11%, 0.6);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    border: 1px solid hsla(188, 95%, 55%, 0.2);
+    border-radius: 50px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 0 hsla(0, 0%, 100%, 0.05);
+    cursor: pointer;
+}
+
+/* Gradient border on hover */
+.role-badge::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50px;
+    padding: 2px;
+    background: linear-gradient(135deg, 
+        var(--accent-primary) 0%, 
+        var(--accent-primary-glow) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 400ms ease;
+}
+
+/* Shine effect */
+.role-badge::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        hsla(188, 95%, 55%, 0.3) 50%, 
+        transparent 100%);
+    transition: left 800ms ease;
+}
+
+
+.role-badge:hover {
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 
+        0 20px 25px -5px rgba(0, 0, 0, 0.2),
+        0 10px 10px -5px rgba(0, 0, 0, 0.04),
+        0 0 40px hsla(188, 95%, 55%, 0.3);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    background: hsla(188, 95%, 55%, 0.1);
+}
+
+.role-badge:hover::before {
+    opacity: 1;
+}
+
+.role-badge:hover::after {
+    left: 100%;
+}

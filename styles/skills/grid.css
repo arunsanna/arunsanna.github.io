@@ -1,0 +1,69 @@
+/* Skills Grid - Responsive with Tailwind pattern */
+.skills-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Default mobile: 1 column */
+    gap: 1.5rem; /* gap-6 */
+    margin-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr); /* md:grid-cols-2 */
+    }
+}
+
+@media (min-width: 1024px) {
+    .skills-grid {
+        grid-template-columns: repeat(3, 1fr); /* lg:grid-cols-3 */
+    }
+}
+
+/* Skill Category Card */
+.skill-category {
+    background: var(--card-gradient, var(--glass-bg));
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(var(--glass-border-rgb), 0.5); /* border-border/50 */
+    border-radius: 16px;
+    padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    opacity: 0;
+    animation: fade-in 0.6s ease-out forwards;
+    transition: all 300ms; /* transition-all duration-300 */
+}
+
+/* Staggered animations based on index */
+.skill-category:nth-child(1) { animation-delay: 0.1s; }
+.skill-category:nth-child(2) { animation-delay: 0.2s; }
+.skill-category:nth-child(3) { animation-delay: 0.3s; }
+.skill-category:nth-child(4) { animation-delay: 0.4s; }
+.skill-category:nth-child(5) { animation-delay: 0.5s; }
+.skill-category:nth-child(6) { animation-delay: 0.6s; }
+.skill-category:nth-child(7) { animation-delay: 0.7s; }
+.skill-category:nth-child(8) { animation-delay: 0.8s; }
+.skill-category:nth-child(9) { animation-delay: 0.9s; }
+
+/* Hover effects */
+.skill-category::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(var(--accent-primary-rgb), 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.skill-category:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 0 40px rgba(var(--accent-primary-rgb), 0.3); /* hover:shadow-glow */
+    border-color: rgba(var(--accent-primary-rgb), 0.5); /* hover:border-primary/50 */
+}
+
+.skill-category:hover::before {
+    opacity: 1;
+}

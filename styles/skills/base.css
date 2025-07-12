@@ -1,0 +1,49 @@
+/* Skills Section - Professional & Responsive Design */
+.skills-section {
+    padding: 4rem 0;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(180deg, 
+        var(--bg-primary) 0%, 
+        rgba(var(--muted-rgb), 0.02) 50%, 
+        var(--bg-primary) 100%);
+}
+
+/* Background pattern */
+.skills-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 20% 50%, rgba(var(--accent-primary-rgb), 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(var(--accent-primary-rgb), 0.02) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+/* Container - Updated with responsive padding */
+.container {
+    max-width: 80rem; /* max-w-7xl equivalent */
+    width: 100%;
+    margin: 0 auto;
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem;
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 640px) {
+    .container {
+        padding-left: 1.5rem; /* sm:px-6 */
+        padding-right: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding-left: 2rem; /* lg:px-8 */
+        padding-right: 2rem;
+    }
+}

@@ -4,6 +4,7 @@ import { initializeSkillBars } from './skills.js';
 import { initializeCounters } from './counters.js';
 import { initializeTypingEffect } from './effects.js';
 import { initializeGlitchEffect } from './effects.js';
+import { initializeProjects } from './projects.js';
 import { initializeEasterEgg } from './easter-egg.js';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -37,6 +38,7 @@ async function loadComponents() {
         initializeTypingEffect();
         // initializeGlitchEffect(); // Disabled for simpler design
         initializeEasterEgg();
+    initializeProjects();
     } catch (error) {
         console.error('Error in loadComponents:', error);
     }

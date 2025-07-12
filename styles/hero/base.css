@@ -1,0 +1,97 @@
+/* Hero Section - Enhanced Professional Design */
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 6rem 0;
+    overflow: hidden;
+    isolation: isolate;
+    width: 100%;
+    background: linear-gradient(180deg, 
+        var(--bg-primary) 0%, 
+        hsla(220, 13%, 9%, 0.95) 50%, 
+        var(--bg-primary) 100%);
+}
+
+/* Animated Background Gradient */
+.hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 70%, 
+        hsla(188, 95%, 55%, 0.06) 0%, 
+        transparent 40%,
+        hsla(188, 95%, 55%, 0.03) 70%,
+        transparent 100%);
+    animation: float 30s ease-in-out infinite;
+    z-index: -2;
+}
+
+
+
+/* Additional gradient layer */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at top, 
+        hsla(188, 95%, 55%, 0.02) 0%, 
+        transparent 70%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.cyber-grid {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(hsla(188, 95%, 55%, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, hsla(188, 95%, 55%, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    opacity: 0;
+    animation: gridFadeIn 2s ease forwards;
+    transform: translateZ(0);
+}
+
+@keyframes gridFadeIn {
+    to { opacity: 0.6; }
+}
+
+/* Animated grid lines */
+.cyber-grid::before {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, 
+        transparent 0%, 
+        hsla(188, 95%, 55%, 0.1) 50%, 
+        transparent 100%);
+    animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+    to { transform: translateY(200%); }
+}
+
+.hero-container {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    padding: 0 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
