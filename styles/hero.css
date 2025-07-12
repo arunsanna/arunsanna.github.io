@@ -94,49 +94,112 @@
 .hero-container {
     position: relative;
     z-index: 1;
-    text-align: center;
     width: 100%;
     padding: 0 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* New Split Layout Design */
+.hero-split-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    align-items: center;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.hero-content {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 3rem;
-    background: hsla(220, 13%, 9%, 0.4);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-radius: 30px;
-    border: 1px solid hsla(var(--border-rgb), 0.1);
-    box-shadow: 
-        0 25px 50px -12px rgba(0, 0, 0, 0.25),
-        inset 0 1px 0 0 hsla(0, 0%, 100%, 0.05);
+@media (max-width: 968px) {
+    .hero-split-layout {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+}
+
+/* Profile Section */
+.hero-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 2rem;
+}
+
+.profile-image-wrapper {
     position: relative;
-    overflow: hidden;
+    width: 280px;
+    height: 350px;
+    margin: 0 auto;
+    animation: profileFloat 6s ease-in-out infinite;
 }
 
-/* Glow effect for content container */
-.hero-content::before {
-    content: '';
+@keyframes profileFloat {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.profile-image-glow {
     position: absolute;
-    inset: -2px;
-    border-radius: 30px;
-    padding: 2px;
-    background: linear-gradient(135deg, 
+    inset: -20px;
+    background: radial-gradient(circle, 
         hsla(188, 95%, 55%, 0.3) 0%, 
-        transparent 40%, 
-        hsla(188, 95%, 55%, 0.2) 100%);
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    opacity: 0;
-    transition: opacity 600ms ease;
+        hsla(188, 95%, 55%, 0.1) 40%, 
+        transparent 70%);
+    border-radius: 24px;
+    filter: blur(20px);
+    animation: pulseGlow 3s ease-in-out infinite;
 }
 
-.hero-content:hover::before {
-    opacity: 1;
+@keyframes pulseGlow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.05); }
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 24px;
+    object-fit: cover;
+    object-position: center 20%;
+    border: 3px solid hsla(188, 95%, 55%, 0.3);
+    box-shadow: 
+        0 0 40px hsla(188, 95%, 55%, 0.2),
+        0 20px 60px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+    border-color: hsla(188, 95%, 55%, 0.6);
+}
+
+
+/* Content Section - Updated */
+.hero-content {
+    position: relative;
+    z-index: 1;
+}
+
+/* Hero Badge */
+.hero-badge {
+    display: inline-block;
+    margin-bottom: 1rem;
+    opacity: 0;
+    animation: fadeInDown 0.6s ease forwards;
+}
+
+.badge-text {
+    padding: 0.5rem 1.25rem;
+    background: hsla(188, 95%, 55%, 0.1);
+    border: 1px solid hsla(188, 95%, 55%, 0.3);
+    border-radius: 30px;
+    color: var(--accent-primary);
+    font-size: 0.875rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: inline-block;
 }
 
 .terminal-line {
@@ -202,9 +265,9 @@
 
 
 .hero-name {
-    display: inline-block;
-    font-size: clamp(2.5rem, 6vw, 5rem);
-    font-weight: 700;
+    display: block;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 800;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background: linear-gradient(135deg, 
         var(--text-primary) 0%, 
@@ -215,12 +278,20 @@
     background-clip: text;
     background-size: 200% 200%;
     animation: shimmerText 4s ease-in-out infinite;
-    position: relative;
     letter-spacing: -0.03em;
-    text-align: center;
-    margin: 1rem 0 2rem;
     line-height: 1.1;
-    filter: drop-shadow(0 4px 20px hsla(188, 95%, 55%, 0.3));
+    margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+    display: block;
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 400;
+    color: var(--text-secondary);
+    margin-top: 0.5rem;
+    letter-spacing: 0.02em;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease 0.3s forwards;
 }
 
 @keyframes shimmerText {
@@ -251,17 +322,211 @@
     to { transform: scaleX(1); }
 }
 
-/* Enhanced Interactive Role Badges */
+/* Animated Roles Graph */
 .hero-roles {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    margin-bottom: 2.5rem;
-    opacity: 0;
-    animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s forwards;
+    margin: 2rem 0;
     position: relative;
-    padding: 1rem 0;
+    height: 300px;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.4s forwards;
+}
+
+.roles-graph {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 300px;
+    margin: 0 auto;
+}
+
+.roles-connections {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+.role-connection {
+    stroke: var(--accent-primary);
+    stroke-width: 2;
+    fill: none;
+    opacity: 0.3;
+    animation: connectionPulse 3s ease-in-out infinite;
+}
+
+.role-connection.cross {
+    stroke-dasharray: 5, 5;
+    animation-delay: 1.5s;
+}
+
+@keyframes connectionPulse {
+    0%, 100% { opacity: 0.2; stroke-width: 1; }
+    50% { opacity: 0.6; stroke-width: 2; }
+}
+
+.roles-bubbles {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.role-bubble {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.25rem;
+    background: hsla(220, 13%, 11%, 0.9);
+    backdrop-filter: blur(10px);
+    border: 2px solid hsla(188, 95%, 55%, 0.3);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 2;
+    animation: bubbleFloat 4s ease-in-out infinite;
+    animation-delay: var(--bubble-delay, 0s);
+    min-width: 140px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.role-bubble:nth-child(1) { 
+    --bubble-delay: 0s; 
+    animation-name: bubbleFloat1;
+}
+.role-bubble:nth-child(2) { 
+    --bubble-delay: 0.5s; 
+    animation-name: bubbleFloat2;
+}
+.role-bubble:nth-child(3) { 
+    --bubble-delay: 1s; 
+    animation-name: bubbleFloat3;
+}
+.role-bubble:nth-child(4) { 
+    --bubble-delay: 1.5s; 
+    animation-name: bubbleFloat4;
+}
+.role-bubble:nth-child(5) { 
+    --bubble-delay: 2s; 
+    animation-name: bubbleFloat5;
+}
+.role-bubble:nth-child(6) { 
+    --bubble-delay: 2.5s; 
+    animation-name: bubbleFloat6;
+}
+.role-bubble:nth-child(7) { 
+    --bubble-delay: 3s; 
+    animation-name: bubbleFloat7;
+}
+.role-bubble:nth-child(8) { 
+    --bubble-delay: 3.5s; 
+    animation-name: bubbleFloat8;
+}
+
+@keyframes bubbleFloat {
+    0%, 100% { 
+        transform: translateY(0) translateX(0); 
+    }
+    25% { 
+        transform: translateY(-8px) translateX(3px); 
+    }
+    50% { 
+        transform: translateY(-10px) translateX(0); 
+    }
+    75% { 
+        transform: translateY(-8px) translateX(-3px); 
+    }
+}
+
+/* Individual bubble animations for bounce effect */
+@keyframes bubbleFloat1 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-8px) translateX(5px); }
+}
+
+@keyframes bubbleFloat2 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-10px) translateX(-3px); }
+}
+
+@keyframes bubbleFloat3 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-6px) translateX(4px); }
+}
+
+@keyframes bubbleFloat4 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-9px) translateX(-5px); }
+}
+
+@keyframes bubbleFloat5 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-7px) translateX(3px); }
+}
+
+@keyframes bubbleFloat6 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-11px) translateX(-4px); }
+}
+
+@keyframes bubbleFloat7 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-5px) translateX(6px); }
+}
+
+@keyframes bubbleFloat8 {
+    0%, 100% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(-8px) translateX(-3px); }
+}
+
+.role-bubble.primary {
+    background: hsla(188, 95%, 55%, 0.15);
+    border-color: var(--accent-primary);
+}
+
+.bubble-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: hsla(188, 95%, 55%, 0.1);
+    border-radius: 50%;
+    font-size: 1.25rem;
+    color: var(--accent-primary);
+}
+
+.bubble-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-secondary);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.role-bubble:hover {
+    transform: scale(1.1) translateY(-5px);
+    background: hsla(188, 95%, 55%, 0.2);
+    border-color: var(--accent-primary);
+    box-shadow: 0 10px 30px hsla(188, 95%, 55%, 0.3);
+    z-index: 20;
+    animation-play-state: paused;
+}
+
+.role-bubble:hover .bubble-icon {
+    background: var(--accent-primary);
+    color: var(--bg-primary);
+    transform: rotate(360deg);
+    transition: all 0.5s ease;
+}
+
+.role-bubble:hover .bubble-text {
+    color: var(--accent-primary);
 }
 
 /* Hover effect for badge container */
@@ -395,8 +660,10 @@
 /* Enhanced Hero CTA Buttons */
 .hero-cta {
     display: flex;
+    flex-direction: row;
     gap: 1.5rem;
     justify-content: center;
+    align-items: center;
     margin-top: 3rem;
     margin-bottom: 2rem;
     opacity: 0;
@@ -414,6 +681,10 @@
     position: relative;
     overflow: hidden;
     transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    white-space: nowrap;
 }
 
 /* Primary button enhancement */
@@ -593,8 +864,29 @@
     }
     
     .hero-roles {
-        gap: 0.5rem;
-        padding: 0.5rem 0;
+        height: 220px;
+        margin: 1.5rem 0;
+    }
+    
+    .roles-graph {
+        transform: scale(0.8);
+        transform-origin: center;
+    }
+    
+    .role-bubble {
+        padding: 0.6rem;
+    }
+    
+    .bubble-icon {
+        width: 30px;
+        height: 30px;
+        font-size: 0.875rem;
+    }
+    
+    .bubble-text {
+        font-size: 0.6rem;
+    }
+    
     }
     
     .role-badge {
@@ -648,4 +940,97 @@
         font-size: 0.9rem;
         line-height: 1.6;
     }
+    
+    .hero-roles {
+        height: 200px;
+    }
+    
+    .roles-graph {
+        transform: scale(0.65);
+    }
+    
+    .role-bubble {
+        padding: 0.5rem;
+    }
+    
+    .bubble-icon {
+        width: 25px;
+        height: 25px;
+        font-size: 0.75rem;
+    }
+    
+    .bubble-text {
+        font-size: 0.55rem;
+    }
+}
+
+/* New Hero Description Styles */
+.hero-description {
+    font-size: clamp(1rem, 2vw, 1.125rem);
+    line-height: 1.7;
+    color: var(--text-secondary);
+    margin: 2rem 0;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease 0.5s forwards;
+}
+
+.hero-description .highlight {
+    color: var(--accent-primary);
+    font-weight: 600;
+}
+
+
+/* Button Glow Effect */
+.btn-glow {
+    position: relative;
+    z-index: 1;
+}
+
+.btn-glow::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    border-radius: 50px;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-dark));
+    opacity: 0.5;
+    filter: blur(10px);
+    z-index: -1;
+    transition: all 0.3s ease;
+}
+
+.btn-glow:hover::after {
+    opacity: 0.8;
+    filter: blur(15px);
+}
+
+/* Responsive Updates */
+@media (max-width: 968px) {
+    .hero-profile {
+        margin-bottom: 2rem;
+        padding-top: 0;
+    }
+    
+    .profile-image-wrapper {
+        width: 200px;
+        height: 250px;
+    }
+    
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-badge {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-image-wrapper {
+        width: 150px;
+        height: 150px;
+    }
+    
+    
 }
