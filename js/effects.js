@@ -25,19 +25,24 @@ export function initializeTypingEffect() {
         
         // Add a class to control cursor visibility
         heroTypingElement.classList.add('typing');
+        
+        // Faster typing on mobile for better UX
+        const isMobile = window.innerWidth <= 768;
+        const typingSpeed = isMobile ? 50 : 100;
+        const startDelay = isMobile ? 100 : 300;
 
         function typeHero() {
             if (index < text.length) {
                 heroTypingElement.textContent = text.substring(0, index + 1);
                 index++;
-                setTimeout(typeHero, 100);
+                setTimeout(typeHero, typingSpeed);
             } else {
                 // Keep cursor blinking after typing is complete
                 heroTypingElement.classList.remove('typing');
             }
         }
 
-        setTimeout(typeHero, 300);
+        setTimeout(typeHero, startDelay);
     }
 }
 

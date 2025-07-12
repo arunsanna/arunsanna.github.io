@@ -1,0 +1,218 @@
+/* Mobile-specific styles for Hero section */
+
+/* Mobile breakpoint: 768px and below */
+@media (max-width: 768px) {
+    /* Hero container adjustments */
+    .hero {
+        padding: 1rem 0;
+        min-height: 100vh;
+    }
+    
+    .hero-container {
+        padding: 0 1rem;
+        padding-top: 0.5rem;
+    }
+    
+    /* Header section mobile optimization */
+    .hero-header {
+        margin-bottom: 2rem;
+        padding-top: 0.5rem;
+    }
+    
+    /* Badge responsive styling */
+    .badge-outline {
+        font-size: 1.125rem !important;
+        padding: 0.75rem 1.5rem !important;
+        margin-left: 0 !important;
+        margin-bottom: 0.5rem !important;
+        display: block !important;
+        text-align: center !important;
+        margin: 0 auto 0.5rem !important;
+    }
+    
+    /* Title responsive adjustments */
+    .hero-title {
+        margin-top: -1rem !important;
+    }
+    
+    /* Terminal greeting mobile */
+    .terminal-greeting {
+        font-size: 0.875rem;
+        top: -15px;
+        left: 0;
+    }
+    
+    /* Hero name mobile sizing */
+    .hero-name {
+        font-size: clamp(2rem, 8vw, 3rem);
+        line-height: 1;
+        margin-bottom: 0.5rem;
+        margin-top: 0;
+    }
+    
+    .hero-subtitle {
+        font-size: clamp(0.875rem, 3vw, 1.125rem);
+        line-height: 1.4;
+    }
+    
+    /* Two-column grid becomes single column */
+    .hero-content-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+        transform: translateX(0);
+    }
+    
+    /* Show profile image on mobile but smaller */
+    .hero-profile {
+        display: flex;
+        justify-content: center;
+        padding: 0;
+        margin-bottom: 0;
+    }
+    
+    .profile-image-wrapper {
+        width: 150px;
+        height: 180px;
+    }
+    
+    .profile-image {
+        border-radius: 16px;
+    }
+    
+    /* Skills section mobile */
+    .hero-skills {
+        margin-left: 0;
+        padding: 0;
+        align-items: center;
+    }
+    
+    /* Roles graph mobile optimization */
+    .hero-roles {
+        height: auto;
+        margin: 1rem 0;
+    }
+    
+    .roles-graph {
+        transform: scale(1);
+        max-width: 100%;
+        height: auto;
+    }
+    
+    /* Convert bubbles to a grid layout on mobile */
+    .roles-bubbles {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+        padding: 0 1rem;
+    }
+    
+    .role-bubble {
+        position: relative;
+        min-width: unset;
+        padding: 0.75rem;
+        font-size: 0.75rem;
+        animation: none;
+    }
+    
+    .bubble-icon {
+        width: 24px;
+        height: 24px;
+        font-size: 0.75rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    .bubble-text {
+        font-size: 0.625rem;
+        white-space: normal;
+        text-align: center;
+    }
+    
+    /* Hide SVG connections on mobile */
+    .roles-connections {
+        display: none;
+    }
+    
+    /* Description text mobile */
+    .hero-description {
+        font-size: 0.875rem;
+        line-height: 1.6;
+        padding: 0 1rem;
+        text-align: center;
+        margin: 1rem 0;
+    }
+    
+    /* CTA section mobile */
+    .hero-cta-section {
+        margin: 1rem auto;
+        transform: translateX(0);
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding-top: 1rem;
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+    
+    .hero-cta .btn {
+        width: 100%;
+        padding: 0.875rem 1.5rem;
+        font-size: 0.875rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    /* Badge extra small sizing */
+    .badge-outline {
+        font-size: 0.875rem !important;
+        padding: 0.5rem 1rem !important;
+        border-radius: 40px !important;
+    }
+    
+    .hero-name {
+        font-size: 1.75rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 0.875rem;
+    }
+    
+    .profile-image-wrapper {
+        width: 120px;
+        height: 150px;
+    }
+    
+    .hero-description {
+        font-size: 0.8125rem;
+    }
+    
+    .terminal-greeting {
+        font-size: 0.75rem;
+    }
+}
+
+/* Landscape mode adjustments */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 1rem 0;
+    }
+    
+    .hero-content-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+    }
+    
+    .profile-image-wrapper {
+        width: 120px;
+        height: 150px;
+    }
+    
+    .roles-bubbles {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}

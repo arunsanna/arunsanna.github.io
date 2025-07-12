@@ -1,0 +1,145 @@
+/* Mobile-specific enhancements for better UX */
+
+@media (max-width: 768px) {
+    /* Improve touch targets */
+    .btn {
+        min-height: 44px; /* iOS touch target recommendation */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    /* Better tap feedback */
+    .btn:active {
+        transform: scale(0.98);
+    }
+    
+    /* Prevent horizontal scroll */
+    body {
+        overflow-x: hidden;
+    }
+    
+    /* Improve readability */
+    body {
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+    
+    /* Better spacing for mobile */
+    section {
+        padding: 3rem 0;
+    }
+    
+    /* Navbar mobile enhancements */
+    .navbar {
+        padding: 1rem;
+        height: 60px;
+    }
+    
+    .nav-logo {
+        font-size: 1.25rem;
+    }
+    
+    /* Smooth scrolling for mobile */
+    html {
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Hide decorative elements that clutter mobile */
+    .cyber-grid {
+        opacity: 0.3;
+    }
+    
+    .hero-particles {
+        display: none;
+    }
+    
+    /* Profile image enhancements */
+    .profile-image-glow {
+        display: none; /* Reduce visual complexity */
+    }
+    
+    /* Touch-friendly role bubbles */
+    .role-bubble {
+        cursor: default;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .role-bubble:active {
+        transform: scale(0.95);
+    }
+    
+    /* Better scroll indicator for mobile */
+    .scroll-indicator.floating {
+        bottom: 1rem;
+        transform: translateX(-50%) scale(0.9);
+    }
+    
+    .scroll-indicator.floating.scrolled {
+        transform: translateX(0) scale(0.9);
+    }
+    
+    /* Optimize animations for mobile performance */
+    * {
+        animation-duration: 0.3s !important;
+    }
+    
+    /* Disable hover effects on mobile */
+    @media (hover: none) {
+        .role-bubble:hover {
+            transform: none;
+            background: inherit;
+            border-color: inherit;
+            box-shadow: none;
+        }
+        
+        .btn:hover {
+            transform: none;
+            box-shadow: none;
+        }
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 375px) {
+    .hero-container {
+        padding: 0 0.75rem;
+    }
+    
+    .hero-name {
+        font-size: 1.5rem;
+    }
+    
+    .roles-bubbles {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    
+    .hero-cta .btn {
+        font-size: 0.8125rem;
+        padding: 0.75rem 1.25rem;
+    }
+}
+
+/* Accessibility improvements for mobile */
+@media (max-width: 768px) {
+    /* Larger touch targets for accessibility */
+    a, button {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    /* Better focus indicators */
+    :focus {
+        outline: 3px solid var(--accent-primary);
+        outline-offset: 2px;
+    }
+    
+    /* Improved contrast for outdoor visibility */
+    @media (prefers-contrast: high) {
+        .hero-name,
+        .hero-subtitle {
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+        }
+    }
+}

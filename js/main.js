@@ -22,12 +22,7 @@ function initializeFloatingScroll() {
         const threshold = 100; // Hide when within 100px of bottom
         const heroHeight = window.innerHeight; // Height of first viewport
 
-        // Move to side when scrolled past hero
-        if (window.scrollY > heroHeight * 0.5) {
-            scrollIndicator.classList.add('scrolled');
-        } else {
-            scrollIndicator.classList.remove('scrolled');
-        }
+        // No longer need to move to side - always on right
 
         // Hide at bottom
         if (scrollHeight - scrollPosition < threshold) {
