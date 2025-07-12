@@ -204,14 +204,14 @@
         box-shadow: none;
     }
     
-    /* Reduce aggressive blinking cursor on mobile */
+    /* Very subtle blinking cursor on mobile */
     .logo-cursor {
-        animation: blinkMobile 2s ease-in-out infinite !important;
+        animation: blinkMobile 3s ease-in-out infinite !important;
     }
     
     @keyframes blinkMobile {
-        0%, 40% { opacity: 1; }
-        50%, 90% { opacity: 0.3; }
+        0%, 70% { opacity: 1; }
+        85% { opacity: 0.6; }
         100% { opacity: 1; }
     }
     

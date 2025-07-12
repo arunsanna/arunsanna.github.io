@@ -65,10 +65,12 @@ export function initializeGlitchEffect() {
     });
 }
 
-// Terminal cursor blinking
-setInterval(() => {
-    const cursor = document.querySelector('.logo-cursor');
-    if (cursor) {
-        cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
-    }
-}, 500);
+// Terminal cursor blinking - disabled on mobile for better UX
+if (window.innerWidth > 768) {
+    setInterval(() => {
+        const cursor = document.querySelector('.logo-cursor');
+        if (cursor) {
+            cursor.style.opacity = cursor.style.opacity === '0' ? '1' : '0';
+        }
+    }, 500);
+}
