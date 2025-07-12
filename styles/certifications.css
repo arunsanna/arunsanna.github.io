@@ -7,7 +7,49 @@
 
 /* Adjust section title spacing for certifications */
 .certifications .section-title {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+    transform: none;
+    left: 0;
+    position: relative;
+    display: block;
+}
+
+/* Override default section title style for certifications */
+.certifications .section-title span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    padding: 0;
+    padding-left: 1rem;
+    border: none;
+    border-radius: 0;
+    background: linear-gradient(135deg, 
+        var(--text-primary) 0%, 
+        var(--accent-primary) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    backdrop-filter: none;
+    position: relative;
+    text-align: left;
+    display: block;
+    transform: none;
+    left: 0;
+}
+
+/* Add accent line like membership title */
+.certifications .section-title span::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 100%;
+    background: var(--accent-gradient);
+    border-radius: 2px;
+    box-shadow: 0 0 20px hsla(188, 95%, 55%, 0.5);
 }
 
 /* Animated background gradient */
