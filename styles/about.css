@@ -62,7 +62,7 @@
 
 .about-intro {
     font-size: 1.25rem; /* text-xl */
-    line-height: 1.7;
+    line-height: 1.5; /* Reduced from 1.7 */
     max-width: 800px;
     margin: 0 auto;
 }
