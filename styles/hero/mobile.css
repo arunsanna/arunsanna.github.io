@@ -19,20 +19,20 @@
         padding-top: 0.5rem;
     }
     
-    /* Badge responsive styling */
+    /* Badge responsive styling - smaller and more compact */
     .badge-outline {
-        font-size: 1.125rem !important;
-        padding: 0.75rem 1.5rem !important;
-        margin-left: 0 !important;
-        margin-bottom: 0.5rem !important;
-        display: block !important;
+        font-size: 0.875rem !important;
+        padding: 0.5rem 1rem !important;
+        margin: 0 auto 1rem !important;
+        display: inline-block !important;
         text-align: center !important;
-        margin: 0 auto 0.5rem !important;
+        max-width: 140px !important;
     }
     
-    /* Title responsive adjustments */
+    /* Title responsive adjustments - better spacing */
     .hero-title {
-        margin-top: -1rem !important;
+        margin-top: 0.5rem !important;
+        margin-bottom: 1.5rem !important;
     }
     
     /* Terminal greeting mobile */
@@ -42,17 +42,20 @@
         left: 0;
     }
     
-    /* Hero name mobile sizing */
+    /* Hero name mobile sizing - better hierarchy */
     .hero-name {
-        font-size: clamp(2rem, 8vw, 3rem);
-        line-height: 1;
-        margin-bottom: 0.5rem;
+        font-size: clamp(1.75rem, 7vw, 2.5rem);
+        line-height: 1.1;
+        margin-bottom: 0.75rem;
         margin-top: 0;
+        display: block;
     }
     
     .hero-subtitle {
-        font-size: clamp(0.875rem, 3vw, 1.125rem);
-        line-height: 1.4;
+        font-size: clamp(0.75rem, 2.5vw, 1rem);
+        line-height: 1.3;
+        display: block;
+        margin-top: 0.5rem;
     }
     
     /* Two-column grid becomes single column */
@@ -90,10 +93,12 @@
         width: 100%;
     }
     
-    /* Roles graph mobile optimization */
+    /* Roles graph mobile optimization - better containment */
     .hero-roles {
         height: auto;
         margin: 1rem 0;
+        padding: 0.5rem;
+        overflow: hidden;
     }
     
     .roles-graph {
@@ -102,33 +107,44 @@
         height: auto;
     }
     
-    /* Convert bubbles to a grid layout on mobile */
+    /* Convert bubbles to centered flex layout on mobile */
     .roles-bubbles {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.75rem;
-        padding: 0 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0 0.5rem;
+        max-width: 100%;
     }
     
     .role-bubble {
-        position: relative;
+        position: relative !important;
         min-width: unset;
-        padding: 0.75rem;
-        font-size: 0.75rem;
+        padding: 0.5rem;
+        font-size: 0.7rem;
         animation: none;
+        margin: 0;
+        flex: 0 0 calc(33% - 0.5rem);
+        top: auto !important;
+        left: auto !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
     
     .bubble-icon {
-        width: 24px;
-        height: 24px;
-        font-size: 0.75rem;
-        margin-bottom: 0.25rem;
+        width: 20px;
+        height: 20px;
+        font-size: 0.65rem;
+        margin-bottom: 0.2rem;
     }
     
     .bubble-text {
-        font-size: 0.625rem;
+        font-size: 0.55rem;
         white-space: normal;
         text-align: center;
+        line-height: 1.2;
     }
     
     /* Hide SVG connections on mobile */
@@ -138,11 +154,12 @@
     
     /* Description text mobile */
     .hero-description {
-        font-size: 0.875rem;
-        line-height: 1.6;
-        padding: 0 1rem;
+        font-size: 0.8rem;
+        line-height: 1.5;
+        padding: 0 0.5rem;
         text-align: center;
-        margin: 1rem 0;
+        margin: 0.75rem 0;
+        max-width: 100%;
     }
     
     /* CTA section mobile */
@@ -160,28 +177,63 @@
         margin: 0 auto;
     }
     
+    /* Convert buttons to icon-only on mobile */
+    .hero-cta {
+        flex-direction: row !important;
+        gap: 1rem;
+        justify-content: center;
+    }
+    
     .hero-cta .btn {
-        width: 100%;
-        padding: 0.875rem 1.5rem;
-        font-size: 0.875rem;
+        width: 50px;
+        height: 50px;
+        padding: 0;
+        font-size: 1.25rem;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+    }
+    
+    /* Hide button text on mobile */
+    .hero-cta .btn i {
+        margin-right: 0;
+    }
+    
+    .hero-cta .btn:not(i) {
+        font-size: 0;
+    }
+    
+    /* Show only icons */
+    .hero-cta .btn * {
+        display: none;
+    }
+    
+    .hero-cta .btn i {
+        display: inline-block !important;
+        font-size: 1.25rem;
     }
 }
 
 /* Extra small devices */
 @media (max-width: 480px) {
-    /* Badge extra small sizing */
+    /* Badge extra small sizing - even smaller */
     .badge-outline {
-        font-size: 0.875rem !important;
-        padding: 0.5rem 1rem !important;
-        border-radius: 40px !important;
+        font-size: 0.75rem !important;
+        padding: 0.4rem 0.8rem !important;
+        border-radius: 20px !important;
+        max-width: 120px !important;
     }
     
     .hero-name {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
     }
     
     .hero-subtitle {
-        font-size: 0.875rem;
+        font-size: 0.75rem;
+        margin-top: 0.25rem;
     }
     
     .hero-description {
@@ -211,6 +263,11 @@
     }
     
     .roles-bubbles {
-        grid-template-columns: repeat(3, 1fr);
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .role-bubble {
+        flex: 0 0 calc(25% - 0.5rem);
     }
 }
