@@ -4,6 +4,12 @@
     z-index: 1;
 }
 
+/* Ensure proper alignment for skills section */
+.hero-roles {
+    width: 100%;
+    max-width: 600px;
+}
+
 /* Hero Badge */
 .hero-badge {
     display: inline-block;

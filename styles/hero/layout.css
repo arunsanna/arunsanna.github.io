@@ -1,27 +1,45 @@
-/* New Split Layout Design */
-.hero-split-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    align-items: center;
-    max-width: 1200px;
+/* Three Section Layout */
+/* Section 1: Single Column Header */
+.hero-header {
+    text-align: center;
+    max-width: 900px;
     margin: 0 auto;
 }
 
-@media (max-width: 968px) {
-    .hero-split-layout {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-        text-align: center;
-    }
+/* Section 2: Two Column Content Grid */
+.hero-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto 4rem;
+    transform: translateX(-75px);
 }
 
-/* Profile Section */
+/* Section 3: Single Column CTA */
+.hero-cta-section {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+}
+
+/* Profile Section - Right aligned in left column */
 .hero-profile {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
-    padding-top: 2rem;
+    padding-right: 0;
+}
+
+/* Skills Section - Left aligned in right column */
+.hero-skills {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 0;
+    margin-left: -100px;
 }
 
 .profile-image-wrapper {
