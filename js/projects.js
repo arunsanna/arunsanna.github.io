@@ -16,5 +16,40 @@ export async function initializeProjects() {
                 console.error(`Error loading project ${project}:`, error);
             }
         }
+        
+        // Initialize collapsible outcomes after projects are loaded
+        setTimeout(() => {
+            initializeCollapsibleOutcomes();
+            setupHoverEffects();
+        }, 500);
     }
+}
+
+// Initialize all collapsible outcomes
+function initializeCollapsibleOutcomes() {
+    // Don't auto-expand any outcomes initially
+}
+
+// Setup hover effects for project cards
+function setupHoverEffects() {
+    const projectIds = ['dod', 'cms', 'oar', 'ai-ml', 'cloud', 'edge'];
+    
+    projectIds.forEach(projectId => {
+        const outcomesList = document.querySelector(`#${projectId}-outcomes`);
+        const projectCard = outcomesList?.closest('.project-card');
+        
+        if (projectCard && outcomesList) {
+            projectCard.addEventListener('mouseenter', () => {
+                window.expandOutcomes(`${projectId}-outcomes`);
+            });
+            
+            projectCard.addEventListener('mouseleave', () => {
+                window.collapseOutcomes(`${projectId}-outcomes`);
+            });
+            
+            // Make sure initial state is correct
+            outcomesList.style.maxHeight = '0';
+            outcomesList.style.opacity = '0';
+        }
+    });
 }

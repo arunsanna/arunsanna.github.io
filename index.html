@@ -51,5 +51,108 @@
 
     <!-- Custom JavaScript -->
     <script src="js/main.js" type="module"></script>
+    
+    <!-- Global functions for interactive elements -->
+    <script>
+        // Toggle function for collapsible outcomes (kept for click functionality)
+        function toggleOutcomes(outcomeId) {
+            const outcomesList = document.getElementById(outcomeId);
+            const icon = document.getElementById(outcomeId + '-icon');
+            
+            if (outcomesList && icon) {
+                if (outcomesList.classList.contains('outcomes-expanded')) {
+                    // Collapse
+                    outcomesList.classList.remove('outcomes-expanded');
+                    icon.classList.remove('outcomes-icon-rotated');
+                    outcomesList.style.maxHeight = '0';
+                    outcomesList.style.opacity = '0';
+                } else {
+                    // Expand
+                    outcomesList.classList.add('outcomes-expanded');
+                    icon.classList.add('outcomes-icon-rotated');
+                    outcomesList.style.maxHeight = '1000px';
+                    outcomesList.style.opacity = '1';
+                }
+            }
+        }
+        
+        // Expand outcomes on hover with slight delay
+        let expandTimeout;
+        function expandOutcomes(outcomeId) {
+            clearCollapseTimeout(); // Cancel any pending collapse
+            clearTimeout(expandTimeout); // Clear any pending expand
+            
+            // Start expanding immediately, no delay
+            const outcomesList = document.getElementById(outcomeId);
+            const icon = document.getElementById(outcomeId + '-icon');
+            
+            if (outcomesList && icon) {
+                outcomesList.classList.add('outcomes-expanded');
+                icon.classList.add('outcomes-icon-rotated');
+                outcomesList.style.maxHeight = '2000px';
+                outcomesList.style.opacity = '1';
+                outcomesList.style.visibility = 'visible';
+                outcomesList.style.overflow = 'visible';
+                
+                // Force all children to be visible
+                const items = outcomesList.querySelectorAll('li');
+                items.forEach(item => {
+                    item.style.opacity = '1';
+                    item.style.visibility = 'visible';
+                });
+            }
+        }
+        
+        // Collapse outcomes on mouse leave with delay
+        let collapseTimeout;
+        function collapseOutcomes(outcomeId) {
+            clearTimeout(expandTimeout); // Cancel any pending expand
+            collapseTimeout = setTimeout(() => {
+                const outcomesList = document.getElementById(outcomeId);
+                const icon = document.getElementById(outcomeId + '-icon');
+                
+                if (outcomesList && icon) {
+                    outcomesList.classList.remove('outcomes-expanded');
+                    icon.classList.remove('outcomes-icon-rotated');
+                    outcomesList.style.maxHeight = '0';
+                    outcomesList.style.opacity = '0';
+                }
+            }, 400); // 400ms delay before collapsing
+        }
+        
+        // Clear collapse timeout when re-entering
+        function clearCollapseTimeout() {
+            if (collapseTimeout) {
+                clearTimeout(collapseTimeout);
+            }
+        }
+        
+        // Test function to verify expansion works
+        window.testExpand = function() {
+            const outcomes = document.getElementById('dod-outcomes');
+            const icon = document.getElementById('dod-outcomes-icon');
+            console.log('Testing expansion:', outcomes, icon);
+            if (outcomes && icon) {
+                // Force visibility
+                outcomes.style.maxHeight = '2000px';
+                outcomes.style.opacity = '1';
+                outcomes.style.visibility = 'visible';
+                outcomes.style.display = 'block';
+                outcomes.style.overflow = 'visible';
+                outcomes.classList.add('outcomes-expanded');
+                icon.classList.add('outcomes-icon-rotated');
+                
+                // Check content
+                const items = outcomes.querySelectorAll('li');
+                console.log('Found items:', items.length);
+                items.forEach((item, index) => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'none';
+                    item.style.visibility = 'visible';
+                    console.log(`Item ${index}:`, item.textContent);
+                });
+            }
+        }
+    </script>
 </body>
 </html>

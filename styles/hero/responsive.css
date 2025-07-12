@@ -125,9 +125,9 @@
 .hero-description {
     font-size: clamp(1rem, 2vw, 1.125rem);
     line-height: 1.7;
-    color: var(--text-secondary);
+    color: rgba(255, 255, 255, 0.95);
     margin: 2rem 0;
-    font-weight: 400;
+    font-weight: 500;
     opacity: 0;
     animation: fadeInUp 0.8s ease 0.5s forwards;
 }

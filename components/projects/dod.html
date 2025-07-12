@@ -16,63 +16,84 @@
 
         <!-- Description -->
         <p class="text-muted-foreground">
-            Led the transformation of DoD's largest Platform-as-a-Service, serving 4.2 million users with 
-            zero-trust architecture and 99.99% uptime reliability.
+            Foundation engineer and top contributor for USAF DoD platform as a service offering with all security 
+            controls baked in and that became largest platform with more than 400 apps and got replicated to 
+            multiple classification levels and supporting more than 150 mission teams across DoD.
         </p>
 
-        <!-- Context -->
-        <div class="context-box bg-muted-30 rounded-lg p-4">
-            <h4 class="text-sm font-medium mb-2">Challenge & Solution</h4>
-            <p class="text-sm text-muted-foreground">
-                Built first DoD Enterprise DevSecOps platform with Kubernetes that runs on any cloud (AWS, Azure, 
-                GCP, On-Prem). Achieved continuous Authority to Operate (cATO) - unprecedented in DoD environments.
-            </p>
-        </div>
 
         <!-- Metrics -->
         <div class="metrics-grid grid grid-cols-2 md:grid-cols-4 gap-4">
             <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
-                <p class="text-2xl font-bold hero-text">300+</p>
-                <p class="text-xs text-muted-foreground">Mission Apps</p>
+                <p class="text-2xl font-bold hero-text">400+</p>
+                <p class="text-xs text-muted-foreground">Apps</p>
             </div>
             <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
-                <p class="text-2xl font-bold hero-text">99.99%</p>
-                <p class="text-xs text-muted-foreground">Uptime SLA</p>
+                <p class="text-2xl font-bold hero-text">20K+</p>
+                <p class="text-xs text-muted-foreground">Containers</p>
+            </div>
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">750+</p>
+                <p class="text-xs text-muted-foreground">Pipelines</p>
+            </div>
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">4 Weeks</p>
+                <p class="text-xs text-muted-foreground">to ATO</p>
+            </div>
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">6</p>
+                <p class="text-xs text-muted-foreground">Software Factories</p>
             </div>
             <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
                 <p class="text-2xl font-bold hero-text">150+</p>
                 <p class="text-xs text-muted-foreground">DoD Teams</p>
             </div>
             <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
-                <p class="text-2xl font-bold hero-text">20K+</p>
-                <p class="text-xs text-muted-foreground">Containers</p>
+                <p class="text-2xl font-bold hero-text">1000+</p>
+                <p class="text-xs text-muted-foreground">VMs</p>
+            </div>
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">200+</p>
+                <p class="text-xs text-muted-foreground">Databases</p>
             </div>
         </div>
 
         <!-- Outcomes -->
         <div class="outcomes-box">
-            <h4 class="font-medium mb-3 flex items-center gap-2">
+            <h4 class="font-medium mb-3 flex items-center gap-2 cursor-pointer" onclick="toggleOutcomes('dod-outcomes')">
                 <span>Key Outcomes</span>
-                <i class="fas fa-arrow-right text-primary text-sm"></i>
+                <i class="fas fa-chevron-down text-primary text-sm transition-transform duration-300" id="dod-outcomes-icon"></i>
             </h4>
-            <ul class="space-y-2">
+            <ul class="space-y-2 overflow-hidden transition-all duration-300" id="dod-outcomes" style="max-height: 0; opacity: 0;">
                 <li class="flex items-start gap-3">
                     <span class="bullet-point bg-primary"></span>
-                    <span class="text-sm text-muted-foreground">Reduced deployment time from years to 4-8 weeks through automated CI/CD pipelines</span>
+                    <span class="text-sm text-muted-foreground">Pioneered "build once, deploy anywhere" architecture - mission apps seamlessly run across unclassified and classified environments without code changes, a first in DoD history</span>
                 </li>
                 <li class="flex items-start gap-3">
                     <span class="bullet-point bg-primary"></span>
-                    <span class="text-sm text-muted-foreground">Implemented zero-trust security model meeting DoD's strictest compliance requirements</span>
+                    <span class="text-sm text-muted-foreground">Revolutionized deployment timelines from years to 4 weeks through DevSecOps Software Factory, bringing Silicon Valley velocity to DoD operations</span>
                 </li>
                 <li class="flex items-start gap-3">
                     <span class="bullet-point bg-primary"></span>
-                    <span class="text-sm text-muted-foreground">Enabled 24/7 operational support for mission-critical defense systems</span>
+                    <span class="text-sm text-muted-foreground">Implemented automatic mTLS with 24-hour certificate rotation via Istio, achieving zero data breaches to date with everything encrypted inside and out</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bullet-point bg-primary"></span>
+                    <span class="text-sm text-muted-foreground">Executed largest evacuation operation with 48-hour notice - systems auto-scaled flawlessly with zero incidents throughout entire mission</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bullet-point bg-primary"></span>
+                    <span class="text-sm text-muted-foreground">Modernized legacy mission systems including COBOL and PASCAL applications, breathing new life into decades-old critical infrastructure</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bullet-point bg-primary"></span>
+                    <span class="text-sm text-muted-foreground">Achieved 95% compute utilization through shared resource model, eliminating traditional DoD over-provisioning waste</span>
                 </li>
             </ul>
         </div>
 
         <!-- Technologies -->
-        <div class="tech-stack flex flex-wrap gap-2">
+        <div class="tech-stack">
             <span class="badge-outline text-xs">Kubernetes</span>
             <span class="badge-outline text-xs">GitOps</span>
             <span class="badge-outline text-xs">Terraform</span>

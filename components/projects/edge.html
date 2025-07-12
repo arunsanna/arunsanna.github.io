@@ -20,14 +20,6 @@
             through containerization, enabling rapid AI deployment to warfighters.
         </p>
 
-        <!-- Context -->
-        <div class="context-box bg-muted-30 rounded-lg p-4">
-            <h4 class="text-sm font-medium mb-2">Challenge & Solution</h4>
-            <p class="text-sm text-muted-foreground">
-                Connected disparate defense assets through containerized cloud technology, transforming legacy 
-                hardware and real-time operating systems through modernization.
-            </p>
-        </div>
 
         <!-- Metrics -->
         <div class="metrics-grid grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -51,11 +43,11 @@
 
         <!-- Outcomes -->
         <div class="outcomes-box">
-            <h4 class="font-medium mb-3 flex items-center gap-2">
+            <h4 class="font-medium mb-3 flex items-center gap-2 cursor-pointer" onclick="toggleOutcomes('edge-outcomes')">
                 <span>Key Outcomes</span>
-                <i class="fas fa-arrow-right text-primary text-sm"></i>
+                <i class="fas fa-chevron-down text-primary text-sm transition-transform duration-300" id="edge-outcomes-icon"></i>
             </h4>
-            <ul class="space-y-2">
+            <ul class="space-y-2 overflow-hidden transition-all duration-300" id="edge-outcomes" style="max-height: 0; opacity: 0;">
                 <li class="flex items-start gap-3">
                     <span class="bullet-point bg-primary"></span>
                     <span class="text-sm text-muted-foreground">Enabled rapid software updates and AI algorithm deployment to tactical environments</span>
@@ -72,7 +64,7 @@
         </div>
 
         <!-- Technologies -->
-        <div class="tech-stack flex flex-wrap gap-2">
+        <div class="tech-stack">
             <span class="badge-outline text-xs">Edge Computing</span>
             <span class="badge-outline text-xs">Containers</span>
             <span class="badge-outline text-xs">Real-time OS</span>
