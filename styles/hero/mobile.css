@@ -77,10 +77,18 @@
     .profile-image-wrapper {
         width: 150px;
         height: 180px;
+        /* Disable aggressive bounce animation on mobile */
+        animation: none !important;
     }
     
     .profile-image {
         border-radius: 16px;
+        /* Disable hover effects on mobile */
+        transform: none !important;
+    }
+    
+    .profile-image:hover {
+        transform: none !important;
     }
     
     /* Skills section mobile */
@@ -260,6 +268,7 @@
     .profile-image-wrapper {
         width: 120px;
         height: 150px;
+        animation: none !important;
     }
     
     .roles-bubbles {
