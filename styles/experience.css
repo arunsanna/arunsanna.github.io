@@ -3,6 +3,19 @@
     background: linear-gradient(to bottom, transparent, var(--glass-light), transparent);
 }
 
+/* Section subtitle styling */
+.section-subtitle {
+    text-align: center;
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+    margin-top: -1rem;
+    margin-bottom: 3rem;
+    font-weight: 300;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+
 .timeline {
     position: relative;
 }
