@@ -1,0 +1,58 @@
+/* Floating Scroll Indicator */
+.scroll-indicator.floating {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    z-index: 100;
+    opacity: 1;
+    transition: all 0.3s ease;
+}
+
+/* Move to right side when scrolled */
+.scroll-indicator.floating.scrolled {
+    left: auto;
+    right: 2rem;
+    transform: translateX(0);
+}
+
+/* Hide when at bottom of page */
+.scroll-indicator.floating.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Pulse animation for attention */
+.scroll-indicator.floating .mouse {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 hsla(188, 95%, 55%, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px 5px hsla(188, 95%, 55%, 0.2);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .scroll-indicator.floating {
+        bottom: 1rem;
+    }
+    
+    .scroll-indicator.floating.scrolled {
+        right: 1rem;
+    }
+    
+    .scroll-indicator.floating span {
+        font-size: 0.75rem;
+    }
+}

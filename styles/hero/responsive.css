@@ -169,6 +169,10 @@
         transform: translateX(0);
     }
     
+    .hero-cta-section {
+        transform: translateX(0);
+    }
+    
     .hero-profile {
         justify-content: center;
         padding-right: 0;
@@ -188,6 +192,25 @@
     }
     
     .hero-description {
+        text-align: center;
+    }
+    
+    .hero-header .hero-title {
+        text-align: center;
+    }
+    
+    .terminal-greeting {
+        text-align: left;
+        position: absolute;
+        top: -5px;
+        left: 20px;
+    }
+    
+    .hero-name {
+        text-align: center;
+    }
+    
+    .hero-subtitle {
         text-align: center;
     }
 }

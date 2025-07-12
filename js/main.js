@@ -9,7 +9,41 @@ import { initializeEasterEgg } from './easter-egg.js';
 
 document.addEventListener('DOMContentLoaded', () => {
     loadComponents();
+    initializeFloatingScroll();
 });
+
+function initializeFloatingScroll() {
+    const scrollIndicator = document.querySelector('.scroll-indicator.floating');
+    if (!scrollIndicator) return;
+
+    function checkScroll() {
+        const scrollHeight = document.documentElement.scrollHeight;
+        const scrollPosition = window.innerHeight + window.scrollY;
+        const threshold = 100; // Hide when within 100px of bottom
+        const heroHeight = window.innerHeight; // Height of first viewport
+
+        // Move to side when scrolled past hero
+        if (window.scrollY > heroHeight * 0.5) {
+            scrollIndicator.classList.add('scrolled');
+        } else {
+            scrollIndicator.classList.remove('scrolled');
+        }
+
+        // Hide at bottom
+        if (scrollHeight - scrollPosition < threshold) {
+            scrollIndicator.classList.add('hide');
+        } else {
+            scrollIndicator.classList.remove('hide');
+        }
+    }
+
+    // Check on scroll and resize
+    window.addEventListener('scroll', checkScroll);
+    window.addEventListener('resize', checkScroll);
+    
+    // Initial check
+    checkScroll();
+}
 
 async function loadComponents() {
     const components = ['hero', 'about', 'projects', 'skills', 'experience', 'certifications', 'contact', 'footer'];

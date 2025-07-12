@@ -10,35 +10,56 @@
     max-width: 600px;
 }
 
-/* Hero Badge */
-.hero-badge {
-    display: inline-block;
-    margin-bottom: 1rem;
+/* Terminal-style greeting */
+.terminal-greeting {
+    display: block;
+    font-family: 'JetBrains Mono', 'Courier New', monospace;
+    color: var(--accent-primary);
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0;
+    text-align: left;
     opacity: 0;
     animation: fadeInDown 0.6s ease forwards;
+    text-shadow: 0 0 10px hsla(188, 95%, 55%, 0.5);
+    letter-spacing: 0.05em;
+    position: absolute;
+    top: -5px;
+    left: 0;
 }
 
-.badge-text {
-    padding: 0.5rem 1.25rem;
-    background: hsla(188, 95%, 55%, 0.1);
-    border: 1px solid hsla(188, 95%, 55%, 0.3);
-    border-radius: 30px;
-    color: var(--accent-primary);
-    font-size: 0.875rem;
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
+/* Typing effect styles */
+.typing-text {
+    position: relative;
     display: inline-block;
+}
+
+.typing-text::after {
+    content: '|';
+    position: absolute;
+    right: -8px;
+    top: 0;
+    color: var(--accent-primary);
+    animation: blink 1s infinite;
+    font-weight: 300;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
 
 
 
 .hero-title {
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     opacity: 0;
     animation: fadeInUp 0.6s ease 0.2s forwards;
     width: 100%;
     overflow: visible;
+    position: relative;
+    display: block;
+    padding-top: 0;
 }
 
 
@@ -59,6 +80,7 @@
     letter-spacing: -0.03em;
     line-height: 1.1;
     margin-bottom: 0.5rem;
+    text-align: center;
 }
 
 .hero-subtitle {
@@ -70,6 +92,7 @@
     letter-spacing: 0.02em;
     opacity: 0;
     animation: fadeInUp 0.6s ease 0.3s forwards;
+    text-align: center;
 }
 
 @keyframes shimmerText {
