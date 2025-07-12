@@ -170,6 +170,40 @@
         max-width: 100%;
     }
     
+    /* Reduce scroll indicator animation on mobile */
+    .scroll-indicator {
+        animation: fadeIn 1s ease 2s forwards;
+    }
+    
+    .wheel {
+        animation: scrollMobile 3s ease-in-out infinite !important;
+    }
+    
+    @keyframes scrollMobile {
+        0% {
+            transform: translateX(-50%) translateY(0);
+            opacity: 0.5;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(-50%) translateY(10px);
+            opacity: 0.5;
+        }
+    }
+    
+    /* Reduce particle animations on mobile */
+    .particle {
+        animation: none !important;
+        display: none;
+    }
+    
+    /* Simplify mouse scroll indicator */
+    .mouse {
+        box-shadow: none;
+    }
+    
     /* CTA section mobile */
     .hero-cta-section {
         margin: 1rem auto;
