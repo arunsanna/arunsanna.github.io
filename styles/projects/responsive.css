@@ -43,21 +43,23 @@
         font-size: 1.125rem;
     }
     
-    /* Adaptive metrics layout on mobile */
+    /* All metrics use auto-scroll on mobile */
     .metrics-grid {
-        display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
-        gap: 0.5rem !important;
-        overflow-x: visible !important;
-    }
-    
-    /* For projects with many metrics (6+), use single row with auto-scroll */
-    .project-card:has(.metric-box:nth-child(6)) .metrics-grid {
         display: flex !important;
         flex-wrap: nowrap !important;
-        overflow-x: hidden !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
         grid-template-columns: none !important;
         position: relative;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
+        /* Hide scrollbar but keep functionality */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+    
+    .metrics-grid::-webkit-scrollbar {
+        display: none;
     }
     
     /* Auto-scroll animation for many metrics */
@@ -70,41 +72,46 @@
         }
     }
     
-    /* Apply auto-scroll to metrics container */
-    .project-card:has(.metric-box:nth-child(6)) .metrics-grid .grid {
+    /* Apply auto-scroll to ALL metrics containers */
+    .metrics-grid .grid {
         display: flex !important;
-        animation: scrollMetrics 30s linear infinite;
+        animation: scrollMetrics 20s linear infinite;
         width: fit-content;
         will-change: transform;
     }
     
-    /* Pause on hover/touch */
-    .project-card:has(.metric-box:nth-child(6)) .metrics-grid:hover .grid,
-    .project-card:has(.metric-box:nth-child(6)) .metrics-grid:active .grid {
-        animation-play-state: paused;
+    /* Pause animation when user interacts */
+    .metrics-grid.user-scrolling .grid {
+        animation-play-state: paused !important;
     }
     
-    /* Duplicate metrics for seamless loop */
-    .project-card:has(.metric-box:nth-child(6)) .metrics-grid::after {
+    /* Visual indicator for swipeable content */
+    .metrics-grid::before,
+    .metrics-grid::after {
         content: '';
         position: absolute;
         top: 0;
-        left: 100%;
-        width: 100%;
+        width: 20px;
         height: 100%;
+        z-index: 1;
         pointer-events: none;
+    }
+    
+    .metrics-grid::before {
+        left: 0;
+        background: linear-gradient(to right, rgba(0,0,0,0.9), transparent);
+    }
+    
+    .metrics-grid::after {
+        right: 0;
+        background: linear-gradient(to left, rgba(0,0,0,0.9), transparent);
     }
     
     .metric-box {
         padding: 0.75rem 0.5rem;
-        min-width: auto;
-        flex: 1 1 calc(50% - 0.25rem);
-    }
-    
-    /* Adjust for scrollable metrics */
-    .project-card:has(.metric-box:nth-child(6)) .metric-box {
         flex: 0 0 auto;
-        min-width: 85px;
+        min-width: 90px;
+        max-width: 120px;
     }
     
     .metric-box .text-2xl {
@@ -172,19 +179,15 @@
         padding: 0.875rem;
     }
     
-    /* Keep 2x2 grid for small metrics count */
+    /* Consistent metrics layout */
     .metrics-grid {
         gap: 0.4rem !important;
     }
     
     .metric-box {
         padding: 0.6rem 0.4rem;
-    }
-    
-    /* Single row for many metrics */
-    .project-card:has(.metric-box:nth-child(6)) .metric-box {
-        min-width: 75px;
-        padding: 0.4rem 0.3rem;
+        min-width: 80px;
+        max-width: 100px;
     }
     
     .metric-box .text-2xl {
