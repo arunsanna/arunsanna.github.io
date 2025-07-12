@@ -1,37 +1,77 @@
 /* Enhanced Metrics Grid with High Contrast */
 .metrics-grid {
-    display: grid;
-    gap: 0.75rem;
-    padding: 1rem;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    padding: 0.75rem;
     background: rgba(0, 0, 0, 0.9);
     border-radius: 8px;
     border: 1px solid rgba(255, 255, 255, 0.25);
     position: relative;
-    overflow: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
     backdrop-filter: blur(20px) saturate(200%);
     -webkit-backdrop-filter: blur(20px) saturate(200%);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-height: thin;
+    justify-content: space-between;
+    align-items: stretch;
 }
 
+/* Custom scrollbar for metrics */
+.metrics-grid::-webkit-scrollbar {
+    height: 4px;
+}
+
+.metrics-grid::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.metrics-grid::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 2px;
+}
+
+/* Override grid classes for flex layout */
 .grid {
-    display: grid;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: 100%;
 }
 
-.grid-cols-2 {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-@media (min-width: 768px) {
-    .md\:grid-cols-4 {
-        grid-template-columns: repeat(4, 1fr);
-    }
+.grid-cols-2,
+.md\:grid-cols-4 {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    width: 100%;
 }
 
 .metric-box {
-    padding: 0.875rem;
+    padding: 0.5rem 0.75rem;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.15);
     background: rgba(0, 0, 0, 0.5);
     border-radius: 4px;
+    flex: 1 1 0;
+    min-width: 90px;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Responsive metric text */
+.metric-box .text-2xl {
+    font-size: clamp(1.25rem, 2vw, 1.5rem);
+    line-height: 1;
+    margin-bottom: 0.25rem;
+}
+
+.metric-box .text-xs {
+    font-size: clamp(0.6rem, 1vw, 0.7rem);
+    line-height: 1.2;
+    text-align: center;
 }
 
 .text-center {
@@ -40,4 +80,33 @@
 
 .p-4 {
     padding: 0.875rem; /* Reduced from 1rem */
+}
+
+/* Ensure single row layout for all screen sizes */
+@media (max-width: 1024px) {
+    .metrics-grid {
+        gap: 0.4rem;
+        padding: 0.6rem;
+    }
+}
+
+/* Limit metric box max width on large screens */
+@media (min-width: 1024px) {
+    .metric-box {
+        max-width: 150px;
+    }
+}
+
+/* Remove overflow scroll when content fits */
+@media (min-width: 768px) {
+    .metrics-grid {
+        overflow-x: visible;
+    }
+}
+
+/* Prevent text wrapping in metric labels */
+.metric-box p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
