@@ -21,6 +21,7 @@ export async function initializeProjects() {
         setTimeout(() => {
             initializeCollapsibleOutcomes();
             setupHoverEffects();
+            setupMetricsAutoScroll();
         }, 500);
     }
 }
@@ -73,6 +74,43 @@ function setupHoverEffects() {
             // Make sure initial state is correct
             outcomesList.style.maxHeight = '0';
             outcomesList.style.opacity = '0';
+        }
+    });
+}
+
+// Setup auto-scrolling for metrics on mobile
+function setupMetricsAutoScroll() {
+    // Only on mobile/touch devices
+    const isMobile = window.innerWidth <= 768;
+    if (!isMobile) return;
+    
+    // Find all project cards with many metrics (6+)
+    const projectCards = document.querySelectorAll('.project-card');
+    
+    projectCards.forEach(card => {
+        const metricBoxes = card.querySelectorAll('.metric-box');
+        
+        // Only apply to projects with 6+ metrics
+        if (metricBoxes.length >= 6) {
+            const metricsGrid = card.querySelector('.metrics-grid');
+            const grid = card.querySelector('.grid');
+            
+            if (metricsGrid && grid) {
+                // Clone metrics for seamless loop
+                const clonedMetrics = Array.from(metricBoxes).map(box => box.cloneNode(true));
+                clonedMetrics.forEach(clone => grid.appendChild(clone));
+                
+                // Pause animation on touch
+                metricsGrid.addEventListener('touchstart', () => {
+                    grid.style.animationPlayState = 'paused';
+                });
+                
+                metricsGrid.addEventListener('touchend', () => {
+                    setTimeout(() => {
+                        grid.style.animationPlayState = 'running';
+                    }, 3000); // Resume after 3 seconds
+                });
+            }
         }
     });
 }

@@ -51,12 +51,48 @@
         overflow-x: visible !important;
     }
     
-    /* For projects with many metrics (6+), use single row with scroll */
+    /* For projects with many metrics (6+), use single row with auto-scroll */
     .project-card:has(.metric-box:nth-child(6)) .metrics-grid {
         display: flex !important;
         flex-wrap: nowrap !important;
-        overflow-x: auto !important;
+        overflow-x: hidden !important;
         grid-template-columns: none !important;
+        position: relative;
+    }
+    
+    /* Auto-scroll animation for many metrics */
+    @keyframes scrollMetrics {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+    
+    /* Apply auto-scroll to metrics container */
+    .project-card:has(.metric-box:nth-child(6)) .metrics-grid .grid {
+        display: flex !important;
+        animation: scrollMetrics 30s linear infinite;
+        width: fit-content;
+        will-change: transform;
+    }
+    
+    /* Pause on hover/touch */
+    .project-card:has(.metric-box:nth-child(6)) .metrics-grid:hover .grid,
+    .project-card:has(.metric-box:nth-child(6)) .metrics-grid:active .grid {
+        animation-play-state: paused;
+    }
+    
+    /* Duplicate metrics for seamless loop */
+    .project-card:has(.metric-box:nth-child(6)) .metrics-grid::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 100%;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
     }
     
     .metric-box {
