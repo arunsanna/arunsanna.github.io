@@ -227,7 +227,7 @@
     /* Convert buttons to icon-only on mobile */
     .hero-cta {
         flex-direction: row !important;
-        gap: 1.5rem;
+        gap: 1.2rem;
         justify-content: center;
         align-items: center;
         padding-top: 1rem;
@@ -237,39 +237,29 @@
     }
     
     .hero-cta .btn {
-        width: 56px;
-        height: 56px;
+        width: 52px;
+        height: 52px;
         padding: 0;
-        font-size: 1.25rem;
+        font-size: 0;
         border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
         position: relative;
         margin: 0;
-    }
-    
-    /* Hide button text on mobile */
-    .hero-cta .btn i {
-        margin: 0 !important;
-        display: flex !important;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.4rem;
-    }
-    
-    /* Hide text but keep icons */
-    .hero-cta .btn {
-        font-size: 0;
         line-height: 0;
     }
     
-    .hero-cta .btn * {
-        display: none;
+    /* Hide button text on mobile */
+    .hero-cta .btn-text {
+        display: none !important;
     }
     
     .hero-cta .btn i {
-        display: flex !important;
+        margin: 0 !important;
+        display: block !important;
+        font-size: 1.3rem;
+        line-height: 1;
     }
 }
 

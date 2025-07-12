@@ -71,6 +71,11 @@
     color: #ffffff;
 }
 
+/* Ensure text is visible on desktop */
+.hero-cta .btn-text {
+    display: inline;
+}
+
 /* Primary button enhancement */
 .hero-cta .btn-primary {
     background: linear-gradient(135deg, 
