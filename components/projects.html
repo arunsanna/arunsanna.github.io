@@ -12,221 +12,257 @@
 
         <!-- Projects Container -->
         <div class="projects-container space-y-8">
-            <!-- Project 1 -->
+            <!-- Project 1: Enterprise Platform Transformation -->
             <div class="project-card card-gradient" data-animation-delay="0">
-                <div class="card-body">
+                <div class="card-content space-y-6">
                     <!-- Header -->
-                    <div class="project-header-new">
-                        <div class="flex items-center gap-3">
-                            <div class="icon-container bg-primary-10">
-                                <i class="fas fa-shield-alt text-primary"></i>
+                    <div class="project-header">
+                        <div class="flex items-center gap-4">
+                            <div class="icon-container p-3 rounded-lg bg-primary-10 border-primary-20">
+                                <i class="fas fa-shield-alt text-primary h-6 w-6"></i>
                             </div>
                             <div>
-                                <h3 class="project-title">DoD PartyBus Platform</h3>
-                                <div class="project-categories">
-                                    <span class="badge-outline-sm">Mission Critical</span>
-                                    <span class="badge-outline-sm">Zero Trust Security</span>
-                                </div>
+                                <h3 class="text-xl">Enterprise Platform Transformation</h3>
+                                <span class="badge-category text-xs">Defense Technology</span>
                             </div>
                         </div>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
                     </div>
 
                     <!-- Description -->
-                    <p class="project-description text-muted-foreground">
-                        Enterprise Platform-as-a-Service supporting 4.2 million users across the Department of Defense. 
-                        Architected with zero-trust security principles and designed for extreme reliability.
+                    <p class="text-muted-foreground">
+                        Led the transformation of DoD's largest Platform-as-a-Service, serving 4.2 million users with 
+                        zero-trust architecture and 99.99% uptime reliability.
                     </p>
 
-                    <!-- Metrics -->
-                    <div class="metrics-section">
-                        <h4 class="metrics-title">Key Metrics</h4>
-                        <div class="metrics-grid">
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">4.2M</span>
-                                <span class="metric-label text-muted-foreground">Active Users</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">99.99%</span>
-                                <span class="metric-label text-muted-foreground">Uptime SLA</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">Zero</span>
-                                <span class="metric-label text-muted-foreground">Security Breaches</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">45%</span>
-                                <span class="metric-label text-muted-foreground">Cost Reduction</span>
-                            </div>
-                        </div>
+                    <!-- Context -->
+                    <div class="context-box bg-muted-30 rounded-lg p-4">
+                        <h4 class="text-sm font-medium mb-2">Challenge & Solution</h4>
+                        <p class="text-sm text-muted-foreground">
+                            Modernized legacy monolithic systems into cloud-native microservices architecture while 
+                            maintaining continuous operations for mission-critical defense applications.
+                        </p>
                     </div>
 
-                    <!-- Tech Stack -->
-                    <div class="tech-section">
-                        <h4 class="tech-title">Technologies</h4>
-                        <div class="tech-stack">
-                            <span class="badge-tech-outline">AWS</span>
-                            <span class="badge-tech-outline">Kubernetes</span>
-                            <span class="badge-tech-outline">Terraform</span>
-                            <span class="badge-tech-outline">GitOps</span>
-                            <span class="badge-tech-outline">NIST 800-53</span>
+                    <!-- Metrics -->
+                    <div class="metrics-grid grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">4.2M</p>
+                            <p class="text-xs text-muted-foreground">Active Users</p>
+                        </div>
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">99.99%</p>
+                            <p class="text-xs text-muted-foreground">Uptime SLA</p>
+                        </div>
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">Zero</p>
+                            <p class="text-xs text-muted-foreground">Security Breaches</p>
+                        </div>
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">45%</p>
+                            <p class="text-xs text-muted-foreground">Cost Reduction</p>
                         </div>
                     </div>
 
                     <!-- Outcomes -->
-                    <div class="outcomes-section bg-muted-20">
-                        <p class="outcome-text text-sm">
-                            <strong>Impact:</strong> Successfully modernized legacy infrastructure while maintaining 
-                            continuous operations, resulting in improved developer productivity and enhanced security posture.
-                        </p>
+                    <div class="outcomes-box">
+                        <h4 class="font-medium mb-3 flex items-center gap-2">
+                            <span>Key Outcomes</span>
+                            <i class="fas fa-arrow-right text-primary text-sm"></i>
+                        </h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-3">
+                                <span class="bullet-point bg-primary"></span>
+                                <span class="text-sm text-muted-foreground">Reduced deployment time from weeks to hours through automated CI/CD pipelines</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bullet-point bg-primary"></span>
+                                <span class="text-sm text-muted-foreground">Implemented zero-trust security model meeting DoD's strictest compliance requirements</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bullet-point bg-primary"></span>
+                                <span class="text-sm text-muted-foreground">Achieved $1.1M annual savings through infrastructure optimization</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Technologies -->
+                    <div class="tech-stack flex flex-wrap gap-2">
+                        <span class="badge-outline text-xs">AWS</span>
+                        <span class="badge-outline text-xs">Kubernetes</span>
+                        <span class="badge-outline text-xs">Terraform</span>
+                        <span class="badge-outline text-xs">GitOps</span>
+                        <span class="badge-outline text-xs">NIST 800-53</span>
+                        <span class="badge-outline text-xs">Zero Trust</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 2 -->
+            <!-- Project 2: Healthcare Cloud Migration -->
             <div class="project-card card-gradient" data-animation-delay="0.2">
-                <div class="card-body">
+                <div class="card-content space-y-6">
                     <!-- Header -->
-                    <div class="project-header-new">
-                        <div class="flex items-center gap-3">
-                            <div class="icon-container bg-primary-10">
-                                <i class="fas fa-cloud-upload-alt text-primary"></i>
+                    <div class="project-header">
+                        <div class="flex items-center gap-4">
+                            <div class="icon-container p-3 rounded-lg bg-primary-10 border-primary-20">
+                                <i class="fas fa-cloud-upload-alt text-primary h-6 w-6"></i>
                             </div>
                             <div>
-                                <h3 class="project-title">CMS Cloud Transformation</h3>
-                                <div class="project-categories">
-                                    <span class="badge-outline-sm">Cloud Migration</span>
-                                    <span class="badge-outline-sm">Healthcare</span>
-                                </div>
+                                <h3 class="text-xl">Healthcare Cloud Migration</h3>
+                                <span class="badge-category text-xs">Healthcare Technology</span>
                             </div>
                         </div>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
                     </div>
 
                     <!-- Description -->
-                    <p class="project-description text-muted-foreground">
-                        Led the migration of legacy Medicare/Medicaid systems to cloud-native architecture, 
-                        serving millions of beneficiaries with improved performance and reliability.
+                    <p class="text-muted-foreground">
+                        Orchestrated the migration of CMS legacy systems to cloud-native architecture, transforming 
+                        healthcare delivery for millions of Medicare and Medicaid beneficiaries.
                     </p>
 
-                    <!-- Metrics -->
-                    <div class="metrics-section">
-                        <h4 class="metrics-title">Key Metrics</h4>
-                        <div class="metrics-grid">
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">$1.1M</span>
-                                <span class="metric-label text-muted-foreground">Annual Savings</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">60%</span>
-                                <span class="metric-label text-muted-foreground">Cost Reduction</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">3x</span>
-                                <span class="metric-label text-muted-foreground">Performance Gain</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">12</span>
-                                <span class="metric-label text-muted-foreground">Legacy Systems</span>
-                            </div>
-                        </div>
+                    <!-- Context -->
+                    <div class="context-box bg-muted-30 rounded-lg p-4">
+                        <h4 class="text-sm font-medium mb-2">Challenge & Solution</h4>
+                        <p class="text-sm text-muted-foreground">
+                            Migrated 12 interconnected legacy systems to Azure while ensuring zero downtime for critical 
+                            healthcare services and maintaining HIPAA compliance throughout the transformation.
+                        </p>
                     </div>
 
-                    <!-- Tech Stack -->
-                    <div class="tech-section">
-                        <h4 class="tech-title">Technologies</h4>
-                        <div class="tech-stack">
-                            <span class="badge-tech-outline">Azure</span>
-                            <span class="badge-tech-outline">Microservices</span>
-                            <span class="badge-tech-outline">Docker</span>
-                            <span class="badge-tech-outline">AKS</span>
-                            <span class="badge-tech-outline">Event-Driven</span>
+                    <!-- Metrics -->
+                    <div class="metrics-grid grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">$1.1M</p>
+                            <p class="text-xs text-muted-foreground">Annual Savings</p>
+                        </div>
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">300%</p>
+                            <p class="text-xs text-muted-foreground">Faster Processing</p>
+                        </div>
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">60%</p>
+                            <p class="text-xs text-muted-foreground">Cost Reduction</p>
+                        </div>
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">Zero</p>
+                            <p class="text-xs text-muted-foreground">Downtime</p>
                         </div>
                     </div>
 
                     <!-- Outcomes -->
-                    <div class="outcomes-section bg-muted-20">
-                        <p class="outcome-text text-sm">
-                            <strong>Impact:</strong> Modernized critical healthcare infrastructure, improving claim 
-                            processing times by 300% and enabling real-time analytics for better patient outcomes.
-                        </p>
+                    <div class="outcomes-box">
+                        <h4 class="font-medium mb-3 flex items-center gap-2">
+                            <span>Key Outcomes</span>
+                            <i class="fas fa-arrow-right text-primary text-sm"></i>
+                        </h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-3">
+                                <span class="bullet-point bg-primary"></span>
+                                <span class="text-sm text-muted-foreground">Improved claim processing from days to minutes with real-time analytics</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bullet-point bg-primary"></span>
+                                <span class="text-sm text-muted-foreground">Enabled predictive analytics for fraud detection saving millions annually</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bullet-point bg-primary"></span>
+                                <span class="text-sm text-muted-foreground">Achieved full HIPAA compliance with enhanced security controls</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Technologies -->
+                    <div class="tech-stack flex flex-wrap gap-2">
+                        <span class="badge-outline text-xs">Azure</span>
+                        <span class="badge-outline text-xs">Microservices</span>
+                        <span class="badge-outline text-xs">AKS</span>
+                        <span class="badge-outline text-xs">Event Sourcing</span>
+                        <span class="badge-outline text-xs">FHIR</span>
+                        <span class="badge-outline text-xs">HIPAA</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Project 3 -->
+            <!-- Project 3: Humanitarian Crisis Response -->
             <div class="project-card card-gradient" data-animation-delay="0.4">
-                <div class="card-body">
+                <div class="card-content space-y-6">
                     <!-- Header -->
-                    <div class="project-header-new">
-                        <div class="flex items-center gap-3">
-                            <div class="icon-container bg-primary-10">
-                                <i class="fas fa-life-ring text-primary"></i>
+                    <div class="project-header">
+                        <div class="flex items-center gap-4">
+                            <div class="icon-container p-3 rounded-lg bg-primary-10 border-primary-20">
+                                <i class="fas fa-life-ring text-primary h-6 w-6"></i>
                             </div>
                             <div>
-                                <h3 class="project-title">Operation Allies Refuge</h3>
-                                <div class="project-categories">
-                                    <span class="badge-outline-sm">Humanitarian</span>
-                                    <span class="badge-outline-sm">Crisis Response</span>
-                                </div>
+                                <h3 class="text-xl">Humanitarian Crisis Response</h3>
+                                <span class="badge-category text-xs">Emergency Systems</span>
                             </div>
                         </div>
-                        <a href="#" class="project-link">
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
                     </div>
 
                     <!-- Description -->
-                    <p class="project-description text-muted-foreground">
-                        Architected and deployed critical emergency response system for Afghan evacuation efforts, 
-                        enabling safe and efficient processing of evacuees under extreme time constraints.
+                    <p class="text-muted-foreground">
+                        Built and deployed mission-critical evacuation management system for Operation Allies Refuge, 
+                        processing and tracking over 120,000 evacuees in real-time.
                     </p>
 
-                    <!-- Metrics -->
-                    <div class="metrics-section">
-                        <h4 class="metrics-title">Key Metrics</h4>
-                        <div class="metrics-grid">
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">120K+</span>
-                                <span class="metric-label text-muted-foreground">Lives Impacted</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">24/7</span>
-                                <span class="metric-label text-muted-foreground">Operations</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">72hr</span>
-                                <span class="metric-label text-muted-foreground">Deploy Time</span>
-                            </div>
-                            <div class="metric-item">
-                                <span class="metric-value text-primary">100%</span>
-                                <span class="metric-label text-muted-foreground">Uptime</span>
-                            </div>
-                        </div>
+                    <!-- Context -->
+                    <div class="context-box bg-muted-30 rounded-lg p-4">
+                        <h4 class="text-sm font-medium mb-2">Challenge & Solution</h4>
+                        <p class="text-sm text-muted-foreground">
+                            Designed and deployed a scalable system in 72 hours to handle massive concurrent load while 
+                            ensuring data integrity and security for sensitive refugee information.
+                        </p>
                     </div>
 
-                    <!-- Tech Stack -->
-                    <div class="tech-section">
-                        <h4 class="tech-title">Technologies</h4>
-                        <div class="tech-stack">
-                            <span class="badge-tech-outline">Real-time Systems</span>
-                            <span class="badge-tech-outline">High Availability</span>
-                            <span class="badge-tech-outline">Distributed Systems</span>
-                            <span class="badge-tech-outline">AWS</span>
-                            <span class="badge-tech-outline">Redis</span>
+                    <!-- Metrics -->
+                    <div class="metrics-grid grid grid-cols-2 md:grid-cols-4 gap-4">
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">120K+</p>
+                            <p class="text-xs text-muted-foreground">Lives Saved</p>
+                        </div>
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">72hr</p>
+                            <p class="text-xs text-muted-foreground">Deploy Time</p>
+                        </div>
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">24/7</p>
+                            <p class="text-xs text-muted-foreground">Operations</p>
+                        </div>
+                        <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                            <p class="text-2xl font-bold hero-text">100%</p>
+                            <p class="text-xs text-muted-foreground">Uptime</p>
                         </div>
                     </div>
 
                     <!-- Outcomes -->
-                    <div class="outcomes-section bg-muted-20">
-                        <p class="outcome-text text-sm">
-                            <strong>Impact:</strong> Delivered a life-saving system under unprecedented pressure, 
-                            demonstrating the power of technology to serve humanity in its most critical moments.
-                        </p>
+                    <div class="outcomes-box">
+                        <h4 class="font-medium mb-3 flex items-center gap-2">
+                            <span>Key Outcomes</span>
+                            <i class="fas fa-arrow-right text-primary text-sm"></i>
+                        </h4>
+                        <ul class="space-y-2">
+                            <li class="flex items-start gap-3">
+                                <span class="bullet-point bg-primary"></span>
+                                <span class="text-sm text-muted-foreground">Enabled real-time tracking and processing of evacuees across multiple sites</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bullet-point bg-primary"></span>
+                                <span class="text-sm text-muted-foreground">Maintained 100% uptime during critical 30-day evacuation window</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <span class="bullet-point bg-primary"></span>
+                                <span class="text-sm text-muted-foreground">Provided critical data to decision-makers enabling life-saving interventions</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Technologies -->
+                    <div class="tech-stack flex flex-wrap gap-2">
+                        <span class="badge-outline text-xs">Real-time Systems</span>
+                        <span class="badge-outline text-xs">AWS Lambda</span>
+                        <span class="badge-outline text-xs">DynamoDB</span>
+                        <span class="badge-outline text-xs">Redis</span>
+                        <span class="badge-outline text-xs">WebSockets</span>
+                        <span class="badge-outline text-xs">High Availability</span>
                     </div>
                 </div>
             </div>
