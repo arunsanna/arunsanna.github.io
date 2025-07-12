@@ -204,6 +204,17 @@
         box-shadow: none;
     }
     
+    /* Reduce aggressive blinking cursor on mobile */
+    .logo-cursor {
+        animation: blinkMobile 2s ease-in-out infinite !important;
+    }
+    
+    @keyframes blinkMobile {
+        0%, 40% { opacity: 1; }
+        50%, 90% { opacity: 0.3; }
+        100% { opacity: 1; }
+    }
+    
     /* CTA section mobile */
     .hero-cta-section {
         margin: 1rem auto;
