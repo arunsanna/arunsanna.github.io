@@ -74,8 +74,8 @@
     font-size: clamp(0.55rem, 0.9vw, 0.65rem);
     line-height: 1.15;
     text-align: center;
-    word-break: break-word;
-    hyphens: auto;
+    word-break: normal;
+    overflow-wrap: break-word;
     max-width: 100%;
 }
 

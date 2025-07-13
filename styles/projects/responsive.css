@@ -122,7 +122,8 @@
         line-height: 1.15;
         margin-top: 0.2rem;
         white-space: normal;
-        word-break: break-word;
+        word-break: normal;
+        overflow-wrap: break-word;
     }
     
     .icon-container {
