@@ -62,24 +62,24 @@ Here's the project information in text format for your website builder:
 **Tech Stack:** Real-time Systems, High Availability, Auto-scaling, Mission Critical
 
 
-## Project 4: Enterprise Cloud Architecture
-**Category:** CLOUD TRANSFORMATION
-**Icon:** 🏗️
-**Description:** Designed and implemented scalable multi-cloud architecture supporting mission-critical applications across AWS, Azure, and GCP with zero-trust security models.
+## Project 4: Enterprise AI Transformation
+**Category:** AI TRANSFORMATION
+**Icon:** 🤖
+**Description:** Started adoption and training of engineering teams with tools like OpenAI, Claude, and Gemini. Adopted tools like GitHub Copilot and built RAG systems for internal procurement and contract management for business development.
 
 **Metrics:**
-- 1000+ Virtual Machines
-- Multi-Cloud Platforms
-- Zero Security Breaches
-- 115 Team Growth
+- 100% Coding Using GenAI
+- 30% Productivity Increase
+- 40% Proposal Time Reduction
+- 10→115 Company Growth
 
 **Key Outcomes:**
-- Architected infrastructure managing 1,000+ VMs and 20,000+ containers
-- Implemented automated Infrastructure as Code with 50+ reusable modules
-- Established comprehensive CI/CD pipelines across multiple cloud environments
+- Accelerated business development proposal management process and reduced time to develop proposals by 40%
+- Enabled GenAI for software developers and increased productivity - Jira burn rate increased by 30%
 - Led company growth from 35 to 115 employees through strategic initiatives
+- Built high-performance tiger team to solve complex rapid solutions
 
-**Tech Stack:** AWS, Azure, GCP, Terraform, Multi-Cloud
+**Tech Stack:** AWS, OpenAI, Claude, Gemini, NVIDIA, Jupyter, SageMaker, Model Hosting, LLAMA, RAG, Agents, GenAI
 
 ---
 
