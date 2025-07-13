@@ -23,21 +23,32 @@
         grid-template-columns: repeat(3, 1fr) !important;
     }
     
-    /* For 6+ badges, use 3 columns */
-    .tech-stack:has(.badge-outline:nth-child(6)) {
+    /* For 6-9 badges, use 3 columns */
+    .tech-stack:has(.badge-outline:nth-child(6)):not(:has(.badge-outline:nth-child(10))) {
         grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    /* For 10+ badges, use 4 columns for better fit */
+    .tech-stack:has(.badge-outline:nth-child(10)) {
+        grid-template-columns: repeat(4, 1fr) !important;
     }
     
     /* Tech badge styling for mobile */
     .tech-stack .badge-outline {
         width: 100% !important;
         text-align: center !important;
-        padding: 0.4rem 0.5rem !important;
+        padding: 0.4rem 0.3rem !important;
         font-size: 0.65rem !important;
         margin: 0 !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
+    }
+    
+    /* Smaller text for 4-column badge layout */
+    .tech-stack:has(.badge-outline:nth-child(10)) .badge-outline {
+        font-size: 0.55rem !important;
+        padding: 0.35rem 0.2rem !important;
     }
     /* Outcomes always expanded on mobile */
     .outcomes-box h4 {
