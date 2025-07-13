@@ -81,7 +81,7 @@
     /* Create inner wrapper for animation */
     .metrics-scroll-wrapper {
         display: flex !important;
-        animation: scrollMetrics 60s linear infinite;
+        animation: scrollMetrics 200s linear infinite;
         width: fit-content !important;
         will-change: transform;
     }
