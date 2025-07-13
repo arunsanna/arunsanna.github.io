@@ -88,58 +88,49 @@ function setupMetricsAutoScroll() {
     const metricsGrids = document.querySelectorAll('.metrics-grid');
     
     metricsGrids.forEach(metricsGrid => {
-        const grid = metricsGrid.querySelector('.grid');
         const metricBoxes = metricsGrid.querySelectorAll('.metric-box');
         
-        if (grid && metricBoxes.length > 0) {
-            // Clone metrics for seamless loop
-            const clonedMetrics = Array.from(metricBoxes).map(box => box.cloneNode(true));
-            clonedMetrics.forEach(clone => grid.appendChild(clone));
+        if (metricBoxes.length > 0) {
+            // Create wrapper for animation
+            const scrollWrapper = document.createElement('div');
+            scrollWrapper.className = 'metrics-scroll-wrapper';
             
-            let isUserScrolling = false;
-            let scrollTimeout;
-            
-            // Detect user scroll
-            metricsGrid.addEventListener('scroll', () => {
-                if (!isUserScrolling) {
-                    isUserScrolling = true;
-                    metricsGrid.classList.add('user-scrolling');
-                }
-                
-                // Clear existing timeout
-                clearTimeout(scrollTimeout);
-                
-                // Resume animation after 5 seconds of no scrolling
-                scrollTimeout = setTimeout(() => {
-                    isUserScrolling = false;
-                    metricsGrid.classList.remove('user-scrolling');
-                    // Reset scroll position for smooth continuation
-                    if (metricsGrid.scrollLeft >= metricsGrid.scrollWidth / 2) {
-                        metricsGrid.scrollLeft = 0;
-                    }
-                }, 5000);
+            // Move all metric boxes into the wrapper
+            Array.from(metricBoxes).forEach(box => {
+                scrollWrapper.appendChild(box.cloneNode(true));
             });
             
-            // Touch events for better control
-            let touchStartX = 0;
+            // Clone metrics for seamless loop
+            Array.from(metricBoxes).forEach(box => {
+                scrollWrapper.appendChild(box.cloneNode(true));
+            });
             
-            metricsGrid.addEventListener('touchstart', (e) => {
-                touchStartX = e.touches[0].clientX;
+            // Clear original content and add wrapper
+            metricsGrid.innerHTML = '';
+            metricsGrid.appendChild(scrollWrapper);
+            
+            let scrollTimeout;
+            
+            // Touch events for pause/resume
+            metricsGrid.addEventListener('touchstart', () => {
                 metricsGrid.classList.add('user-scrolling');
+                clearTimeout(scrollTimeout);
             });
             
             metricsGrid.addEventListener('touchend', () => {
-                // Animation will resume after timeout set in scroll event
+                // Resume animation after 3 seconds
+                scrollTimeout = setTimeout(() => {
+                    metricsGrid.classList.remove('user-scrolling');
+                }, 3000);
             });
             
-            // Ensure smooth infinite scroll
-            metricsGrid.addEventListener('scroll', () => {
-                // If scrolled to the end, reset to beginning
-                if (metricsGrid.scrollLeft >= metricsGrid.scrollWidth - metricsGrid.clientWidth) {
-                    metricsGrid.scrollLeft = 1;
-                } else if (metricsGrid.scrollLeft <= 0) {
-                    metricsGrid.scrollLeft = metricsGrid.scrollWidth / 2 - metricsGrid.clientWidth - 1;
-                }
+            // Also pause on mouse over for desktop testing
+            metricsGrid.addEventListener('mouseenter', () => {
+                metricsGrid.classList.add('user-scrolling');
+            });
+            
+            metricsGrid.addEventListener('mouseleave', () => {
+                metricsGrid.classList.remove('user-scrolling');
             });
         }
     });

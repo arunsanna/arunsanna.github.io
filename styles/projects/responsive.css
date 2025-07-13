@@ -72,16 +72,22 @@
         }
     }
     
-    /* Apply auto-scroll to ALL metrics containers */
-    .metrics-grid .grid {
+    /* Wrapper for metrics animation */
+    .metrics-grid {
+        overflow: hidden !important;
+        position: relative;
+    }
+    
+    /* Create inner wrapper for animation */
+    .metrics-scroll-wrapper {
         display: flex !important;
         animation: scrollMetrics 20s linear infinite;
-        width: fit-content;
+        width: fit-content !important;
         will-change: transform;
     }
     
     /* Pause animation when user interacts */
-    .metrics-grid.user-scrolling .grid {
+    .metrics-grid.user-scrolling .metrics-scroll-wrapper {
         animation-play-state: paused !important;
     }
     
