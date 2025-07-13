@@ -6,8 +6,8 @@
 
 .highlights-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
     padding: 0.5rem;
 }
 
@@ -89,7 +89,7 @@
 }
 
 .card-content {
-    padding: 2rem;
+    padding: 2.25rem;
     position: relative;
     z-index: 1;
 }
