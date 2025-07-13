@@ -10,7 +10,9 @@
         flex-direction: unset !important;
         flex-wrap: unset !important;
         overflow: visible !important;
-        justify-content: stretch !important;
+        justify-content: center !important;
+        justify-items: center !important;
+        align-items: center !important;
     }
     
     /* For 3 badges, use 3 columns */
