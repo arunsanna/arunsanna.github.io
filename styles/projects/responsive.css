@@ -62,13 +62,13 @@
         display: none;
     }
     
-    /* Auto-scroll animation for many metrics */
+    /* Auto-scroll animation for many metrics - ultra slow */
     @keyframes scrollMetrics {
         0% {
-            transform: translateX(0);
+            transform: translateX(5%);
         }
         100% {
-            transform: translateX(-50%);
+            transform: translateX(-55%);
         }
     }
     
@@ -78,12 +78,13 @@
         position: relative;
     }
     
-    /* Create inner wrapper for animation */
+    /* Create inner wrapper for animation - extremely slow */
     .metrics-scroll-wrapper {
         display: flex !important;
-        animation: scrollMetrics 200s linear infinite;
+        animation: scrollMetrics 800s linear infinite;
         width: fit-content !important;
         will-change: transform;
+        gap: 0.5rem;
     }
     
     /* Pause animation when user interacts */
