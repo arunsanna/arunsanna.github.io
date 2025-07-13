@@ -1,0 +1,71 @@
+/* Experience Section Responsive Styles */
+
+/* Tablet/iPad */
+@media (max-width: 1024px) {
+    .timeline-content {
+        padding: 1.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    /* Timeline Mobile */
+    .timeline::before {
+        display: none;
+    }
+
+    .timeline-item {
+        padding-left: 50px;
+        padding-bottom: 2rem;
+    }
+
+    .timeline-marker {
+        left: 10px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .timeline-content {
+        padding: 1.25rem;
+    }
+
+    .timeline-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .company-name {
+        font-size: 1.1rem;
+    }
+
+    .timeline-date {
+        font-size: 0.85rem;
+    }
+
+    .position-title {
+        font-size: 1rem;
+    }
+
+    .position-description {
+        font-size: 0.9rem;
+    }
+
+    .tech-badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 480px) {
+    .timeline-item {
+        padding-left: 40px;
+    }
+    
+    .timeline-marker {
+        left: 8px;
+        width: 14px;
+        height: 14px;
+    }
+}

@@ -1,0 +1,46 @@
+/* Navigation Responsive Styles */
+
+/* Mobile Navigation */
+@media (max-width: 768px) {
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px;
+        flex-direction: column;
+        background: var(--glass-surface-elevated);
+        backdrop-filter: var(--blur-heavy);
+        -webkit-backdrop-filter: var(--blur-heavy);
+        width: 100%;
+        text-align: center;
+        transition: left var(--transition-base);
+        box-shadow: var(--elevation-3);
+        padding: 2rem 0;
+        border-top: 1px solid var(--glass-border);
+        z-index: 999;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+    
+    .nav-menu .nav-link {
+        padding: 1rem 0;
+        font-size: 1.1rem;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+}

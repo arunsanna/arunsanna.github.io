@@ -1,0 +1,32 @@
+/* Skills Section Responsive Styles */
+
+/* Tablet/iPad */
+@media (max-width: 1024px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .skill-category {
+        padding: 1.5rem;
+    }
+
+    .skill-item {
+        margin-bottom: 1rem;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 480px) {
+    .skill-category {
+        padding: 1.25rem;
+    }
+}

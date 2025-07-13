@@ -1,0 +1,74 @@
+/* Experience Layout - Base Structure */
+.experience {
+    background: linear-gradient(to bottom, transparent, var(--glass-light), transparent);
+}
+
+/* Grid Layout */
+.experience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+/* Right Column Styling */
+.experience-right .experience-section {
+    position: relative;
+    opacity: 0;
+    transform: translateX(20px);
+    animation: slideInRight 0.6s ease forwards;
+    animation-delay: 0.3s;
+}
+
+.experience-right .experience-section:nth-child(2) {
+    animation-delay: 0.5s;
+}
+
+.experience-right .experience-section:nth-child(3) {
+    animation-delay: 0.7s;
+}
+
+.experience-right .experience-section:nth-child(4) {
+    animation-delay: 0.9s;
+}
+
+@keyframes slideInRight {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.experience-section {
+    margin-bottom: 3rem;
+}
+
+.subsection-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    color: var(--text-primary);
+    position: relative;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+.subsection-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: var(--accent-primary);
+    border-radius: 2px;
+}
+
+/* Section Subtitles */
+.section-subtitle {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}

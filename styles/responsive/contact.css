@@ -1,0 +1,25 @@
+/* Contact Section Responsive Styles */
+
+/* Mobile */
+@media (max-width: 768px) {
+    .contact-content {
+        padding: 2rem 1.5rem;
+    }
+
+    .contact-details {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+
+    .contact-item {
+        justify-content: center;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 480px) {
+    .contact-content {
+        padding: 1.5rem 1rem;
+    }
+}

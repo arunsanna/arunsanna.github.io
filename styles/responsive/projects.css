@@ -1,0 +1,53 @@
+/* Projects Section Responsive Styles */
+
+/* Tablet/iPad */
+@media (max-width: 1024px) {
+    .projects-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .project-metrics {
+        grid-template-columns: repeat(3, 1fr);
+        font-size: 0.9rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .project-card {
+        padding: 1.5rem;
+    }
+
+    .project-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.25rem;
+    }
+
+    .project-title {
+        font-size: 1.25rem;
+    }
+
+    .project-metrics {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 0.75rem;
+    }
+
+    .metric-value {
+        font-size: 1.25rem;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 480px) {
+    .project-card {
+        padding: 1.25rem;
+    }
+}

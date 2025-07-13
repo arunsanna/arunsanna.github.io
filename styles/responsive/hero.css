@@ -1,0 +1,145 @@
+/* Hero Section Responsive Styles */
+
+/* Tablet/iPad */
+@media (max-width: 1024px) {
+    .hero-container {
+        max-width: 800px;
+    }
+
+    .hero-stats {
+        gap: 2rem;
+    }
+
+    .stat-item {
+        padding: 0.75rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .hero {
+        padding: 5rem 1rem 3rem;
+        min-height: auto;
+    }
+
+    .hero-container {
+        padding: 0 1.5rem;
+    }
+
+    .terminal-line {
+        font-size: 0.85rem;
+    }
+    
+    .terminal-prompt {
+        font-size: 0.85rem;
+    }
+
+    .hero-name {
+        font-size: 2.5rem;
+    }
+
+    .hero-roles {
+        justify-content: center;
+        gap: 0.5rem;
+    }
+
+    .role-badge {
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-cta {
+        flex-direction: row;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .btn {
+        padding: 1rem 2rem;
+        justify-content: center;
+    }
+
+    .hero-stats {
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .stat-item {
+        padding: 0.75rem 1rem;
+        min-width: 100px;
+    }
+
+    .stat-number {
+        font-size: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 480px) {
+    .hero-container {
+        padding: 0 1rem;
+    }
+    
+    .hero-name {
+        font-size: 2rem;
+    }
+    
+    .role-badge {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.75rem;
+    }
+    
+    .btn {
+        font-size: 0.9rem;
+        padding: 0.875rem 1.5rem;
+    }
+    
+    .stat-item {
+        min-width: 80px;
+    }
+    
+    .stat-number {
+        font-size: 1.75rem;
+    }
+}
+
+/* Portrait Phone */
+@media (max-width: 414px) {
+    .hero-name {
+        font-size: 2.25rem;
+    }
+}
+
+/* Small Phone */
+@media (max-width: 375px) {
+    .hero-name {
+        font-size: 1.85rem;
+    }
+}
+
+/* Landscape Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding: 3rem 0;
+    }
+    
+    .hero-stats {
+        margin-top: 1rem;
+    }
+    
+    .stat-item {
+        padding: 0.5rem 0.75rem;
+    }
+}

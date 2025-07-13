@@ -1,0 +1,32 @@
+/* Certifications Section Responsive Styles */
+
+/* Tablet/iPad */
+@media (max-width: 1024px) {
+    .certifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .certifications-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .cert-card {
+        padding: 1.5rem;
+    }
+
+    .cert-icon {
+        font-size: 2.5rem;
+    }
+}
+
+/* Very Small Mobile */
+@media (max-width: 480px) {
+    .cert-card {
+        padding: 1.25rem;
+    }
+}
