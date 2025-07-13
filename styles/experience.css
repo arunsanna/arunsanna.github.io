@@ -1,6 +1,7 @@
 /* Experience Section - Modular CSS */
 
 /* Import experience modules */
+@import url('experience/header.css');
 @import url('experience/layout.css');
 @import url('experience/timeline.css');
 @import url('experience/sections.css');
