@@ -1,5 +1,44 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
+    /* Responsive grid for tech badges on mobile - override flex */
+    .project-card .tech-stack,
+    .tech-stack {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
+        padding: 0.5rem 0;
+        flex-direction: unset !important;
+        flex-wrap: unset !important;
+        overflow: visible !important;
+        justify-content: stretch !important;
+    }
+    
+    /* For 3 badges, use 3 columns */
+    .tech-stack:has(.badge-outline:nth-child(3)):not(:has(.badge-outline:nth-child(4))) {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    /* For 5 badges, use 3 columns for first row, 2 for second */
+    .tech-stack:has(.badge-outline:nth-child(5)):not(:has(.badge-outline:nth-child(6))) {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    /* For 6+ badges, use 3 columns */
+    .tech-stack:has(.badge-outline:nth-child(6)) {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    /* Tech badge styling for mobile */
+    .tech-stack .badge-outline {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 0.4rem 0.5rem !important;
+        font-size: 0.65rem !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
     /* Outcomes always expanded on mobile */
     .outcomes-box h4 {
         padding: 0.75rem 0;
@@ -145,10 +184,15 @@
         font-size: 0.7rem;
     }
     
-    .badge-category,
-    .badge-outline {
+    .badge-category {
         padding: 0.2rem 0.5rem;
         font-size: 0.65rem;
+    }
+    
+    /* Tech badges even smaller on very small screens */
+    .tech-stack .badge-outline {
+        padding: 0.35rem 0.4rem !important;
+        font-size: 0.6rem !important;
     }
     
     .context-box {
