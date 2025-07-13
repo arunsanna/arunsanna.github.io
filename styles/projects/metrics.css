@@ -48,18 +48,19 @@
 }
 
 .metric-box {
-    padding: 0.5rem 0.75rem;
+    padding: 0.75rem 0.5rem;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.15);
     background: rgba(0, 0, 0, 0.5);
     border-radius: 4px;
     flex: 1 1 0;
-    min-width: 90px;
-    white-space: nowrap;
+    min-width: 110px;
+    white-space: normal;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-align: center;
 }
 
 /* Responsive metric text */
@@ -70,9 +71,12 @@
 }
 
 .metric-box .text-xs {
-    font-size: clamp(0.6rem, 1vw, 0.7rem);
-    line-height: 1.2;
+    font-size: clamp(0.55rem, 0.9vw, 0.65rem);
+    line-height: 1.15;
     text-align: center;
+    word-break: break-word;
+    hyphens: auto;
+    max-width: 100%;
 }
 
 .text-center {
@@ -91,10 +95,16 @@
     }
 }
 
-/* Limit metric box max width on large screens */
+/* Adjust metric box sizing on large screens */
 @media (min-width: 1024px) {
     .metric-box {
-        max-width: 150px;
+        max-width: 180px;
+        min-width: 120px;
+        padding: 1rem 0.75rem;
+    }
+    
+    .metric-box .text-xs {
+        font-size: 0.7rem;
     }
 }
 
@@ -105,9 +115,14 @@
     }
 }
 
-/* Prevent text wrapping in metric labels */
+/* Allow text wrapping for long labels */
 .metric-box p {
+    white-space: normal;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+
+/* Keep metric values on single line */
+.metric-box .text-2xl {
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
 }
