@@ -1,5 +1,5 @@
 export async function initializeSkillBars() {
-    const skills = ['architecture', 'fullstack', 'cloud', 'devops', 'ai', 'federal'];
+    const skills = ['architecture', 'fullstack', 'cloud', 'networking', 'devops', 'ai', 'federal'];
     const skillsGrid = document.querySelector('.skills-grid');
 
     if (skillsGrid) {
