@@ -75,4 +75,23 @@
     -webkit-backdrop-filter: blur(20px) saturate(200%);
     margin: 0 !important;
     letter-spacing: 0.02em;
+    transition: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+}
+
+/* Remove all hover effects and glow from tech badges */
+.tech-stack .badge-outline:hover,
+.tech-stack span:hover {
+    transform: none !important;
+    box-shadow: none !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    background: rgba(0, 0, 0, 0.95) !important;
+}
+
+.tech-stack .badge-outline::before,
+.tech-stack .badge-outline::after,
+.tech-stack span::before,
+.tech-stack span::after {
+    display: none !important;
 }
