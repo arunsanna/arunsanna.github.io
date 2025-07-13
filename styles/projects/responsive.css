@@ -1,10 +1,10 @@
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    /* Responsive grid for tech badges on mobile - override flex */
+    /* Responsive grid for tech badges on mobile - 3 columns default */
     .project-card .tech-stack,
     .tech-stack {
         display: grid !important;
-        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-columns: repeat(3, 1fr) !important;
         gap: 0.5rem !important;
         padding: 0.5rem 0;
         flex-direction: unset !important;
@@ -15,42 +15,30 @@
         align-items: center !important;
     }
     
-    /* For 3 badges, use 3 columns */
-    .tech-stack:has(.badge-outline:nth-child(3)):not(:has(.badge-outline:nth-child(4))) {
-        grid-template-columns: repeat(3, 1fr) !important;
+    /* For 2 badges only, use 2 columns */
+    .tech-stack:has(.badge-outline:nth-child(2)):not(:has(.badge-outline:nth-child(3))) {
+        grid-template-columns: repeat(2, 1fr) !important;
     }
     
-    /* For 5 badges, use 3 columns for first row, 2 for second */
-    .tech-stack:has(.badge-outline:nth-child(5)):not(:has(.badge-outline:nth-child(6))) {
-        grid-template-columns: repeat(3, 1fr) !important;
+    /* For 4 badges, use 2x2 grid */
+    .tech-stack:has(.badge-outline:nth-child(4)):not(:has(.badge-outline:nth-child(5))) {
+        grid-template-columns: repeat(2, 1fr) !important;
     }
     
-    /* For 6-9 badges, use 3 columns */
-    .tech-stack:has(.badge-outline:nth-child(6)):not(:has(.badge-outline:nth-child(10))) {
-        grid-template-columns: repeat(3, 1fr) !important;
-    }
-    
-    /* For 10+ badges, use 4 columns for better fit */
-    .tech-stack:has(.badge-outline:nth-child(10)) {
-        grid-template-columns: repeat(4, 1fr) !important;
-    }
-    
-    /* Tech badge styling for mobile */
+    /* Tech badge styling for mobile - high contrast */
     .tech-stack .badge-outline {
         width: 100% !important;
         text-align: center !important;
-        padding: 0.4rem 0.3rem !important;
-        font-size: 0.65rem !important;
+        padding: 0.5rem 0.4rem !important;
+        font-size: 0.75rem !important;
         margin: 0 !important;
         white-space: nowrap !important;
         overflow: hidden !important;
         text-overflow: ellipsis !important;
-    }
-    
-    /* Smaller text for 4-column badge layout */
-    .tech-stack:has(.badge-outline:nth-child(10)) .badge-outline {
-        font-size: 0.55rem !important;
-        padding: 0.35rem 0.2rem !important;
+        background: rgba(0, 0, 0, 0.95) !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        color: rgba(255, 255, 255, 1) !important;
+        font-weight: 700 !important;
     }
     /* Outcomes always expanded on mobile */
     .outcomes-box h4 {
@@ -202,10 +190,11 @@
         font-size: 0.65rem;
     }
     
-    /* Tech badges even smaller on very small screens */
+    /* Tech badges on very small screens - still readable */
     .tech-stack .badge-outline {
-        padding: 0.35rem 0.4rem !important;
-        font-size: 0.6rem !important;
+        padding: 0.4rem 0.3rem !important;
+        font-size: 0.7rem !important;
+        font-weight: 700 !important;
     }
     
     .context-box {
