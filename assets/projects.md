@@ -68,7 +68,7 @@ Here's the project information in text format for your website builder:
 **Description:** Started adoption and training of engineering teams with tools like OpenAI, Claude, and Gemini. Adopted tools like GitHub Copilot and built RAG systems for internal procurement and contract management for business development.
 
 **Metrics:**
-- 100% Coding Using GenAI
+- 35% Coding Using GenAI
 - 30% Productivity Increase
 - 40% Proposal Time Reduction
 - 10→115 Company Growth
@@ -76,7 +76,7 @@ Here's the project information in text format for your website builder:
 **Key Outcomes:**
 - Accelerated business development proposal management process and reduced time to develop proposals by 40%
 - Enabled GenAI for software developers and increased productivity - Jira burn rate increased by 30%
-- Led company growth from 35 to 115 employees through strategic initiatives
+- Led company growth from 15 to 115 employees through strategic initiatives
 - Built high-performance tiger team to solve complex rapid solutions
 
 **Tech Stack:** AWS, OpenAI, Claude, Gemini, NVIDIA, Jupyter, SageMaker, Model Hosting, LLAMA, RAG, Agents, GenAI
