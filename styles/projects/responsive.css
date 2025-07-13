@@ -92,24 +92,21 @@
         padding: 0.5rem;
     }
     
-    /* For projects with exactly 6 metrics, use 3 columns */
-    .project-card:has(.metric-box:nth-child(6)):not(:has(.metric-box:nth-child(7))) .metrics-grid {
-        grid-template-columns: repeat(3, 1fr) !important;
-    }
-    
-    /* For projects with exactly 8 metrics (like DoD), use 2 columns on mobile */
+    /* Force Platform One (8 metrics) to use 2 columns - highest specificity */
+    .project-card:first-child .metrics-grid,
     .project-card:has(.metric-box:nth-child(8)):not(:has(.metric-box:nth-child(9))) .metrics-grid {
         grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.4rem !important;
+    }
+    
+    /* For projects with exactly 6 metrics, use 3 columns */
+    .project-card:has(.metric-box:nth-child(6)):not(:has(.metric-box:nth-child(7))):not(:has(.metric-box:nth-child(8))) .metrics-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
     }
     
     /* For projects with 9+ metrics, use 3 columns */
     .project-card:has(.metric-box:nth-child(9)) .metrics-grid {
         grid-template-columns: repeat(3, 1fr) !important;
-    }
-    
-    /* For projects with 4 or fewer metrics, keep 2 columns */
-    .project-card:has(.metric-box:nth-child(4)):not(:has(.metric-box:nth-child(5))) .metrics-grid {
-        grid-template-columns: repeat(2, 1fr) !important;
     }
     
     
@@ -119,13 +116,10 @@
         width: 100%;
     }
     
-    /* Smaller text for 4-column layout */
-    .project-card:has(.metric-box:nth-child(8)) .metric-box .text-2xl {
-        font-size: 0.95rem;
-    }
-    
-    .project-card:has(.metric-box:nth-child(8)) .metric-box .text-xs {
-        font-size: 0.6rem;
+    /* Remove any min-width constraints for metrics */
+    .metric-box {
+        min-width: 0 !important;
+        box-sizing: border-box !important;
     }
     
     .metric-box .text-2xl {
@@ -152,9 +146,13 @@
         grid-template-columns: repeat(2, 1fr) !important;
     }
     
-    /* Even projects with 6+ metrics use 2 columns on very small screens */
-    .project-card:has(.metric-box:nth-child(6)) .metrics-grid {
+    /* Force ALL metrics to use 2 columns on very small screens */
+    .project-card .metrics-grid,
+    .project-card:has(.metric-box:nth-child(6)) .metrics-grid,
+    .project-card:has(.metric-box:nth-child(8)) .metrics-grid,
+    .project-card:first-child .metrics-grid {
         grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.3rem !important;
     }
     .badge-section {
         font-size: 0.8rem;
