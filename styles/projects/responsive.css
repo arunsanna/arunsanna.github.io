@@ -52,8 +52,18 @@
         padding: 0.5rem;
     }
     
-    /* For projects with many metrics (6+), use 3 columns */
-    .project-card:has(.metric-box:nth-child(6)) .metrics-grid {
+    /* For projects with exactly 6 metrics, use 3 columns */
+    .project-card:has(.metric-box:nth-child(6)):not(:has(.metric-box:nth-child(7))) .metrics-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+    }
+    
+    /* For projects with exactly 8 metrics (like DoD), use 4 columns for even distribution */
+    .project-card:has(.metric-box:nth-child(8)):not(:has(.metric-box:nth-child(9))) .metrics-grid {
+        grid-template-columns: repeat(4, 1fr) !important;
+    }
+    
+    /* For projects with 9+ metrics, use 3 columns */
+    .project-card:has(.metric-box:nth-child(9)) .metrics-grid {
         grid-template-columns: repeat(3, 1fr) !important;
     }
     
@@ -64,9 +74,18 @@
     
     
     .metric-box {
-        padding: 0.75rem 0.4rem;
+        padding: 0.6rem 0.3rem;
         min-width: auto;
         width: 100%;
+    }
+    
+    /* Smaller text for 4-column layout */
+    .project-card:has(.metric-box:nth-child(8)) .metric-box .text-2xl {
+        font-size: 0.95rem;
+    }
+    
+    .project-card:has(.metric-box:nth-child(8)) .metric-box .text-xs {
+        font-size: 0.6rem;
     }
     
     .metric-box .text-2xl {
