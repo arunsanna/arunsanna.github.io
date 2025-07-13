@@ -43,7 +43,7 @@
         font-size: 1.125rem;
     }
     
-    /* All metrics use auto-scroll on mobile */
+    /* All metrics use manual scroll on mobile for now */
     .metrics-grid {
         display: flex !important;
         flex-wrap: nowrap !important;
@@ -53,38 +53,23 @@
         position: relative;
         scroll-behavior: smooth;
         -webkit-overflow-scrolling: touch;
-        /* Hide scrollbar but keep functionality */
-        scrollbar-width: none;
-        -ms-overflow-style: none;
-    }
-    
-    .metrics-grid::-webkit-scrollbar {
-        display: none;
-    }
-    
-    /* Auto-scroll animation for many metrics - ultra slow */
-    @keyframes scrollMetrics {
-        0% {
-            transform: translateX(5%);
-        }
-        100% {
-            transform: translateX(-55%);
-        }
-    }
-    
-    /* Wrapper for metrics animation */
-    .metrics-grid {
-        overflow: hidden !important;
-        position: relative;
-    }
-    
-    /* Create inner wrapper for animation - extremely slow */
-    .metrics-scroll-wrapper {
-        display: flex !important;
-        animation: scrollMetrics 800s linear infinite;
-        width: fit-content !important;
-        will-change: transform;
         gap: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    
+    /* Show subtle scrollbar */
+    .metrics-grid::-webkit-scrollbar {
+        height: 4px;
+    }
+    
+    .metrics-grid::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 2px;
+    }
+    
+    .metrics-grid::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
     }
     
     /* Pause animation when user interacts */

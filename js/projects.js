@@ -78,60 +78,18 @@ function setupHoverEffects() {
     });
 }
 
-// Setup auto-scrolling for ALL metrics on mobile
+// Setup metrics for mobile - manual scroll for now
 function setupMetricsAutoScroll() {
     // Only on mobile/touch devices
     const isMobile = window.innerWidth <= 768;
     if (!isMobile) return;
     
-    // Find all metrics grids
+    // Ensure metrics are scrollable
     const metricsGrids = document.querySelectorAll('.metrics-grid');
-    
-    metricsGrids.forEach(metricsGrid => {
-        const metricBoxes = metricsGrid.querySelectorAll('.metric-box');
-        
-        if (metricBoxes.length > 0) {
-            // Create wrapper for animation
-            const scrollWrapper = document.createElement('div');
-            scrollWrapper.className = 'metrics-scroll-wrapper';
-            
-            // Move all metric boxes into the wrapper
-            Array.from(metricBoxes).forEach(box => {
-                scrollWrapper.appendChild(box.cloneNode(true));
-            });
-            
-            // Clone metrics for seamless loop
-            Array.from(metricBoxes).forEach(box => {
-                scrollWrapper.appendChild(box.cloneNode(true));
-            });
-            
-            // Clear original content and add wrapper
-            metricsGrid.innerHTML = '';
-            metricsGrid.appendChild(scrollWrapper);
-            
-            let scrollTimeout;
-            
-            // Touch events for pause/resume
-            metricsGrid.addEventListener('touchstart', () => {
-                metricsGrid.classList.add('user-scrolling');
-                clearTimeout(scrollTimeout);
-            });
-            
-            metricsGrid.addEventListener('touchend', () => {
-                // Resume animation after 3 seconds
-                scrollTimeout = setTimeout(() => {
-                    metricsGrid.classList.remove('user-scrolling');
-                }, 3000);
-            });
-            
-            // Also pause on mouse over for desktop testing
-            metricsGrid.addEventListener('mouseenter', () => {
-                metricsGrid.classList.add('user-scrolling');
-            });
-            
-            metricsGrid.addEventListener('mouseleave', () => {
-                metricsGrid.classList.remove('user-scrolling');
-            });
-        }
+    metricsGrids.forEach(grid => {
+        // Just ensure proper flex layout
+        grid.style.display = 'flex';
+        grid.style.flexWrap = 'nowrap';
+        grid.style.overflowX = 'auto';
     });
 }
