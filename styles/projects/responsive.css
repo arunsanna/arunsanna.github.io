@@ -43,77 +43,42 @@
         font-size: 1.125rem;
     }
     
-    /* All metrics use manual scroll on mobile for now */
+    /* Responsive grid for metrics on mobile */
     .metrics-grid {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-        grid-template-columns: none !important;
-        position: relative;
-        scroll-behavior: smooth;
-        -webkit-overflow-scrolling: touch;
-        gap: 0.5rem;
-        padding-bottom: 0.5rem;
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 0.5rem !important;
+        overflow: visible !important;
+        padding: 0.5rem;
     }
     
-    /* Show subtle scrollbar */
-    .metrics-grid::-webkit-scrollbar {
-        height: 4px;
+    /* For projects with many metrics (6+), use 3 columns */
+    .project-card:has(.metric-box:nth-child(6)) .metrics-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
     }
     
-    .metrics-grid::-webkit-scrollbar-track {
-        background: rgba(255, 255, 255, 0.1);
-        border-radius: 2px;
+    /* For projects with 4 or fewer metrics, keep 2 columns */
+    .project-card:has(.metric-box:nth-child(4)):not(:has(.metric-box:nth-child(5))) .metrics-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
     }
     
-    .metrics-grid::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.3);
-        border-radius: 2px;
-    }
-    
-    /* Pause animation when user interacts */
-    .metrics-grid.user-scrolling .metrics-scroll-wrapper {
-        animation-play-state: paused !important;
-    }
-    
-    /* Visual indicator for swipeable content */
-    .metrics-grid::before,
-    .metrics-grid::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        width: 20px;
-        height: 100%;
-        z-index: 1;
-        pointer-events: none;
-    }
-    
-    .metrics-grid::before {
-        left: 0;
-        background: linear-gradient(to right, rgba(0,0,0,0.9), transparent);
-    }
-    
-    .metrics-grid::after {
-        right: 0;
-        background: linear-gradient(to left, rgba(0,0,0,0.9), transparent);
-    }
     
     .metric-box {
-        padding: 0.75rem 0.5rem;
-        flex: 0 0 auto;
-        min-width: 90px;
-        max-width: 120px;
+        padding: 0.75rem 0.4rem;
+        min-width: auto;
+        width: 100%;
     }
     
     .metric-box .text-2xl {
-        font-size: 1.25rem;
+        font-size: 1.1rem;
         font-weight: 700;
+        line-height: 1;
     }
     
     .metric-box .text-xs {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         line-height: 1.2;
+        margin-top: 0.25rem;
     }
     
     .icon-container {
@@ -171,22 +136,21 @@
         padding: 0.875rem;
     }
     
-    /* Consistent metrics layout */
+    /* Tighter metrics for small screens */
     .metrics-grid {
-        gap: 0.4rem !important;
+        gap: 0.3rem !important;
+        padding: 0.4rem;
     }
     
     .metric-box {
-        padding: 0.6rem 0.4rem;
-        min-width: 80px;
-        max-width: 100px;
+        padding: 0.5rem 0.3rem;
     }
     
     .metric-box .text-2xl {
-        font-size: 1.1rem;
+        font-size: 0.95rem;
     }
     
     .metric-box .text-xs {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
 }
