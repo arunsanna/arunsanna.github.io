@@ -1,5 +1,5 @@
 export async function initializeProjects() {
-    const projects = ['dod', 'cms', 'oar', 'ai-ml', 'cloud', 'edge'];
+    const projects = ['dod', 'cms', 'oar', 'cloud', 'edge'];
     const projectsContainer = document.querySelector('.projects-container');
 
     if (projectsContainer) {
@@ -37,7 +37,7 @@ function setupHoverEffects() {
     const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     if (isTouchDevice || window.innerWidth <= 768) {
         // Expand all outcomes on mobile by default
-        const projectIds = ['dod', 'cms', 'oar', 'ai-ml', 'cloud', 'edge'];
+        const projectIds = ['dod', 'cms', 'oar', 'cloud', 'edge'];
         projectIds.forEach(projectId => {
             const outcomesList = document.querySelector(`#${projectId}-outcomes`);
             if (outcomesList) {

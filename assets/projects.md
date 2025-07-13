@@ -61,30 +61,8 @@ Here's the project information in text format for your website builder:
 
 **Tech Stack:** Real-time Systems, High Availability, Auto-scaling, Mission Critical
 
----
 
-## Project 4: Federal AI/ML Integration
-**Category:** ARTIFICIAL INTELLIGENCE
-**Icon:** 🤖
-**Description:** Pioneered AI adoption across federal systems, deploying Llama models on NVIDIA infrastructure and building fraud detection capabilities protecting billions in taxpayer funds.
-
-**Metrics:**
-- 60% Workflow Reduction
-- 25+ Hours Saved Weekly
-- NVIDIA GPU Infrastructure
-- Fraud Detection Enabled
-
-**Key Outcomes:**
-- Successfully deployed Llama models using Terraform and EKS with GPU nodes
-- Built JupyterHub environment for advanced Medicare fraud detection analytics
-- Developed AI-driven chatbots using GenAI for enhanced end-user support
-- Integrated SBOM-based AI tools for automated CVE scoring and vulnerability detection
-
-**Tech Stack:** NVIDIA GPUs, Llama Models, JupyterHub, TensorFlow, GenAI
-
----
-
-## Project 5: Enterprise Cloud Architecture
+## Project 4: Enterprise Cloud Architecture
 **Category:** CLOUD TRANSFORMATION
 **Icon:** 🏗️
 **Description:** Designed and implemented scalable multi-cloud architecture supporting mission-critical applications across AWS, Azure, and GCP with zero-trust security models.
@@ -105,7 +83,7 @@ Here's the project information in text format for your website builder:
 
 ---
 
-## Project 6: Defense Edge Computing
+## Project 5: Defense Edge Computing
 **Category:** TACTICAL SYSTEMS
 **Icon:** ⚡
 **Description:** Revolutionized tactical edge computing by integrating submarines, fighter jets, and satellites through containerization, enabling rapid AI deployment to warfighters.
