@@ -41,8 +41,21 @@ bower_components/
 CLAUDE.md
 /CLAUDE.md
 
+# OpenCode-specific
+.opencode/
+OpenCode.md
+
 # Gemini analysis files
 gemini_*.txt
+
+# Planning and AI assistant files
+.prd.md
+.todo.md
+PROJECT.md
+.planning/
+.codex/
+.opencodex/
+.functionality.md
 
 # Backup files
 *.backup
