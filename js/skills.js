@@ -45,8 +45,6 @@ export async function initializeSkillBars() {
 
     // Remove hover effects for consistency
 
-    // Remove hover effects for consistency
-
     // Add keyboard navigation
     const cards = document.querySelectorAll('.skill-category, .cert-card');
     cards.forEach((card, index) => {
