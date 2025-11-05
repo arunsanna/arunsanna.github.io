@@ -65,7 +65,7 @@ Here's the project information in text format for your website builder:
 ## Project 4: Enterprise AI Transformation
 **Category:** AI TRANSFORMATION
 **Icon:** 🤖
-**Description:** Started adoption and training of engineering teams with tools like OpenAI, Claude, and Gemini. Adopted tools like GitHub Copilot and built RAG systems for internal procurement and contract management for business development.
+**Description:** Spearheaded enterprise-wide adoption and training of engineering teams with tools like OpenAI, Claude, and Gemini. Adopted tools like GitHub Copilot and built RAG systems for internal procurement and contract management for business development.
 
 **Metrics:**
 - 35% Coding Using GenAI
@@ -77,7 +77,7 @@ Here's the project information in text format for your website builder:
 - Accelerated business development proposal management process and reduced time to develop proposals by 40%
 - Enabled GenAI for software developers and increased productivity - Jira burn rate increased by 30%
 - Led company growth from 15 to 115 employees through strategic initiatives
-- Built high-performance tiger team to solve complex rapid solutions
+- Built high-performance tiger team to deliver rapid solutions to complex problems
 
 **Tech Stack:** AWS, OpenAI, Claude, Gemini, NVIDIA, Jupyter, SageMaker, Model Hosting, LLaMA, RAG, Agents, GenAI
 
