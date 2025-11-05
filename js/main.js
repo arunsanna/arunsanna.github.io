@@ -3,7 +3,6 @@ import { initializeAnimations } from './animations.js';
 import { initializeSkillBars } from './skills.js';
 import { initializeCounters } from './counters.js';
 import { initializeTypingEffect } from './effects.js';
-import { initializeGlitchEffect } from './effects.js';
 import { initializeProjects } from './projects.js';
 import { initializeEasterEgg } from './easter-egg.js';
 
@@ -20,7 +19,6 @@ function initializeFloatingScroll() {
         const scrollHeight = document.documentElement.scrollHeight;
         const scrollPosition = window.innerHeight + window.scrollY;
         const threshold = 100; // Hide when within 100px of bottom
-        const heroHeight = window.innerHeight; // Height of first viewport
 
         // No longer need to move to side - always on right
 
@@ -65,9 +63,8 @@ async function loadComponents() {
         initializeSkillBars();
         initializeCounters();
         initializeTypingEffect();
-        // initializeGlitchEffect(); // Disabled for simpler design
         initializeEasterEgg();
-    initializeProjects();
+        initializeProjects();
     } catch (error) {
         console.error('Error in loadComponents:', error);
     }

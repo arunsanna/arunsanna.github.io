@@ -56,7 +56,7 @@ function setupHoverEffects() {
         return;
     }
     
-    const projectIds = ['dod', 'cms', 'oar', 'ai-ml', 'cloud', 'edge'];
+    const projectIds = ['dod', 'cms', 'oar', 'cloud', 'edge'];
     
     projectIds.forEach(projectId => {
         const outcomesList = document.querySelector(`#${projectId}-outcomes`);
