@@ -1,0 +1,84 @@
+<!-- Project: MicroEKS -->
+<div class="project-card card-gradient" data-animation-delay="100">
+    <div class="card-content space-y-6">
+        <!-- Header -->
+        <div class="project-header">
+            <div class="flex items-center gap-4">
+                <div class="icon-container p-3 rounded-lg bg-primary-10 border-primary-20">
+                    <i class="fas fa-dharmachakra text-primary h-6 w-6"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl">MicroEKS</h3>
+                    <span class="badge-category text-xs">DevOps Tool</span>
+                </div>
+            </div>
+            <a href="https://github.com/arunsanna/MicroEKS" target="_blank" rel="noopener noreferrer" class="github-link">
+                <i class="fab fa-github"></i>
+                <span>View on GitHub</span>
+            </a>
+        </div>
+
+        <!-- Description -->
+        <p class="text-muted-foreground">
+            Lightweight tool for creating local Kubernetes environments on macOS that mirror AWS EKS.
+            Uses MicroK8s + Multipass to provide a production-like K8s experience for local development.
+        </p>
+
+        <!-- Metrics -->
+        <div class="metrics-grid grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">Go</p>
+                <p class="text-xs text-muted-foreground">Language</p>
+            </div>
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">Homebrew</p>
+                <p class="text-xs text-muted-foreground">Distribution</p>
+            </div>
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">EKS</p>
+                <p class="text-xs text-muted-foreground">Compatible</p>
+            </div>
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">macOS</p>
+                <p class="text-xs text-muted-foreground">Platform</p>
+            </div>
+        </div>
+
+        <!-- Outcomes -->
+        <div class="outcomes-box">
+            <h4 class="font-medium mb-3 flex items-center gap-2 cursor-pointer" onclick="toggleOutcomes('microeks-outcomes')">
+                <span>Key Features</span>
+                <i class="fas fa-chevron-down text-primary text-sm transition-transform duration-300" id="microeks-outcomes-icon"></i>
+            </h4>
+            <ul class="space-y-2 overflow-hidden transition-all duration-300" id="microeks-outcomes" style="max-height: 0; opacity: 0;">
+                <li class="flex items-start gap-3">
+                    <span class="bullet-point bg-primary"></span>
+                    <span class="text-sm text-muted-foreground">One-command setup for local Kubernetes clusters matching AWS EKS configuration</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bullet-point bg-primary"></span>
+                    <span class="text-sm text-muted-foreground">Distributed via Homebrew tap for easy installation on macOS</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bullet-point bg-primary"></span>
+                    <span class="text-sm text-muted-foreground">Leverages MicroK8s and Multipass for lightweight virtualization</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bullet-point bg-primary"></span>
+                    <span class="text-sm text-muted-foreground">Enables local testing of production Kubernetes configurations before deployment</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Technologies -->
+        <div class="tech-stack">
+            <span class="badge-outline text-xs">Go</span>
+            <span class="badge-outline text-xs">Kubernetes</span>
+            <span class="badge-outline text-xs">MicroK8s</span>
+            <span class="badge-outline text-xs">Multipass</span>
+            <span class="badge-outline text-xs">AWS EKS</span>
+            <span class="badge-outline text-xs">Homebrew</span>
+            <span class="badge-outline text-xs">CLI</span>
+        </div>
+    </div>
+</div>

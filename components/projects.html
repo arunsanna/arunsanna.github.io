@@ -5,13 +5,29 @@
             <span class="badge-section">Projects</span>
             <h2 class="projects-title">Building <span class="hero-text">Impact</span> at Scale</h2>
             <p class="projects-intro text-muted-foreground">
-                From mission-critical defense platforms to humanitarian response systems, I've architected 
+                From mission-critical defense platforms to open source tools, I build
                 solutions that serve millions with the highest standards of security and reliability.
             </p>
         </div>
 
-        <!-- Projects Container -->
-        <div class="projects-container space-y-8">
+        <!-- Tab Navigation -->
+        <div class="projects-tabs">
+            <button class="tab-btn active" data-tab="professional">
+                <i class="fas fa-building"></i>
+                <span>Professional</span>
+            </button>
+            <button class="tab-btn" data-tab="opensource">
+                <i class="fab fa-github"></i>
+                <span>Open Source</span>
+            </button>
+        </div>
+
+        <!-- Professional Projects Container -->
+        <div class="projects-container projects-tab-content active" id="professional-projects">
+        </div>
+
+        <!-- Open Source Projects Container -->
+        <div class="projects-container projects-tab-content" id="opensource-projects">
         </div>
     </div>
 </section>

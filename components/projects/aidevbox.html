@@ -1,0 +1,83 @@
+<!-- Project: ai-devbox -->
+<div class="project-card card-gradient" data-animation-delay="700">
+    <div class="card-content space-y-6">
+        <!-- Header -->
+        <div class="project-header">
+            <div class="flex items-center gap-4">
+                <div class="icon-container p-3 rounded-lg bg-primary-10 border-primary-20">
+                    <i class="fab fa-docker text-primary h-6 w-6"></i>
+                </div>
+                <div>
+                    <h3 class="text-xl">AI DevBox</h3>
+                    <span class="badge-category text-xs">Development Environment</span>
+                </div>
+            </div>
+            <a href="https://github.com/arunsanna/ai-devbox" target="_blank" rel="noopener noreferrer" class="github-link">
+                <i class="fab fa-github"></i>
+                <span>View on GitHub</span>
+            </a>
+        </div>
+
+        <!-- Description -->
+        <p class="text-muted-foreground">
+            Docker-based AI development environment pre-configured with Claude Code, OpenAI Codex, and
+            essential AI/ML tools. One-command setup for AI-powered development workflows.
+        </p>
+
+        <!-- Metrics -->
+        <div class="metrics-grid grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">Docker</p>
+                <p class="text-xs text-muted-foreground">Containerized</p>
+            </div>
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">Claude</p>
+                <p class="text-xs text-muted-foreground">Code Ready</p>
+            </div>
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">AI/ML</p>
+                <p class="text-xs text-muted-foreground">Tools</p>
+            </div>
+            <div class="metric-box bg-muted-20 rounded-lg p-4 text-center">
+                <p class="text-2xl font-bold hero-text">1-Click</p>
+                <p class="text-xs text-muted-foreground">Setup</p>
+            </div>
+        </div>
+
+        <!-- Outcomes -->
+        <div class="outcomes-box">
+            <h4 class="font-medium mb-3 flex items-center gap-2 cursor-pointer" onclick="toggleOutcomes('aidevbox-outcomes')">
+                <span>Key Features</span>
+                <i class="fas fa-chevron-down text-primary text-sm transition-transform duration-300" id="aidevbox-outcomes-icon"></i>
+            </h4>
+            <ul class="space-y-2 overflow-hidden transition-all duration-300" id="aidevbox-outcomes" style="max-height: 0; opacity: 0;">
+                <li class="flex items-start gap-3">
+                    <span class="bullet-point bg-primary"></span>
+                    <span class="text-sm text-muted-foreground">Pre-configured Docker environment with Claude Code and OpenAI integrations</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bullet-point bg-primary"></span>
+                    <span class="text-sm text-muted-foreground">Includes common AI/ML libraries and development tools out of the box</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bullet-point bg-primary"></span>
+                    <span class="text-sm text-muted-foreground">Reproducible development environment across different machines</span>
+                </li>
+                <li class="flex items-start gap-3">
+                    <span class="bullet-point bg-primary"></span>
+                    <span class="text-sm text-muted-foreground">Enables rapid onboarding for AI-assisted development workflows</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Technologies -->
+        <div class="tech-stack">
+            <span class="badge-outline text-xs">Docker</span>
+            <span class="badge-outline text-xs">Shell</span>
+            <span class="badge-outline text-xs">Claude Code</span>
+            <span class="badge-outline text-xs">OpenAI</span>
+            <span class="badge-outline text-xs">AI/ML</span>
+            <span class="badge-outline text-xs">DevOps</span>
+        </div>
+    </div>
+</div>
