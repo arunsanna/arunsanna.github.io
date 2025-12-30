@@ -105,29 +105,67 @@ function setupHoverEffects() {
     });
 }
 
-// Initialize project tabs
+// Initialize project tabs with accessibility
 function initializeProjectTabs() {
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.projects-tab-content');
+    const tabBtns = document.querySelectorAll('.tab-btn[role="tab"]');
+    const tabContents = document.querySelectorAll('.projects-tab-content[role="tabpanel"]');
 
+    function switchTab(targetBtn) {
+        const targetTab = targetBtn.dataset.tab;
+
+        // Update all buttons
+        tabBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-selected', 'false');
+            b.setAttribute('tabindex', '-1');
+        });
+
+        // Activate clicked button
+        targetBtn.classList.add('active');
+        targetBtn.setAttribute('aria-selected', 'true');
+        targetBtn.setAttribute('tabindex', '0');
+        targetBtn.focus();
+
+        // Update all tab panels
+        tabContents.forEach(content => {
+            content.classList.remove('active');
+            content.setAttribute('hidden', '');
+        });
+
+        // Show target panel
+        const targetContent = document.getElementById(`${targetTab}-projects`);
+        if (targetContent) {
+            targetContent.classList.add('active');
+            targetContent.removeAttribute('hidden');
+        }
+    }
+
+    // Click handlers
     tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const targetTab = btn.dataset.tab;
+        btn.addEventListener('click', () => switchTab(btn));
+    });
 
-            // Remove active from all buttons
-            tabBtns.forEach(b => b.classList.remove('active'));
-            // Add active to clicked button
-            btn.classList.add('active');
+    // Keyboard navigation (Arrow keys)
+    tabBtns.forEach((btn, index) => {
+        btn.addEventListener('keydown', (e) => {
+            let targetIndex = index;
 
-            // Hide all tab contents
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-            });
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                e.preventDefault();
+                targetIndex = (index + 1) % tabBtns.length;
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                e.preventDefault();
+                targetIndex = (index - 1 + tabBtns.length) % tabBtns.length;
+            } else if (e.key === 'Home') {
+                e.preventDefault();
+                targetIndex = 0;
+            } else if (e.key === 'End') {
+                e.preventDefault();
+                targetIndex = tabBtns.length - 1;
+            }
 
-            // Show the target tab content
-            const targetContent = document.getElementById(`${targetTab}-projects`);
-            if (targetContent) {
-                targetContent.classList.add('active');
+            if (targetIndex !== index) {
+                switchTab(tabBtns[targetIndex]);
             }
         });
     });
