@@ -23,13 +23,8 @@ arunsanna.github.io/
 ├── components/             # Modular HTML components
 │   ├── hero.html          # Hero section with role graph
 │   ├── about.html         # About section with highlights
-│   ├── projects.html      # Projects grid container
-│   ├── projects/          # Individual project cards
-│   │   ├── dod.html       # DoD Platform One project
-│   │   ├── cms.html       # CMS Healthcare project
-│   │   ├── oar.html       # Operation Allies Refuge
-│   │   ├── cloud.html     # Enterprise AI Transformation
-│   │   └── edge.html      # Defense Edge Computing
+│   ├── projects.html      # Projects section shell (tabs + filters)
+│   ├── projects/          # Legacy per-card templates (archived pattern)
 │   ├── skills.html        # Skills section container
 │   ├── skills/            # Individual skill category cards
 │   ├── experience.html    # Work experience timeline
@@ -44,10 +39,11 @@ arunsanna.github.io/
 │   ├── main.js            # Main entry point and component loader
 │   ├── navigation.js      # Navigation and scroll handling
 │   ├── animations.js      # Animation controllers
-│   └── projects.js        # Project interactions
+│   └── projects.js        # Data-driven project renderer + filters
 ├── assets/                # Static assets
 │   ├── Arun.png           # Profile image
-│   └── projects.md        # Project data (reference)
+│   ├── projects.json      # Source of truth for all project cards
+│   └── projects.md        # Legacy reference notes
 └── README.md              # This file
 ```
 
@@ -107,11 +103,12 @@ Edit CSS variables in `styles/main.css`:
 
 ### Updating Projects
 
-Edit individual project files in `components/projects/` to update:
-- Project descriptions
-- Metrics and outcomes
-- Technology stacks
-- Visual elements
+Edit `assets/projects.json`:
+- Add/remove projects
+- Move projects between `professional`, `opensource`, and `cooking`
+- Update metrics, highlights, tags, and technologies
+
+`js/projects.js` renders cards, tab counts, and dynamic tag filters from this file.
 
 ## Deployment
 

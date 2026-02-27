@@ -1,0 +1,849 @@
+{
+  "updatedAt": "2026-02-26",
+  "projects": [
+    {
+      "id": "dod-platform-one",
+      "track": "professional",
+      "featured": true,
+      "status": "Delivered",
+      "title": "DoD Platform One PartyBus",
+      "category": "Defense Technology",
+      "icon": "fas fa-shield-alt",
+      "description": "Foundation engineer and top contributor for DoD's largest secure platform-as-a-service used across mission systems.",
+      "metrics": [
+        { "value": "400+", "label": "Apps" },
+        { "value": "20K+", "label": "Containers" },
+        { "value": "150+", "label": "DoD Teams" },
+        { "value": "4 Weeks", "label": "ATO Cycle" }
+      ],
+      "highlights": [
+        "Built secure-by-default platform patterns reused across classification levels.",
+        "Reduced deployment timelines from years to weeks with automated delivery.",
+        "Implemented strong service-to-service controls and certificate rotation.",
+        "Enabled mission operations through resilient and scalable platform engineering."
+      ],
+      "tech": ["Kubernetes", "GitLab", "AWS", "Istio", "NIST SP 800-53", "cATO"],
+      "tags": ["cloud", "security", "federal", "platform"]
+    },
+    {
+      "id": "cms-healthcare-modernization",
+      "track": "professional",
+      "featured": true,
+      "status": "Delivered",
+      "title": "CMS Healthcare Modernization",
+      "category": "Federal Healthcare",
+      "icon": "fas fa-hospital",
+      "description": "Led high-speed modernization for CMS workloads with secure cloud migration and faster release cycles.",
+      "metrics": [
+        { "value": "90 Days", "label": "Migration Window" },
+        { "value": "40%", "label": "Cost Reduction" },
+        { "value": "5", "label": "Apps Modernized" },
+        { "value": "50+", "label": "Microservices" }
+      ],
+      "highlights": [
+        "Accelerated release cadence from months to weekly deployments.",
+        "Established repeatable DevSecOps patterns for federal teams.",
+        "Maintained compliance with FISMA, NIST, and FedRAMP controls.",
+        "Improved reliability and operational visibility for health systems."
+      ],
+      "tech": ["AWS EKS", "Terraform", "GitLab CI", "FedRAMP", "Docker"],
+      "tags": ["cloud", "federal", "devsecops", "platform"]
+    },
+    {
+      "id": "operation-allies-refuge",
+      "track": "professional",
+      "featured": true,
+      "status": "Delivered",
+      "title": "Operation Allies Refuge",
+      "category": "Humanitarian Mission",
+      "icon": "fas fa-plane-departure",
+      "description": "Supported mission-critical platform operations during emergency response for large-scale humanitarian evacuation.",
+      "metrics": [
+        { "value": "120K+", "label": "Lives Evacuated" },
+        { "value": "72h", "label": "Mission Duration" },
+        { "value": "24/7", "label": "Uptime" },
+        { "value": "Hours", "label": "Deploy Time" }
+      ],
+      "highlights": [
+        "Enabled real-time coordination across military and allied teams.",
+        "Scaled rapidly under extreme load without service interruption.",
+        "Delivered resilient communications platform support during crisis response.",
+        "Maintained operational readiness across dynamic mission conditions."
+      ],
+      "tech": ["High Availability", "Auto Scaling", "Incident Response", "SRE"],
+      "tags": ["federal", "platform", "operations", "security"]
+    },
+    {
+      "id": "enterprise-ai-transformation",
+      "track": "professional",
+      "featured": true,
+      "status": "Delivered",
+      "title": "Enterprise AI Transformation",
+      "category": "AI Transformation",
+      "icon": "fas fa-robot",
+      "description": "Drove enterprise GenAI adoption, delivery acceleration, and AI-assisted engineering practices across teams.",
+      "metrics": [
+        { "value": "35%", "label": "Code via GenAI" },
+        { "value": "30%", "label": "Productivity Lift" },
+        { "value": "40%", "label": "Proposal Time Cut" },
+        { "value": "15→115", "label": "Company Growth" }
+      ],
+      "highlights": [
+        "Operationalized AI tooling and workflows across engineering teams.",
+        "Built RAG-assisted proposal and contract workflows for business development.",
+        "Improved throughput and reduced cycle times across software delivery.",
+        "Created repeatable enablement playbooks for adoption at scale."
+      ],
+      "tech": ["OpenAI", "Claude", "Gemini", "RAG", "Agents", "SageMaker"],
+      "tags": ["ai", "agents", "productivity", "platform"]
+    },
+    {
+      "id": "defense-edge-computing",
+      "track": "professional",
+      "featured": false,
+      "status": "Delivered",
+      "title": "Defense Edge Computing",
+      "category": "Tactical Systems",
+      "icon": "fas fa-satellite-dish",
+      "description": "Modernized edge delivery patterns for tactical systems with containerized deployments and rapid update paths.",
+      "metrics": [
+        { "value": "Edge", "label": "Operations" },
+        { "value": "Real-time", "label": "Decision Support" },
+        { "value": "AI", "label": "Rapid Deployment" },
+        { "value": "Legacy", "label": "System Integration" }
+      ],
+      "highlights": [
+        "Connected heterogeneous mission systems through modern delivery interfaces.",
+        "Enabled faster software and AI rollout into tactical environments.",
+        "Reduced update latency for time-sensitive mission capabilities.",
+        "Improved maintainability of legacy and real-time systems."
+      ],
+      "tech": ["Containers", "Edge", "Real-time OS", "Kubernetes"],
+      "tags": ["edge", "federal", "cloud", "platform"]
+    },
+
+    {
+      "id": "agentdefense-bench",
+      "track": "opensource",
+      "featured": true,
+      "status": "Active",
+      "title": "AgentDefense-Bench",
+      "category": "AI Security Research",
+      "icon": "fas fa-shield-virus",
+      "github": "https://github.com/arunsanna/AgentDefense-Bench",
+      "description": "Security benchmark for MCP-based AI agents covering prompt injection, jailbreaking, and supply-chain style risks.",
+      "metrics": [
+        { "value": "MCP", "label": "Protocol" },
+        { "value": "Security", "label": "Focus" },
+        { "value": "Benchmark", "label": "Dataset" },
+        { "value": "2026", "label": "Updated" }
+      ],
+      "highlights": [
+        "Evaluates realistic agent attack paths and defense effectiveness.",
+        "Provides reproducible test patterns for agent security controls.",
+        "Supports research on safer autonomous tool use.",
+        "Helps teams compare defenses with common criteria."
+      ],
+      "tech": ["Python", "MCP", "AI Security", "Benchmarks"],
+      "tags": ["ai", "security", "research", "agents"]
+    },
+    {
+      "id": "microeks",
+      "track": "opensource",
+      "featured": true,
+      "status": "Stable",
+      "title": "MicroEKS",
+      "category": "Platform Engineering",
+      "icon": "fas fa-cubes",
+      "github": "https://github.com/arunsanna/MicroEKS",
+      "description": "Production-ready platform toolkit for standing up secure Kubernetes environments with practical guardrails.",
+      "metrics": [
+        { "value": "K8s", "label": "Core" },
+        { "value": "IaC", "label": "Provisioning" },
+        { "value": "Secure", "label": "Defaults" },
+        { "value": "OSS", "label": "Open Source" }
+      ],
+      "highlights": [
+        "Codifies platform setup patterns into repeatable modules.",
+        "Targets secure, fast environment bootstrapping.",
+        "Supports cloud-native architecture adoption.",
+        "Useful for teams scaling internal platform engineering."
+      ],
+      "tech": ["Kubernetes", "Terraform", "AWS", "DevSecOps"],
+      "tags": ["cloud", "infra", "platform", "security"]
+    },
+    {
+      "id": "k8s-sherlock",
+      "track": "opensource",
+      "featured": true,
+      "status": "Stable",
+      "title": "k8s-sherlock",
+      "category": "Kubernetes Tooling",
+      "icon": "fas fa-search",
+      "github": "https://github.com/arunlab/k8s-sherlock",
+      "description": "Kubernetes debugging toolkit for faster root-cause analysis and repeatable investigation workflows.",
+      "metrics": [
+        { "value": "CLI", "label": "Developer UX" },
+        { "value": "K8s", "label": "Coverage" },
+        { "value": "Faster", "label": "Debugging" },
+        { "value": "Stable", "label": "Maturity" }
+      ],
+      "highlights": [
+        "Accelerates debugging for noisy cluster incidents.",
+        "Bundles practical diagnostics into one workflow.",
+        "Helps teams reduce mean time to resolution.",
+        "Designed for day-2 operations in real clusters."
+      ],
+      "tech": ["Bash", "Kubernetes", "Observability", "SRE"],
+      "tags": ["infra", "cloud", "ops", "tooling"]
+    },
+    {
+      "id": "gemini-diagram-mcp",
+      "track": "opensource",
+      "featured": true,
+      "status": "Active",
+      "title": "Gemini Diagram MCP",
+      "category": "MCP Server",
+      "icon": "fas fa-project-diagram",
+      "github": "https://github.com/arunsanna/gemini-diagram-mcp",
+      "description": "MCP server for generating diagrams and visuals from natural language using Gemini multimodal capabilities.",
+      "metrics": [
+        { "value": "TypeScript", "label": "Language" },
+        { "value": "Gemini", "label": "Model" },
+        { "value": "MCP", "label": "Protocol" },
+        { "value": "2026", "label": "Updated" }
+      ],
+      "highlights": [
+        "Produces architecture and flow diagrams from prompts.",
+        "Integrates with MCP-enabled coding assistants.",
+        "Speeds up documentation and design collaboration.",
+        "Supports visual communication in engineering workflows."
+      ],
+      "tech": ["TypeScript", "MCP", "Gemini", "Image Generation"],
+      "tags": ["ai", "tooling", "agents", "productivity"]
+    },
+    {
+      "id": "docqueryai",
+      "track": "opensource",
+      "featured": true,
+      "status": "Active",
+      "title": "DocQueryAI",
+      "category": "RAG Application",
+      "icon": "fas fa-file-alt",
+      "github": "https://github.com/arunsanna/DocQueryAI",
+      "description": "Document intelligence app for question-answering over enterprise documents with retrieval-augmented generation.",
+      "metrics": [
+        { "value": "RAG", "label": "Architecture" },
+        { "value": "Bedrock", "label": "LLM Runtime" },
+        { "value": "Docs", "label": "Knowledge Base" },
+        { "value": "OSS", "label": "Open Source" }
+      ],
+      "highlights": [
+        "Supports semantic retrieval over internal content.",
+        "Improves response quality with source-grounded generation.",
+        "Targets practical enterprise use cases.",
+        "Provides a baseline for secure document assistants."
+      ],
+      "tech": ["Python", "AWS Bedrock", "RAG", "Vector Search"],
+      "tags": ["ai", "rag", "search", "productivity"]
+    },
+    {
+      "id": "openclaw",
+      "track": "opensource",
+      "featured": true,
+      "status": "Active",
+      "title": "OpenClaw",
+      "category": "Agent Runtime",
+      "icon": "fas fa-terminal",
+      "github": "https://github.com/arunsanna/openclaw",
+      "description": "Personal AI assistant runtime focused on tool orchestration, memory, and terminal-native workflows.",
+      "metrics": [
+        { "value": "Agents", "label": "Core" },
+        { "value": "Memory", "label": "Graph + Context" },
+        { "value": "CLI", "label": "Interface" },
+        { "value": "Active", "label": "Development" }
+      ],
+      "highlights": [
+        "Builds a pragmatic runtime for multi-tool AI workflows.",
+        "Combines memory systems with task execution patterns.",
+        "Designed for operator-in-the-loop autonomy.",
+        "Powers rapid local experimentation with agents."
+      ],
+      "tech": ["Python", "Agents", "MCP", "CLI", "Memory"],
+      "tags": ["ai", "agents", "tooling", "systems"]
+    },
+    {
+      "id": "synapse",
+      "track": "opensource",
+      "featured": true,
+      "status": "Active",
+      "title": "Synapse",
+      "category": "Voice AI Platform",
+      "icon": "fas fa-wave-square",
+      "github": "https://github.com/arunsanna/synapse",
+      "description": "Voice-focused AI platform for speech pipelines and multimodal assistant experiences.",
+      "metrics": [
+        { "value": "Voice", "label": "Interface" },
+        { "value": "Real-time", "label": "Pipeline" },
+        { "value": "STT/TTS", "label": "Coverage" },
+        { "value": "Active", "label": "Development" }
+      ],
+      "highlights": [
+        "Builds practical voice interaction pipelines.",
+        "Integrates speech recognition and generation components.",
+        "Targets responsive assistant behavior.",
+        "Supports experimentation with voice-first UX patterns."
+      ],
+      "tech": ["Python", "Voice", "STT", "TTS", "Agents"],
+      "tags": ["ai", "voice", "agents", "product"]
+    },
+    {
+      "id": "praxis",
+      "track": "opensource",
+      "featured": false,
+      "status": "Active",
+      "title": "Praxis",
+      "category": "Developer Workflow",
+      "icon": "fas fa-list-check",
+      "github": "https://github.com/arunsanna/Praxis",
+      "description": "Workflow system for managing AI-assisted engineering execution, tasks, and operational cadence.",
+      "metrics": [
+        { "value": "Ops", "label": "Execution" },
+        { "value": "Workflow", "label": "Tasking" },
+        { "value": "Realtime", "label": "Feedback" },
+        { "value": "OSS", "label": "Open Source" }
+      ],
+      "highlights": [
+        "Organizes AI-assisted execution into practical workflows.",
+        "Supports task ownership and status tracking.",
+        "Designed for fast iteration loops.",
+        "Bridges planning and implementation."
+      ],
+      "tech": ["TypeScript", "Workflow", "Agents", "Productivity"],
+      "tags": ["productivity", "tooling", "agents", "systems"]
+    },
+    {
+      "id": "jarvis-cortex",
+      "track": "opensource",
+      "featured": false,
+      "status": "Active",
+      "title": "Jarvis Cortex",
+      "category": "Memory System",
+      "icon": "fas fa-brain",
+      "github": "https://github.com/arunsanna/jarvis-cortex",
+      "description": "Graph-enhanced memory platform for AI assistants with temporal context and retrieval-aware workflows.",
+      "metrics": [
+        { "value": "Graph", "label": "Knowledge Model" },
+        { "value": "Temporal", "label": "History" },
+        { "value": "RAG", "label": "Retrieval" },
+        { "value": "Active", "label": "Development" }
+      ],
+      "highlights": [
+        "Stores memory with entities, relationships, and timelines.",
+        "Improves follow-up quality with structured recall.",
+        "Supports contradiction handling and consolidation workflows.",
+        "Designed for long-running assistant operations."
+      ],
+      "tech": ["Python", "Neo4j", "RAG", "Memory", "Agents"],
+      "tags": ["ai", "memory", "graph", "agents"]
+    },
+    {
+      "id": "aibom-generator",
+      "track": "opensource",
+      "featured": false,
+      "status": "Active",
+      "title": "AIBOM Generator",
+      "category": "AI Supply Chain",
+      "icon": "fas fa-fingerprint",
+      "github": "https://github.com/arunsanna/aibom-generator",
+      "description": "OWASP-focused AIBOM tooling to document AI system components and strengthen supply-chain transparency.",
+      "metrics": [
+        { "value": "OWASP", "label": "Alignment" },
+        { "value": "AIBOM", "label": "Artifact" },
+        { "value": "Security", "label": "Use Case" },
+        { "value": "OSS", "label": "Open Source" }
+      ],
+      "highlights": [
+        "Generates machine-readable AI bill-of-materials outputs.",
+        "Improves traceability for models and dependencies.",
+        "Supports risk conversations with concrete artifacts.",
+        "Fits security and compliance engineering workflows."
+      ],
+      "tech": ["Python", "Security", "Compliance", "AIBOM"],
+      "tags": ["security", "ai", "compliance", "tooling"]
+    },
+    {
+      "id": "forge-registry",
+      "track": "opensource",
+      "featured": false,
+      "status": "Active",
+      "title": "Forge Registry",
+      "category": "Tooling Ecosystem",
+      "icon": "fas fa-boxes-stacked",
+      "github": "https://github.com/arunsanna/forge-registry",
+      "description": "Registry tooling for packaging and distributing reusable command and agent capabilities.",
+      "metrics": [
+        { "value": "Registry", "label": "Core" },
+        { "value": "Reusable", "label": "Artifacts" },
+        { "value": "CLI", "label": "Distribution" },
+        { "value": "Active", "label": "Development" }
+      ],
+      "highlights": [
+        "Improves discoverability of reusable automation artifacts.",
+        "Standardizes packaging and publishing workflow patterns.",
+        "Supports faster reuse across projects.",
+        "Designed for practical internal + open-source operations."
+      ],
+      "tech": ["TypeScript", "Registry", "CLI", "Automation"],
+      "tags": ["tooling", "productivity", "systems", "infra"]
+    },
+    {
+      "id": "switchboard",
+      "track": "opensource",
+      "featured": false,
+      "status": "Active",
+      "title": "Switchboard",
+      "category": "Orchestration",
+      "icon": "fas fa-sliders",
+      "github": "https://github.com/arunsanna/switchboard",
+      "description": "Control-plane style project for routing tasks and managing AI/tooling execution flows.",
+      "metrics": [
+        { "value": "Routing", "label": "Task Flow" },
+        { "value": "Control", "label": "Plane" },
+        { "value": "Agents", "label": "Runtime" },
+        { "value": "Active", "label": "Development" }
+      ],
+      "highlights": [
+        "Provides consistent flow control for distributed tasks.",
+        "Helps coordinate specialized agents and tools.",
+        "Targets observability-friendly orchestration patterns.",
+        "Supports rapid changes in execution logic."
+      ],
+      "tech": ["TypeScript", "Orchestration", "Agents", "Control Plane"],
+      "tags": ["agents", "systems", "tooling", "infra"]
+    },
+    {
+      "id": "arunlabs-vllm",
+      "track": "opensource",
+      "featured": false,
+      "status": "Active",
+      "title": "arunlabs-vLLM",
+      "category": "Model Serving",
+      "icon": "fas fa-server",
+      "github": "https://github.com/arunsanna/arunlabs-vllm",
+      "description": "Inference serving setup for running open models efficiently with vLLM-oriented deployment patterns.",
+      "metrics": [
+        { "value": "vLLM", "label": "Runtime" },
+        { "value": "Serving", "label": "Focus" },
+        { "value": "GPU", "label": "Optimization" },
+        { "value": "OSS", "label": "Open Source" }
+      ],
+      "highlights": [
+        "Accelerates open model serving experiments.",
+        "Captures repeatable deployment and tuning patterns.",
+        "Targets practical latency and throughput tradeoffs.",
+        "Supports local and cloud inference workflows."
+      ],
+      "tech": ["Python", "vLLM", "GPU", "Inference"],
+      "tags": ["ai", "mlops", "infra", "serving"]
+    },
+    {
+      "id": "aegis",
+      "track": "opensource",
+      "featured": false,
+      "status": "Active",
+      "title": "Aegis",
+      "category": "Federal AI Proposal Stack",
+      "icon": "fas fa-shield",
+      "github": "https://github.com/arunsanna/aegis",
+      "description": "Proposal and delivery support tooling for federal AI initiatives with security-first framing.",
+      "metrics": [
+        { "value": "Federal", "label": "Domain" },
+        { "value": "AI", "label": "Focus" },
+        { "value": "Security", "label": "Posture" },
+        { "value": "Active", "label": "Development" }
+      ],
+      "highlights": [
+        "Structures federal opportunity workflows with AI assistance.",
+        "Emphasizes security and compliance constraints.",
+        "Reduces proposal cycle overhead.",
+        "Supports rapid technical response building."
+      ],
+      "tech": ["AI", "Federal", "Security", "Workflow"],
+      "tags": ["federal", "ai", "security", "productivity"]
+    },
+    {
+      "id": "ai-devbox",
+      "track": "opensource",
+      "featured": false,
+      "status": "Active",
+      "title": "AI Devbox",
+      "category": "Developer Environment",
+      "icon": "fas fa-laptop-code",
+      "github": "https://github.com/arunsanna/ai-devbox",
+      "description": "Portable development environment and baseline automation for AI engineering workflows.",
+      "metrics": [
+        { "value": "DevEnv", "label": "Use Case" },
+        { "value": "Portable", "label": "Setup" },
+        { "value": "Automated", "label": "Bootstrap" },
+        { "value": "OSS", "label": "Open Source" }
+      ],
+      "highlights": [
+        "Reduces time-to-first-commit for new environments.",
+        "Encodes setup patterns into repeatable automation.",
+        "Useful for AI workflow prototyping.",
+        "Keeps local tooling predictable across machines."
+      ],
+      "tech": ["Dev Containers", "CLI", "Automation", "Python"],
+      "tags": ["tooling", "productivity", "ai", "devex"]
+    },
+    {
+      "id": "aws-sage-mcp",
+      "track": "opensource",
+      "featured": false,
+      "status": "Active",
+      "title": "AWS Sage MCP",
+      "category": "Cloud AI Tooling",
+      "icon": "fas fa-cloud",
+      "github": "https://github.com/arunsanna/aws-sage-mcp",
+      "description": "MCP integration project for cloud AI workflows and managed model operations.",
+      "metrics": [
+        { "value": "AWS", "label": "Cloud" },
+        { "value": "MCP", "label": "Protocol" },
+        { "value": "AI", "label": "Focus" },
+        { "value": "Active", "label": "Development" }
+      ],
+      "highlights": [
+        "Connects assistant workflows to cloud AI operations.",
+        "Improves automation coverage for model tasks.",
+        "Supports practical managed-service integrations.",
+        "Targets repeatable cloud-native AI workflows."
+      ],
+      "tech": ["TypeScript", "AWS", "MCP", "SageMaker"],
+      "tags": ["ai", "cloud", "tooling", "agents"]
+    },
+    {
+      "id": "cross-llm-backdoor-detection",
+      "track": "opensource",
+      "featured": false,
+      "status": "Research",
+      "title": "Cross-LLM Backdoor Detection",
+      "category": "AI Security Research",
+      "icon": "fas fa-user-shield",
+      "github": "https://github.com/arunsanna/cross-llm-backdoor-detection",
+      "description": "Research project investigating detection strategies for cross-model backdoor behaviors.",
+      "metrics": [
+        { "value": "Research", "label": "Type" },
+        { "value": "Backdoors", "label": "Threat" },
+        { "value": "LLMs", "label": "Scope" },
+        { "value": "Active", "label": "Iteration" }
+      ],
+      "highlights": [
+        "Explores attack transfer across model families.",
+        "Benchmarks detection behavior under varied prompts.",
+        "Supports safer model evaluation workflows.",
+        "Contributes to AI trust and safety research."
+      ],
+      "tech": ["Python", "LLM Security", "Evaluation", "Research"],
+      "tags": ["ai", "security", "research", "mlops"]
+    },
+    {
+      "id": "brew-token-loyalty",
+      "track": "opensource",
+      "featured": false,
+      "status": "Prototype",
+      "title": "Brew Token Loyalty",
+      "category": "Product Prototype",
+      "icon": "fas fa-mug-hot",
+      "github": "https://github.com/arunsanna/brew-token-loyalty",
+      "description": "Experimental loyalty and tokenized reward prototype for consumer engagement workflows.",
+      "metrics": [
+        { "value": "Prototype", "label": "Stage" },
+        { "value": "Rewards", "label": "Domain" },
+        { "value": "Web", "label": "Delivery" },
+        { "value": "OSS", "label": "Open Source" }
+      ],
+      "highlights": [
+        "Explores lightweight tokenized loyalty mechanics.",
+        "Tests product and UX assumptions quickly.",
+        "Demonstrates rapid prototyping workflow.",
+        "Useful as a sandbox for growth experiments."
+      ],
+      "tech": ["TypeScript", "Web", "Product", "Prototype"],
+      "tags": ["product", "web", "experiments", "growth"]
+    },
+
+    {
+      "id": "prehook",
+      "track": "cooking",
+      "featured": true,
+      "status": "Cooking",
+      "title": "Prehook",
+      "category": "AI Pre-commit Guardrails",
+      "icon": "fas fa-code-branch",
+      "description": "Local-first prehook concept for applying AI-assisted quality and policy checks before commit.",
+      "metrics": [
+        { "value": "Design", "label": "Stage" },
+        { "value": "Git", "label": "Workflow" },
+        { "value": "AI", "label": "Assist" },
+        { "value": "Local", "label": "Execution" }
+      ],
+      "highlights": [
+        "Shifts validation left into developer commit flow.",
+        "Aims to combine policy checks with actionable suggestions.",
+        "Keeps execution local for speed and privacy.",
+        "Early architecture under active iteration."
+      ],
+      "tech": ["Git", "Hooks", "AI", "Developer Experience"],
+      "tags": ["tooling", "devex", "ai", "quality"]
+    },
+    {
+      "id": "comfyui-video",
+      "track": "cooking",
+      "featured": false,
+      "status": "Cooking",
+      "title": "ComfyUI Video",
+      "category": "Generative Media",
+      "icon": "fas fa-video",
+      "description": "Pipeline experiments for image-to-video and generative media workflows with reproducible local setups.",
+      "metrics": [
+        { "value": "Media", "label": "Domain" },
+        { "value": "Local", "label": "Execution" },
+        { "value": "Workflow", "label": "Canvas" },
+        { "value": "GPU", "label": "Runtime" }
+      ],
+      "highlights": [
+        "Evaluates practical workflow templates for video generation.",
+        "Captures setup steps and runbooks for repeatability.",
+        "Focuses on local GPU-based experimentation.",
+        "Currently in rapid test-and-learn mode."
+      ],
+      "tech": ["ComfyUI", "GPU", "Video", "Workflow"],
+      "tags": ["ai", "media", "experiments", "mlops"]
+    },
+    {
+      "id": "polymarket-bot",
+      "track": "cooking",
+      "featured": false,
+      "status": "Cooking",
+      "title": "Polymarket Bot",
+      "category": "Market Automation",
+      "icon": "fas fa-chart-line",
+      "description": "Automation experiments for market signal ingestion and agent-driven decision support.",
+      "metrics": [
+        { "value": "Bot", "label": "Type" },
+        { "value": "Signals", "label": "Inputs" },
+        { "value": "AI", "label": "Reasoning" },
+        { "value": "Lab", "label": "Status" }
+      ],
+      "highlights": [
+        "Explores market event interpretation workflows.",
+        "Tests guardrails for automated decision support.",
+        "Focuses on data-to-action latency.",
+        "Prototype stage with evolving strategy logic."
+      ],
+      "tech": ["Python", "Agents", "Data", "Automation"],
+      "tags": ["ai", "automation", "finance", "experiments"]
+    },
+    {
+      "id": "cook-the-finances-now",
+      "track": "cooking",
+      "featured": false,
+      "status": "Cooking",
+      "title": "Cook The Finances Now",
+      "category": "Fintech Product",
+      "icon": "fas fa-wallet",
+      "github": "https://github.com/arunsanna/cook-the-finances-now",
+      "description": "Consumer finance product experiments with AI-guided planning and behavioral nudges.",
+      "metrics": [
+        { "value": "Fintech", "label": "Domain" },
+        { "value": "Product", "label": "Track" },
+        { "value": "AI", "label": "Assistant" },
+        { "value": "MVP", "label": "Stage" }
+      ],
+      "highlights": [
+        "Tests conversational patterns for money planning.",
+        "Explores actionable financial coaching UX.",
+        "Iterates on growth and engagement hypotheses.",
+        "Currently shaping initial MVP scope."
+      ],
+      "tech": ["TypeScript", "Web", "AI", "Product"],
+      "tags": ["product", "finance", "ai", "web"]
+    },
+    {
+      "id": "asset-growth-sphere",
+      "track": "cooking",
+      "featured": false,
+      "status": "Cooking",
+      "title": "Asset Growth Sphere",
+      "category": "Fintech Product",
+      "icon": "fas fa-coins",
+      "github": "https://github.com/arunsanna/asset-growth-sphere",
+      "description": "Financial growth product concept focused on planning loops, habit formation, and measurable outcomes.",
+      "metrics": [
+        { "value": "Growth", "label": "Theme" },
+        { "value": "Product", "label": "Build" },
+        { "value": "MVP", "label": "Status" },
+        { "value": "AI", "label": "Assist" }
+      ],
+      "highlights": [
+        "Explores compounding-focused user workflows.",
+        "Builds lightweight planning and accountability loops.",
+        "Tests early UX direction quickly.",
+        "Active product iteration in lab mode."
+      ],
+      "tech": ["TypeScript", "Web", "Analytics", "AI"],
+      "tags": ["product", "finance", "growth", "experiments"]
+    },
+    {
+      "id": "arunlabs-forge",
+      "track": "cooking",
+      "featured": false,
+      "status": "Cooking",
+      "title": "ArunLabs Forge",
+      "category": "Tooling Platform",
+      "icon": "fas fa-hammer",
+      "github": "https://github.com/arunsanna/arunlabs-forge",
+      "description": "Internal platform concept for composing reusable automation and engineering accelerators.",
+      "metrics": [
+        { "value": "Platform", "label": "Type" },
+        { "value": "Tooling", "label": "Focus" },
+        { "value": "Reusable", "label": "Components" },
+        { "value": "Lab", "label": "Status" }
+      ],
+      "highlights": [
+        "Aims to centralize reusable execution patterns.",
+        "Connects project tooling with shared standards.",
+        "Focuses on speed and consistency.",
+        "Design and implementation are still evolving."
+      ],
+      "tech": ["TypeScript", "Automation", "Platform", "CLI"],
+      "tags": ["tooling", "platform", "systems", "productivity"]
+    },
+    {
+      "id": "ai-ml-lab",
+      "track": "cooking",
+      "featured": false,
+      "status": "Cooking",
+      "title": "ai-ml",
+      "category": "Model R&D",
+      "icon": "fas fa-microchip",
+      "github": "https://github.com/arunsanna/ai-ml",
+      "description": "Sandbox for machine learning experiments, model evaluations, and iterative AI engineering studies.",
+      "metrics": [
+        { "value": "R&D", "label": "Track" },
+        { "value": "Models", "label": "Experiments" },
+        { "value": "Eval", "label": "Methods" },
+        { "value": "Lab", "label": "Status" }
+      ],
+      "highlights": [
+        "Hosts iterative model and dataset experiments.",
+        "Captures findings from fast learning loops.",
+        "Supports practical ML exploration work.",
+        "Feeds discoveries into production-focused projects."
+      ],
+      "tech": ["Python", "ML", "Evaluation", "Experiments"],
+      "tags": ["ai", "mlops", "research", "experiments"]
+    },
+    {
+      "id": "openvoice",
+      "track": "cooking",
+      "featured": false,
+      "status": "Cooking",
+      "title": "OpenVoice",
+      "category": "Voice Stack",
+      "icon": "fas fa-microphone",
+      "github": "https://github.com/arunsanna/openvoice",
+      "description": "Voice interaction experiments across speech recognition, synthesis, and conversational control loops.",
+      "metrics": [
+        { "value": "Voice", "label": "Domain" },
+        { "value": "STT/TTS", "label": "Pipeline" },
+        { "value": "Agents", "label": "Integration" },
+        { "value": "Lab", "label": "Status" }
+      ],
+      "highlights": [
+        "Explores practical speech pipeline composition.",
+        "Evaluates response latency and interaction quality.",
+        "Tests voice-native assistant UX.",
+        "Feeds capabilities into broader assistant projects."
+      ],
+      "tech": ["Python", "Voice", "STT", "TTS"],
+      "tags": ["ai", "voice", "experiments", "agents"]
+    },
+    {
+      "id": "pivpn-local",
+      "track": "cooking",
+      "featured": false,
+      "status": "Cooking",
+      "title": "PiVPN Local",
+      "category": "Home Infrastructure",
+      "icon": "fas fa-network-wired",
+      "github": "https://github.com/arunsanna/pivpn-local",
+      "description": "Local WireGuard VPN setup patterns for secure home-lab access and lightweight infrastructure hardening.",
+      "metrics": [
+        { "value": "WireGuard", "label": "Protocol" },
+        { "value": "Home Lab", "label": "Target" },
+        { "value": "Secure", "label": "Remote Access" },
+        { "value": "Active", "label": "Iteration" }
+      ],
+      "highlights": [
+        "Documents practical home-lab security setup patterns.",
+        "Supports reliable remote access to local systems.",
+        "Focuses on simplicity and operational reliability.",
+        "Useful for personal infrastructure baselines."
+      ],
+      "tech": ["WireGuard", "Linux", "Networking", "Security"],
+      "tags": ["infra", "security", "network", "ops"]
+    },
+    {
+      "id": "github-trending-backup",
+      "track": "cooking",
+      "featured": false,
+      "status": "Cooking",
+      "title": "GitHub Trending Bot",
+      "category": "Automation",
+      "icon": "fas fa-robot",
+      "github": "https://github.com/arunsanna/github-trending-backup",
+      "description": "Automation utility for scraping and tracking trending repositories for research and idea capture.",
+      "metrics": [
+        { "value": "Bot", "label": "Type" },
+        { "value": "GitHub", "label": "Source" },
+        { "value": "Data", "label": "Collection" },
+        { "value": "Lab", "label": "Status" }
+      ],
+      "highlights": [
+        "Collects trend signals for project discovery.",
+        "Supports repeatable idea-sourcing workflows.",
+        "Designed for low-maintenance automation.",
+        "Feeds research and product ideation loops."
+      ],
+      "tech": ["Python", "Scraping", "Automation", "GitHub API"],
+      "tags": ["automation", "research", "tooling", "data"]
+    },
+    {
+      "id": "job-hunt",
+      "track": "cooking",
+      "featured": false,
+      "status": "Cooking",
+      "title": "job-hunt",
+      "category": "Workflow System",
+      "icon": "fas fa-briefcase",
+      "github": "https://github.com/arunsanna/job-hunt",
+      "description": "Structured workflow repo for opportunity tracking, outreach pipelines, and execution loops.",
+      "metrics": [
+        { "value": "Workflow", "label": "Core" },
+        { "value": "Tracking", "label": "Pipeline" },
+        { "value": "Docs", "label": "System" },
+        { "value": "Active", "label": "Use" }
+      ],
+      "highlights": [
+        "Encodes repeatable opportunity management workflows.",
+        "Improves execution visibility across outreach activities.",
+        "Optimizes prioritization and follow-up cadence.",
+        "Useful reference for process-first project organization."
+      ],
+      "tech": ["Markdown", "Automation", "Workflow", "Execution"],
+      "tags": ["workflow", "productivity", "systems", "ops"]
+    }
+  ]
+}
