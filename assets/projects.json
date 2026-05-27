@@ -1,5 +1,43 @@
 {
   "updatedAt": "2026-02-26",
+  "groups": [
+    {
+      "id": "ai-security",
+      "label": "AI Security Suite",
+      "icon": "fas fa-shield-virus",
+      "description": "Security benchmarks, backdoor detection, and supply-chain transparency for AI systems."
+    },
+    {
+      "id": "ai-platform",
+      "label": "AI Platform Core",
+      "icon": "fas fa-brain",
+      "description": "Agent runtimes, memory systems, voice pipelines, and orchestration layers."
+    },
+    {
+      "id": "cloud-platform",
+      "label": "Cloud & Platform Engineering",
+      "icon": "fas fa-cloud",
+      "description": "Kubernetes environments, debugging tools, registries, and developer environments."
+    },
+    {
+      "id": "ai-tooling",
+      "label": "AI Developer Tooling",
+      "icon": "fas fa-wrench",
+      "description": "MCP integrations, RAG applications, and cloud AI workflow tools."
+    },
+    {
+      "id": "fintech",
+      "label": "Fintech Experiments",
+      "icon": "fas fa-coins",
+      "description": "Financial products exploring planning, growth, and tokenized rewards."
+    },
+    {
+      "id": "ai-media",
+      "label": "AI Media Lab",
+      "icon": "fas fa-film",
+      "description": "Generative media pipelines and ML experimentation sandboxes."
+    }
+  ],
   "projects": [
     {
       "id": "dod-platform-one",
@@ -125,6 +163,7 @@
     {
       "id": "agentdefense-bench",
       "track": "opensource",
+      "group": "ai-security",
       "featured": true,
       "status": "Active",
       "title": "AgentDefense-Bench",
@@ -150,6 +189,7 @@
     {
       "id": "microeks",
       "track": "opensource",
+      "group": "cloud-platform",
       "featured": true,
       "status": "Stable",
       "title": "MicroEKS",
@@ -175,6 +215,7 @@
     {
       "id": "k8s-sherlock",
       "track": "opensource",
+      "group": "cloud-platform",
       "featured": true,
       "status": "Stable",
       "title": "k8s-sherlock",
@@ -200,6 +241,7 @@
     {
       "id": "gemini-diagram-mcp",
       "track": "opensource",
+      "group": "ai-tooling",
       "featured": true,
       "status": "Active",
       "title": "Gemini Diagram MCP",
@@ -225,6 +267,7 @@
     {
       "id": "docqueryai",
       "track": "opensource",
+      "group": "ai-tooling",
       "featured": true,
       "status": "Active",
       "title": "DocQueryAI",
@@ -250,6 +293,7 @@
     {
       "id": "openclaw",
       "track": "opensource",
+      "group": "ai-platform",
       "featured": true,
       "status": "Active",
       "title": "OpenClaw",
@@ -275,6 +319,7 @@
     {
       "id": "synapse",
       "track": "opensource",
+      "group": "ai-platform",
       "featured": true,
       "status": "Active",
       "title": "Synapse",
@@ -300,6 +345,7 @@
     {
       "id": "praxis",
       "track": "opensource",
+      "group": "ai-platform",
       "featured": false,
       "status": "Active",
       "title": "Praxis",
@@ -325,6 +371,7 @@
     {
       "id": "jarvis-cortex",
       "track": "opensource",
+      "group": "ai-platform",
       "featured": false,
       "status": "Active",
       "title": "Jarvis Cortex",
@@ -350,6 +397,7 @@
     {
       "id": "aibom-generator",
       "track": "opensource",
+      "group": "ai-security",
       "featured": false,
       "status": "Active",
       "title": "AIBOM Generator",
@@ -375,6 +423,7 @@
     {
       "id": "forge-registry",
       "track": "opensource",
+      "group": "cloud-platform",
       "featured": false,
       "status": "Active",
       "title": "Forge Registry",
@@ -400,6 +449,7 @@
     {
       "id": "switchboard",
       "track": "opensource",
+      "group": "ai-platform",
       "featured": false,
       "status": "Active",
       "title": "Switchboard",
@@ -425,6 +475,7 @@
     {
       "id": "arunlabs-vllm",
       "track": "opensource",
+      "group": "ai-tooling",
       "featured": false,
       "status": "Active",
       "title": "arunlabs-vLLM",
@@ -450,6 +501,7 @@
     {
       "id": "aegis",
       "track": "opensource",
+      "group": "ai-security",
       "featured": false,
       "status": "Active",
       "title": "Aegis",
@@ -475,6 +527,7 @@
     {
       "id": "ai-devbox",
       "track": "opensource",
+      "group": "cloud-platform",
       "featured": false,
       "status": "Active",
       "title": "AI Devbox",
@@ -500,6 +553,7 @@
     {
       "id": "aws-sage-mcp",
       "track": "opensource",
+      "group": "ai-tooling",
       "featured": false,
       "status": "Active",
       "title": "AWS Sage MCP",
@@ -525,6 +579,7 @@
     {
       "id": "cross-llm-backdoor-detection",
       "track": "opensource",
+      "group": "ai-security",
       "featured": false,
       "status": "Research",
       "title": "Cross-LLM Backdoor Detection",
@@ -600,6 +655,7 @@
     {
       "id": "comfyui-video",
       "track": "cooking",
+      "group": "ai-media",
       "featured": false,
       "status": "Cooking",
       "title": "ComfyUI Video",
@@ -648,6 +704,7 @@
     {
       "id": "cook-the-finances-now",
       "track": "cooking",
+      "group": "fintech",
       "featured": false,
       "status": "Cooking",
       "title": "Cook The Finances Now",
@@ -673,6 +730,7 @@
     {
       "id": "asset-growth-sphere",
       "track": "cooking",
+      "group": "fintech",
       "featured": false,
       "status": "Cooking",
       "title": "Asset Growth Sphere",
@@ -723,6 +781,7 @@
     {
       "id": "ai-ml-lab",
       "track": "cooking",
+      "group": "ai-media",
       "featured": false,
       "status": "Cooking",
       "title": "ai-ml",

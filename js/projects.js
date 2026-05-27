@@ -2,12 +2,17 @@ const TRACKS = ['professional', 'opensource', 'cooking'];
 const DEFAULT_TAB = 'professional';
 
 let allProjects = [];
+let allGroups = new Map();
 let activeTab = DEFAULT_TAB;
 let activeFilter = 'all';
 
 export async function initializeProjects() {
-    const projects = await loadProjectsData();
+    const { projects, groups } = await loadProjectsData();
     allProjects = projects;
+
+    if (groups) {
+        groups.forEach((g) => allGroups.set(g.id, g));
+    }
 
     if (!allProjects.length) {
         renderLoadError();
@@ -29,23 +34,38 @@ export async function initializeProjects() {
 
 async function loadProjectsData() {
     try {
-        const response = await fetch('assets/projects.json', { cache: 'no-store' });
-        if (!response.ok) {
-            throw new Error(`Failed to fetch projects.json (${response.status})`);
-        }
-
-        const payload = await response.json();
+        const payload = await fetchProjectsPayload();
         if (!payload || !Array.isArray(payload.projects)) {
-            throw new Error('Invalid projects.json format');
+            throw new Error('Invalid projects payload format');
         }
 
-        return payload.projects
+        const projects = payload.projects
             .filter((project) => TRACKS.includes(project.track))
             .map(normalizeProject);
+
+        return { projects, groups: payload.groups || [] };
     } catch (error) {
         console.error('Error loading project data:', error);
-        return [];
+        return { projects: [], groups: [] };
     }
+}
+
+async function fetchProjectsPayload() {
+    const endpoints = ['/api/projects', 'assets/projects.json'];
+
+    for (const endpoint of endpoints) {
+        try {
+            const response = await fetch(endpoint, { cache: 'no-store' });
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}`);
+            }
+            return await response.json();
+        } catch (error) {
+            console.warn(`Unable to load ${endpoint}:`, error);
+        }
+    }
+
+    throw new Error('No project data endpoint available');
 }
 
 function normalizeProject(project) {
@@ -55,6 +75,7 @@ function normalizeProject(project) {
     return {
         id,
         track: project.track,
+        group: project.group || '',
         featured: Boolean(project.featured),
         status: project.status || 'Active',
         title: project.title || 'Untitled Project',
@@ -105,24 +126,197 @@ function renderProjects(projects) {
             .filter((project) => project.track === track)
             .sort(sortProjects);
 
-        container.innerHTML = trackProjects
-            .map((project, index) => createProjectCard(project, index))
-            .join('');
+        container.innerHTML = buildHierarchicalHtml(trackProjects);
     });
 }
 
-function sortProjects(a, b) {
-    if (a.featured !== b.featured) {
-        return a.featured ? -1 : 1;
+function buildHierarchicalHtml(projects) {
+    const grouped = new Map();
+    const standalone = [];
+
+    projects.forEach((project) => {
+        if (project.group) {
+            if (!grouped.has(project.group)) {
+                grouped.set(project.group, []);
+            }
+            grouped.get(project.group).push(project);
+        } else {
+            standalone.push(project);
+        }
+    });
+
+    const parts = [];
+    let cardIndex = 0;
+
+    standalone.forEach((project) => {
+        parts.push(createProjectCard(project, cardIndex++));
+    });
+
+    grouped.forEach((groupProjects, groupId) => {
+        const meta = allGroups.get(groupId);
+        const contradictions = detectContradictions(groupProjects);
+        parts.push(createGroupHeader(groupId, meta, groupProjects, contradictions));
+        groupProjects.forEach((project) => {
+            parts.push(createProjectCard(project, cardIndex++, { level: 1, groupId }));
+        });
+    });
+
+    return parts.join('');
+}
+
+function createGroupHeader(groupId, meta, projects, contradictions) {
+    const label = meta ? meta.label : prettyTag(groupId);
+    const icon = meta ? meta.icon : 'fas fa-layer-group';
+    const desc = meta ? meta.description : '';
+    const count = projects.length;
+    const tags = collectGroupTags(projects);
+
+    const tagChips = tags.slice(0, 6).map((t) =>
+        `<span class="group-tag-chip">${escapeHtml(t)}</span>`
+    ).join('');
+
+    const contradictionHtml = contradictions.length
+        ? contradictions.map((c) =>
+            `<div class="contradiction-item">
+                <i class="fas fa-code-branch"></i>
+                <span>${escapeHtml(c.label)}</span>
+                <span class="contradiction-overlap">${escapeHtml(c.items.join(', '))}</span>
+            </div>`
+        ).join('')
+        : '';
+
+    return `
+        <div class="project-group-header" data-group="${escapeAttribute(groupId)}">
+            <div class="group-header-top">
+                <div class="group-icon-wrap">
+                    <i class="${escapeAttribute(icon)}"></i>
+                </div>
+                <div class="group-header-text">
+                    <h3 class="group-title">${escapeHtml(label)}</h3>
+                    ${desc ? `<p class="group-desc">${escapeHtml(desc)}</p>` : ''}
+                </div>
+                <span class="group-count">${count} project${count !== 1 ? 's' : ''}</span>
+            </div>
+            <div class="group-header-tags">${tagChips}</div>
+            ${contradictionHtml ? `<div class="contradiction-banner"><div class="contradiction-label"><i class="fas fa-shuffle"></i> Overlapping scope</div>${contradictionHtml}</div>` : ''}
+        </div>
+    `;
+}
+
+function collectGroupTags(projects) {
+    const tagSet = new Set();
+    projects.forEach((p) => p.tags.forEach((t) => tagSet.add(t)));
+    return Array.from(tagSet).sort();
+}
+
+function detectContradictions(projects) {
+    if (projects.length < 2) return [];
+
+    const contradictions = [];
+
+    const allTags = projects.flatMap((p) => p.tags);
+    const allTech = projects.flatMap((p) => p.tech);
+    const tagOverlap = findOverlaps(allTags);
+    const techOverlap = findOverlaps(allTech);
+
+    if (tagOverlap.length) {
+        contradictions.push({
+            label: 'Shared tags',
+            items: tagOverlap
+        });
     }
+
+    if (techOverlap.length) {
+        contradictions.push({
+            label: 'Shared tech',
+            items: techOverlap
+        });
+    }
+
+    const statuses = projects.map((p) => p.status);
+    const uniqueStatuses = new Set(statuses);
+    if (uniqueStatuses.size > 1 && statuses.length > 1) {
+        contradictions.push({
+            label: 'Mixed statuses',
+            items: Array.from(uniqueStatuses)
+        });
+    }
+
+    return contradictions;
+}
+
+function findOverlaps(items) {
+    const counts = new Map();
+    items.forEach((item) => {
+        counts.set(item, (counts.get(item) || 0) + 1);
+    });
+    return Array.from(counts.entries())
+        .filter(([, count]) => count > 1)
+        .map(([item]) => item);
+}
+
+function buildContextInjection(project) {
+    if (!project.group || !allGroups.has(project.group)) return '';
+
+    const siblings = allProjects.filter(
+        (p) => p.group === project.group && p.id !== project.id
+    );
+    if (!siblings.length) return '';
+
+    const sharedTech = project.tech.filter((t) =>
+        siblings.some((s) => s.tech.includes(t))
+    );
+    const sharedTags = project.tags.filter((t) =>
+        siblings.some((s) => s.tags.includes(t))
+    );
+
+    const siblingLinks = siblings.slice(0, 4).map((s) =>
+        `<span class="context-sibling">${escapeHtml(s.title)}</span>`
+    ).join('');
+
+    const overlapItems = [];
+    if (sharedTech.length) {
+        overlapItems.push(`<span class="context-overlap-label">Shared tech:</span> ${sharedTech.slice(0, 4).map((t) => `<span class="context-overlap-tag">${escapeHtml(t)}</span>`).join('')}`);
+    }
+    if (sharedTags.length) {
+        overlapItems.push(`<span class="context-overlap-label">Shared scope:</span> ${sharedTags.slice(0, 4).map((t) => `<span class="context-overlap-tag">${escapeHtml(prettyTag(t))}</span>`).join('')}`);
+    }
+
+    const overlapHtml = overlapItems.length
+        ? `<div class="context-overlap">${overlapItems.join('<span class="context-divider">|</span>')}</div>`
+        : '';
+
+    return `
+        <div class="context-injection">
+            <div class="context-row">
+                <i class="fas fa-diagram-project context-icon"></i>
+                <span class="context-label">Related:</span>
+                ${siblingLinks}
+            </div>
+            ${overlapHtml}
+        </div>
+    `;
+}
+
+function sortProjects(a, b) {
+    const aHasGroup = Boolean(a.group);
+    const bHasGroup = Boolean(b.group);
+    if (aHasGroup !== bHasGroup) return aHasGroup ? -1 : 1;
+    if (a.group && b.group && a.group !== b.group) return a.group.localeCompare(b.group);
+    if (a.featured !== b.featured) return a.featured ? -1 : 1;
     return a.title.localeCompare(b.title);
 }
 
-function createProjectCard(project, index) {
+function createProjectCard(project, index, hierarchy = {}) {
     const outcomesId = `${project.id}-outcomes`;
     const iconId = `${outcomesId}-icon`;
     const tagList = project.tags.join(',');
     const delay = ['0', '0.2', '0.4', '0.6', '0.8', '1.0'][index % 6];
+    const { level = 0, groupId = '' } = hierarchy;
+    const indentClass = level > 0 ? ` project-card--level-${level}` : '';
+    const groupAttr = groupId ? ` data-group="${escapeAttribute(groupId)}"` : '';
+
+    const contextHtml = buildContextInjection(project);
 
     const metricsHtml = project.metrics
         .map((metric) => `
@@ -156,10 +350,11 @@ function createProjectCard(project, index) {
         : '';
 
     return `
-        <article class="project-card card-gradient" data-project-id="${escapeAttribute(project.id)}" data-tags="${escapeAttribute(tagList)}" data-animation-delay="${delay}">
+        <article class="project-card card-gradient${indentClass}" data-project-id="${escapeAttribute(project.id)}" data-tags="${escapeAttribute(tagList)}" data-animation-delay="${delay}"${groupAttr}>
             <div class="card-content space-y-6">
                 <div class="project-header">
                     <div class="flex items-center gap-4">
+                        ${level > 0 ? '<span class="hierarchy-indicator" aria-hidden="true"><i class="fas fa-turn-up"></i></span>' : ''}
                         <div class="icon-container p-3 rounded-lg bg-primary-10 border-primary-20">
                             <i class="${escapeAttribute(project.icon)} text-primary h-6 w-6"></i>
                         </div>
@@ -169,6 +364,7 @@ function createProjectCard(project, index) {
                                 <span class="badge-category text-xs">${escapeHtml(project.category)}</span>
                                 <span class="project-status-pill text-xs">${escapeHtml(project.status)}</span>
                                 ${project.featured ? '<span class="project-featured-pill text-xs">Featured</span>' : ''}
+                                ${project.group && allGroups.has(project.group) ? `<span class="badge-group text-xs">${escapeHtml(allGroups.get(project.group).label)}</span>` : ''}
                             </div>
                         </div>
                     </div>
@@ -176,6 +372,8 @@ function createProjectCard(project, index) {
                 </div>
 
                 <p class="text-muted-foreground">${escapeHtml(project.description)}</p>
+
+                ${contextHtml}
 
                 <div class="metrics-grid grid grid-cols-2 md:grid-cols-4 gap-4">
                     ${metricsHtml}
@@ -345,7 +543,10 @@ function applyProjectFilter(filter) {
     if (!container) return;
 
     const cards = container.querySelectorAll('.project-card');
+    const groupHeaders = container.querySelectorAll('.project-group-header');
     let visibleCount = 0;
+
+    const visibleGroups = new Set();
 
     cards.forEach((card) => {
         const tags = (card.dataset.tags || '')
@@ -359,9 +560,21 @@ function applyProjectFilter(filter) {
             visibleCount += 1;
             card.classList.remove('is-hidden');
             card.removeAttribute('aria-hidden');
+            if (card.dataset.group) {
+                visibleGroups.add(card.dataset.group);
+            }
         } else {
             card.classList.add('is-hidden');
             card.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    groupHeaders.forEach((header) => {
+        const gid = header.dataset.group;
+        if (gid && visibleGroups.has(gid)) {
+            header.classList.remove('is-hidden');
+        } else {
+            header.classList.add('is-hidden');
         }
     });
 
