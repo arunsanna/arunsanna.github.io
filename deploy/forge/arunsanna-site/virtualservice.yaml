@@ -8,9 +8,9 @@ metadata:
 spec:
   gateways:
     - istio-system/arunlabs-public-gateway
+    - istio-system/arunlabs-private-gateway
   hosts:
-    - arunsanna.com
-    - www.arunsanna.com
+    - arunsanna.arunlabs.com
   http:
     - route:
         - destination:

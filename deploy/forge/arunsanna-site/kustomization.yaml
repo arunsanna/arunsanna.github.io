@@ -2,10 +2,14 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - namespace.yaml
+  - clusterissuer-arunsanna-com.yaml
+  - certificate.yaml
   - deployment.yaml
   - service.yaml
   - virtualservice.yaml
+  - public-gateway.yaml
+  - public-virtualservice.yaml
   - poddisruptionbudget.yaml
 images:
   - name: registry.arunlabs.com/arunsanna-site
-    newTag: dev
+    digest: sha256:a7ebc6782da1d3caa48be7fd4a3c6016fe01ca2b0ae65e4e21f34f3fc0786aba

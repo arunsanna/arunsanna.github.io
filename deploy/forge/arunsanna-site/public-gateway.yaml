@@ -1,0 +1,30 @@
+apiVersion: networking.istio.io/v1
+kind: Gateway
+metadata:
+  name: arunsanna-public-gateway
+  namespace: istio-system
+  labels:
+    app.kubernetes.io/name: arunsanna-site
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - hosts:
+        - arunsanna.com
+        - www.arunsanna.com
+      port:
+        name: arunsanna-http
+        number: 80
+        protocol: HTTP
+      tls:
+        httpsRedirect: true
+    - hosts:
+        - arunsanna.com
+        - www.arunsanna.com
+      port:
+        name: arunsanna-https
+        number: 443
+        protocol: HTTPS
+      tls:
+        credentialName: arunsanna-com-tls
+        mode: SIMPLE
