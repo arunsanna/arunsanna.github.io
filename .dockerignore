@@ -1,6 +1,8 @@
 .git
 .playwright-mcp
 node_modules
+dist
+.astro
 npm-debug.log
 .DS_Store
 .env
