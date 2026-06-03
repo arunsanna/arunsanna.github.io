@@ -1,0 +1,132 @@
+---
+import skills from '../data/skills.json';
+---
+
+<section class="section section--tint" id="skills">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow" data-num="03">Skills</p>
+      <h2>Technical mastery</h2>
+      <p>A decade-plus across architecture, cloud, security, and AI — from first principles to production scale.</p>
+    </div>
+
+    <div class="skills__grid">
+      {
+        skills.categories.map((cat) => (
+          <article class="skills__cat">
+            <header class="skills__cat-head">
+              <span class="skills__cat-icon" aria-hidden="true">
+                <i class={cat.icon} />
+              </span>
+              <div>
+                <h3 class="skills__cat-title">{cat.title}</h3>
+                <p class="skills__cat-sub">{cat.subtitle}</p>
+              </div>
+            </header>
+            <ul class="skills__list">
+              {cat.skills.map((s) => (
+                <li class="skills__item">
+                  <span class="skills__name">{s.name}</span>
+                  <span class="skills__meta">
+                    <span class:list={['skills__level', `is-${s.level.toLowerCase()}`]}>{s.level}</span>
+                    <span class="skills__years">{s.years}</span>
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr));
+    gap: 1.1rem;
+  }
+  .skills__cat {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition:
+      border-color var(--transition),
+      transform var(--transition);
+  }
+  .skills__cat:hover {
+    border-color: var(--accent-line);
+    transform: translateY(-3px);
+  }
+  .skills__cat-head {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .skills__cat-icon {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.7rem;
+    height: 2.7rem;
+    border-radius: var(--radius-sm);
+    background: var(--accent-ghost);
+    color: var(--accent);
+    font-size: 1.1rem;
+  }
+  .skills__cat-title {
+    font-size: 1.05rem;
+  }
+  .skills__cat-sub {
+    color: var(--text-faint);
+    font-size: 0.82rem;
+    margin-top: 0.15rem;
+  }
+  .skills__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .skills__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  .skills__name {
+    font-size: 0.9rem;
+    color: var(--text);
+  }
+  .skills__meta {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .skills__level {
+    font-family: var(--font-mono);
+    font-size: 0.64rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.45rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+  }
+  .skills__level.is-expert {
+    color: var(--accent);
+    border-color: var(--accent-line);
+  }
+  .skills__years {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--text-faint);
+    white-space: nowrap;
+  }
+</style>

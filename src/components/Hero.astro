@@ -1,0 +1,179 @@
+---
+import { SITE } from '../data/site';
+---
+
+<section class="hero" id="top">
+  <div class="container hero__inner">
+    <p class="eyebrow reveal" style="--reveal-delay: 0.05s">
+      <span data-num="//"></span>AI Security · Platform Engineering · Federal AI
+    </p>
+
+    <h1 class="hero__name reveal" style="--reveal-delay: 0.12s">{SITE.name}</h1>
+
+    <p class="hero__tagline reveal" style="--reveal-delay: 0.2s">
+      Enterprise <span class="text-accent">AI Architect</span> &amp; Forward Deployed Engineer
+    </p>
+
+    <p class="hero__lede reveal" style="--reveal-delay: 0.28s">{SITE.valueProp}</p>
+
+    <div class="hero__cta reveal" style="--reveal-delay: 0.36s">
+      <a href="#work" class="btn btn--primary">View Work</a>
+      <div class="hero__social">
+        <a href={SITE.social.github} class="hero__icon" target="_blank" rel="noopener" aria-label="GitHub">
+          <i class="fab fa-github" aria-hidden="true"></i>
+        </a>
+        <a href={SITE.social.linkedin} class="hero__icon" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+        </a>
+        <a href={`mailto:${SITE.email}`} class="hero__icon" aria-label="Email">
+          <i class="fas fa-envelope" aria-hidden="true"></i>
+        </a>
+      </div>
+    </div>
+
+    <dl class="hero__stats reveal" style="--reveal-delay: 0.44s">
+      {
+        SITE.stats.map((s) => (
+          <div class="hero__stat">
+            <dt class="hero__stat-value">{s.value}</dt>
+            <dd class="hero__stat-label">{s.label}</dd>
+          </div>
+        ))
+      }
+    </dl>
+
+    <div class="hero__proof reveal" style="--reveal-delay: 0.52s">
+      <span class="hero__proof-label mono">Shipped at</span>
+      <ul class="hero__proof-list">
+        {SITE.shippedAt.map((org) => <li>{org}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: 7rem 4rem;
+  }
+  .hero__inner {
+    max-width: 56rem;
+  }
+
+  .hero__name {
+    font-size: var(--step-4);
+    letter-spacing: -0.04em;
+    margin-top: 1.1rem;
+    background: linear-gradient(180deg, var(--text), hsl(214 14% 72%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero__tagline {
+    font-size: var(--step-2);
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__lede {
+    font-size: var(--step-1);
+    color: var(--text-muted);
+    max-width: 40rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero__cta {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+  }
+  .hero__social {
+    display: flex;
+    gap: 0.6rem;
+  }
+  .hero__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.7rem;
+    height: 2.7rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    transition:
+      color var(--transition),
+      border-color var(--transition),
+      transform var(--transition);
+  }
+  .hero__icon:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .hero__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .hero__stat-value {
+    font-family: var(--font-mono);
+    font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.6rem);
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .hero__stat-label {
+    color: var(--text-faint);
+    font-size: 0.86rem;
+    margin-top: 0.5rem;
+  }
+
+  .hero__proof {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .hero__proof-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .hero__proof-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+  }
+  .hero__proof-list li {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+    position: relative;
+  }
+  .hero__proof-list li + li::before {
+    content: '·';
+    position: absolute;
+    left: -0.85rem;
+    color: var(--text-faint);
+  }
+
+  @media (max-width: 520px) {
+    .hero__stats {
+      gap: 1.5rem 2rem;
+    }
+  }
+</style>

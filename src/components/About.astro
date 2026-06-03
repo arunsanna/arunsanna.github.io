@@ -1,0 +1,167 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../../assets/Arun.png';
+
+const highlights = [
+  {
+    icon: 'fas fa-building',
+    title: 'Enterprise Experience',
+    body: 'Led DoD Platform One & CMS modernization, serving 2M+ warfighters and millions of beneficiaries.',
+  },
+  {
+    icon: 'fas fa-users',
+    title: 'Team Leadership',
+    body: 'Scaled an organization from 15 to 115 people and built tiger teams for rapid delivery.',
+  },
+  {
+    icon: 'fas fa-bullseye',
+    title: 'Mission-Critical Impact',
+    body: 'Architected systems for 124,334 evacuations with zero incidents in 72 hours.',
+  },
+  {
+    icon: 'fas fa-chart-line',
+    title: 'Proven Results',
+    body: '40% cost reduction, 81-day vs. 2-year migrations, 60% less manual work.',
+  },
+  {
+    icon: 'fas fa-brain',
+    title: 'AI Innovation',
+    body: 'Pioneered GenAI adoption, built RAG systems, cut proposal time by 40%.',
+  },
+  {
+    icon: 'fas fa-shield-halved',
+    title: 'Security & Compliance',
+    body: 'FedRAMP High, zero security incidents, continuous-ATO implementation.',
+  },
+];
+---
+
+<section class="section section--tint" id="about">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow" data-num="01">About</p>
+      <h2>Architecting the future, at scale</h2>
+      <p>
+        I turn complex enterprise challenges into elegant, scalable, secure systems — from
+        legacy modernization to AI-native platforms for government and frontier teams.
+      </p>
+    </div>
+
+    <div class="about__grid">
+      <div class="about__bio">
+        <Image
+          src={portrait}
+          alt="Arun Sanna"
+          class="about__portrait"
+          widths={[280, 420, 560]}
+          sizes="(max-width: 720px) 60vw, 320px"
+          loading="lazy"
+        />
+        <p>
+          I'm <strong>Arun Sanna</strong> — an enterprise architect who thrives on transforming
+          complex challenges into scalable solutions. With a track record leading mission-critical
+          programs for government agencies and enterprises, I bring deep expertise in cloud
+          migrations, DevSecOps, and AI/ML integration.
+        </p>
+        <p>
+          From orchestrating evacuation-support systems during Operation Allies Refuge to
+          modernizing healthcare platforms serving millions, I've consistently delivered results
+          that matter — pairing technical excellence with strategic thinking.
+        </p>
+        <p>
+          I believe in automation, security-first design, and the transformative potential of AI to
+          augment human capability across enterprise workflows.
+        </p>
+      </div>
+
+      <ul class="about__cards">
+        {
+          highlights.map((h) => (
+            <li class="card about__card">
+              <i class={`${h.icon} about__card-icon`} aria-hidden="true" />
+              <h3 class="about__card-title">{h.title}</h3>
+              <p class="about__card-body">{h.body}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: clamp(2rem, 1rem + 4vw, 4rem);
+    align-items: start;
+  }
+
+  .about__portrait {
+    width: 100%;
+    max-width: 320px;
+    aspect-ratio: 1;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-strong);
+    margin-bottom: 1.75rem;
+    filter: grayscale(0.15) contrast(1.02);
+  }
+
+  .about__bio p {
+    color: var(--text-muted);
+    margin-bottom: 1.1rem;
+  }
+  .about__bio strong {
+    color: var(--text);
+  }
+
+  .about__cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    transition:
+      border-color var(--transition),
+      transform var(--transition),
+      background var(--transition);
+  }
+  .about__card:hover {
+    border-color: var(--accent-line);
+    background: var(--surface-2);
+    transform: translateY(-3px);
+  }
+  .about__card-icon {
+    color: var(--accent);
+    font-size: 1.3rem;
+  }
+  .about__card-title {
+    font-size: 1.02rem;
+    margin-top: 0.8rem;
+  }
+  .about__card-body {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.45rem;
+  }
+
+  @media (max-width: 860px) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+    .about__portrait {
+      max-width: 220px;
+    }
+  }
+  @media (max-width: 460px) {
+    .about__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

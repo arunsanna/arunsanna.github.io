@@ -1,0 +1,131 @@
+---
+// Data-driven certs (was hardcoded HTML). Now a single list to maintain.
+const certs = [
+  { icon: 'fab fa-aws', title: 'AWS Solutions Architect', level: 'Professional', provider: 'Amazon Web Services' },
+  { icon: 'fab fa-microsoft', title: 'Azure Solutions Architect', level: 'Expert', provider: 'Microsoft Azure' },
+  { icon: 'fab fa-microsoft', title: 'Azure Administrator', level: 'Associate', provider: 'Microsoft Azure' },
+  { icon: 'fab fa-google', title: 'Professional Cloud Architect', level: 'Professional', provider: 'Google Cloud' },
+  { icon: 'fas fa-dharmachakra', title: 'Kubernetes Administrator', level: 'CKA', provider: 'CNCF' },
+  { icon: 'fas fa-microchip', title: 'AI Infrastructure & Operations', level: 'Certified Specialist', provider: 'NVIDIA' },
+  { icon: 'fas fa-server', title: 'WebSphere Developer', level: 'Associate Developer', provider: 'IBM' },
+  { icon: 'fas fa-code', title: 'Rational Application Developer', level: 'WebSphere V6.0', provider: 'IBM' },
+  { icon: 'fas fa-database', title: 'DB2 Database Fundamentals', level: 'Academic Associate', provider: 'IBM' },
+  { icon: 'fab fa-microsoft', title: 'Technology Specialist', level: 'MCTS', provider: 'Microsoft' },
+];
+---
+
+<section class="section" id="certifications">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow" data-num="05">Certifications</p>
+      <h2>Credentials &amp; memberships</h2>
+    </div>
+
+    <ul class="certs__grid">
+      {
+        certs.map((c) => (
+          <li class="certs__card">
+            <i class={`${c.icon} certs__icon`} aria-hidden="true" />
+            <h3 class="certs__title">{c.title}</h3>
+            <p class="certs__level">{c.level}</p>
+            <p class="certs__provider">{c.provider}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="certs__membership">
+      <i class="fas fa-users-gear certs__membership-icon" aria-hidden="true"></i>
+      <div>
+        <h3 class="certs__membership-title">IASA Global Chief Architect Forum</h3>
+        <p class="certs__membership-role mono">Member</p>
+        <p class="certs__membership-desc">
+          An exclusive global community of enterprise architects driving innovation and best
+          practices in technology leadership.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .certs__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+    gap: 1rem;
+  }
+  .certs__card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+    text-align: center;
+    transition:
+      border-color var(--transition),
+      transform var(--transition);
+  }
+  .certs__card:hover {
+    border-color: var(--accent-line);
+    transform: translateY(-3px);
+  }
+  .certs__icon {
+    font-size: 1.9rem;
+    color: var(--accent);
+  }
+  .certs__title {
+    font-size: 0.98rem;
+    margin-top: 0.85rem;
+  }
+  .certs__level {
+    color: var(--accent);
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    margin-top: 0.4rem;
+  }
+  .certs__provider {
+    color: var(--text-faint);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .certs__membership {
+    display: flex;
+    gap: 1.1rem;
+    align-items: center;
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+  }
+  .certs__membership-icon {
+    flex: none;
+    font-size: 1.6rem;
+    color: var(--accent);
+    width: 3rem;
+    height: 3rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+    background: var(--accent-ghost);
+  }
+  .certs__membership-title {
+    font-size: 1.05rem;
+  }
+  .certs__membership-role {
+    color: var(--text-faint);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 0.2rem;
+  }
+  .certs__membership-desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-top: 0.5rem;
+    max-width: 48rem;
+  }
+</style>

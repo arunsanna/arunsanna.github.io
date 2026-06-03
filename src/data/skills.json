@@ -1,0 +1,319 @@
+{
+  "categories": [
+    {
+      "id": "architecture",
+      "title": "Core Technical Architecture",
+      "subtitle": "Enterprise Design & Strategy",
+      "icon": "fas fa-drafting-compass",
+      "skills": [
+        {
+          "name": "Enterprise Architecture & Design Patterns",
+          "level": "Expert",
+          "years": "10+ yrs"
+        },
+        {
+          "name": "Event-Driven Architecture",
+          "level": "Expert",
+          "years": "7+ yrs"
+        },
+        {
+          "name": "Cloud-Native & Serverless Architecture",
+          "level": "Expert",
+          "years": "8+ yrs"
+        },
+        {
+          "name": "Microservices & Containerization",
+          "level": "Expert",
+          "years": "7+ yrs"
+        },
+        {
+          "name": "Zero Trust Security Architecture",
+          "level": "Expert",
+          "years": "6+ yrs"
+        },
+        {
+          "name": "Information Governance & Compliance",
+          "level": "Expert",
+          "years": "8+ yrs"
+        },
+        {
+          "name": "Digital Transformation",
+          "level": "Expert",
+          "years": "8+ yrs"
+        }
+      ]
+    },
+    {
+      "id": "fullstack",
+      "title": "Full Stack Development",
+      "subtitle": "End-to-End Application Development",
+      "icon": "fas fa-layer-group",
+      "skills": [
+        {
+          "name": "Frontend (React, Angular, Vue)",
+          "level": "Advanced",
+          "years": "4+ yrs"
+        },
+        {
+          "name": "Backend (Node.js, Flask)",
+          "level": "Advanced",
+          "years": "6+ yrs"
+        },
+        {
+          "name": "Modern Web (HTML5, CSS3, TypeScript)",
+          "level": "Advanced",
+          "years": "5+ yrs"
+        },
+        {
+          "name": "API (REST & GraphQL)",
+          "level": "Advanced",
+          "years": "6+ yrs"
+        },
+        {
+          "name": "Authentication (OAuth2, JWT, SAML, OIDC)",
+          "level": "Expert",
+          "years": "8+ yrs"
+        },
+        {
+          "name": "Message Queues & Event Streams",
+          "level": "Advanced",
+          "years": "7+ yrs"
+        }
+      ]
+    },
+    {
+      "id": "cloud",
+      "title": "Cloud Platforms & Infrastructure",
+      "subtitle": "Multi-Cloud & Infrastructure as Code",
+      "icon": "fas fa-cloud",
+      "skills": [
+        { "name": "AWS (All Services)", "level": "Expert", "years": "10+ yrs" },
+        {
+          "name": "Azure (All Services)",
+          "level": "Expert",
+          "years": "9+ yrs"
+        },
+        {
+          "name": "Google Cloud Platform",
+          "level": "Expert",
+          "years": "8+ yrs"
+        },
+        {
+          "name": "Kubernetes (EKS, AKS, GKE, RKE2, OpenShift, K3s)",
+          "level": "Expert",
+          "years": "7+ yrs"
+        },
+        {
+          "name": "IaC (Terraform, Terragrunt, Pulumi, Crossplane, OpenTofu)",
+          "level": "Expert",
+          "years": "9+ yrs"
+        },
+        {
+          "name": "Hybrid & Multi-Cloud Strategies",
+          "level": "Expert",
+          "years": "8+ yrs"
+        }
+      ]
+    },
+    {
+      "id": "networking",
+      "title": "Networking & Security",
+      "subtitle": "Network Architecture & Security Infrastructure",
+      "icon": "fas fa-network-wired",
+      "skills": [
+        {
+          "name": "VPC Design & Network Architecture",
+          "level": "Expert",
+          "years": "8+ yrs"
+        },
+        {
+          "name": "Load Balancers & CDN Configuration",
+          "level": "Expert",
+          "years": "7+ yrs"
+        },
+        {
+          "name": "DNS Management & VPN Configuration",
+          "level": "Expert",
+          "years": "9+ yrs"
+        },
+        {
+          "name": "Network Security Groups & WAF",
+          "level": "Expert",
+          "years": "6+ yrs"
+        },
+        {
+          "name": "SSL/TLS Management & API Gateway",
+          "level": "Expert",
+          "years": "7+ yrs"
+        },
+        {
+          "name": "Service Mesh Security",
+          "level": "Expert",
+          "years": "4+ yrs"
+        }
+      ]
+    },
+    {
+      "id": "devops",
+      "title": "DevSecOps & Automation",
+      "subtitle": "CI/CD, Security Integration & GitOps",
+      "icon": "fas fa-cogs",
+      "skills": [
+        {
+          "name": "CI/CD (Jenkins, GitLab CI, GitHub Actions)",
+          "level": "Expert",
+          "years": "10+ yrs"
+        },
+        {
+          "name": "Container Orchestration (Kubernetes, Docker, Helm)",
+          "level": "Expert",
+          "years": "8+ yrs"
+        },
+        {
+          "name": "Security Integration (SAST, DAST, SBOM, Secrets Scanning)",
+          "level": "Expert",
+          "years": "7+ yrs"
+        },
+        {
+          "name": "Compliance Automation (NIST, FedRAMP, FISMA)",
+          "level": "Expert",
+          "years": "6+ yrs"
+        },
+        {
+          "name": "GitOps (ArgoCD, Flux)",
+          "level": "Expert",
+          "years": "5+ yrs"
+        }
+      ]
+    },
+    {
+      "id": "monitoring",
+      "title": "Monitoring & Observability",
+      "subtitle": "Metrics, Logging & Distributed Tracing",
+      "icon": "fas fa-chart-line",
+      "skills": [
+        {
+          "name": "Prometheus & Grafana",
+          "level": "Expert",
+          "years": "6+ yrs"
+        },
+        {
+          "name": "ELK Stack (Elasticsearch, Logstash, Kibana)",
+          "level": "Expert",
+          "years": "9+ yrs"
+        },
+        {
+          "name": "Fluentd/FluentBit & Jaeger",
+          "level": "Expert",
+          "years": "5+ yrs"
+        },
+        {
+          "name": "AWS CloudWatch & Azure Monitor",
+          "level": "Expert",
+          "years": "8+ yrs"
+        },
+        {
+          "name": "Google Cloud Monitoring",
+          "level": "Expert",
+          "years": "6+ yrs"
+        },
+        { "name": "Datadog & New Relic", "level": "Expert", "years": "6+ yrs" }
+      ]
+    },
+    {
+      "id": "ai",
+      "title": "AI/ML & Emerging Technologies",
+      "subtitle": "LLMs, AI Infrastructure & Automation",
+      "icon": "fas fa-brain",
+      "skills": [
+        {
+          "name": "LLMs (LLaMA, OpenAI, Claude, Gemini, Vertex AI, Bedrock)",
+          "level": "Expert",
+          "years": "3+ yrs"
+        },
+        {
+          "name": "ML Frameworks (Kubeflow, MLflow, Feast)",
+          "level": "Advanced",
+          "years": "4+ yrs"
+        },
+        {
+          "name": "AI Platform (AutoGen, LangChain, LangGraph, KServe, MCP, A2A)",
+          "level": "Advanced",
+          "years": "2+ yrs"
+        },
+        {
+          "name": "AI Infrastructure (Terraform + GPU, K8s + GPU)",
+          "level": "Expert",
+          "years": "5+ yrs"
+        },
+        {
+          "name": "ML Infrastructure (SageMaker, Vertex AI, Azure ML)",
+          "level": "Advanced",
+          "years": "5+ yrs"
+        },
+        {
+          "name": "AI-driven Automation & Analytics",
+          "level": "Advanced",
+          "years": "4+ yrs"
+        }
+      ]
+    },
+    {
+      "id": "programming",
+      "title": "Programming & Scripting",
+      "subtitle": "Languages & Infrastructure as Code",
+      "icon": "fas fa-code",
+      "skills": [
+        { "name": "Python", "level": "Expert", "years": "10+ yrs" },
+        {
+          "name": "Bash/Shell & PowerShell",
+          "level": "Expert",
+          "years": "12+ yrs"
+        },
+        {
+          "name": "JavaScript/TypeScript",
+          "level": "Expert",
+          "years": "8+ yrs"
+        },
+        { "name": "SQL", "level": "Expert", "years": "10+ yrs" },
+        { "name": "Terraform", "level": "Expert", "years": "8+ yrs" },
+        { "name": "Go (Golang)", "level": "Expert", "years": "5+ yrs" },
+        { "name": "Ruby & Groovy", "level": "Expert", "years": "7+ yrs" },
+        { "name": "YAML & JSON", "level": "Expert", "years": "10+ yrs" }
+      ]
+    },
+    {
+      "id": "federal",
+      "title": "Federal & Defense Specialization",
+      "subtitle": "Compliance Frameworks & Security Standards",
+      "icon": "fas fa-flag-usa",
+      "skills": [
+        {
+          "name": "FedRAMP & NIST 800-53 Controls",
+          "level": "Advanced",
+          "years": "7+ yrs"
+        },
+        {
+          "name": "Authority to Operate (ATO) & Continuous ATO",
+          "level": "Advanced",
+          "years": "6+ yrs"
+        },
+        {
+          "name": "Risk Management Framework (RMF) & FISMA",
+          "level": "Advanced",
+          "years": "8+ yrs"
+        },
+        {
+          "name": "DoD STIG & Zero Trust Implementation",
+          "level": "Advanced",
+          "years": "5+ yrs"
+        },
+        {
+          "name": "SOC 2 & ISO 27001 Compliance",
+          "level": "Advanced",
+          "years": "6+ yrs"
+        }
+      ]
+    }
+  ]
+}

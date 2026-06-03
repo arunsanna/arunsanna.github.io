@@ -1,0 +1,293 @@
+---
+const roles = [
+  {
+    company: 'Precise Software Solutions, Inc.',
+    period: 'Mar 2025 — Present',
+    title: 'Enterprise Solution Architect IV',
+    summary:
+      'Leading DevSecOps and hybrid-cloud strategy for federal agencies including FDA, CMS, HHS, and USDA.',
+    bullets: [
+      'Led technical proposals securing the $44M CMS Hybrid Cloud PEO contract, beating 4 competitors',
+      'Own program-wide technology implementation across DevSecOps and cloud practices',
+      'Design multi-discipline solution architecture and scalable, resilient cloud security services',
+    ],
+  },
+  {
+    company: 'VivSoft Technologies LLC',
+    period: 'Jun 2019 — Mar 2025',
+    title: 'Chief Architect',
+    summary:
+      "Top contributor to DoD's largest Platform-as-a-Service; drove company growth from 35 to 115 employees.",
+    bullets: [
+      'Won SECAF "Project of the Year" for Platform One PartyBus (2024)',
+      'Secured $15.6M in federal contracts through technical leadership',
+      'Led Operation Allies Refuge platform deployment supporting 120K+ lives',
+      'Achieved 60% reduction in workflow turnaround via AI automation',
+    ],
+  },
+  {
+    company: 'Hitachi Vantara',
+    period: '2018 — 2019',
+    title: 'Sr. DevSecOps & Data Science Engineer',
+    summary: 'Secure cloud infrastructure and data analytics for defense clients.',
+    bullets: [
+      'First DISA SCCA framework deployment on AWS GovCloud',
+      'Built ML/AI infrastructure on Kubernetes for predictive analytics',
+      'Led Azure migration for critical defense systems',
+    ],
+  },
+  {
+    company: 'REAN Cloud',
+    period: 'Mar 2015 — Oct 2018',
+    title: 'DevSecOps & Data Science Engineer',
+    summary: 'Automated infrastructure provisioning, delivering 30–40% cost savings for enterprise clients.',
+    bullets: [
+      'Named Employee of the Year (2017)',
+      'Mentored and trained 200+ engineers in DevOps',
+      'Accelerated releases from infrequent manual deploys to weekly',
+    ],
+  },
+];
+
+const education = [
+  {
+    icon: 'fas fa-graduation-cap',
+    degree: "Master's in Electrical Engineering",
+    detail: 'Computers and Networks',
+    school: 'California State University, Los Angeles',
+  },
+  {
+    icon: 'fas fa-university',
+    degree: "Bachelor's in Information Technology",
+    detail: '',
+    school: 'Jawaharlal Nehru Technological University',
+  },
+  {
+    icon: 'fas fa-certificate',
+    degree: 'Diploma in Electronics & Communication Engineering',
+    detail: '',
+    school: 'Government Polytechnic College',
+  },
+];
+
+const awards = [
+  { icon: 'fas fa-trophy', title: 'Project of the Year', body: 'SECAF award for Platform One PartyBus (2024)' },
+  { icon: 'fas fa-star', title: 'Employee of the Year 2017', body: 'REAN Cloud — performance & innovation' },
+  { icon: 'fas fa-flag-usa', title: 'Platform One Selection', body: 'Only non-US citizen selected on merit into the USAF Platform One program' },
+  { icon: 'fas fa-heart', title: 'Operation Allies Refuge', body: 'Mission-critical platforms for the largest evacuation in U.S. history' },
+  { icon: 'fas fa-users', title: 'Organizational Growth Leader', body: 'Drove company growth from 35 to 115 employees' },
+  { icon: 'fas fa-globe', title: 'IASA Chief Architect Forum', body: 'Member of the global Chief Architect Forum' },
+];
+---
+
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow" data-num="04">Experience</p>
+      <h2>Education &amp; experience</h2>
+      <p>A decade of impact across defense, healthcare, and enterprise technology.</p>
+    </div>
+
+    <div class="xp__grid">
+      <div class="xp__main">
+        <h3 class="xp__subhead">Work</h3>
+        <ol class="xp__timeline">
+          {
+            roles.map((r) => (
+              <li class="xp__item">
+                <div class="xp__dot" aria-hidden="true" />
+                <div class="xp__head">
+                  <h4 class="xp__company">{r.company}</h4>
+                  <span class="xp__period">{r.period}</span>
+                </div>
+                <p class="xp__role">{r.title}</p>
+                <p class="xp__summary">{r.summary}</p>
+                <ul class="xp__bullets">
+                  {r.bullets.map((b) => (
+                    <li>{b}</li>
+                  ))}
+                </ul>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+
+      <aside class="xp__side">
+        <div>
+          <h3 class="xp__subhead">Education</h3>
+          <ul class="xp__edu">
+            {
+              education.map((e) => (
+                <li class="xp__edu-item">
+                  <i class={`${e.icon} xp__edu-icon`} aria-hidden="true" />
+                  <div>
+                    <p class="xp__degree">{e.degree}</p>
+                    {e.detail && <p class="xp__edu-detail">{e.detail}</p>}
+                    <p class="xp__school">{e.school}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div>
+          <h3 class="xp__subhead">Leadership &amp; awards</h3>
+          <ul class="xp__awards">
+            {
+              awards.map((a) => (
+                <li class="xp__award">
+                  <i class={`${a.icon} xp__award-icon`} aria-hidden="true" />
+                  <div>
+                    <p class="xp__award-title">{a.title}</p>
+                    <p class="xp__award-body">{a.body}</p>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<style>
+  .xp__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    gap: clamp(2rem, 1rem + 4vw, 4rem);
+    align-items: start;
+  }
+  .xp__subhead {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin-bottom: 1.5rem;
+  }
+
+  .xp__timeline {
+    position: relative;
+    padding-left: 1.75rem;
+  }
+  .xp__timeline::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 6px;
+    bottom: 6px;
+    width: 1px;
+    background: var(--border-strong);
+  }
+  .xp__item {
+    position: relative;
+    padding-bottom: 2.25rem;
+  }
+  .xp__item:last-child {
+    padding-bottom: 0;
+  }
+  .xp__dot {
+    position: absolute;
+    left: -1.75rem;
+    top: 4px;
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--bg);
+  }
+  .xp__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.3rem 1rem;
+  }
+  .xp__company {
+    font-size: 1.1rem;
+  }
+  .xp__period {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    color: var(--text-faint);
+  }
+  .xp__role {
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 0.92rem;
+    margin-top: 0.3rem;
+  }
+  .xp__summary {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+  }
+  .xp__bullets {
+    margin-top: 0.7rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .xp__bullets li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--text-muted);
+    font-size: 0.86rem;
+  }
+  .xp__bullets li::before {
+    content: '▸';
+    position: absolute;
+    left: 0;
+    color: var(--accent-dim);
+  }
+
+  .xp__side {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+  .xp__edu,
+  .xp__awards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .xp__edu-item,
+  .xp__award {
+    display: flex;
+    gap: 0.85rem;
+  }
+  .xp__edu-icon,
+  .xp__award-icon {
+    flex: none;
+    color: var(--accent);
+    font-size: 1rem;
+    margin-top: 0.2rem;
+    width: 1.3rem;
+    text-align: center;
+  }
+  .xp__degree,
+  .xp__award-title {
+    font-size: 0.94rem;
+    font-weight: 600;
+  }
+  .xp__edu-detail {
+    color: var(--text-muted);
+    font-size: 0.82rem;
+  }
+  .xp__school,
+  .xp__award-body {
+    color: var(--text-faint);
+    font-size: 0.84rem;
+    margin-top: 0.1rem;
+  }
+
+  @media (max-width: 860px) {
+    .xp__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
