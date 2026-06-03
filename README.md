@@ -127,10 +127,10 @@ Edit `assets/projects.json`:
 See [`docs/forge-migration.md`](docs/forge-migration.md).
 
 ```bash
-docker build -t registry.arunlabs.com/arunsanna-site:dev .
-kubectl --context forge apply -k deploy/forge/arunsanna-site
-kubectl --context forge -n arunsanna-site rollout status deployment/arunsanna-site
+scripts/release-forge-private.sh
 ```
+
+Builds must run on Forge, not on this local Apple Silicon machine. The release script syncs source to the x86_64 Forge host, builds and pushes the image there, applies the k3s manifests, and pins the deployment by digest.
 
 Do not cut over `arunsanna.com` DNS until the Forge public gateway has a valid `arunsanna.com` TLS secret and public ingress has been smoke-tested.
 
