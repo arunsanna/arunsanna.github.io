@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 // A single project card, rendered statically at build time (no client fetch).
 // Astro auto-escapes all interpolated values, so the XSS-safety of the old
 // hand-rolled templating is preserved for free.
@@ -40,7 +42,7 @@ const tech = project.tech ?? [];
   data-tags={tags}
 >
   <header class="project__head">
-    <span class="project__icon" aria-hidden="true"><i class={project.icon}></i></span>
+    <span class="project__icon" aria-hidden="true"><Icon name={project.icon} /></span>
     <div class="project__heading">
       <h3 class="project__title">{project.title}</h3>
       <div class="project__meta">
@@ -60,7 +62,7 @@ const tech = project.tech ?? [];
           rel="noopener"
           aria-label={`${project.title} on GitHub`}
         >
-          <i class="fab fa-github" aria-hidden="true" />
+          <Icon name="github" />
         </a>
       )
     }
@@ -148,6 +150,10 @@ const tech = project.tech ?? [];
     color: var(--accent);
     font-size: 1.15rem;
   }
+  .project__icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
   .project__heading {
     flex: 1;
     min-width: 0;
@@ -170,10 +176,13 @@ const tech = project.tech ?? [];
   .project__gh {
     flex: none;
     color: var(--text-muted);
-    font-size: 1.3rem;
     transition:
       color var(--transition),
       transform var(--transition);
+  }
+  .project__gh svg {
+    width: 1.3rem;
+    height: 1.3rem;
   }
   .project__gh:hover {
     color: var(--accent);

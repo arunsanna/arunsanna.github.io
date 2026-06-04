@@ -4,6 +4,7 @@ import fs from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import Fastify from 'fastify';
 import fastifyStatic from '@fastify/static';
+import fastifyCompress from '@fastify/compress';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -16,6 +17,11 @@ const distDir = path.join(__dirname, 'dist');
 const projectsFile = path.join(__dirname, 'assets', 'projects.json');
 
 const app = Fastify({ logger: true });
+
+await app.register(fastifyCompress, {
+  global: true,
+  encodings: ['br', 'gzip'],
+});
 
 if (!existsSync(distDir)) {
   app.log.warn(`dist/ not found at ${distDir} — run "npm run build" (Astro) before starting.`);
@@ -32,8 +38,8 @@ const securityHeaders = {
     "frame-ancestors 'none'",
     "form-action 'self'",
     "img-src 'self' data:",
-    "font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:",
-    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com",
+    "font-src 'self' https://fonts.gstatic.com data:",
+    "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
     "script-src 'self'",
     "connect-src 'self'",
     'upgrade-insecure-requests',

@@ -16,7 +16,7 @@
   /* --- Text hierarchy --- */
   --text: hsl(210 30% 96%);
   --text-muted: hsl(214 14% 72%);
-  --text-faint: hsl(214 11% 52%);
+  --text-faint: hsl(214 12% 60%);
 
   /* --- Accent: cyan, the single brand token (kept, sharpened) --- */
   --accent: hsl(188 95% 55%);
@@ -125,6 +125,11 @@ img {
   max-width: 100%;
   height: auto;
   display: block;
+}
+
+svg {
+  display: inline-block;
+  flex: none;
 }
 
 ul {

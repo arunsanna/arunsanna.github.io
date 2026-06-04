@@ -1,6 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import portrait from '../../assets/Arun.png';
+import Icon from './Icon.astro';
 
 const highlights = [
   {
@@ -78,7 +79,7 @@ const highlights = [
         {
           highlights.map((h) => (
             <li class="card about__card">
-              <i class={`${h.icon} about__card-icon`} aria-hidden="true" />
+              <Icon name={h.icon} class="about__card-icon" />
               <h3 class="about__card-title">{h.title}</h3>
               <p class="about__card-body">{h.body}</p>
             </li>
@@ -139,7 +140,8 @@ const highlights = [
   }
   .about__card-icon {
     color: var(--accent);
-    font-size: 1.3rem;
+    width: 1.3rem;
+    height: 1.3rem;
   }
   .about__card-title {
     font-size: 1.02rem;

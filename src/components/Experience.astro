@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 const roles = [
   {
     company: 'Precise Software Solutions, Inc.',
@@ -120,7 +122,7 @@ const awards = [
             {
               education.map((e) => (
                 <li class="xp__edu-item">
-                  <i class={`${e.icon} xp__edu-icon`} aria-hidden="true" />
+                  <Icon name={e.icon} class="xp__edu-icon" />
                   <div>
                     <p class="xp__degree">{e.degree}</p>
                     {e.detail && <p class="xp__edu-detail">{e.detail}</p>}
@@ -138,7 +140,7 @@ const awards = [
             {
               awards.map((a) => (
                 <li class="xp__award">
-                  <i class={`${a.icon} xp__award-icon`} aria-hidden="true" />
+                  <Icon name={a.icon} class="xp__award-icon" />
                   <div>
                     <p class="xp__award-title">{a.title}</p>
                     <p class="xp__award-body">{a.body}</p>
@@ -264,10 +266,9 @@ const awards = [
   .xp__award-icon {
     flex: none;
     color: var(--accent);
-    font-size: 1rem;
     margin-top: 0.2rem;
     width: 1.3rem;
-    text-align: center;
+    height: 1.3rem;
   }
   .xp__degree,
   .xp__award-title {

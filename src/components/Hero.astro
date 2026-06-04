@@ -1,53 +1,72 @@
 ---
 import { SITE } from '../data/site';
+import Icon from './Icon.astro';
 ---
 
 <section class="hero" id="top">
   <div class="container hero__inner">
-    <p class="eyebrow reveal" style="--reveal-delay: 0.05s">
-      <span data-num="//"></span>AI Security · Platform Engineering · Federal AI
-    </p>
+    <div class="hero__copy">
+      <p class="eyebrow reveal" style="--reveal-delay: 0.05s">
+        <span data-num="//"></span>AI Security · Platform Engineering · Federal AI
+      </p>
 
-    <h1 class="hero__name reveal" style="--reveal-delay: 0.12s">{SITE.name}</h1>
+      <h1 class="hero__name reveal" style="--reveal-delay: 0.12s">{SITE.name}</h1>
 
-    <p class="hero__tagline reveal" style="--reveal-delay: 0.2s">
-      Enterprise <span class="text-accent">AI Architect</span> &amp; Forward Deployed Engineer
-    </p>
+      <p class="hero__tagline reveal" style="--reveal-delay: 0.2s">
+        Enterprise <span class="text-accent">AI Architect</span> &amp; Forward Deployed Engineer
+      </p>
 
-    <p class="hero__lede reveal" style="--reveal-delay: 0.28s">{SITE.valueProp}</p>
+      <p class="hero__lede reveal" style="--reveal-delay: 0.28s">{SITE.valueProp}</p>
 
-    <div class="hero__cta reveal" style="--reveal-delay: 0.36s">
-      <a href="#work" class="btn btn--primary">View Work</a>
-      <div class="hero__social">
-        <a href={SITE.social.github} class="hero__icon" target="_blank" rel="noopener" aria-label="GitHub">
-          <i class="fab fa-github" aria-hidden="true"></i>
+      <div class="hero__cta reveal" style="--reveal-delay: 0.36s">
+        <a href="#work" class="btn btn--primary">View Work</a>
+        <a href={SITE.resume} class="btn btn--ghost" target="_blank" rel="noopener">
+          <Icon name="resume" class="btn__icon" /> Download Resume
         </a>
-        <a href={SITE.social.linkedin} class="hero__icon" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <i class="fab fa-linkedin-in" aria-hidden="true"></i>
-        </a>
-        <a href={`mailto:${SITE.email}`} class="hero__icon" aria-label="Email">
-          <i class="fas fa-envelope" aria-hidden="true"></i>
-        </a>
+        <div class="hero__social">
+          <a href={SITE.social.github} class="hero__icon" target="_blank" rel="noopener" aria-label="GitHub">
+            <Icon name="github" />
+          </a>
+          <a href={SITE.social.linkedin} class="hero__icon" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <Icon name="linkedin" />
+          </a>
+          <a href={`mailto:${SITE.email}`} class="hero__icon" aria-label="Email">
+            <Icon name="mail" />
+          </a>
+        </div>
+      </div>
+
+      <dl class="hero__stats reveal" style="--reveal-delay: 0.44s">
+        {
+          SITE.stats.map((s) => (
+            <div class="hero__stat">
+              <dt class="hero__stat-value">{s.value}</dt>
+              <dd class="hero__stat-label">{s.label}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <div class="hero__proof reveal" style="--reveal-delay: 0.52s">
+        <span class="hero__proof-label mono">Shipped at</span>
+        <ul class="hero__proof-list">
+          {SITE.shippedAt.map((org) => <li>{org}</li>)}
+        </ul>
       </div>
     </div>
 
-    <dl class="hero__stats reveal" style="--reveal-delay: 0.44s">
-      {
-        SITE.stats.map((s) => (
-          <div class="hero__stat">
-            <dt class="hero__stat-value">{s.value}</dt>
-            <dd class="hero__stat-label">{s.label}</dd>
-          </div>
-        ))
-      }
-    </dl>
-
-    <div class="hero__proof reveal" style="--reveal-delay: 0.52s">
-      <span class="hero__proof-label mono">Shipped at</span>
-      <ul class="hero__proof-list">
-        {SITE.shippedAt.map((org) => <li>{org}</li>)}
+    <aside class="hero__panel reveal" style="--reveal-delay: 0.5s" aria-label="Selected impact and current focus">
+      <p class="hero__panel-kicker mono">Selected impact</p>
+      <ul class="hero__impact-list">
+        {SITE.impactProof.map((item) => <li>{item}</li>)}
       </ul>
-    </div>
+      <div class="hero__focus">
+        <p class="hero__panel-kicker mono">Currently focused on</p>
+        <ul>
+          {SITE.currentFocus.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+    </aside>
   </div>
 </section>
 
@@ -59,6 +78,12 @@ import { SITE } from '../data/site';
     padding-block: 7rem 4rem;
   }
   .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.12fr) minmax(18rem, 0.72fr);
+    gap: clamp(2rem, 1.5rem + 3vw, 4rem);
+    align-items: center;
+  }
+  .hero__copy {
     max-width: 56rem;
   }
 
@@ -98,6 +123,10 @@ import { SITE } from '../data/site';
     display: flex;
     gap: 0.6rem;
   }
+  .btn__icon {
+    width: 1rem;
+    height: 1rem;
+  }
   .hero__icon {
     display: inline-flex;
     align-items: center;
@@ -108,6 +137,10 @@ import { SITE } from '../data/site';
     border-radius: var(--radius-sm);
     color: var(--text-muted);
     font-size: 1.05rem;
+  }
+  .hero__icon svg {
+    width: 1.1rem;
+    height: 1.1rem;
     transition:
       color var(--transition),
       border-color var(--transition),
@@ -135,8 +168,8 @@ import { SITE } from '../data/site';
     line-height: 1;
   }
   .hero__stat-label {
-    color: var(--text-faint);
-    font-size: 0.86rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
     margin-top: 0.5rem;
   }
 
@@ -151,7 +184,7 @@ import { SITE } from '../data/site';
     font-size: 0.72rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: var(--text-faint);
+    color: var(--text-muted);
   }
   .hero__proof-list {
     display: flex;
@@ -159,8 +192,8 @@ import { SITE } from '../data/site';
     gap: 0.5rem 1.5rem;
   }
   .hero__proof-list li {
-    color: var(--text-muted);
-    font-size: 0.92rem;
+    color: var(--text);
+    font-size: 0.95rem;
     font-weight: 500;
     position: relative;
   }
@@ -171,6 +204,58 @@ import { SITE } from '../data/site';
     color: var(--text-faint);
   }
 
+  .hero__panel {
+    padding: clamp(1.25rem, 0.8rem + 2vw, 1.8rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background:
+      linear-gradient(180deg, hsl(188 95% 55% / 0.08), transparent 38%),
+      var(--surface);
+    box-shadow: var(--shadow-2);
+  }
+  .hero__panel-kicker {
+    color: var(--accent);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+  .hero__impact-list,
+  .hero__focus ul {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-top: 1rem;
+  }
+  .hero__impact-list li,
+  .hero__focus li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+  }
+  .hero__impact-list li::before,
+  .hero__focus li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 0.38rem;
+    height: 0.38rem;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-ghost);
+  }
+  .hero__focus {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 900px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+    }
+  }
   @media (max-width: 520px) {
     .hero__stats {
       gap: 1.5rem 2rem;

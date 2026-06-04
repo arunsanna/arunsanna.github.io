@@ -1,4 +1,6 @@
 ---
+import Icon from './Icon.astro';
+
 // Data-driven certs (was hardcoded HTML). Now a single list to maintain.
 const certs = [
   { icon: 'fab fa-aws', title: 'AWS Solutions Architect', level: 'Professional', provider: 'Amazon Web Services' },
@@ -25,7 +27,7 @@ const certs = [
       {
         certs.map((c) => (
           <li class="certs__card">
-            <i class={`${c.icon} certs__icon`} aria-hidden="true" />
+            <Icon name={c.icon} class="certs__icon" />
             <h3 class="certs__title">{c.title}</h3>
             <p class="certs__level">{c.level}</p>
             <p class="certs__provider">{c.provider}</p>
@@ -35,7 +37,7 @@ const certs = [
     </ul>
 
     <div class="certs__membership">
-      <i class="fas fa-users-gear certs__membership-icon" aria-hidden="true"></i>
+      <span class="certs__membership-icon" aria-hidden="true"><Icon name="users" class="certs__membership-glyph" /></span>
       <div>
         <h3 class="certs__membership-title">IASA Global Chief Architect Forum</h3>
         <p class="certs__membership-role mono">Member</p>
@@ -69,7 +71,8 @@ const certs = [
     transform: translateY(-3px);
   }
   .certs__icon {
-    font-size: 1.9rem;
+    width: 1.9rem;
+    height: 1.9rem;
     color: var(--accent);
   }
   .certs__title {
@@ -102,7 +105,6 @@ const certs = [
   }
   .certs__membership-icon {
     flex: none;
-    font-size: 1.6rem;
     color: var(--accent);
     width: 3rem;
     height: 3rem;
@@ -111,6 +113,10 @@ const certs = [
     justify-content: center;
     border-radius: var(--radius-sm);
     background: var(--accent-ghost);
+  }
+  .certs__membership-icon svg {
+    width: 1.45rem;
+    height: 1.45rem;
   }
   .certs__membership-title {
     font-size: 1.05rem;

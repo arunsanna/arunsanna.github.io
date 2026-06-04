@@ -1,5 +1,6 @@
 ---
 import skills from '../data/skills.json';
+import Icon from './Icon.astro';
 ---
 
 <section class="section section--tint" id="skills">
@@ -16,7 +17,7 @@ import skills from '../data/skills.json';
           <article class="skills__cat">
             <header class="skills__cat-head">
               <span class="skills__cat-icon" aria-hidden="true">
-                <i class={cat.icon} />
+                <Icon name={cat.icon} />
               </span>
               <div>
                 <h3 class="skills__cat-title">{cat.title}</h3>

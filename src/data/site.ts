@@ -32,6 +32,16 @@ export const SITE = {
     "Hitachi Vantara",
     "REAN Cloud",
   ],
+  impactProof: [
+    "DoD Platform One: secure patterns supporting 400+ applications",
+    "Operation Allies Refuge: systems supporting 124,334 evacuations",
+    "CMS modernization: 90-day migration window with 40% cost reduction",
+  ],
+  currentFocus: [
+    "Secure AI and agent runtime infrastructure",
+    "Federal-grade platform engineering for AI systems",
+    "AI security evaluation, automation, and red-team workflows",
+  ],
 } as const;
 
 export type SiteStat = (typeof SITE.stats)[number];

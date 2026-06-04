@@ -1,11 +1,12 @@
 ---
 import data from '../../assets/projects.json';
 import ProjectCard from './ProjectCard.astro';
+import Icon from './Icon.astro';
 
 const TRACKS = [
   { id: 'professional', label: 'Professional', icon: 'fas fa-building' },
   { id: 'opensource', label: 'Open Source', icon: 'fab fa-github' },
-  { id: 'cooking', label: 'Cooking', icon: 'fas fa-flask' },
+  { id: 'cooking', label: 'Lab', icon: 'fas fa-flask' },
 ];
 
 // Acronym-aware label casing so tags read "AI" / "DevSecOps", not "Ai" / "Devsecops".
@@ -67,7 +68,7 @@ const tracks = TRACKS.map((t) => ({ ...t, ...organize(t.id) }));
               tabindex={i === 0 ? 0 : -1}
               data-tab={t.id}
             >
-              <i class={t.icon} aria-hidden="true" />
+              <Icon name={t.icon} class="projects__tab-icon" />
               <span>{t.label}</span>
               <span class="projects__count">{t.count}</span>
             </button>
@@ -108,7 +109,7 @@ const tracks = TRACKS.map((t) => ({ ...t, ...organize(t.id) }));
               <div class="projects__group" data-group={section.group.id}>
                 <div class="projects__group-head">
                   <span class="projects__group-icon" aria-hidden="true">
-                    <i class={section.group.icon} />
+                    <Icon name={section.group.icon} />
                   </span>
                   <div>
                     <h3 class="projects__group-title">{section.group.label}</h3>
@@ -165,6 +166,10 @@ const tracks = TRACKS.map((t) => ({ ...t, ...organize(t.id) }));
   .projects__tab[aria-selected='true'] {
     color: var(--bg);
     background: var(--accent);
+  }
+  .projects__tab-icon {
+    width: 1rem;
+    height: 1rem;
   }
   .projects__count {
     font-family: var(--font-mono);
@@ -231,6 +236,10 @@ const tracks = TRACKS.map((t) => ({ ...t, ...organize(t.id) }));
     border-radius: var(--radius-sm);
     background: var(--accent-ghost);
     color: var(--accent);
+  }
+  .projects__group-icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
   }
   .projects__group-title {
     font-size: 1.15rem;

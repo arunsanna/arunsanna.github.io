@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../data/site';
+import Icon from './Icon.astro';
 
 const channels = [
   { icon: 'fas fa-envelope', label: SITE.email, href: `mailto:${SITE.email}` },
@@ -20,7 +21,7 @@ const channels = [
           let's talk.
         </p>
         <a href={`mailto:${SITE.email}`} class="btn btn--primary contact__cta">
-          <i class="fas fa-paper-plane" aria-hidden="true"></i> Send a message
+          <Icon name="paper-plane" class="contact__cta-icon" /> Send a message
         </a>
       </div>
 
@@ -34,9 +35,9 @@ const channels = [
                 target={c.href.startsWith('http') ? '_blank' : undefined}
                 rel={c.href.startsWith('http') ? 'noopener' : undefined}
               >
-                <i class={c.icon} aria-hidden="true" />
+                <Icon name={c.icon} class="contact__channel-icon" />
                 <span>{c.label}</span>
-                <i class="fas fa-arrow-right contact__arrow" aria-hidden="true" />
+                <Icon name="arrow" class="contact__arrow" />
               </a>
             </li>
           ))
@@ -90,14 +91,20 @@ const channels = [
     border-color: var(--accent);
     color: var(--text);
   }
-  .contact__channel > i:first-child {
+  .contact__cta-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  .contact__channel-icon {
     color: var(--accent);
     width: 1.3rem;
-    text-align: center;
+    height: 1.3rem;
+    flex: none;
   }
   .contact__arrow {
     margin-left: auto;
-    font-size: 0.8rem;
+    width: 0.9rem;
+    height: 0.9rem;
     opacity: 0;
     transform: translateX(-4px);
     transition: var(--transition);
