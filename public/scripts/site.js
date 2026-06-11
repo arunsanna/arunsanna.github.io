@@ -1,7 +1,7 @@
 // Site interactivity. Served as a static same-origin file from /public so it
 // stays external (Astro doesn't process public/), keeping CSP script-src 'self'.
 
-/* ---------- Nav: elevate on scroll, mobile menu, scroll-spy ---------- */
+/* ---------- Nav: elevate on scroll, mobile menu ---------- */
 (function nav() {
   const navEl = document.querySelector("[data-nav]");
   const toggle = document.querySelector("[data-toggle]");
@@ -34,28 +34,76 @@
   mobile
     ?.querySelectorAll("a")
     .forEach((a) => a.addEventListener("click", closeMenu));
+})();
 
-  const spyLinks = Array.from(document.querySelectorAll("[data-spy]"));
-  if ("IntersectionObserver" in window && spyLinks.length) {
-    const byId = new Map(
-      spyLinks.map((l) => [l.getAttribute("data-spy").slice(1), l]),
-    );
-    const sections = spyLinks
-      .map((l) => document.getElementById(l.getAttribute("data-spy").slice(1)))
-      .filter(Boolean);
-    const obs = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) {
-            spyLinks.forEach((l) => l.removeAttribute("data-active"));
-            byId.get(e.target.id)?.setAttribute("data-active", "");
-          }
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" },
-    );
-    sections.forEach((s) => obs.observe(s));
+/* ---------- Scroll-reveal (progressive enhancement) ---------- */
+(function reveal() {
+  const els = document.querySelectorAll("[data-reveal]");
+  if (!els.length) return;
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) return; // leave visible
+
+  // Only now hide-then-reveal: without this class, CSS keeps content visible.
+  document.documentElement.classList.add("reveal-ready");
+
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          obs.unobserve(e.target);
+        }
+      });
+    },
+    { rootMargin: "0px 0px -8% 0px", threshold: 0.12 },
+  );
+  els.forEach((el) => obs.observe(el));
+})();
+
+/* ---------- Count-up stats ---------- */
+(function counters() {
+  const nums = document.querySelectorAll("[data-count-to]");
+  if (!nums.length) return;
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const format = (n) => n.toLocaleString("en-US");
+
+  const run = (el) => {
+    const target = Number(el.dataset.countTo) || 0;
+    const suffix = el.dataset.suffix || "";
+    if (reduce) {
+      el.textContent = format(target) + suffix;
+      return;
+    }
+    const dur = 1400;
+    let start = null;
+    const step = (ts) => {
+      if (start === null) start = ts;
+      const p = Math.min((ts - start) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3); // easeOutCubic
+      el.textContent = format(Math.round(target * eased)) + suffix;
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    nums.forEach(run);
+    return;
   }
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          run(e.target);
+          obs.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.6 },
+  );
+  nums.forEach((n) => obs.observe(n));
 })();
 
 /* ---------- Projects: keyboard-accessible tabs + tag filtering ---------- */
