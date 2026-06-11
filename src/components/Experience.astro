@@ -82,51 +82,61 @@ const awards = [
 ];
 ---
 
-<section class="section" id="experience">
+<section class="section" id="experience" data-reveal>
   <div class="container">
-    <div class="section-head">
-      <p class="eyebrow" data-num="04">Experience</p>
-      <h2>Education &amp; experience</h2>
-      <p>A decade of impact across defense, healthcare, and enterprise technology.</p>
+    <div class="section-head section-head--split">
+      <div>
+        <p class="eyebrow"><span data-num="// 02"></span>Career</p>
+        <h2>Deployment log.</h2>
+        <p>A decade of shipped systems — each role a release, each bullet an event worth recording.</p>
+      </div>
     </div>
 
     <div class="xp__grid">
-      <div class="xp__main">
-        <h3 class="xp__subhead">Work</h3>
-        <ol class="xp__timeline">
-          {
-            roles.map((r) => (
-              <li class="xp__item">
-                <div class="xp__dot" aria-hidden="true" />
-                <div class="xp__head">
-                  <h4 class="xp__company">{r.company}</h4>
-                  <span class="xp__period">{r.period}</span>
-                </div>
-                <p class="xp__role">{r.title}</p>
-                <p class="xp__summary">{r.summary}</p>
-                <ul class="xp__bullets">
-                  {r.bullets.map((b) => (
-                    <li>{b}</li>
-                  ))}
-                </ul>
-              </li>
-            ))
-          }
-        </ol>
+      <div class="xp__main" data-reveal-child>
+        <div class="xp__log">
+          <div class="xp__log-bar mono">
+            <span class="xp__log-prompt">$</span> kubectl describe career/arun-sanna
+            <span class="xp__log-live"><i></i>active</span>
+          </div>
+          <ol class="xp__deployments">
+            {
+              roles.map((r, i) => (
+                <li class="xp__deploy">
+                  <div class="xp__deploy-head">
+                    <span class="xp__deploy-status" aria-hidden="true" />
+                    <h3 class="xp__company">{r.company}</h3>
+                    <span class="xp__deploy-tag mono">{r.period}</span>
+                  </div>
+                  <p class="xp__role mono">{r.title}</p>
+                  <p class="xp__summary">{r.summary}</p                  >
+                  <ul class="xp__events">
+                    {r.bullets.map((b) => (
+                      <li class="xp__event">
+                        <span class="xp__event-marker mono" aria-hidden="true">›</span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))
+            }
+          </ol>
+        </div>
       </div>
 
-      <aside class="xp__side">
-        <div>
-          <h3 class="xp__subhead">Education</h3>
+      <aside class="xp__side" data-reveal-child style="--i:1">
+        <div class="xp__panel">
+          <p class="xp__panel-label mono">education</p>
           <ul class="xp__edu">
             {
               education.map((e) => (
                 <li class="xp__edu-item">
-                  <Icon name={e.icon} class="xp__edu-icon" />
+                  <span class="xp__edu-glyph"><Icon name={e.icon} /></span>
                   <div>
                     <p class="xp__degree">{e.degree}</p>
                     {e.detail && <p class="xp__edu-detail">{e.detail}</p>}
-                    <p class="xp__school">{e.school}</p>
+                    <p class="xp__school mono">{e.school}</p>
                   </div>
                 </li>
               ))
@@ -134,13 +144,13 @@ const awards = [
           </ul>
         </div>
 
-        <div>
-          <h3 class="xp__subhead">Leadership &amp; awards</h3>
+        <div class="xp__panel">
+          <p class="xp__panel-label mono">awards &amp; recognition</p>
           <ul class="xp__awards">
             {
               awards.map((a) => (
                 <li class="xp__award">
-                  <Icon name={a.icon} class="xp__award-icon" />
+                  <span class="xp__award-glyph"><Icon name={a.icon} /></span>
                   <div>
                     <p class="xp__award-title">{a.title}</p>
                     <p class="xp__award-body">{a.body}</p>
@@ -158,132 +168,186 @@ const awards = [
 <style>
   .xp__grid {
     display: grid;
-    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
-    gap: clamp(2rem, 1rem + 4vw, 4rem);
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+    gap: clamp(1.5rem, 1rem + 3vw, 3rem);
     align-items: start;
   }
-  .xp__subhead {
-    font-family: var(--font-mono);
+
+  /* --- Deployment log (main column) --- */
+  .xp__log {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--grad-surface);
+    overflow: hidden;
+  }
+  .xp__log-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-2);
     font-size: 0.78rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
     color: var(--text-faint);
-    margin-bottom: 1.5rem;
+  }
+  .xp__log-prompt {
+    color: var(--accent);
+  }
+  .xp__log-live {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.7rem;
+    color: var(--accent-strong);
+  }
+  .xp__log-live i {
+    width: 0.4rem;
+    height: 0.4rem;
+    border-radius: 999px;
+    background: var(--accent);
+    animation: xp-pulse 2s var(--ease-out) infinite;
+  }
+  @keyframes xp-pulse {
+    0% { box-shadow: 0 0 0 0 hsl(146 72% 50% / 0.5); }
+    70% { box-shadow: 0 0 0 5px hsl(146 72% 50% / 0); }
+    100% { box-shadow: 0 0 0 0 hsl(146 72% 50% / 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .xp__log-live i { animation: none; }
   }
 
-  .xp__timeline {
-    position: relative;
-    padding-left: 1.75rem;
+  .xp__deployments {
+    padding: 0;
   }
-  .xp__timeline::before {
-    content: '';
-    position: absolute;
-    left: 5px;
-    top: 6px;
-    bottom: 6px;
-    width: 1px;
-    background: var(--border-strong);
+  .xp__deploy {
+    padding: 1.4rem 1.4rem 1.6rem;
+    border-bottom: 1px solid var(--border);
   }
-  .xp__item {
-    position: relative;
-    padding-bottom: 2.25rem;
+  .xp__deploy:last-child {
+    border-bottom: 0;
   }
-  .xp__item:last-child {
-    padding-bottom: 0;
-  }
-  .xp__dot {
-    position: absolute;
-    left: -1.75rem;
-    top: 4px;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 4px var(--bg);
-  }
-  .xp__head {
+  .xp__deploy-head {
     display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 0.3rem 1rem;
+    align-items: center;
+    gap: 0.6rem;
+  }
+  .xp__deploy-status {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-ghost);
+    flex: none;
   }
   .xp__company {
-    font-size: 1.1rem;
+    font-size: 1.12rem;
+    flex: 1;
   }
-  .xp__period {
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
+  .xp__deploy-tag {
+    font-size: 0.72rem;
     color: var(--text-faint);
+    padding: 0.2rem 0.55rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    white-space: nowrap;
   }
   .xp__role {
     color: var(--accent);
-    font-weight: 600;
-    font-size: 0.92rem;
-    margin-top: 0.3rem;
+    font-size: 0.82rem;
+    margin-top: 0.4rem;
+    padding-left: 1.15rem;
   }
   .xp__summary {
     color: var(--text-muted);
     font-size: 0.9rem;
-    margin-top: 0.5rem;
+    margin-top: 0.6rem;
+    padding-left: 1.15rem;
   }
-  .xp__bullets {
-    margin-top: 0.7rem;
+  .xp__events {
+    margin-top: 0.8rem;
+    padding-left: 1.15rem;
     display: flex;
     flex-direction: column;
-    gap: 0.4rem;
+    gap: 0.5rem;
   }
-  .xp__bullets li {
-    position: relative;
-    padding-left: 1.1rem;
+  .xp__event {
+    display: flex;
+    gap: 0.5rem;
     color: var(--text-muted);
-    font-size: 0.86rem;
+    font-size: 0.84rem;
+    line-height: 1.5;
   }
-  .xp__bullets li::before {
-    content: '▸';
-    position: absolute;
-    left: 0;
+  .xp__event-marker {
     color: var(--accent-dim);
+    flex: none;
   }
 
+  /* --- Side panels --- */
   .xp__side {
     display: flex;
     flex-direction: column;
-    gap: 2.5rem;
+    gap: 1.25rem;
+  }
+  .xp__panel {
+    padding: 1.4rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+  }
+  .xp__panel-label {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-faint);
+    margin-bottom: 1.1rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid var(--border);
   }
   .xp__edu,
   .xp__awards {
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
+    gap: 1rem;
   }
   .xp__edu-item,
   .xp__award {
     display: flex;
-    gap: 0.85rem;
+    gap: 0.75rem;
   }
-  .xp__edu-icon,
-  .xp__award-icon {
+  .xp__edu-glyph,
+  .xp__award-glyph {
     flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-sm);
     color: var(--accent);
-    margin-top: 0.2rem;
-    width: 1.3rem;
-    height: 1.3rem;
+    background: var(--accent-ghost);
+    border: 1px solid var(--border);
+  }
+  .xp__edu-glyph svg,
+  .xp__award-glyph svg {
+    width: 1rem;
+    height: 1rem;
   }
   .xp__degree,
   .xp__award-title {
-    font-size: 0.94rem;
+    font-size: 0.9rem;
     font-weight: 600;
+    color: var(--text);
   }
   .xp__edu-detail {
     color: var(--text-muted);
-    font-size: 0.82rem;
+    font-size: 0.8rem;
   }
   .xp__school,
   .xp__award-body {
     color: var(--text-faint);
-    font-size: 0.84rem;
-    margin-top: 0.1rem;
+    font-size: 0.78rem;
+    margin-top: 0.15rem;
   }
 
   @media (max-width: 860px) {
