@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: arunsanna-site-staging
+  namespace: arunsanna-site-staging
+  labels:
+    app.kubernetes.io/name: arunsanna-site-staging
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: arunsanna-site-staging
+  ports:
+    - name: http
+      port: 80
+      targetPort: http

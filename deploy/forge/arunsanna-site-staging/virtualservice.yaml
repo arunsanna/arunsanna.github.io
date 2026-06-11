@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: arunsanna-site-staging
+  namespace: arunsanna-site-staging
+  labels:
+    app.kubernetes.io/name: arunsanna-site-staging
+spec:
+  # Bound to the shared arunlabs gateways (wildcard *.arunlabs.com TLS).
+  # NOT added to the public deny-exception, so it stays VPN/LAN-gated — a
+  # private review surface for work-in-progress, never publicly indexed.
+  gateways:
+    - istio-system/arunlabs-public-gateway
+    - istio-system/arunlabs-private-gateway
+  hosts:
+    - arunsanna-dev.arunlabs.com
+  http:
+    - route:
+        - destination:
+            host: arunsanna-site-staging.arunsanna-site-staging.svc.cluster.local
+            port:
+              number: 80
