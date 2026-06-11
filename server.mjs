@@ -96,9 +96,38 @@ app.register(fastifyStatic, {
   },
 });
 
+// Resolve a request path to a built HTML file within dist/, guarding against
+// path traversal. Astro (build.format:'file') emits /projects.html, /work/x.html.
+const resolveHtml = (rawUrl) => {
+  let p;
+  try {
+    p = decodeURIComponent(rawUrl.split('?')[0]);
+  } catch {
+    p = rawUrl.split('?')[0];
+  }
+  p = p.replace(/\/+$/, '');
+  if (!p || path.extname(p)) return null;
+  const base = path.resolve(distDir) + path.sep;
+  for (const candidate of [`${p}.html`, path.join(p, 'index.html')]) {
+    const file = path.resolve(path.join(distDir, candidate));
+    if (file.startsWith(base) && existsSync(file)) return file;
+  }
+  return null;
+};
+
 app.setNotFoundHandler(async (request, reply) => {
   if (request.url.startsWith('/api/')) {
     return reply.code(404).send({ ok: false, error: 'not_found' });
+  }
+  // Multi-page static: map extensionless routes (/projects, /work/:slug) to their
+  // built HTML before 404ing — Astro's dev router does this; Fastify must too.
+  const html = resolveHtml(request.url);
+  if (html) {
+    return reply
+      .code(200)
+      .header('Cache-Control', 'public, max-age=0, must-revalidate')
+      .type('text/html; charset=utf-8')
+      .send(await fs.readFile(html, 'utf8'));
   }
   // Serve the 404 page if Astro produced one, else a minimal fallback.
   const notFound = path.join(distDir, '404.html');
