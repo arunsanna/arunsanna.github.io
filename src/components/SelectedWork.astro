@@ -1,0 +1,141 @@
+---
+import { byIds } from '../data/projects';
+import { FEATURED_WORK } from '../data/content';
+import Icon from './Icon.astro';
+
+const work = byIds(FEATURED_WORK);
+---
+
+<section class="section" id="selected-work">
+  <div class="container">
+    <div class="section-head section-head--split" data-reveal>
+      <div>
+        <p class="eyebrow"><span data-num="// 01"></span>Selected work</p>
+        <h2>Systems that carried real missions.</h2>
+      </div>
+      <a href="/work" class="arrow-link">All case studies <Icon name="arrow" /></a>
+    </div>
+
+    <div class="work-grid" data-reveal>
+      {
+        work.map((p, i) => (
+          <a href={`/work/${p.id}`} class="work-card card" data-reveal-child style={`--i:${i}`}>
+            <div class="work-card__top">
+              <span class="pill">{p.category}</span>
+              <span class="work-card__status mono">{p.status}</span>
+            </div>
+            <h3 class="work-card__title">{p.title}</h3>
+            <p class="work-card__desc">{p.description}</p>
+            <dl class="work-card__metrics">
+              {p.metrics.slice(0, 4).map((m) => (
+                <div class="work-card__metric">
+                  <dt>{m.value}</dt>
+                  <dd>{m.label}</dd>
+                </div>
+              ))}
+            </dl>
+            <div class="work-card__foot">
+              <ul class="work-card__tech">
+                {p.tech.slice(0, 4).map((t) => (
+                  <li class="tag">{t}</li>
+                ))}
+              </ul>
+              <span class="arrow-link">
+                Read <Icon name="arrow" />
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .work-card {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.4rem, 1rem + 1.5vw, 2rem);
+  }
+  .work-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(28rem 18rem at 100% 0%, var(--accent-ghost), transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transition);
+    pointer-events: none;
+  }
+  .work-card:hover::after {
+    opacity: 1;
+  }
+  .work-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+  }
+  .work-card__status {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .work-card__title {
+    font-size: var(--step-2);
+  }
+  .work-card__desc {
+    color: var(--text-muted);
+    margin-top: 0.7rem;
+    font-size: 0.96rem;
+  }
+  .work-card__metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--border);
+  }
+  .work-card__metric dt {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .work-card__metric dd {
+    font-size: 0.74rem;
+    color: var(--text-faint);
+    margin-top: 0.25rem;
+  }
+  .work-card__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .work-card__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  @media (max-width: 760px) {
+    .work-grid {
+      grid-template-columns: 1fr;
+    }
+    .work-card__metrics {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem 0.5rem;
+    }
+  }
+</style>

@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../data/site';
+import { NAV } from '../data/content';
 
 // Auto-generated year — fixes the stale "© 2024" footer for good.
 const year = new Date().getFullYear();
@@ -8,14 +9,14 @@ const year = new Date().getFullYear();
 <footer class="footer">
   <div class="container footer__inner">
     <div>
-      <a href="#main" class="footer__logo">AS<span aria-hidden="true">_</span></a>
+      <a href="/" class="footer__logo">AS<span aria-hidden="true">_</span></a>
       <p class="footer__tag">{SITE.tagline}</p>
     </div>
     <nav class="footer__links" aria-label="Footer">
+      {NAV.map((l) => <a href={l.href}>{l.label}</a>)}
       <a href={SITE.social.github} target="_blank" rel="noopener">GitHub</a>
       <a href={SITE.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
       <a href={`mailto:${SITE.email}`}>Email</a>
-      <a href={SITE.resume} target="_blank" rel="noopener">Resume</a>
     </nav>
   </div>
   <div class="container footer__base">

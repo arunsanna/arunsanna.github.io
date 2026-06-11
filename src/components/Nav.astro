@@ -1,39 +1,59 @@
 ---
 import { SITE } from '../data/site';
+import { NAV } from '../data/content';
 import Icon from './Icon.astro';
 
-const links = [
-  { href: '#about', label: 'About' },
-  { href: '#work', label: 'Work' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#experience', label: 'Experience' },
-  { href: '#contact', label: 'Contact' },
-];
+// Active route: highlight the section the current page belongs to.
+const path = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => path === href || path.startsWith(href + '/');
 ---
 
 <header class="nav" data-nav>
   <div class="container nav__inner">
-    <a href="#top" class="nav__logo" aria-label={`AS — ${SITE.name} home`}>
+    <a href="/" class="nav__logo" aria-label={`${SITE.name} — home`}>
       <span>AS</span><span class="nav__cursor" aria-hidden="true">_</span>
     </a>
 
     <nav class="nav__links" aria-label="Primary">
-      {links.map((l) => <a href={l.href} class="nav__link" data-spy={l.href}>{l.label}</a>)}
+      {
+        NAV.map((l) => (
+          <a
+            href={l.href}
+            class="nav__link"
+            aria-current={isActive(l.href) ? 'page' : undefined}
+            data-active={isActive(l.href) ? '' : undefined}
+          >
+            {l.label}
+          </a>
+        ))
+      }
     </nav>
 
     <div class="nav__actions">
-      <a href={SITE.resume} class="btn btn--ghost nav__resume" target="_blank" rel="noopener">
-        <Icon name="resume" class="nav__resume-icon" /> Resume
+      <a href={SITE.resume} class="btn btn--ghost btn--sm nav__resume" target="_blank" rel="noopener">
+        <Icon name="resume" class="nav__resume-icon" /> Résumé
       </a>
-      <button class="nav__toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu" data-toggle>
+      <button
+        class="nav__toggle"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+        data-toggle
+      >
         <span></span><span></span><span></span>
       </button>
     </div>
   </div>
 
   <nav id="nav-menu" class="nav__mobile" aria-label="Mobile" data-mobile hidden>
-    {links.map((l) => <a href={l.href} class="nav__mobile-link">{l.label}</a>)}
-    <a href={SITE.resume} class="nav__mobile-link" target="_blank" rel="noopener">Resume ↗</a>
+    {
+      NAV.map((l) => (
+        <a href={l.href} class="nav__mobile-link" data-active={isActive(l.href) ? '' : undefined}>
+          {l.label}
+        </a>
+      ))
+    }
+    <a href={SITE.resume} class="nav__mobile-link" target="_blank" rel="noopener">Résumé ↗</a>
   </nav>
 </header>
 
@@ -50,8 +70,8 @@ const links = [
   }
 
   .nav[data-scrolled] {
-    background: hsl(220 16% 6% / 0.78);
-    backdrop-filter: blur(14px) saturate(150%);
+    background: hsl(158 8% 5% / 0.74);
+    backdrop-filter: blur(16px) saturate(140%);
     border-bottom-color: var(--border);
   }
 
@@ -122,10 +142,6 @@ const links = [
     align-items: center;
     gap: 1rem;
   }
-  .nav__resume {
-    padding: 0.5rem 1rem;
-    font-size: 0.88rem;
-  }
   .nav__resume-icon {
     width: 1rem;
     height: 1rem;
@@ -164,7 +180,7 @@ const links = [
     display: none;
     flex-direction: column;
     padding: 0.5rem var(--gutter) 1.25rem;
-    background: hsl(220 16% 6% / 0.97);
+    background: hsl(158 8% 5% / 0.97);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }
@@ -177,11 +193,14 @@ const links = [
     color: var(--text-muted);
     border-bottom: 1px solid var(--border);
   }
+  .nav__mobile-link[data-active] {
+    color: var(--accent);
+  }
   .nav__mobile-link:hover {
     color: var(--text);
   }
 
-  @media (max-width: 820px) {
+  @media (max-width: 860px) {
     .nav__links,
     .nav__resume {
       display: none;
