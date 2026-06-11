@@ -1,0 +1,108 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import { SITE } from '../../data/site';
+import { POSTS, type Post } from '../../data/content';
+
+export function getStaticPaths() {
+  return POSTS.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props as { post: Post };
+const fmt = (d: string) =>
+  new Date(d + 'T00:00:00').toLocaleDateString('en-US', {
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric',
+  });
+---
+
+<Base title={`${post.title} — Arun Sanna`} description={post.summary}>
+  <article class="container article">
+    <a href="/writing" class="article__back">
+      <Icon name="arrow" /> <span>Writing</span>
+    </a>
+
+    <div class="article__meta">
+      {post.tags.map((t) => <span class="tag">{t}</span>)}
+      <span class="mono">{fmt(post.date)} · {post.readingTime}</span>
+    </div>
+
+    <h1 class="article__title">{post.title}</h1>
+    <p class="article__lede">{post.summary}</p>
+
+    <div class="article__note">
+      <p class="mono article__note-label">draft in progress</p>
+      <p>
+        The long-form is being written from the research and the systems behind
+        this thesis — published here when it's ready, never auto-generated.
+      </p>
+      <a href={`mailto:${SITE.email}`} class="arrow-link">
+        Want it early? Ping me <Icon name="arrow" />
+      </a>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .article {
+    max-width: var(--maxw-prose);
+    padding-top: clamp(7rem, 5rem + 6vw, 9.5rem);
+    padding-bottom: 5rem;
+  }
+  .article__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+  .article__back svg {
+    width: 0.9rem;
+    height: 0.9rem;
+    transform: rotate(180deg);
+  }
+  .article__back:hover {
+    color: var(--accent);
+  }
+  .article__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+    color: var(--text-faint);
+    font-size: 0.8rem;
+  }
+  .article__title {
+    font-size: var(--step-3);
+    margin-top: 1rem;
+  }
+  .article__lede {
+    font-size: var(--step-1);
+    color: var(--text-muted);
+    margin-top: 1.25rem;
+  }
+  .article__note {
+    margin-top: 2.5rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+  }
+  .article__note-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+  }
+  .article__note p {
+    color: var(--text-muted);
+  }
+  .article__note .arrow-link {
+    margin-top: 1rem;
+  }
+</style>

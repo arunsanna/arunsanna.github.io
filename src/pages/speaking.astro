@@ -1,0 +1,136 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import { ENGAGEMENTS, RECOGNITION } from '../data/content';
+---
+
+<Base
+  title="Speaking & Service — Arun Sanna"
+  description="Conference paper review, IEEE and OWASP service, and professional recognition."
+>
+  <PageHeader
+    num="// speaking"
+    eyebrow="Speaking & Service"
+    title="Peer service & recognition."
+    lede="Conference review, standards work, and professional service — the public record of contribution to the field."
+  />
+
+  <section class="section" style="padding-top: 0">
+    <div class="container">
+      <h2 class="block-h">Service &amp; review</h2>
+      <ul class="eng-list">
+        {
+          ENGAGEMENTS.map((e) => (
+            <li class="eng">
+              <span class="eng__kind mono">{e.kind}</span>
+              <div class="eng__body">
+                <h3 class="eng__title">{e.title}</h3>
+                <p class="eng__venue">{e.venue}</p>
+              </div>
+              <span class="eng__year mono">{e.year}</span>
+            </li>
+          ))
+        }
+      </ul>
+
+      <h2 class="block-h" style="margin-top: 3.5rem">Recognition</h2>
+      <ul class="rec-grid">
+        {
+          RECOGNITION.map((r) => (
+            <li class="rec card">
+              <div class="rec__head">
+                <span class="rec__label">{r.label}</span>
+                {r.year && <span class="rec__year mono">{r.year}</span>}
+              </div>
+              <p class="rec__detail">{r.detail}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .block-h {
+    font-size: var(--step-2);
+    margin-bottom: 1.5rem;
+  }
+  .eng-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .eng {
+    display: grid;
+    grid-template-columns: 6rem 1fr auto;
+    gap: 1.5rem;
+    align-items: center;
+    padding: 1.3rem 0.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .eng-list li:last-child {
+    border-bottom: 1px solid var(--border);
+  }
+  .eng__kind {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .eng__title {
+    font-size: 1.1rem;
+  }
+  .eng__venue {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.2rem;
+  }
+  .eng__year {
+    color: var(--text-faint);
+    font-size: 0.82rem;
+  }
+
+  .rec-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .rec {
+    padding: 1.5rem;
+  }
+  .rec__head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .rec__label {
+    font-weight: 700;
+    font-size: 1.05rem;
+  }
+  .rec__year {
+    font-size: 0.78rem;
+    color: var(--accent);
+    flex: none;
+  }
+  .rec__detail {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.6rem;
+  }
+
+  @media (max-width: 820px) {
+    .rec-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 620px) {
+    .eng {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+    .rec-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

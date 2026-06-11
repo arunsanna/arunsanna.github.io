@@ -1,0 +1,257 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
+import { byTrack, type Project } from '../data/projects';
+
+const tracks = [
+  { id: 'professional', label: 'Professional', items: byTrack('professional') },
+  { id: 'opensource', label: 'Open Source', items: byTrack('opensource') },
+  { id: 'cooking', label: 'Cooking', items: byTrack('cooking') },
+];
+
+const tagsFor = (items: Project[]) => [
+  'all',
+  ...Array.from(new Set(items.flatMap((p) => p.tags))).sort(),
+];
+---
+
+<Base
+  title="Projects — Arun Sanna"
+  description="Thirty projects across federal delivery, open-source AI security, platform engineering, and active experiments."
+>
+  <PageHeader
+    num="// projects"
+    eyebrow="Projects"
+    title="Thirty projects, three tracks."
+    lede="Delivered federal systems, open-source AI security and platform tooling, and the experiments still cooking. Filter by track and topic."
+  />
+
+  <section class="section" style="padding-top: 0">
+    <div class="container" data-projects>
+      <div class="tablist" role="tablist" aria-label="Project tracks">
+        {
+          tracks.map((t, i) => (
+            <button
+              role="tab"
+              class="track-tab"
+              data-tab={t.id}
+              id={`tab-${t.id}`}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              aria-controls={`panel-${t.id}`}
+              tabindex={i === 0 ? 0 : -1}
+            >
+              {t.label}
+              <span class="track-tab__count mono">{t.items.length}</span>
+            </button>
+          ))
+        }
+      </div>
+
+      {
+        tracks.map((t, i) => (
+          <div
+            class="panel"
+            data-panel={t.id}
+            id={`panel-${t.id}`}
+            role="tabpanel"
+            aria-labelledby={`tab-${t.id}`}
+            hidden={i !== 0}
+          >
+            <div class="chips" role="group" aria-label={`Filter ${t.label}`}>
+              {tagsFor(t.items).map((tag, j) => (
+                <button class="chip" data-filter={tag} aria-pressed={j === 0 ? 'true' : 'false'}>
+                  {tag}
+                </button>
+              ))}
+            </div>
+
+            <div class="proj-grid">
+              {t.items.map((p) => (
+                <article class="proj card" data-project data-tags={p.tags.join(' ')}>
+                  <div class="proj__head">
+                    <span class="proj__icon">
+                      <Icon name={p.icon} />
+                    </span>
+                    <span class="proj__status mono">{p.status}</span>
+                  </div>
+                  <h3 class="proj__title">{p.title}</h3>
+                  <p class="proj__cat mono">{p.category}</p>
+                  <p class="proj__desc">{p.description}</p>
+                  <ul class="proj__tech">
+                    {p.tech.slice(0, 4).map((tech) => (
+                      <li class="tag">{tech}</li>
+                    ))}
+                  </ul>
+                  {p.github && (
+                    <a class="proj__gh" href={p.github} target="_blank" rel="noopener">
+                      <Icon name="github" /> View source <Icon name="arrow" />
+                    </a>
+                  )}
+                </article>
+              ))}
+            </div>
+            <p class="proj-empty" data-empty hidden>
+              No projects match that filter.
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+</Base>
+
+<style>
+  .tablist {
+    display: inline-flex;
+    gap: 0.3rem;
+    padding: 0.3rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface);
+    margin-bottom: 1.75rem;
+  }
+  .track-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem;
+    border: 0;
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background var(--transition),
+      color var(--transition);
+  }
+  .track-tab[aria-selected='true'] {
+    background: var(--accent);
+    color: hsl(150 30% 6%);
+  }
+  .track-tab__count {
+    font-size: 0.72rem;
+    opacity: 0.7;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+  }
+  .chip {
+    padding: 0.35rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--text-faint);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    cursor: pointer;
+    transition:
+      border-color var(--transition),
+      color var(--transition);
+  }
+  .chip:hover {
+    color: var(--text);
+    border-color: var(--border-strong);
+  }
+  .chip[aria-pressed='true'] {
+    color: var(--accent);
+    border-color: var(--accent-line);
+    background: var(--accent-ghost);
+  }
+
+  .proj-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .proj {
+    display: flex;
+    flex-direction: column;
+    padding: 1.4rem;
+  }
+  .proj__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.9rem;
+  }
+  .proj__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: var(--radius-sm);
+    color: var(--accent);
+    background: var(--accent-ghost);
+    border: 1px solid var(--border);
+  }
+  .proj__icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+  .proj__status {
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+  }
+  .proj__title {
+    font-size: 1.1rem;
+  }
+  .proj__cat {
+    font-size: 0.72rem;
+    color: var(--accent);
+    margin-top: 0.25rem;
+  }
+  .proj__desc {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-top: 0.6rem;
+    flex: 1;
+  }
+  .proj__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 1rem;
+  }
+  .proj__gh {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-muted);
+  }
+  .proj__gh svg {
+    width: 0.95rem;
+    height: 0.95rem;
+  }
+  .proj__gh:hover {
+    color: var(--accent);
+  }
+  .proj-empty {
+    color: var(--text-muted);
+    padding: 2rem 0;
+  }
+
+  @media (max-width: 900px) {
+    .proj-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .proj-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

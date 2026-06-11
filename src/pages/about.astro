@@ -1,0 +1,26 @@
+---
+import Base from '../layouts/Base.astro';
+import About from '../components/About.astro';
+import Experience from '../components/Experience.astro';
+import Skills from '../components/Skills.astro';
+import Certifications from '../components/Certifications.astro';
+---
+
+<Base
+  title="About — Arun Sanna"
+  description="Enterprise AI Architect & Forward Deployed Engineer — bio, experience timeline, skills, education, and certifications."
+>
+  <div class="about-page">
+    <About />
+    <Experience />
+    <Skills />
+    <Certifications />
+  </div>
+</Base>
+
+<style>
+  /* Clear the fixed nav for the first section. */
+  .about-page {
+    padding-top: 3.5rem;
+  }
+</style>

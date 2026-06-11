@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Icon from '../../components/Icon.astro';
+import { byTrack } from '../../data/projects';
+
+const work = byTrack('professional');
+---
+
+<Base
+  title="Work — Arun Sanna"
+  description="Federal platforms, healthcare modernization, and mission-critical systems — case studies behind the numbers."
+>
+  <PageHeader
+    num="// work"
+    eyebrow="Work"
+    title="Case studies."
+    lede="Federal platforms, healthcare modernization, and mission systems — the engineering behind the headline numbers."
+  />
+
+  <section class="section" style="padding-top: 0">
+    <div class="container">
+      <div class="work-grid">
+        {
+          work.map((p) => (
+            <a href={`/work/${p.id}`} class="wc card">
+              <div class="wc__top">
+                <span class="pill">{p.category}</span>
+                <span class="wc__status mono">{p.status}</span>
+              </div>
+              <h2 class="wc__title">{p.title}</h2>
+              <p class="wc__desc">{p.description}</p>
+              <dl class="wc__metrics">
+                {p.metrics.slice(0, 4).map((m) => (
+                  <div>
+                    <dt>{m.value}</dt>
+                    <dd>{m.label}</dd>
+                  </div>
+                ))}
+              </dl>
+              <span class="arrow-link">
+                Read case study <Icon name="arrow" />
+              </span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+  .wc {
+    display: flex;
+    flex-direction: column;
+    padding: clamp(1.4rem, 1rem + 1.5vw, 2rem);
+  }
+  .wc__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .wc__status {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .wc__title {
+    font-size: var(--step-2);
+  }
+  .wc__desc {
+    color: var(--text-muted);
+    margin-top: 0.6rem;
+    font-size: 0.96rem;
+  }
+  .wc__metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin: 1.4rem 0;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--border);
+  }
+  .wc__metrics dt {
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+    font-weight: 600;
+  }
+  .wc__metrics dd {
+    font-size: 0.72rem;
+    color: var(--text-faint);
+    margin-top: 0.25rem;
+  }
+  @media (max-width: 760px) {
+    .work-grid {
+      grid-template-columns: 1fr;
+    }
+    .wc__metrics {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>
