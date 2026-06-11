@@ -11,6 +11,7 @@ export interface NavLink {
 export const NAV: NavLink[] = [
   { href: "/work", label: "Work" },
   { href: "/projects", label: "Projects" },
+  { href: "/research", label: "Research" },
   { href: "/writing", label: "Writing" },
   { href: "/speaking", label: "Speaking" },
   { href: "/about", label: "About" },
@@ -169,5 +170,124 @@ export const ENGAGEMENTS: Engagement[] = [
     title: "Global Chief Architect Forum",
     venue: "IASA",
     year: "2024–",
+  },
+];
+
+// --- Research (mock data for the research surface) ---
+
+export interface ResearchArea {
+  id: string;
+  title: string;
+  status: "active" | "ongoing" | "completed";
+  summary: string;
+  focus: string[];
+  artifacts: { label: string; type: "paper" | "benchmark" | "tool" | "dataset" | "report" }[];
+}
+
+export const RESEARCH: ResearchArea[] = [
+  {
+    id: "agent-security",
+    title: "Agent Runtime Security",
+    status: "active",
+    summary:
+      "Adversarial evaluation of tool-using AI agents over MCP — prompt injection, jailbreaking, and supply-chain attack paths against agent runtimes.",
+    focus: ["Prompt injection", "Tool-use sandboxing", "MCP protocol security", "Defense benchmarks"],
+    artifacts: [
+      { label: "AgentDefense-Bench: Security benchmarks for MCP agents", type: "benchmark" },
+      { label: "Cross-LLM backdoor detection across model families", type: "paper" },
+      { label: "AgentDefense-Bench (open source)", type: "tool" },
+    ],
+  },
+  {
+    id: "ai-supply-chain",
+    title: "AI Supply-Chain Transparency",
+    status: "active",
+    summary:
+      "Machine-readable AI bill-of-materials (AIBOM) generation aligned with OWASP — making model provenance, dependencies, and risk traceable.",
+    focus: ["AIBOM standards", "Model provenance", "OWASP alignment", "Supply-chain risk"],
+    artifacts: [
+      { label: "Building an AIBOM: AI supply-chain transparency", type: "paper" },
+      { label: "AIBOM Generator (open source)", type: "tool" },
+      { label: "OWASP AIBOM working-group contribution", type: "report" },
+    ],
+  },
+  {
+    id: "memory-systems",
+    title: "Graph-Enhanced Memory for AI",
+    status: "ongoing",
+    summary:
+      "Structured knowledge graphs for long-running agent memory — entities, temporal relationships, contradiction handling, and retrieval-aware recall.",
+    focus: ["Temporal knowledge graphs", "Contradiction resolution", "RAG + graph hybrid", "Agent persistence"],
+    artifacts: [
+      { label: "A graph-enhanced memory system for AI assistants", type: "paper" },
+      { label: "Jarvis Cortex (open source)", type: "tool" },
+    ],
+  },
+  {
+    id: "federal-platform-ai",
+    title: "Federal AI Platform Engineering",
+    status: "ongoing",
+    summary:
+      "Patterns for running AI workloads in regulated environments — continuous ATO for AI, FedRAMP-aligned model deployment, and zero-trust agent infrastructure.",
+    focus: ["cATO for AI", "FedRAMP + ML pipelines", "Zero-trust agents", "Compliance automation"],
+    artifacts: [
+      { label: "cATO on Platform One: years to weeks", type: "paper" },
+      { label: "Aegis: Federal AI proposal stack", type: "tool" },
+    ],
+  },
+];
+
+// --- Awards (elevated from sidebar bullets to structured data) ---
+
+export interface Award {
+  title: string;
+  org: string;
+  year: string;
+  significance: string;
+  icon: string;
+}
+
+export const AWARDS: Award[] = [
+  {
+    title: "Project of the Year",
+    org: "SECAF",
+    year: "2024",
+    significance: "Won for DoD Platform One PartyBus — recognized as the top small-business defense project nationally.",
+    icon: "fas fa-trophy",
+  },
+  {
+    title: "Platform One Selection",
+    org: "USAF / DoD",
+    year: "2021",
+    significance: "The only non-US citizen selected into the merit-based Platform One engineering team.",
+    icon: "fas fa-flag-usa",
+  },
+  {
+    title: "Operation Allies Refuge",
+    org: "Federal Mission",
+    year: "2021",
+    significance: "Led platform operations supporting 124,334 evacuations — the largest evacuation in U.S. history — with zero incidents.",
+    icon: "fas fa-plane-departure",
+  },
+  {
+    title: "Employee of the Year",
+    org: "REAN Cloud",
+    year: "2017",
+    significance: "Recognized for performance and innovation after delivering 30–40% cost savings for enterprise clients.",
+    icon: "fas fa-star",
+  },
+  {
+    title: "Organizational Growth",
+    org: "VivSoft Technologies",
+    year: "2024",
+    significance: "Drove company growth from 35 to 115 employees through technical leadership and federal contract wins ($15.6M).",
+    icon: "fas fa-users",
+  },
+  {
+    title: "Chief Architect Forum",
+    org: "IASA Global",
+    year: "2024–",
+    significance: "Selected member of the global Chief Architect Forum — a community of distinguished enterprise architects.",
+    icon: "fas fa-globe",
   },
 ];

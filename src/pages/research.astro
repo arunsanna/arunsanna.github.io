@@ -1,0 +1,211 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
+import { RESEARCH, type ResearchArea } from '../data/content';
+
+const typeIcon = (t: string): string => {
+  if (t === 'paper') return 'file';
+  if (t === 'benchmark') return 'chart';
+  if (t === 'tool') return 'tool';
+  if (t === 'dataset') return 'database';
+  return 'list';
+};
+
+const statusLabel = (s: string): string => {
+  if (s === 'active') return 'active';
+  if (s === 'ongoing') return 'ongoing';
+  return 'completed';
+};
+---
+
+<Base
+  title="Research — Arun Sanna"
+  description="Active research in AI agent security, supply-chain transparency, graph-enhanced memory, and federal AI platform engineering."
+>
+  <PageHeader
+    num="// research"
+    eyebrow="Research"
+    title="Where the frontier meets production."
+    lede="Active research threads at the intersection of AI security, agent systems, and federal-grade platform engineering — each connected to real shipped tools."
+  />
+
+  <section class="section" style="padding-top: 0">
+    <div class="container">
+      <div class="research-list" data-reveal>
+        {
+          RESEARCH.map((area: ResearchArea, i: number) => (
+            <article class="rsh card" data-reveal-child style={`--i:${i}`}>
+              <div class="rsh__head">
+                <div class="rsh__head-left">
+                  <span class="rsh__status">
+                    <i class:list={['rsh__status-dot', `is-${area.status}`]} />
+                    <span class="rsh__status-text mono">{statusLabel(area.status)}</span>
+                  </span>
+                  <h2 class="rsh__title">{area.title}</h2>
+                </div>
+                <span class="rsh__index mono">R0{RESEARCH.indexOf(area) + 1}</span>
+              </div>
+
+              <p class="rsh__summary">{area.summary}</p>
+
+              <div class="rsh__focus">
+                {area.focus.map((f: string) => (
+                  <span class="pill">{f}</span>
+                ))}
+              </div>
+
+              <div class="rsh__artifacts">
+                <p class="rsh__artifacts-label mono">artifacts</p>
+                <ul class="rsh__artifact-list">
+                  {area.artifacts.map((a) => (
+                    <li class="rsh__artifact">
+                      <span class="rsh__artifact-glyph"><Icon name={typeIcon(a.type)} /></span>
+                      <span class="rsh__artifact-text">{a.label}</span>
+                      <span class="rsh__artifact-type mono">{a.type}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .research-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .rsh {
+    padding: clamp(1.5rem, 1rem + 2vw, 2.25rem);
+  }
+  .rsh__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .rsh__head-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+  .rsh__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .rsh__status-dot {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    flex: none;
+  }
+  .rsh__status-dot.is-active {
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-ghost);
+  }
+  .rsh__status-dot.is-ongoing {
+    background: hsl(40 80% 58%);
+    box-shadow: 0 0 0 3px hsl(40 80% 58% / 0.15);
+  }
+  .rsh__status-dot.is-completed {
+    background: var(--text-faint);
+  }
+  .rsh__status-text {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+  }
+  .rsh__title {
+    font-size: var(--step-2);
+  }
+  .rsh__index {
+    font-size: 0.8rem;
+    color: var(--accent-dim);
+    flex: none;
+  }
+  .rsh__summary {
+    color: var(--text-muted);
+    font-size: 1rem;
+    line-height: 1.65;
+    max-width: 64ch;
+  }
+  .rsh__focus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.1rem;
+  }
+  .rsh__artifacts {
+    margin-top: 1.5rem;
+    padding-top: 1.4rem;
+    border-top: 1px solid var(--border);
+  }
+  .rsh__artifacts-label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    margin-bottom: 0.85rem;
+  }
+  .rsh__artifact-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .rsh__artifact {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    transition: border-color var(--transition);
+  }
+  .rsh__artifact:hover {
+    border-color: var(--accent-line);
+  }
+  .rsh__artifact-glyph {
+    flex: none;
+    color: var(--accent);
+    display: inline-flex;
+  }
+  .rsh__artifact-glyph svg {
+    width: 0.9rem;
+    height: 0.9rem;
+  }
+  .rsh__artifact-text {
+    flex: 1;
+    font-size: 0.88rem;
+    color: var(--text);
+  }
+  .rsh__artifact-type {
+    font-size: 0.66rem;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.15rem 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+  }
+
+  @media (max-width: 640px) {
+    .rsh__head {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .rsh__artifact {
+      flex-wrap: wrap;
+    }
+  }
+</style>
