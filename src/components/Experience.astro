@@ -72,14 +72,7 @@ const education = [
   },
 ];
 
-const awards = [
-  { icon: 'fas fa-trophy', title: 'Project of the Year', body: 'SECAF award for Platform One PartyBus (2024)' },
-  { icon: 'fas fa-star', title: 'Employee of the Year 2017', body: 'REAN Cloud — performance & innovation' },
-  { icon: 'fas fa-flag-usa', title: 'Platform One Selection', body: 'Only non-US citizen selected on merit into the USAF Platform One program' },
-  { icon: 'fas fa-heart', title: 'Operation Allies Refuge', body: 'Mission-critical platforms for the largest evacuation in U.S. history' },
-  { icon: 'fas fa-users', title: 'Organizational Growth Leader', body: 'Drove company growth from 35 to 115 employees' },
-  { icon: 'fas fa-globe', title: 'IASA Chief Architect Forum', body: 'Member of the global Chief Architect Forum' },
-];
+// Awards moved to dedicated Awards component — Experience focuses on career + education only.
 ---
 
 <section class="section" id="experience" data-reveal>
@@ -137,23 +130,6 @@ const awards = [
                     <p class="xp__degree">{e.degree}</p>
                     {e.detail && <p class="xp__edu-detail">{e.detail}</p>}
                     <p class="xp__school mono">{e.school}</p>
-                  </div>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
-
-        <div class="xp__panel">
-          <p class="xp__panel-label mono">awards &amp; recognition</p>
-          <ul class="xp__awards">
-            {
-              awards.map((a) => (
-                <li class="xp__award">
-                  <span class="xp__award-glyph"><Icon name={a.icon} /></span>
-                  <div>
-                    <p class="xp__award-title">{a.title}</p>
-                    <p class="xp__award-body">{a.body}</p>
                   </div>
                 </li>
               ))
