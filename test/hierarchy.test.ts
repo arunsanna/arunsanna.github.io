@@ -19,6 +19,25 @@ test("normalizePath strips trailing slash, query, and hash", () => {
   assert.equal(normalizePath("/"), "/");
 });
 
+test("normalizePath strips the .html that the file build format leaks in", () => {
+  assert.equal(normalizePath("/writing.html"), "/writing");
+  assert.equal(
+    normalizePath("/writing/building-an-aibom.html"),
+    "/writing/building-an-aibom",
+  );
+  assert.equal(normalizePath("/index.html"), "/");
+  assert.equal(normalizePath("/work/index.html"), "/work");
+});
+
+test("resolveTrail on a .html leaf yields an extensionless leaf path", () => {
+  const trail = resolveTrail("/writing/building-an-aibom.html", "AIBOM");
+  assert.deepEqual(trail.at(-1), {
+    label: "AIBOM",
+    path: "/writing/building-an-aibom",
+    current: true,
+  });
+});
+
 test("humanizeSlug title-cases hyphen/underscore slugs", () => {
   assert.equal(humanizeSlug("dod-platform-one"), "Dod Platform One");
   assert.equal(humanizeSlug("building_an_aibom"), "Building An Aibom");

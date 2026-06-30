@@ -58,10 +58,21 @@ export const SECTIONS: Record<string, HierarchyNode> = {
   about: { id: "about", label: "About", path: "/about", parent: "home" },
 };
 
-/** Normalize a pathname: drop any query/hash, strip trailing slashes, map '' → '/'. */
+/**
+ * Normalize a pathname: drop any query/hash, strip the `.html` extension that
+ * Astro's `file` build format leaks into `Astro.url.pathname` at build time
+ * (and a trailing `/index`), strip trailing slashes, map '' → '/'. This keeps
+ * canonical URLs, the JSON-LD graph, and breadcrumb items on the extensionless
+ * paths the site is actually linked and served at.
+ */
 export function normalizePath(path: string): string {
   if (!path) return "/";
-  const clean = path.split("?")[0].split("#")[0].replace(/\/+$/, "");
+  const clean = path
+    .split("?")[0]
+    .split("#")[0]
+    .replace(/\.html$/, "")
+    .replace(/\/index$/, "")
+    .replace(/\/+$/, "");
   return clean === "" ? "/" : clean;
 }
 

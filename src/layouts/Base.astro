@@ -2,7 +2,7 @@
 import { SITE } from '../data/site';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
-import { resolveTrail } from '../lib/hierarchy';
+import { resolveTrail, normalizePath } from '../lib/hierarchy';
 import {
   buildGraph,
   serializeJsonLd,
@@ -37,14 +37,17 @@ const {
 } = Astro.props;
 
 // Canonical + absolute OG URL derived from `site` in astro.config.mjs.
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
+// normalizePath drops the `.html` the `file` build format leaks in, so the
+// canonical/og:url and JSON-LD @ids match the extensionless served URLs.
+const cleanPath = normalizePath(Astro.url.pathname);
+const canonical = new URL(cleanPath, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
 
 // Hierarchical context: resolve this page's place in the site tree once, then
 // inject it as a machine-readable JSON-LD @graph (WebSite → WebPage →
 // BreadcrumbList → Person/primary entity). The visible breadcrumb counterpart is
 // rendered by Breadcrumbs.astro inside each page's header.
-const trail = resolveTrail(Astro.url.pathname, crumb);
+const trail = resolveTrail(cleanPath, crumb);
 const graph = buildGraph({
   siteUrl: SITE.url,
   pageUrl: canonical,

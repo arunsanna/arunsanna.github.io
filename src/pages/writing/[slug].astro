@@ -5,6 +5,7 @@ import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { SITE } from '../../data/site';
 import { POSTS, type Post } from '../../data/content';
 import { buildArticle } from '../../lib/structured-data';
+import { normalizePath } from '../../lib/hierarchy';
 
 export function getStaticPaths() {
   return POSTS.map((post) => ({ params: { slug: post.slug }, props: { post } }));
@@ -20,7 +21,7 @@ const fmt = (d: string) =>
 
 // This post is the page's primary entity — a BlogPosting linked into the JSON-LD
 // graph and authored by the site's Person.
-const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const pageUrl = new URL(normalizePath(Astro.url.pathname), Astro.site).href;
 const article = buildArticle(SITE.url, {
   url: pageUrl,
   title: post.title,
