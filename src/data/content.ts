@@ -77,6 +77,15 @@ export interface Post {
 // these render the Writing surface so the design is reviewable now.
 export const POSTS: Post[] = [
   {
+    slug: "building-an-aibom",
+    title: "What's actually inside your AI? A plain-English guide to the AIBOM",
+    summary:
+      "AI bills-of-materials are moving from nice-to-have to non-negotiable. What an AIBOM is, why August 2026 makes it urgent, and how to generate your first one with OWASP-aligned tooling.",
+    date: "2026-06-16",
+    readingTime: "5 min",
+    tags: ["AI Security", "Supply Chain"],
+  },
+  {
     slug: "defending-mcp-agents-prompt-injection",
     title: "Defending MCP agents from prompt injection",
     summary:
@@ -84,15 +93,6 @@ export const POSTS: Post[] = [
     date: "2026-05-20",
     readingTime: "12 min",
     tags: ["AI Security", "Agents"],
-  },
-  {
-    slug: "building-an-aibom",
-    title: "Building an AIBOM: supply-chain transparency for AI systems",
-    summary:
-      "Why an AI bill-of-materials matters, what belongs in one, and how the OWASP-aligned generator produces machine-readable artifacts teams can act on.",
-    date: "2026-04-28",
-    readingTime: "8 min",
-    tags: ["AI Security", "Supply Chain"],
   },
   {
     slug: "cato-on-platform-one",
@@ -181,7 +181,10 @@ export interface ResearchArea {
   status: "active" | "ongoing" | "completed";
   summary: string;
   focus: string[];
-  artifacts: { label: string; type: "paper" | "benchmark" | "tool" | "dataset" | "report" }[];
+  artifacts: {
+    label: string;
+    type: "paper" | "benchmark" | "tool" | "dataset" | "report";
+  }[];
 }
 
 export const RESEARCH: ResearchArea[] = [
@@ -191,10 +194,21 @@ export const RESEARCH: ResearchArea[] = [
     status: "active",
     summary:
       "Adversarial evaluation of tool-using AI agents over MCP — prompt injection, jailbreaking, and supply-chain attack paths against agent runtimes.",
-    focus: ["Prompt injection", "Tool-use sandboxing", "MCP protocol security", "Defense benchmarks"],
+    focus: [
+      "Prompt injection",
+      "Tool-use sandboxing",
+      "MCP protocol security",
+      "Defense benchmarks",
+    ],
     artifacts: [
-      { label: "AgentDefense-Bench: Security benchmarks for MCP agents", type: "benchmark" },
-      { label: "Cross-LLM backdoor detection across model families", type: "paper" },
+      {
+        label: "AgentDefense-Bench: Security benchmarks for MCP agents",
+        type: "benchmark",
+      },
+      {
+        label: "Cross-LLM backdoor detection across model families",
+        type: "paper",
+      },
       { label: "AgentDefense-Bench (open source)", type: "tool" },
     ],
   },
@@ -204,9 +218,17 @@ export const RESEARCH: ResearchArea[] = [
     status: "active",
     summary:
       "Machine-readable AI bill-of-materials (AIBOM) generation aligned with OWASP — making model provenance, dependencies, and risk traceable.",
-    focus: ["AIBOM standards", "Model provenance", "OWASP alignment", "Supply-chain risk"],
+    focus: [
+      "AIBOM standards",
+      "Model provenance",
+      "OWASP alignment",
+      "Supply-chain risk",
+    ],
     artifacts: [
-      { label: "Building an AIBOM: AI supply-chain transparency", type: "paper" },
+      {
+        label: "Building an AIBOM: AI supply-chain transparency",
+        type: "paper",
+      },
       { label: "AIBOM Generator (open source)", type: "tool" },
       { label: "OWASP AIBOM working-group contribution", type: "report" },
     ],
@@ -217,9 +239,17 @@ export const RESEARCH: ResearchArea[] = [
     status: "ongoing",
     summary:
       "Structured knowledge graphs for long-running agent memory — entities, temporal relationships, contradiction handling, and retrieval-aware recall.",
-    focus: ["Temporal knowledge graphs", "Contradiction resolution", "RAG + graph hybrid", "Agent persistence"],
+    focus: [
+      "Temporal knowledge graphs",
+      "Contradiction resolution",
+      "RAG + graph hybrid",
+      "Agent persistence",
+    ],
     artifacts: [
-      { label: "A graph-enhanced memory system for AI assistants", type: "paper" },
+      {
+        label: "A graph-enhanced memory system for AI assistants",
+        type: "paper",
+      },
       { label: "Jarvis Cortex (open source)", type: "tool" },
     ],
   },
@@ -229,7 +259,12 @@ export const RESEARCH: ResearchArea[] = [
     status: "ongoing",
     summary:
       "Patterns for running AI workloads in regulated environments — continuous ATO for AI, FedRAMP-aligned model deployment, and zero-trust agent infrastructure.",
-    focus: ["cATO for AI", "FedRAMP + ML pipelines", "Zero-trust agents", "Compliance automation"],
+    focus: [
+      "cATO for AI",
+      "FedRAMP + ML pipelines",
+      "Zero-trust agents",
+      "Compliance automation",
+    ],
     artifacts: [
       { label: "cATO on Platform One: years to weeks", type: "paper" },
       { label: "Aegis: Federal AI proposal stack", type: "tool" },
@@ -252,42 +287,48 @@ export const AWARDS: Award[] = [
     title: "Project of the Year",
     org: "SECAF",
     year: "2024",
-    significance: "Won for DoD Platform One PartyBus — recognized as the top small-business defense project nationally.",
+    significance:
+      "Won for DoD Platform One PartyBus — recognized as the top small-business defense project nationally.",
     icon: "fas fa-trophy",
   },
   {
     title: "Platform One Selection",
     org: "USAF / DoD",
     year: "2021",
-    significance: "The only non-US citizen selected into the merit-based Platform One engineering team.",
+    significance:
+      "The only non-US citizen selected into the merit-based Platform One engineering team.",
     icon: "fas fa-flag-usa",
   },
   {
     title: "Operation Allies Refuge",
     org: "Federal Mission",
     year: "2021",
-    significance: "Led platform operations supporting 124,334 evacuations — the largest evacuation in U.S. history — with zero incidents.",
+    significance:
+      "Led platform operations supporting 124,334 evacuations — the largest evacuation in U.S. history — with zero incidents.",
     icon: "fas fa-plane-departure",
   },
   {
     title: "Employee of the Year",
     org: "REAN Cloud",
     year: "2017",
-    significance: "Recognized for performance and innovation after delivering 30–40% cost savings for enterprise clients.",
+    significance:
+      "Recognized for performance and innovation after delivering 30–40% cost savings for enterprise clients.",
     icon: "fas fa-star",
   },
   {
     title: "Organizational Growth",
     org: "VivSoft Technologies",
     year: "2024",
-    significance: "Drove company growth from 35 to 115 employees through technical leadership and federal contract wins ($15.6M).",
+    significance:
+      "Drove company growth from 35 to 115 employees through technical leadership and federal contract wins ($15.6M).",
     icon: "fas fa-users",
   },
   {
     title: "Chief Architect Forum",
     org: "IASA Global",
     year: "2024–",
-    significance: "Selected member of the global Chief Architect Forum — a community of distinguished enterprise architects.",
+    significance:
+      "Selected member of the global Chief Architect Forum — a community of distinguished enterprise architects.",
     icon: "fas fa-globe",
   },
 ];
