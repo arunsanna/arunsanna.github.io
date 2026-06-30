@@ -1,8 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { SITE } from '../../data/site';
 import { POSTS, type Post } from '../../data/content';
+import { buildArticle } from '../../lib/structured-data';
 
 export function getStaticPaths() {
   return POSTS.map((post) => ({ params: { slug: post.slug }, props: { post } }));
@@ -15,13 +17,28 @@ const fmt = (d: string) =>
     day: 'numeric',
     year: 'numeric',
   });
+
+// This post is the page's primary entity — a BlogPosting linked into the JSON-LD
+// graph and authored by the site's Person.
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const article = buildArticle(SITE.url, {
+  url: pageUrl,
+  title: post.title,
+  description: post.summary,
+  datePublished: post.date,
+  keywords: post.tags,
+});
 ---
 
-<Base title={`${post.title} — Arun Sanna`} description={post.summary}>
+<Base
+  title={`${post.title} — Arun Sanna`}
+  description={post.summary}
+  pageType="ItemPage"
+  crumb={post.title}
+  primaryEntity={article}
+>
   <article class="container article">
-    <a href="/writing" class="article__back">
-      <Icon name="arrow" /> <span>Writing</span>
-    </a>
+    <Breadcrumbs leafLabel={post.title} />
 
     <div class="article__meta">
       {post.tags.map((t) => <span class="tag">{t}</span>)}
@@ -49,22 +66,6 @@ const fmt = (d: string) =>
     max-width: var(--maxw-prose);
     padding-top: clamp(7rem, 5rem + 6vw, 9.5rem);
     padding-bottom: 5rem;
-  }
-  .article__back {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.88rem;
-    font-weight: 600;
-  }
-  .article__back svg {
-    width: 0.9rem;
-    height: 0.9rem;
-    transform: rotate(180deg);
-  }
-  .article__back:hover {
-    color: var(--accent);
   }
   .article__meta {
     display: flex;

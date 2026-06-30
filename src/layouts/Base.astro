@@ -2,6 +2,13 @@
 import { SITE } from '../data/site';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
+import { resolveTrail } from '../lib/hierarchy';
+import {
+  buildGraph,
+  serializeJsonLd,
+  type GraphNode,
+  type WebPageType,
+} from '../lib/structured-data';
 import '../styles/global.css';
 
 interface Props {
@@ -9,39 +16,62 @@ interface Props {
   description?: string;
   /** Path-relative OG image, served from /public */
   ogImage?: string;
+  /** Current-page label when it's a dynamic leaf (case study, article). */
+  crumb?: string;
+  /** WebPage subtype for the JSON-LD graph. Defaults to "WebPage". */
+  pageType?: WebPageType;
+  /** When true, the page's mainEntity is the Person (home, about). */
+  personIsMainEntity?: boolean;
+  /** Optional primary entity node for detail pages (article / creative work). */
+  primaryEntity?: GraphNode | null;
 }
 
 const {
   title = `${SITE.name} — ${SITE.tagline}`,
   description = SITE.description,
   ogImage = '/og-image.png',
+  crumb,
+  pageType = 'WebPage',
+  personIsMainEntity = false,
+  primaryEntity = null,
 } = Astro.props;
 
 // Canonical + absolute OG URL derived from `site` in astro.config.mjs.
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 const ogImageUrl = new URL(ogImage, Astro.site).href;
 
-// Person structured data — helps search engines model the entity and surfaces
-// credentials (the EB-1A signal) in a machine-readable way.
-const personSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: SITE.name,
-  jobTitle: SITE.tagline,
-  url: SITE.url,
-  email: `mailto:${SITE.email}`,
-  sameAs: [SITE.social.github, SITE.social.linkedin],
-  knowsAbout: [
-    'Enterprise Architecture',
-    'AI Security',
-    'Platform Engineering',
-    'Cloud Architecture',
-    'DevSecOps',
-    'Kubernetes',
-    'Federal / DoD Systems',
-  ],
-  alumniOf: 'California State University, Los Angeles',
-};
+// Hierarchical context: resolve this page's place in the site tree once, then
+// inject it as a machine-readable JSON-LD @graph (WebSite → WebPage →
+// BreadcrumbList → Person/primary entity). The visible breadcrumb counterpart is
+// rendered by Breadcrumbs.astro inside each page's header.
+const trail = resolveTrail(Astro.url.pathname, crumb);
+const graph = buildGraph({
+  siteUrl: SITE.url,
+  pageUrl: canonical,
+  title,
+  description,
+  trail,
+  pageType,
+  personIsMainEntity,
+  primaryEntity,
+  person: {
+    name: SITE.name,
+    jobTitle: SITE.tagline,
+    url: SITE.url,
+    email: SITE.email,
+    sameAs: [SITE.social.github, SITE.social.linkedin],
+    knowsAbout: [
+      'Enterprise Architecture',
+      'AI Security',
+      'Platform Engineering',
+      'Cloud Architecture',
+      'DevSecOps',
+      'Kubernetes',
+      'Federal / DoD Systems',
+    ],
+    alumniOf: 'California State University, Los Angeles',
+  },
+});
 ---
 
 <!doctype html>
@@ -88,7 +118,7 @@ const personSchema = {
     <script
       is:inline
       type="application/ld+json"
-      set:html={JSON.stringify(personSchema)}
+      set:html={serializeJsonLd(graph)}
     />
   </head>
   <body>

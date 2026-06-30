@@ -1,4 +1,6 @@
 ---
+import Breadcrumbs from './Breadcrumbs.astro';
+
 interface Props {
   num: string;
   eyebrow: string;
@@ -10,6 +12,7 @@ const { num, eyebrow, title, lede } = Astro.props;
 
 <header class="page-head">
   <div class="container">
+    <Breadcrumbs />
     <p class="eyebrow"><span data-num={num}></span>{eyebrow}</p>
     <h1 class="page-head__title">{title}</h1>
     {lede && <p class="page-head__lede">{lede}</p>}

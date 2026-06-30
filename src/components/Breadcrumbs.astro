@@ -1,0 +1,82 @@
+---
+// Human-facing half of hierarchical context injection: an accessible breadcrumb
+// trail resolved from the current URL via the shared hierarchy. Renders nothing
+// on the root (a one-item trail), so it's safe to drop into any header.
+import { resolveTrail } from '../lib/hierarchy';
+
+interface Props {
+  /** Label for the current page when it's a dynamic leaf (case study, article). */
+  leafLabel?: string;
+}
+
+const { leafLabel } = Astro.props;
+const trail = resolveTrail(Astro.url.pathname, leafLabel);
+const show = trail.length > 1;
+---
+
+{
+  show && (
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol class="crumbs__list">
+        {trail.map((c, i) => (
+          <li class="crumbs__item">
+            {c.current ? (
+              <span class="crumbs__current" aria-current="page">
+                {c.label}
+              </span>
+            ) : (
+              <a class="crumbs__link" href={c.path}>
+                {c.label}
+              </a>
+            )}
+            {i < trail.length - 1 && (
+              <span class="crumbs__sep" aria-hidden="true">
+                /
+              </span>
+            )}
+          </li>
+        ))}
+      </ol>
+    </nav>
+  )
+}
+
+<style>
+  .crumbs {
+    margin-bottom: 1rem;
+  }
+  .crumbs__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+  }
+  .crumbs__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .crumbs__link {
+    color: var(--text-faint);
+    transition: color var(--transition);
+  }
+  .crumbs__link:hover {
+    color: var(--accent);
+  }
+  .crumbs__current {
+    color: var(--text-muted);
+    max-width: 36ch;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .crumbs__sep {
+    color: var(--text-faint);
+    opacity: 0.5;
+  }
+</style>

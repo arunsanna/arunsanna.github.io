@@ -1,7 +1,10 @@
 ---
 import Base from '../../layouts/Base.astro';
 import Icon from '../../components/Icon.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
 import { PROJECTS, type Project } from '../../data/projects';
+import { SITE } from '../../data/site';
+import { buildCreativeWork } from '../../lib/structured-data';
 
 export function getStaticPaths() {
   // Case studies are the professional track — they carry rich metrics + highlights.
@@ -12,14 +15,28 @@ export function getStaticPaths() {
 }
 
 const { project } = Astro.props as { project: Project };
+
+// This case study is the page's primary entity — a CreativeWork linked into the
+// JSON-LD graph and authored by the site's Person.
+const pageUrl = new URL(Astro.url.pathname, Astro.site).href;
+const creativeWork = buildCreativeWork(SITE.url, {
+  url: pageUrl,
+  title: project.title,
+  description: project.description,
+  keywords: project.tags,
+});
 ---
 
-<Base title={`${project.title} — Arun Sanna`} description={project.description}>
+<Base
+  title={`${project.title} — Arun Sanna`}
+  description={project.description}
+  pageType="ItemPage"
+  crumb={project.title}
+  primaryEntity={creativeWork}
+>
   <article class="case">
     <div class="container case__head">
-      <a href="/work" class="case__back">
-        <Icon name="arrow" /> <span>Work</span>
-      </a>
+      <Breadcrumbs leafLabel={project.title} />
       <div class="case__top">
         <span class="pill">{project.category}</span>
         <span class="case__status mono">{project.status}</span>
@@ -81,22 +98,6 @@ const { project } = Astro.props as { project: Project };
   .case__head {
     padding-top: clamp(7rem, 5rem + 6vw, 9.5rem);
     padding-bottom: 2.5rem;
-  }
-  .case__back {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--text-muted);
-    font-size: 0.88rem;
-    font-weight: 600;
-  }
-  .case__back svg {
-    width: 0.9rem;
-    height: 0.9rem;
-    transform: rotate(180deg);
-  }
-  .case__back:hover {
-    color: var(--accent);
   }
   .case__top {
     display: flex;
