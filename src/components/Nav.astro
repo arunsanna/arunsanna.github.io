@@ -11,7 +11,7 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
 <header class="nav" data-nav>
   <div class="container nav__inner">
     <a href="/" class="nav__logo" aria-label={`${SITE.name} — home`}>
-      <span>AS</span><span class="nav__cursor" aria-hidden="true">_</span>
+      <span>AS</span><span class="nav__cursor" aria-hidden="true">/</span>
     </a>
 
     <nav class="nav__links" aria-label="Primary">
@@ -62,7 +62,8 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
     position: fixed;
     inset: 0 0 auto 0;
     z-index: 1000;
-    border-bottom: 1px solid transparent;
+    background: rgb(241 238 229 / 0.92);
+    border-bottom: 1px solid var(--border);
     transition:
       background var(--transition),
       border-color var(--transition),
@@ -70,9 +71,8 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
   }
 
   .nav[data-scrolled] {
-    background: hsl(158 8% 5% / 0.74);
-    backdrop-filter: blur(16px) saturate(140%);
-    border-bottom-color: var(--border);
+    background: rgb(241 238 229 / 0.96);
+    backdrop-filter: blur(14px);
   }
 
   .nav__inner {
@@ -85,26 +85,14 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
   .nav__logo {
     font-family: var(--font-mono);
     font-weight: 600;
-    font-size: 1.35rem;
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
     letter-spacing: -0.02em;
   }
   .nav__logo span:first-child {
     color: var(--accent);
   }
-  .nav__cursor {
-    color: var(--accent);
-    animation: blink 1.2s steps(2) infinite;
-  }
-  @keyframes blink {
-    50% {
-      opacity: 0;
-    }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .nav__cursor {
-      animation: none;
-    }
-  }
+  .nav__cursor { color: var(--accent); }
 
   .nav__links {
     display: flex;
@@ -112,8 +100,10 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
   }
   .nav__link {
     position: relative;
-    font-size: 0.92rem;
-    font-weight: 500;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     color: var(--text-muted);
     padding: 0.3rem 0;
     transition: color var(--transition);
@@ -124,7 +114,7 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
     left: 0;
     bottom: -2px;
     width: 0;
-    height: 2px;
+    height: 1px;
     background: var(--accent);
     transition: width var(--transition);
   }
@@ -180,7 +170,7 @@ const isActive = (href: string) => path === href || path.startsWith(href + '/');
     display: none;
     flex-direction: column;
     padding: 0.5rem var(--gutter) 1.25rem;
-    background: hsl(158 8% 5% / 0.97);
+    background: rgb(241 238 229 / 0.98);
     backdrop-filter: blur(14px);
     border-bottom: 1px solid var(--border);
   }

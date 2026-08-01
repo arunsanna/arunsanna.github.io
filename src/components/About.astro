@@ -121,15 +121,10 @@ const dossier = [
     object-fit: cover;
     filter: grayscale(0.2) contrast(1.05);
   }
-  /* CRT scanline overlay on the portrait */
   .about__id-scan {
     position: absolute;
     inset: 0;
-    background: repeating-linear-gradient(
-      0deg,
-      hsl(0 0% 0% / 0.12) 0 1px,
-      transparent 1px 3px
-    );
+    border: 0.4rem solid rgb(241 238 229 / 0.18);
     pointer-events: none;
   }
   .about__id-meta {

@@ -29,7 +29,7 @@ interface Props {
 const {
   title = `${SITE.name} — ${SITE.tagline}`,
   description = SITE.description,
-  ogImage = '/og-image.png',
+  ogImage = '/og.png',
   crumb,
   pageType = 'WebPage',
   personIsMainEntity = false,
@@ -87,8 +87,8 @@ const graph = buildGraph({
     <link rel="canonical" href={canonical} />
     <meta name="author" content={SITE.name} />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0d1117" />
-    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#f1eee5" />
+    <meta name="color-scheme" content="light" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -111,12 +111,12 @@ const graph = buildGraph({
     <link rel="icon" type="image/png" href="/favicon-32.png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-    <!-- Fonts: distinctive pairing (Hanken Grotesk + JetBrains Mono), not Inter -->
+    <!-- Operating Brief type system: editorial serif + rational grotesk + evidence mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@500;600&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;600;700;800&display=swap"
     />
     <script
       is:inline

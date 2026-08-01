@@ -1,49 +1,43 @@
-/* ==========================================================================
-   arunsanna.com — design system (v4 · "Operator")
-   Neutral graphite-black, ONE phosphor-green signal accent, NO gradient.
-   Structure over glow: engineering grid + scanlines, hairline borders, mono as
-   a structural element. The deliberate anti-thesis of the generic-AI look.
-   Token NAMES are preserved so existing components keep working.
+/* ===========================================================================
+   arunsanna.com — design system (v5 · "The Operating Brief")
+   Premium editorial authority with the rigor of an operating document.
+   Bone paper, ink, one signal orange, hard rules, and evidence-first layouts.
    ========================================================================== */
 
 :root {
-  /* --- Surfaces: neutral graphite-black with a faint phosphor-green undertone
-     (CRT/operator). Deliberately NOT the old blue-purple "AI template" tint. --- */
-  --bg: hsl(158 8% 5%);
-  --bg-elev: hsl(158 7% 7%);
-  --surface: hsl(156 6% 9%);
-  --surface-2: hsl(154 5% 12.5%);
-  --surface-3: hsl(152 5% 16%);
-  --border: hsl(154 6% 15%);
-  --border-strong: hsl(150 5% 25%);
+  --bg: #f1eee5;
+  --bg-elev: #e9e5da;
+  --surface: #f8f6ef;
+  --surface-2: #e4dfd2;
+  --surface-3: #d6d0c1;
+  --border: #c7c2b5;
+  --border-strong: #7e7c73;
 
   /* --- Text hierarchy --- */
-  --text: hsl(140 14% 96%);
-  --text-muted: hsl(150 7% 73%);
-  --text-faint: hsl(150 5% 55%);
+  --text: #121310;
+  --text-muted: #5f6059;
+  --text-faint: #77786f;
 
-  /* --- Accent: phosphor green. ONE signal color. No gradient. --- */
-  --accent: hsl(146 72% 50%);
-  --accent-strong: hsl(146 82% 63%);
-  --accent-dim: hsl(146 55% 36%);
-  --accent-ghost: hsl(146 72% 50% / 0.12);
-  --accent-line: hsl(146 72% 50% / 0.3);
+  --accent: #f04a23;
+  --accent-strong: #c83212;
+  --accent-dim: #9f3822;
+  --accent-ghost: rgb(240 74 35 / 0.1);
+  --accent-line: rgb(240 74 35 / 0.42);
 
   /* Aliases collapse any old reference onto the single accent — kills the
      indigo + cyan→indigo gradient that read as "generic AI". --- */
   --accent-2: var(--accent);
   --accent-2-dim: var(--accent-dim);
 
-  /* --- "Gradients" → solid/honest now; the operator look avoids gradients. --- */
   --grad-brand: var(--accent);
   --grad-text: var(--text);
-  --grad-line: linear-gradient(90deg, transparent, var(--accent-line), transparent);
-  --grad-surface: linear-gradient(180deg, hsl(156 6% 10%), hsl(158 7% 7%));
+  --grad-line: var(--border-strong);
+  --grad-surface: var(--surface);
 
   /* --- Typography --- */
-  --font-sans:
-    'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+  --font-serif: 'Instrument Serif', 'Iowan Old Style', 'Baskerville', Georgia, serif;
+  --font-sans: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
 
   /* Fluid type scale */
   --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
@@ -55,16 +49,16 @@
   --step-5: clamp(3.1rem, 2.1rem + 4.6vw, 6rem);
 
   /* --- Layout --- */
-  --maxw: 1180px;
+  --maxw: 1390px;
   --maxw-prose: 65ch;
   --gutter: clamp(1.25rem, 0.8rem + 2.2vw, 2.5rem);
-  --radius: 12px;
-  --radius-sm: 8px;
-  --radius-lg: 16px;
+  --radius: 0;
+  --radius-sm: 0;
+  --radius-lg: 0;
 
-  --shadow-1: 0 1px 2px hsl(0 0% 0% / 0.3);
-  --shadow-2: 0 18px 50px -22px hsl(0 0% 0% / 0.72);
-  --shadow-glow: 0 0 0 1px var(--accent-line), 0 22px 60px -28px hsl(0 0% 0% / 0.7);
+  --shadow-1: none;
+  --shadow-2: none;
+  --shadow-glow: none;
 
   /* --- Motion --- */
   --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
@@ -90,7 +84,7 @@ html {
 body {
   font-family: var(--font-sans);
   font-size: var(--step-0);
-  line-height: 1.65;
+  line-height: 1.58;
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
@@ -99,31 +93,12 @@ body {
   font-feature-settings: 'ss01', 'cv01';
 }
 
-/* Operator texture: a faint engineering grid that fades from the top, plus
-   grain + whisper-thin CRT scanlines. Structure, not glow — no brand gradient. */
 body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -2;
-  pointer-events: none;
-  background:
-    linear-gradient(hsl(150 8% 55% / 0.045) 1px, transparent 1px) 0 0 / 100% 46px,
-    linear-gradient(90deg, hsl(150 8% 55% / 0.045) 1px, transparent 1px) 0 0 / 46px 100%;
-  -webkit-mask-image: radial-gradient(125% 80% at 50% -8%, #000, transparent 72%);
-  mask-image: radial-gradient(125% 80% at 50% -8%, #000, transparent 72%);
+  content: none;
 }
 
 body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  opacity: 0.5;
-  pointer-events: none;
-  background-image:
-    repeating-linear-gradient(0deg, hsl(0 0% 0% / 0.05) 0 1px, transparent 1px 3px),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  content: none;
 }
 
 /* --- Typography --- */
@@ -184,7 +159,8 @@ ul {
 }
 
 .section--tint {
-  background: linear-gradient(180deg, transparent, hsl(158 7% 8% / 0.7), transparent);
+  background: var(--bg-elev);
+  border-block: 1px solid var(--border);
 }
 
 /* A hairline divider with a brand-tinted center — section seam */
@@ -227,7 +203,10 @@ ul {
 }
 
 .section-head h2 {
+  font-family: var(--font-serif);
+  font-weight: 400;
   font-size: var(--step-3);
+  letter-spacing: -0.035em;
   margin-top: 0.9rem;
 }
 
@@ -240,10 +219,7 @@ ul {
 
 /* Gradient text — the signature treatment for hero name + key headings */
 .grad-text {
-  background: var(--grad-brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--accent);
 }
 
 /* --- Buttons --- */
@@ -254,14 +230,16 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  padding: 0.72rem 1.35rem;
+  padding: 0.82rem 1.35rem;
   border: 1px solid var(--btn-bd);
   border-radius: var(--radius-sm);
   background: var(--btn-bg);
   color: var(--btn-fg);
   font-family: var(--font-sans);
-  font-size: 0.95rem;
-  font-weight: 600;
+  font-size: 0.83rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
   white-space: nowrap;
   transition:
@@ -278,16 +256,16 @@ ul {
 }
 
 .btn--primary {
-  --btn-fg: hsl(150 30% 6%);
+  --btn-fg: #fffaf2;
   --btn-bd: transparent;
   background: var(--accent);
   font-weight: 700;
-  box-shadow: 0 8px 24px -14px hsl(146 72% 45% / 0.5);
+  box-shadow: none;
 }
 
 .btn--primary:hover {
   background: var(--accent-strong);
-  box-shadow: 0 12px 30px -14px hsl(146 72% 50% / 0.55);
+  box-shadow: none;
 }
 
 .btn--ghost {
@@ -326,7 +304,6 @@ ul {
   gap: 0.4rem;
   padding: 0.28rem 0.7rem;
   border: 1px solid var(--border);
-  border-radius: 999px;
   background: var(--surface);
   font-family: var(--font-mono);
   font-size: 0.72rem;
@@ -356,9 +333,9 @@ ul {
 }
 
 .card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-1px);
   border-color: var(--accent-line);
-  box-shadow: var(--shadow-2);
+  box-shadow: inset 4px 0 0 var(--accent);
 }
 
 /* --- Accessibility --- */

@@ -22,8 +22,7 @@ const items = [...MARQUEE, ...MARQUEE];
     overflow: hidden;
     border-block: 1px solid var(--border);
     padding-block: 1rem;
-    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
-    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    background: var(--text);
   }
   .marquee__track {
     display: flex;
@@ -41,12 +40,12 @@ const items = [...MARQUEE, ...MARQUEE];
     font-family: var(--font-mono);
     font-size: 0.9rem;
     letter-spacing: 0.01em;
-    color: var(--text-muted);
+    color: var(--bg);
     white-space: nowrap;
   }
   .marquee__sep {
     color: var(--accent);
-    opacity: 0.5;
+    opacity: 1;
     font-style: normal;
   }
   @keyframes marquee {

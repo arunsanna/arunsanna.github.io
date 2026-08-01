@@ -185,9 +185,9 @@ const education = [
     animation: xp-pulse 2s var(--ease-out) infinite;
   }
   @keyframes xp-pulse {
-    0% { box-shadow: 0 0 0 0 hsl(146 72% 50% / 0.5); }
-    70% { box-shadow: 0 0 0 5px hsl(146 72% 50% / 0); }
-    100% { box-shadow: 0 0 0 0 hsl(146 72% 50% / 0); }
+    0% { box-shadow: 0 0 0 0 var(--accent-line); }
+    70% { box-shadow: 0 0 0 5px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
   }
   @media (prefers-reduced-motion: reduce) {
     .xp__log-live i { animation: none; }
