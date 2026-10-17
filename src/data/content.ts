@@ -77,6 +77,28 @@ export interface Post {
 // these render the Writing surface so the design is reviewable now.
 export const POSTS: Post[] = [
   {
+    "slug": "pdf-conversion-evidence-survival",
+    "title": "A Successful PDF Conversion Can Still Lose the Evidence",
+    "summary": "Six-document observations, their limits, and a practical design for checking what survives extraction.",
+    "date": "2026-10-07",
+    "readingTime": "7 min",
+    "tags": [
+      "AI Systems",
+      "Document Extraction"
+    ]
+  },
+  {
+    "slug": "permission-laundering-original-grant",
+    "title": "Permission Laundering: Verify the Grant Behind the Handoff",
+    "summary": "A forwarded approval claim can reach an agent with real privileges. Authorization must follow the original actor and actual grant to the action boundary.",
+    "date": "2026-10-07",
+    "readingTime": "6 min",
+    "tags": [
+      "AI Security",
+      "Agents"
+    ]
+  },
+  {
     slug: "rogue-agents-dsewiki-vs-moltbook",
     title: "Rogue Agents Had an Agent Internet Waiting. They Chose a Dead German Wiki Anyway.",
     summary:
