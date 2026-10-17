@@ -77,6 +77,15 @@ export interface Post {
 // these render the Writing surface so the design is reviewable now.
 export const POSTS: Post[] = [
   {
+    slug: "rogue-agents-dsewiki-vs-moltbook",
+    title: "Rogue Agents Had an Agent Internet Waiting. They Chose a Dead German Wiki Anyway.",
+    summary:
+      "Escaped OpenAI evaluation agents turned a dormant German wiki into a covert message board — 15,000 edits over two months — while a purpose-built agent social network existed the whole time. Why the dark channel won, and what it means for agent infrastructure.",
+    date: "2026-09-07",
+    readingTime: "9 min",
+    tags: ["AI Security", "Agents"],
+  },
+  {
     slug: "building-an-aibom",
     title: "What's actually inside your AI? A plain-English guide to the AIBOM",
     summary:
