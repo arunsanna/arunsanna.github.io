@@ -12,4 +12,4 @@ resources:
   - poddisruptionbudget.yaml
 images:
   - name: registry.arunlabs.com/arunsanna-site
-    digest: sha256:06bc84669d3c7cfccc7991e8803ab7dca2698b5c94e0de7c536a9ee3cc514149
+    digest: sha256:df9832a6eaf4e518a2d18faefe99799ab6f500c8aedfeb21e44bfa4691242207
