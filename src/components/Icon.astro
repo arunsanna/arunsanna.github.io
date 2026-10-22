@@ -1,0 +1,112 @@
+---
+interface Props {
+  name: string;
+  class?: string;
+  title?: string;
+}
+
+const { name, title } = Astro.props;
+const className = Astro.props.class;
+const normalized = name.toLowerCase();
+
+const pick = () => {
+  if (normalized.includes('github')) return 'github';
+  if (normalized.includes('linkedin')) return 'linkedin';
+  if (normalized.includes('aws')) return 'aws';
+  if (normalized.includes('microsoft')) return 'microsoft';
+  if (normalized.includes('google')) return 'google';
+  if (normalized.includes('envelope') || normalized.includes('paper-plane')) return 'mail';
+  if (normalized.includes('file') || normalized.includes('resume')) return 'file';
+  if (normalized.includes('arrow')) return 'arrow';
+  if (normalized.includes('shield') || normalized.includes('security')) return 'shield';
+  if (normalized.includes('brain') || normalized.includes('ai')) return 'brain';
+  if (normalized.includes('cloud')) return 'cloud';
+  if (normalized.includes('code') || normalized.includes('terminal') || normalized.includes('laptop')) return 'code';
+  if (normalized.includes('users') || normalized.includes('team')) return 'users';
+  if (normalized.includes('chart') || normalized.includes('wave')) return 'chart';
+  if (normalized.includes('building') || normalized.includes('briefcase')) return 'building';
+  if (normalized.includes('bullseye')) return 'target';
+  if (normalized.includes('trophy') || normalized.includes('star')) return 'award';
+  if (normalized.includes('flag')) return 'flag';
+  if (normalized.includes('heart')) return 'heart';
+  if (normalized.includes('globe') || normalized.includes('network')) return 'globe';
+  if (normalized.includes('graduation') || normalized.includes('university')) return 'education';
+  if (normalized.includes('certificate')) return 'certificate';
+  if (normalized.includes('database')) return 'database';
+  if (normalized.includes('server') || normalized.includes('microchip')) return 'server';
+  if (normalized.includes('plane')) return 'plane';
+  if (normalized.includes('robot')) return 'robot';
+  if (normalized.includes('flask') || normalized.includes('dharmachakra')) return 'lab';
+  if (normalized.includes('coins') || normalized.includes('wallet')) return 'coins';
+  if (normalized.includes('film') || normalized.includes('video')) return 'video';
+  if (normalized.includes('search') || normalized.includes('fingerprint')) return 'search';
+  if (normalized.includes('cubes') || normalized.includes('boxes') || normalized.includes('layer')) return 'boxes';
+  if (normalized.includes('wrench') || normalized.includes('hammer') || normalized.includes('cogs')) return 'tool';
+  if (normalized.includes('list')) return 'list';
+  return 'spark';
+};
+
+const icon = pick();
+const size = (() => {
+  if (!className) return '1.1em';
+  if (className.includes('certs__icon')) return '1.9rem';
+  if (className.includes('certs__membership-glyph')) return '1.45rem';
+  if (className.includes('about__card-icon')) return '1.3rem';
+  if (className.includes('xp__')) return '1.25rem';
+  if (className.includes('contact__channel-icon')) return '1.25rem';
+  if (className.includes('contact__arrow')) return '0.9rem';
+  if (className.includes('project__gh')) return '1.3rem';
+  if (className.includes('projects__tab-icon')) return '1rem';
+  return '1rem';
+})();
+---
+
+<svg
+  class={className}
+  style={`width:${size};height:${size}`}
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="1.8"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden={title ? undefined : 'true'}
+  role={title ? 'img' : undefined}
+>
+  {title && <title>{title}</title>}
+  {icon === 'github' && <><path d="M15 22v-4a4.8 4.8 0 0 0-1.2-3.6c4 0 8.2-2 8.2-8.5a6.6 6.6 0 0 0-1.8-4.6 6.2 6.2 0 0 0-.1-4.5s-1.5-.5-4.8 1.8a16.6 16.6 0 0 0-8.8 0C3.2-4.2 1.7-3.7 1.7-3.7a6.2 6.2 0 0 0-.1 4.5A6.6 6.6 0 0 0-.2 5.9c0 6.5 4.2 8.4 8.2 8.5A4.8 4.8 0 0 0 6.8 18v4" transform="translate(1.2 1.4) scale(.82)"/><path d="M9 18c-4.5 2-4.5-2-6-2"/></>}
+  {icon === 'linkedin' && <><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><path d="M2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></>}
+  {icon === 'aws' && <><path d="M4 17c4 3 12 3 16-1"/><path d="M18 19l2-3-3-1"/><path d="M6 13l1.4-6h2l1.4 6"/><path d="M6.5 11h4"/><path d="M13 7v6h3a2 2 0 0 0 0-4h-3"/></>}
+  {icon === 'microsoft' && <><path d="M3 3h8v8H3z"/><path d="M13 3h8v8h-8z"/><path d="M3 13h8v8H3z"/><path d="M13 13h8v8h-8z"/></>}
+  {icon === 'google' && <><circle cx="12" cy="12" r="8"/><path d="M12 12h8"/><path d="M18.5 15A7.8 7.8 0 0 1 12 20"/><path d="M5.8 7A8 8 0 0 1 18 6.5"/></>}
+  {icon === 'mail' && <><path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/><path d="m22 7-10 6L2 7"/></>}
+  {icon === 'file' && <><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></>}
+  {icon === 'arrow' && <><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></>}
+  {icon === 'shield' && <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-5"/></>}
+  {icon === 'brain' && <><path d="M9 3a3 3 0 0 0-3 3v1a3 3 0 0 0 0 6v1a4 4 0 0 0 4 4"/><path d="M15 3a3 3 0 0 1 3 3v1a3 3 0 0 1 0 6v1a4 4 0 0 1-4 4"/><path d="M12 3v18"/><path d="M8 8h4"/><path d="M12 13h4"/></>}
+  {icon === 'cloud' && <><path d="M17.5 19H7a5 5 0 1 1 1.6-9.7A7 7 0 0 1 22 12a4 4 0 0 1-4.5 7z"/></>}
+  {icon === 'code' && <><path d="m8 9-4 3 4 3"/><path d="m16 9 4 3-4 3"/><path d="m14 4-4 16"/></>}
+  {icon === 'users' && <><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.9"/><path d="M16 3.1a4 4 0 0 1 0 7.8"/></>}
+  {icon === 'chart' && <><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-7"/></>}
+  {icon === 'building' && <><path d="M4 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18"/><path d="M16 8h2a2 2 0 0 1 2 2v12"/><path d="M8 6h4M8 10h4M8 14h4M8 18h4"/></>}
+  {icon === 'target' && <><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></>}
+  {icon === 'award' && <><circle cx="12" cy="8" r="5"/><path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5"/></>}
+  {icon === 'flag' && <><path d="M4 22V4"/><path d="M4 5s3-2 7 0 7 0 9-1v11c-2 1-5 3-9 1s-7 0-7 0"/></>}
+  {icon === 'heart' && <><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1-1.1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></>}
+  {icon === 'globe' && <><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 0 20"/><path d="M12 2a15.3 15.3 0 0 0 0 20"/></>}
+  {icon === 'education' && <><path d="m22 10-10-5-10 5 10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></>}
+  {icon === 'certificate' && <><circle cx="12" cy="8" r="5"/><path d="M8 13 6 22l6-3 6 3-2-9"/></>}
+  {icon === 'database' && <><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></>}
+  {icon === 'server' && <><rect x="3" y="4" width="18" height="8" rx="2"/><rect x="3" y="14" width="18" height="8" rx="2"/><path d="M7 8h.01M7 18h.01"/></>}
+  {icon === 'plane' && <><path d="M22 2 11 13"/><path d="m22 2-7 20-4-9-9-4 20-7z"/></>}
+  {icon === 'robot' && <><rect x="5" y="8" width="14" height="10" rx="2"/><path d="M12 8V4"/><circle cx="9" cy="13" r="1"/><circle cx="15" cy="13" r="1"/><path d="M9 18v2M15 18v2"/></>}
+  {icon === 'lab' && <><path d="M10 2v7l-5 9a3 3 0 0 0 2.6 4h8.8a3 3 0 0 0 2.6-4l-5-9V2"/><path d="M8 2h8"/><path d="M7 16h10"/></>}
+  {icon === 'coins' && <><circle cx="8" cy="8" r="5"/><path d="M13 8a5 5 0 1 1-3 9"/><path d="M8 5v6M6 8h4"/></>}
+  {icon === 'video' && <><rect x="3" y="5" width="14" height="14" rx="2"/><path d="m17 10 5-3v10l-5-3z"/></>}
+  {icon === 'search' && <><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></>}
+  {icon === 'boxes' && <><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.7z"/><path d="M3.3 7 12 12l8.7-5"/><path d="M12 22V12"/></>}
+  {icon === 'tool' && <><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.4 2.4-2-2 2.4-2.4z"/></>}
+  {icon === 'list' && <><path d="M8 6h13M8 12h13M8 18h13"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></>}
+  {icon === 'spark' && <><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 21l-2.4-7.6L3 11l6.6-2.4L12 2z"/></>}
+</svg>

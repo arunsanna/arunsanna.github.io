@@ -1,6 +1,6 @@
 # Arun Sanna Portfolio Website
 
-A modern, component-based portfolio website showcasing enterprise architecture and engineering expertise. Built with vanilla HTML, CSS, and JavaScript for GitHub Pages deployment.
+A modern, component-based portfolio website showcasing enterprise architecture and engineering expertise. Historically built with vanilla HTML, CSS, and JavaScript for GitHub Pages deployment; now also scaffolded as a small Fastify app for dynamic Forge/k3s hosting.
 
 ## Features
 
@@ -8,8 +8,9 @@ A modern, component-based portfolio website showcasing enterprise architecture a
 - 📱 Fully responsive mobile-first design
 - ⚡ Smooth animations and scroll-triggered effects
 - 🧩 Modular component-based architecture
-- 🔧 No build process required - pure HTML/CSS/JS
-- 🚀 GitHub Pages ready
+- 🔧 Existing static frontend preserved - pure HTML/CSS/JS
+- 🚀 GitHub Pages ready, with Forge/k3s migration manifests
+- 🧠 Dynamic API seed: `/healthz`, `/api/status`, `/api/projects`
 - 🎯 Accessibility focused
 
 ## Project Architecture
@@ -51,7 +52,16 @@ arunsanna.github.io/
 
 ### Local Development
 
-Run a local server to view the site:
+Install dependencies and run the dynamic local server:
+
+```bash
+npm install
+npm run dev
+```
+
+Then visit `http://localhost:8080`.
+
+Static-only fallback:
 
 ```bash
 # Python 3
@@ -64,7 +74,7 @@ python -m SimpleHTTPServer 8000
 npx http-server
 ```
 
-Then visit `http://localhost:8000`
+Then visit `http://localhost:8000`.
 
 ### Making Changes
 
@@ -111,6 +121,18 @@ Edit `assets/projects.json`:
 `js/projects.js` renders cards, tab counts, and dynamic tag filters from this file.
 
 ## Deployment
+
+### Forge / k3s Draft
+
+See [`docs/forge-migration.md`](docs/forge-migration.md).
+
+```bash
+scripts/release-forge-private.sh
+```
+
+Builds must run on Forge, not on this local Apple Silicon machine. The release script syncs source to the x86_64 Forge host, builds and pushes the image there, applies the k3s manifests, and pins the deployment by digest.
+
+Do not cut over `arunsanna.com` DNS until the Forge public gateway has a valid `arunsanna.com` TLS secret and public ingress has been smoke-tested.
 
 ### GitHub Pages
 

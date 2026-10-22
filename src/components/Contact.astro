@@ -1,0 +1,122 @@
+---
+import { SITE } from '../data/site';
+import Icon from './Icon.astro';
+
+const channels = [
+  { icon: 'fas fa-envelope', label: SITE.email, href: `mailto:${SITE.email}` },
+  { icon: 'fab fa-linkedin', label: SITE.social.linkedinHandle, href: SITE.social.linkedin },
+  { icon: 'fab fa-github', label: `github.com/${SITE.social.githubHandle}`, href: SITE.social.github },
+];
+---
+
+<section class="section section--tint" id="contact">
+  <div class="container">
+    <div class="contact">
+      <div class="contact__lead">
+        <p class="eyebrow" data-num="06">Contact</p>
+        <h2>Let's build something together</h2>
+        <p class="contact__text">
+          I'm always interested in frontier AI work, hard platform & security problems, and
+          mission-driven teams. Whether it's architecture, AI security, or full-stack delivery —
+          let's talk.
+        </p>
+        <a href={`mailto:${SITE.email}`} class="btn btn--primary contact__cta">
+          <Icon name="paper-plane" class="contact__cta-icon" /> Send a message
+        </a>
+      </div>
+
+      <ul class="contact__channels">
+        {
+          channels.map((c) => (
+            <li>
+              <a
+                class="contact__channel"
+                href={c.href}
+                target={c.href.startsWith('http') ? '_blank' : undefined}
+                rel={c.href.startsWith('http') ? 'noopener' : undefined}
+              >
+                <Icon name={c.icon} class="contact__channel-icon" />
+                <span>{c.label}</span>
+                <Icon name="arrow" class="contact__arrow" />
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: clamp(2rem, 1rem + 4vw, 4rem);
+    align-items: center;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: clamp(1.75rem, 1rem + 3vw, 3rem);
+  }
+  .contact__lead h2 {
+    font-size: var(--step-2);
+    margin-top: 0.8rem;
+  }
+  .contact__text {
+    color: var(--text-muted);
+    margin-top: 1rem;
+    max-width: 34rem;
+  }
+  .contact__cta {
+    margin-top: 1.75rem;
+  }
+  .contact__channels {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .contact__channel {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 1rem 1.15rem;
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    transition: var(--transition);
+  }
+  .contact__channel:hover {
+    border-color: var(--accent);
+    color: var(--text);
+  }
+  .contact__cta-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  .contact__channel-icon {
+    color: var(--accent);
+    width: 1.3rem;
+    height: 1.3rem;
+    flex: none;
+  }
+  .contact__arrow {
+    margin-left: auto;
+    width: 0.9rem;
+    height: 0.9rem;
+    opacity: 0;
+    transform: translateX(-4px);
+    transition: var(--transition);
+  }
+  .contact__channel:hover .contact__arrow {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 760px) {
+    .contact {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

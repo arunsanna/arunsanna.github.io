@@ -1,0 +1,129 @@
+---
+import { RESEARCH } from '../data/content';
+import Icon from './Icon.astro';
+---
+
+<section class="section" id="research">
+  <div class="container">
+    <div class="section-head section-head--split" data-reveal>
+      <div>
+        <p class="eyebrow"><span data-num="// 03"></span>Research</p>
+        <h2>Frontier threads, shipped tools.</h2>
+      </div>
+      <a href="/research" class="arrow-link">All research <Icon name="arrow" /></a>
+    </div>
+
+    <div class="rsh-grid" data-reveal>
+      {
+        RESEARCH.slice(0, 3).map((area, i) => (
+          <a href="/research" class="rsh-card card" data-reveal-child style={`--i:${i}`}>
+            <div class="rsh-card__head">
+              <span class="rsh-card__status">
+                <i class:list={['rsh-card__dot', `is-${area.status}`]} />
+                <span class="mono">{area.status}</span>
+              </span>
+              <span class="rsh-card__index mono">R0{i + 1}</span>
+            </div>
+            <h3 class="rsh-card__title">{area.title}</h3>
+            <p class="rsh-card__summary">{area.summary}</p>
+            <div class="rsh-card__focus">
+              {area.focus.slice(0, 3).map((f) => (
+                <span class="pill">{f}</span>
+              ))}
+            </div>
+            <div class="rsh-card__foot mono">
+              {area.artifacts.length} artifacts
+              <Icon name="arrow" />
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .rsh-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .rsh-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.4rem;
+  }
+  .rsh-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.9rem;
+  }
+  .rsh-card__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--text-faint);
+  }
+  .rsh-card__dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+  }
+  .rsh-card__dot.is-active {
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-ghost);
+  }
+  .rsh-card__dot.is-ongoing {
+    background: hsl(40 80% 58%);
+    box-shadow: 0 0 0 3px hsl(40 80% 58% / 0.15);
+  }
+  .rsh-card__index {
+    color: var(--accent-dim);
+    font-size: 0.76rem;
+  }
+  .rsh-card__title {
+    font-size: 1.1rem;
+    line-height: 1.2;
+  }
+  .rsh-card__summary {
+    color: var(--text-muted);
+    font-size: 0.88rem;
+    margin-top: 0.5rem;
+    flex: 1;
+  }
+  .rsh-card__focus {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    margin-top: 1rem;
+  }
+  .rsh-card__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.74rem;
+    color: var(--text-faint);
+  }
+  .rsh-card__foot svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    transition: transform var(--transition);
+  }
+  .rsh-card:hover .rsh-card__foot svg {
+    transform: translateX(3px);
+    color: var(--accent);
+  }
+
+  @media (max-width: 860px) {
+    .rsh-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

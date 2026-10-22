@@ -1,0 +1,15 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: arunsanna-com
+  namespace: istio-system
+  labels:
+    app.kubernetes.io/name: arunsanna-site
+spec:
+  secretName: arunsanna-com-tls
+  issuerRef:
+    name: letsencrypt-prod-arunsanna-com
+    kind: ClusterIssuer
+  dnsNames:
+    - arunsanna.com
+    - www.arunsanna.com

@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1
+kind: VirtualService
+metadata:
+  name: arunsanna-site-public
+  namespace: arunsanna-site
+  labels:
+    app.kubernetes.io/name: arunsanna-site
+spec:
+  gateways:
+    - istio-system/arunsanna-public-gateway
+  hosts:
+    - arunsanna.com
+    - www.arunsanna.com
+  http:
+    - route:
+        - destination:
+            host: arunsanna-site.arunsanna-site.svc.cluster.local
+            port:
+              number: 80

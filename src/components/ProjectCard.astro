@@ -1,0 +1,287 @@
+---
+import Icon from './Icon.astro';
+
+// A single project card, rendered statically at build time (no client fetch).
+// Astro auto-escapes all interpolated values, so the XSS-safety of the old
+// hand-rolled templating is preserved for free.
+interface Metric {
+  value: string;
+  label: string;
+}
+interface Project {
+  id: string;
+  title: string;
+  category: string;
+  status: string;
+  featured: boolean;
+  icon: string;
+  description: string;
+  github?: string;
+  group?: string;
+  metrics?: Metric[];
+  highlights?: string[];
+  tech?: string[];
+  tags?: string[];
+}
+
+interface Props {
+  project: Project;
+  grouped?: boolean;
+}
+
+const { project, grouped = false } = Astro.props;
+const tags = (project.tags ?? []).join(' ');
+const metrics = (project.metrics ?? []).slice(0, 4);
+const highlights = project.highlights ?? [];
+const tech = project.tech ?? [];
+---
+
+<article
+  class:list={['project', { 'project--grouped': grouped }]}
+  data-project
+  data-tags={tags}
+>
+  <header class="project__head">
+    <span class="project__icon" aria-hidden="true"><Icon name={project.icon} /></span>
+    <div class="project__heading">
+      <h3 class="project__title">{project.title}</h3>
+      <div class="project__meta">
+        <span class="project__cat">{project.category}</span>
+        <span class:list={['pill', `pill--${project.status.toLowerCase().replace(/\s+/g, '-')}`]}>
+          {project.status}
+        </span>
+        {project.featured && <span class="pill pill--featured">Featured</span>}
+      </div>
+    </div>
+    {
+      project.github && (
+        <a
+          class="project__gh"
+          href={project.github}
+          target="_blank"
+          rel="noopener"
+          aria-label={`${project.title} on GitHub`}
+        >
+          <Icon name="github" />
+        </a>
+      )
+    }
+  </header>
+
+  <p class="project__desc">{project.description}</p>
+
+  {
+    metrics.length > 0 && (
+      <dl class="project__metrics">
+        {metrics.map((m) => (
+          <div class="project__metric">
+            <dt>{m.value}</dt>
+            <dd>{m.label}</dd>
+          </div>
+        ))}
+      </dl>
+    )
+  }
+
+  {
+    highlights.length > 0 && (
+      <ul class="project__highlights">
+        {highlights.map((h) => (
+          <li>
+            <span class="project__bullet" aria-hidden="true" />
+            {h}
+          </li>
+        ))}
+      </ul>
+    )
+  }
+
+  {
+    tech.length > 0 && (
+      <ul class="project__tech">
+        {tech.map((t) => (
+          <li>{t}</li>
+        ))}
+      </ul>
+    )
+  }
+</article>
+
+<style>
+  .project {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    transition:
+      border-color var(--transition),
+      transform var(--transition),
+      background var(--transition);
+  }
+  .project:hover {
+    border-color: var(--accent-line);
+    background: var(--surface-2);
+    transform: translateY(-3px);
+  }
+  .project[hidden] {
+    display: none;
+  }
+  .project--grouped {
+    border-left: 2px solid var(--accent-line);
+  }
+
+  .project__head {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .project__icon {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.8rem;
+    height: 2.8rem;
+    border-radius: var(--radius-sm);
+    background: var(--accent-ghost);
+    color: var(--accent);
+    font-size: 1.15rem;
+  }
+  .project__icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+  .project__heading {
+    flex: 1;
+    min-width: 0;
+  }
+  .project__title {
+    font-size: 1.18rem;
+    letter-spacing: -0.02em;
+  }
+  .project__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.45rem;
+  }
+  .project__cat {
+    font-size: 0.78rem;
+    color: var(--text-faint);
+  }
+  .project__gh {
+    flex: none;
+    color: var(--text-muted);
+    transition:
+      color var(--transition),
+      transform var(--transition);
+  }
+  .project__gh svg {
+    width: 1.3rem;
+    height: 1.3rem;
+  }
+  .project__gh:hover {
+    color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 0.66rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    padding: 0.18rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid var(--border-strong);
+    color: var(--text-muted);
+  }
+  .pill--delivered {
+    color: hsl(142 60% 62%);
+    border-color: hsl(142 50% 40% / 0.5);
+  }
+  .pill--active {
+    color: var(--accent);
+    border-color: var(--accent-line);
+  }
+  .pill--featured {
+    color: hsl(38 92% 62%);
+    border-color: hsl(38 80% 50% / 0.45);
+  }
+
+  .project__desc {
+    color: var(--text-muted);
+    font-size: 0.94rem;
+  }
+
+  .project__metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+  .project__metric {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 0.7rem 0.4rem;
+    text-align: center;
+  }
+  .project__metric dt {
+    font-family: var(--font-mono);
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1.1;
+  }
+  .project__metric dd {
+    font-size: 0.68rem;
+    color: var(--text-faint);
+    margin-top: 0.25rem;
+  }
+
+  .project__highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .project__highlights li {
+    display: flex;
+    gap: 0.65rem;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .project__bullet {
+    flex: none;
+    width: 6px;
+    height: 6px;
+    margin-top: 0.5rem;
+    border-radius: 2px;
+    background: var(--accent);
+  }
+
+  .project__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: auto;
+  }
+  .project__tech li {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    padding: 0.25rem 0.6rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+  }
+
+  @media (max-width: 440px) {
+    .project__metrics {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

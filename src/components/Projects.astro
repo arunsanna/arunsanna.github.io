@@ -1,0 +1,271 @@
+---
+import data from '../../assets/projects.json';
+import ProjectCard from './ProjectCard.astro';
+import Icon from './Icon.astro';
+
+const TRACKS = [
+  { id: 'professional', label: 'Professional', icon: 'fas fa-building' },
+  { id: 'opensource', label: 'Open Source', icon: 'fab fa-github' },
+  { id: 'cooking', label: 'Lab', icon: 'fas fa-flask' },
+];
+
+// Acronym-aware label casing so tags read "AI" / "DevSecOps", not "Ai" / "Devsecops".
+const ACRONYMS: Record<string, string> = {
+  ai: 'AI', ml: 'ML', mcp: 'MCP', api: 'API', aws: 'AWS', gcp: 'GCP', llm: 'LLM',
+  rag: 'RAG', devsecops: 'DevSecOps', ci: 'CI', cd: 'CD', iac: 'IaC', k8s: 'K8s',
+  ui: 'UI', ux: 'UX', oss: 'OSS', dod: 'DoD', mlops: 'MLOps',
+};
+const prettyTag = (t: string) =>
+  t
+    .split('-')
+    .map((p) => ACRONYMS[p.toLowerCase()] ?? p.charAt(0).toUpperCase() + p.slice(1))
+    .join(' ');
+
+const byFeature = (a: any, b: any) =>
+  a.featured !== b.featured ? (a.featured ? -1 : 1) : a.title.localeCompare(b.title);
+
+function organize(trackId: string) {
+  const ps = data.projects.filter((p: any) => p.track === trackId);
+  const standalone = ps.filter((p: any) => !p.group).sort(byFeature);
+  const grouped = data.groups
+    .filter((g: any) => ps.some((p: any) => p.group === g.id))
+    .map((g: any) => ({ group: g, items: ps.filter((p: any) => p.group === g.id).sort(byFeature) }));
+
+  const counts = new Map<string, number>();
+  ps.forEach((p: any) => (p.tags ?? []).forEach((t: string) => counts.set(t, (counts.get(t) ?? 0) + 1)));
+  const topTags = [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 10)
+    .map(([t]) => t);
+
+  return { standalone, grouped, topTags, count: ps.length };
+}
+
+const tracks = TRACKS.map((t) => ({ ...t, ...organize(t.id) }));
+---
+
+<section class="section" id="work">
+  <div class="container">
+    <div class="section-head">
+      <p class="eyebrow" data-num="02">Work</p>
+      <h2>Shipped systems &amp; open-source momentum</h2>
+      <p>
+        Enterprise delivery plus active open-source building — shipped platforms, live
+        repositories, and projects currently in the lab.
+      </p>
+    </div>
+
+    <div class="projects" data-projects>
+      <div class="projects__tabs" role="tablist" aria-label="Project categories">
+        {
+          tracks.map((t, i) => (
+            <button
+              class="projects__tab"
+              role="tab"
+              id={`tab-${t.id}`}
+              aria-controls={`panel-${t.id}`}
+              aria-selected={i === 0 ? 'true' : 'false'}
+              tabindex={i === 0 ? 0 : -1}
+              data-tab={t.id}
+            >
+              <Icon name={t.icon} class="projects__tab-icon" />
+              <span>{t.label}</span>
+              <span class="projects__count">{t.count}</span>
+            </button>
+          ))
+        }
+      </div>
+
+      {
+        tracks.map((t, i) => (
+          <div
+            class="projects__panel"
+            role="tabpanel"
+            id={`panel-${t.id}`}
+            aria-labelledby={`tab-${t.id}`}
+            data-panel={t.id}
+            hidden={i !== 0}
+          >
+            {t.topTags.length > 0 && (
+              <div class="projects__filters" role="group" aria-label={`Filter ${t.label} projects`}>
+                <button class="chip" data-filter="all" aria-pressed="true">
+                  All
+                </button>
+                {t.topTags.map((tag) => (
+                  <button class="chip" data-filter={tag} aria-pressed="false">
+                    {prettyTag(tag)}
+                  </button>
+                ))}
+              </div>
+            )}
+
+            <div class="projects__grid">
+              {t.standalone.map((p: any) => (
+                <ProjectCard project={p} />
+              ))}
+            </div>
+
+            {t.grouped.map((section: any) => (
+              <div class="projects__group" data-group={section.group.id}>
+                <div class="projects__group-head">
+                  <span class="projects__group-icon" aria-hidden="true">
+                    <Icon name={section.group.icon} />
+                  </span>
+                  <div>
+                    <h3 class="projects__group-title">{section.group.label}</h3>
+                    <p class="projects__group-desc">{section.group.description}</p>
+                  </div>
+                  <span class="projects__group-count">
+                    {section.items.length} {section.items.length === 1 ? 'project' : 'projects'}
+                  </span>
+                </div>
+                <div class="projects__grid">
+                  {section.items.map((p: any) => (
+                    <ProjectCard project={p} grouped />
+                  ))}
+                </div>
+              </div>
+            ))}
+
+            <p class="projects__empty" data-empty hidden>No projects match this filter yet.</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .projects__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 1rem;
+  }
+  .projects__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.6rem 1rem;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .projects__tab:hover {
+    color: var(--text);
+    background: var(--surface);
+  }
+  .projects__tab[aria-selected='true'] {
+    color: var(--bg);
+    background: var(--accent);
+  }
+  .projects__tab-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  .projects__count {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 0.05rem 0.4rem;
+    border-radius: 999px;
+    background: hsl(0 0% 0% / 0.18);
+  }
+  .projects__tab[aria-selected='false'] .projects__count {
+    background: var(--surface-2);
+  }
+
+  .projects__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .chip {
+    padding: 0.35rem 0.85rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  .chip:hover {
+    border-color: var(--accent-line);
+    color: var(--text);
+  }
+  .chip[aria-pressed='true'] {
+    background: var(--accent-ghost);
+    border-color: var(--accent);
+    color: var(--accent-strong);
+  }
+
+  .projects__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+    gap: 1.1rem;
+  }
+
+  .projects__group {
+    margin-top: 2rem;
+  }
+  .projects__group-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .projects__group-icon {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.6rem;
+    height: 2.6rem;
+    border-radius: var(--radius-sm);
+    background: var(--accent-ghost);
+    color: var(--accent);
+  }
+  .projects__group-icon svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+  .projects__group-title {
+    font-size: 1.15rem;
+  }
+  .projects__group-desc {
+    color: var(--text-faint);
+    font-size: 0.86rem;
+    margin-top: 0.2rem;
+  }
+  .projects__group-count {
+    margin-left: auto;
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--text-faint);
+    white-space: nowrap;
+  }
+
+  .projects__empty {
+    color: var(--text-muted);
+    padding: 2rem 0;
+    text-align: center;
+  }
+
+  @media (max-width: 540px) {
+    .projects__group-count {
+      display: none;
+    }
+  }
+</style>

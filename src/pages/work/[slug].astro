@@ -1,0 +1,218 @@
+---
+import Base from '../../layouts/Base.astro';
+import Icon from '../../components/Icon.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { PROJECTS, type Project } from '../../data/projects';
+import { SITE } from '../../data/site';
+import { buildCreativeWork } from '../../lib/structured-data';
+import { normalizePath } from '../../lib/hierarchy';
+
+export function getStaticPaths() {
+  // Case studies are the professional track — they carry rich metrics + highlights.
+  return PROJECTS.filter((p) => p.track === 'professional').map((p) => ({
+    params: { slug: p.id },
+    props: { project: p },
+  }));
+}
+
+const { project } = Astro.props as { project: Project };
+
+// This case study is the page's primary entity — a CreativeWork linked into the
+// JSON-LD graph and authored by the site's Person.
+const pageUrl = new URL(normalizePath(Astro.url.pathname), Astro.site).href;
+const creativeWork = buildCreativeWork(SITE.url, {
+  url: pageUrl,
+  title: project.title,
+  description: project.description,
+  keywords: project.tags,
+});
+---
+
+<Base
+  title={`${project.title} — Arun Sanna`}
+  description={project.description}
+  pageType="ItemPage"
+  crumb={project.title}
+  primaryEntity={creativeWork}
+>
+  <article class="case">
+    <div class="container case__head">
+      <Breadcrumbs leafLabel={project.title} />
+      <div class="case__top">
+        <span class="pill">{project.category}</span>
+        <span class="case__status mono">{project.status}</span>
+      </div>
+      <h1 class="case__title">{project.title}</h1>
+      <p class="case__desc">{project.description}</p>
+
+      <dl class="case__metrics">
+        {
+          project.metrics.map((m) => (
+            <div class="case__metric">
+              <dt>{m.value}</dt>
+              <dd>{m.label}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <hr class="seam" />
+
+    <div class="container case__body">
+      <div class="case__main">
+        <h2 class="case__h2">Impact</h2>
+        <ul class="case__highlights">
+          {
+            project.highlights.map((h) => (
+              <li>
+                <span class="case__bullet" aria-hidden="true" />
+                {h}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <aside class="case__aside">
+        <p class="case__aside-label mono">Stack</p>
+        <ul class="case__tech">
+          {project.tech.map((t) => <li class="tag">{t}</li>)}
+        </ul>
+        <p class="case__aside-label mono">Tags</p>
+        <ul class="case__tech">
+          {project.tags.map((t) => <li class="tag">{t}</li>)}
+        </ul>
+        {
+          project.github && (
+            <a class="btn btn--ghost btn--sm" href={project.github} target="_blank" rel="noopener">
+              <Icon name="github" /> Source
+            </a>
+          )
+        }
+      </aside>
+    </div>
+  </article>
+</Base>
+
+<style>
+  .case__head {
+    padding-top: clamp(7rem, 5rem + 6vw, 9.5rem);
+    padding-bottom: 2.5rem;
+  }
+  .case__top {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+  .case__status {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+  }
+  .case__title {
+    font-size: var(--step-4);
+    margin-top: 1rem;
+    max-width: 20ch;
+  }
+  .case__desc {
+    color: var(--text-muted);
+    font-size: var(--step-1);
+    margin-top: 1.1rem;
+    max-width: 60ch;
+  }
+  .case__metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+    margin-top: 2.5rem;
+  }
+  .case__metric dt {
+    font-family: var(--font-mono);
+    font-size: clamp(1.5rem, 1.2rem + 1.4vw, 2.2rem);
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .case__metric dd {
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    margin-top: 0.35rem;
+  }
+
+  .case__body {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 18rem;
+    gap: 3rem;
+    padding-block: 3rem 5rem;
+    align-items: start;
+  }
+  .case__h2 {
+    font-size: var(--step-2);
+    margin-bottom: 1.5rem;
+  }
+  .case__highlights {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .case__highlights li {
+    position: relative;
+    padding-left: 1.6rem;
+    color: var(--text);
+    font-size: 1.02rem;
+    line-height: 1.6;
+  }
+  .case__bullet {
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-ghost);
+  }
+  .case__aside {
+    position: sticky;
+    top: 6rem;
+    padding: 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--grad-surface);
+  }
+  .case__aside-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-faint);
+    margin-bottom: 0.75rem;
+  }
+  .case__aside-label:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+  .case__tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .case__aside .btn {
+    margin-top: 1.5rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  @media (max-width: 820px) {
+    .case__body {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .case__aside {
+      position: static;
+    }
+    .case__metrics {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

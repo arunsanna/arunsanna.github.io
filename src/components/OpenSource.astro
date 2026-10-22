@@ -1,0 +1,154 @@
+---
+import { byId } from '../data/projects';
+import { FEATURED_REPOS } from '../data/content';
+import Icon from './Icon.astro';
+
+const repos = FEATURED_REPOS.map((r) => ({ ...r, p: byId(r.id) })).filter(
+  (r) => r.p,
+);
+---
+
+<section class="section section--tint" id="open-source">
+  <div class="container">
+    <div class="section-head section-head--split" data-reveal>
+      <div>
+        <p class="eyebrow"><span data-num="// 02"></span>Open source</p>
+        <h2>Tools I build in the open.</h2>
+      </div>
+      <a href="/projects" class="arrow-link">Browse all 30 projects <Icon name="arrow" /></a>
+    </div>
+
+    <div class="oss-grid" data-reveal>
+      {
+        repos.map((r, i) => (
+          <a
+            href={r.p!.github}
+            class="oss-card card"
+            target="_blank"
+            rel="noopener"
+            data-reveal-child
+            style={`--i:${i}`}
+          >
+            <div class="oss-card__head">
+              <span class="oss-card__icon">
+                <Icon name={r.p!.icon} />
+              </span>
+              <span class="oss-card__stars mono">
+                <Icon name="award" /> {r.stars}
+              </span>
+            </div>
+            <h3 class="oss-card__title">{r.p!.title}</h3>
+            <p class="oss-card__desc">{r.p!.description}</p>
+            <div class="oss-card__foot mono">
+              <span class="oss-card__lang">
+                <i class="oss-card__dot" /> {r.language}
+              </span>
+              <span class="oss-card__gh">
+                github <Icon name="arrow" />
+              </span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .oss-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .oss-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.4rem;
+  }
+  .oss-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  .oss-card__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    color: var(--accent);
+    background: var(--accent-ghost);
+  }
+  .oss-card__icon svg {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+  .oss-card__stars {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+  }
+  .oss-card__stars svg {
+    width: 0.85rem;
+    height: 0.85rem;
+    color: var(--accent);
+  }
+  .oss-card__title {
+    font-size: 1.15rem;
+  }
+  .oss-card__desc {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    flex: 1;
+  }
+  .oss-card__foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.4rem;
+    font-size: 0.78rem;
+    color: var(--text-faint);
+  }
+  .oss-card__lang {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .oss-card__dot {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 999px;
+    background: var(--accent);
+  }
+  .oss-card__gh {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    color: var(--text-muted);
+  }
+  .oss-card__gh svg {
+    width: 0.8rem;
+    height: 0.8rem;
+    transition: transform var(--transition);
+  }
+  .oss-card:hover .oss-card__gh svg {
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 860px) {
+    .oss-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 540px) {
+    .oss-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,62 @@
+---
+import { SITE } from '../data/site';
+import Icon from './Icon.astro';
+---
+
+<section class="section cta" id="contact">
+  <div class="container">
+    <div class="cta__card card" data-reveal>
+      <p class="eyebrow"><span data-num="//"></span>Let's build</p>
+      <h2 class="cta__title">
+        Frontier AI work, hard platform &amp; security problems,
+        <span class="grad-text">mission-driven teams.</span>
+      </h2>
+      <p class="cta__lede">
+        If you're building secure AI systems at scale — or hiring someone who
+        has — I'd like to hear about it.
+      </p>
+      <div class="cta__actions">
+        <a href={`mailto:${SITE.email}`} class="btn btn--primary">
+          <Icon name="mail" class="btn__icon" /> Get in touch
+        </a>
+        <a href={SITE.social.linkedin} class="btn btn--ghost" target="_blank" rel="noopener">
+          <Icon name="linkedin" class="btn__icon" /> LinkedIn
+        </a>
+        <a href={SITE.social.github} class="btn btn--ghost" target="_blank" rel="noopener">
+          <Icon name="github" class="btn__icon" /> GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta__card {
+    position: relative;
+    padding: clamp(2rem, 1.4rem + 3vw, 4rem);
+    text-align: center;
+    overflow: hidden;
+    background:
+      radial-gradient(40rem 22rem at 50% -8rem, var(--accent-ghost), transparent 65%),
+      var(--grad-surface);
+    border-color: var(--border-strong);
+  }
+  .cta__title {
+    font-size: var(--step-3);
+    max-width: 22ch;
+    margin: 0.9rem auto 0;
+  }
+  .cta__lede {
+    color: var(--text-muted);
+    font-size: var(--step-1);
+    max-width: 46ch;
+    margin: 1.1rem auto 0;
+  }
+  .cta__actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 2rem;
+  }
+</style>

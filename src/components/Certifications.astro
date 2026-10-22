@@ -1,0 +1,208 @@
+---
+import Icon from './Icon.astro';
+
+// Data-driven certs (was hardcoded HTML). Now a single list to maintain.
+const certs = [
+  { icon: 'fab fa-aws', title: 'AWS Solutions Architect', level: 'Professional', provider: 'Amazon Web Services' },
+  { icon: 'fab fa-microsoft', title: 'Azure Solutions Architect', level: 'Expert', provider: 'Microsoft Azure' },
+  { icon: 'fab fa-microsoft', title: 'Azure Administrator', level: 'Associate', provider: 'Microsoft Azure' },
+  { icon: 'fab fa-google', title: 'Professional Cloud Architect', level: 'Professional', provider: 'Google Cloud' },
+  { icon: 'fas fa-dharmachakra', title: 'Kubernetes Administrator', level: 'CKA', provider: 'CNCF' },
+  { icon: 'fas fa-microchip', title: 'AI Infrastructure & Operations', level: 'Certified Specialist', provider: 'NVIDIA' },
+  { icon: 'fas fa-server', title: 'WebSphere Developer', level: 'Associate Developer', provider: 'IBM' },
+  { icon: 'fas fa-code', title: 'Rational Application Developer', level: 'WebSphere V6.0', provider: 'IBM' },
+  { icon: 'fas fa-database', title: 'DB2 Database Fundamentals', level: 'Academic Associate', provider: 'IBM' },
+  { icon: 'fab fa-microsoft', title: 'Technology Specialist', level: 'MCTS', provider: 'Microsoft' },
+];
+---
+
+<section class="section" id="certifications" data-reveal>
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="eyebrow"><span data-num="// 04"></span>Credentials</p>
+        <h2>Verified certifications.</h2>
+      </div>
+      <span class="certs__count mono">{certs.length} active</span>
+    </div>
+
+    <ul class="certs__wall">
+      {
+        certs.map((c, i) => (
+          <li class="cert card" data-reveal-child style={`--i:${i}`}>
+            <div class="cert__verify">
+              <Icon name="shield" class="cert__verify-icon" />
+              <span class="cert__verify-text mono">verified</span>
+            </div>
+            <div class="cert__body">
+              <span class="cert__glyph"><Icon name={c.icon} /></span>
+              <div>
+                <h3 class="cert__title">{c.title}</h3>
+                <p class="cert__level mono">{c.level}</p>
+              </div>
+            </div>
+            <p class="cert__provider mono">{c.provider}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="certs__member card" data-reveal>
+      <span class="certs__member-glyph"><Icon name="users" /></span>
+      <div>
+        <p class="certs__member-label mono">professional membership</p>
+        <h3 class="certs__member-title">IASA Global — Chief Architect Forum</h3>
+        <p class="certs__member-desc">
+          A selective global community of distinguished enterprise architects driving
+          innovation, standards, and best practices in technology leadership.
+        </p>
+      </div>
+      <span class="certs__member-tag mono">member</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .certs__count {
+    font-size: 0.78rem;
+    color: var(--accent);
+    padding: 0.25rem 0.7rem;
+    border: 1px solid var(--accent-line);
+    border-radius: 999px;
+    background: var(--accent-ghost);
+  }
+
+  .certs__wall {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.85rem;
+  }
+  .cert {
+    position: relative;
+    padding: 1.2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+  .cert__verify {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 0.58rem;
+    color: var(--accent);
+    opacity: 0.6;
+    transition: opacity var(--transition);
+  }
+  .cert:hover .cert__verify {
+    opacity: 1;
+  }
+  .cert__verify-icon svg {
+    width: 0.7rem;
+    height: 0.7rem;
+  }
+  .cert__body {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .cert__glyph {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.4rem;
+    height: 2.4rem;
+    border-radius: var(--radius-sm);
+    color: var(--accent);
+    background: var(--accent-ghost);
+    border: 1px solid var(--border);
+  }
+  .cert__glyph svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+  .cert__title {
+    font-size: 0.88rem;
+    line-height: 1.25;
+  }
+  .cert__level {
+    color: var(--text-faint);
+    font-size: 0.7rem;
+    margin-top: 0.2rem;
+  }
+  .cert__provider {
+    font-size: 0.68rem;
+    color: var(--text-faint);
+    padding-top: 0.6rem;
+    border-top: 1px solid var(--border);
+    margin-top: auto;
+  }
+
+  .certs__member {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    margin-top: 1.25rem;
+  }
+  .certs__member-glyph {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-sm);
+    color: var(--accent);
+    background: var(--accent-ghost);
+    border: 1px solid var(--border);
+  }
+  .certs__member-glyph svg {
+    width: 1.4rem;
+    height: 1.4rem;
+  }
+  .certs__member-label {
+    font-size: 0.66rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+  }
+  .certs__member-title {
+    font-size: 1.05rem;
+    margin-top: 0.3rem;
+  }
+  .certs__member-desc {
+    color: var(--text-muted);
+    font-size: 0.86rem;
+    margin-top: 0.45rem;
+    max-width: 44rem;
+  }
+  .certs__member-tag {
+    flex: none;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--accent-line);
+    border-radius: 999px;
+    color: var(--accent);
+    font-size: 0.72rem;
+    background: var(--accent-ghost);
+  }
+
+  @media (max-width: 1000px) {
+    .certs__wall {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  @media (max-width: 640px) {
+    .certs__wall {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .certs__member {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+  }
+</style>

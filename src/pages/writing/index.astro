@@ -1,0 +1,130 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import Icon from '../../components/Icon.astro';
+import { POSTS } from '../../data/content';
+
+const fmt = (d: string) =>
+  new Date(d + 'T00:00:00').toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+---
+
+<Base
+  title="Writing — Arun Sanna"
+  description="Notes on AI security, agents, platform engineering, and federal AI."
+  pageType="CollectionPage"
+>
+  <PageHeader
+    num="// writing"
+    eyebrow="Writing"
+    title="Notes from the build."
+    lede="AI security, agents, platform engineering, and federal AI — written from systems actually shipped."
+  />
+
+  <section class="section" style="padding-top: 0">
+    <div class="container">
+      <ul class="post-list">
+        {
+          POSTS.map((post) => (
+            <li>
+              <a href={`/writing/${post.slug}`} class="post">
+                <time class="post__date mono">{fmt(post.date)}</time>
+                <div class="post__body">
+                  <h2 class="post__title">{post.title}</h2>
+                  <p class="post__summary">{post.summary}</p>
+                  <div class="post__meta">
+                    {post.tags.map((t) => (
+                      <span class="tag">{t}</span>
+                    ))}
+                    <span class="post__time mono">{post.readingTime}</span>
+                  </div>
+                </div>
+                <span class="post__arrow" aria-hidden="true">
+                  <Icon name="arrow" />
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Base>
+
+<style>
+  .post-list {
+    display: flex;
+    flex-direction: column;
+  }
+  .post {
+    display: grid;
+    grid-template-columns: 9rem 1fr auto;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.7rem 0.5rem;
+    border-top: 1px solid var(--border);
+    transition: background var(--transition);
+  }
+  .post-list li:last-child .post {
+    border-bottom: 1px solid var(--border);
+  }
+  .post:hover {
+    background: linear-gradient(90deg, var(--accent-ghost), transparent 40%);
+  }
+  .post__date {
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    padding-top: 0.3rem;
+  }
+  .post__title {
+    font-size: var(--step-1);
+    transition: color var(--transition);
+  }
+  .post:hover .post__title {
+    color: var(--accent-strong);
+  }
+  .post__summary {
+    color: var(--text-muted);
+    font-size: 0.94rem;
+    margin-top: 0.45rem;
+    max-width: 60ch;
+  }
+  .post__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.9rem;
+  }
+  .post__time {
+    font-size: 0.74rem;
+    color: var(--text-faint);
+  }
+  .post__arrow {
+    color: var(--text-faint);
+    align-self: center;
+    transition:
+      transform var(--transition),
+      color var(--transition);
+  }
+  .post__arrow svg {
+    width: 1.1rem;
+    height: 1.1rem;
+  }
+  .post:hover .post__arrow {
+    color: var(--accent);
+    transform: translateX(4px);
+  }
+  @media (max-width: 640px) {
+    .post {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+    }
+    .post__arrow {
+      display: none;
+    }
+  }
+</style>

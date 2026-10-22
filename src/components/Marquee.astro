@@ -1,0 +1,66 @@
+---
+import { MARQUEE } from '../data/content';
+// Duplicate the list so the track can loop seamlessly (translateX -50%).
+const items = [...MARQUEE, ...MARQUEE];
+---
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    {
+      items.map((it) => (
+        <span class="marquee__item">
+          {it}
+          <i class="marquee__sep">/</i>
+        </span>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .marquee {
+    overflow: hidden;
+    border-block: 1px solid var(--border);
+    padding-block: 1rem;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marquee 42s linear infinite;
+  }
+  .marquee:hover .marquee__track {
+    animation-play-state: paused;
+  }
+  .marquee__item {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-inline: 0.4rem;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  .marquee__sep {
+    color: var(--accent);
+    opacity: 0.5;
+    font-style: normal;
+  }
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track {
+      animation: none;
+      flex-wrap: wrap;
+      width: auto;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+  }
+</style>

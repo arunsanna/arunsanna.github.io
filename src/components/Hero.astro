@@ -1,0 +1,392 @@
+---
+import { SITE } from '../data/site';
+import Icon from './Icon.astro';
+
+// Parse "400+", "124K", "10+" into a number + suffix so the values can count up.
+const stats = SITE.stats.map((s) => {
+  const m = /^(\d+)(.*)$/.exec(s.value);
+  return {
+    label: s.label,
+    target: m ? Number(m[1]) : 0,
+    suffix: m ? m[2] : s.value,
+    raw: s.value,
+  };
+});
+
+// Faux-but-plausible "live platform" feed — the signature interactive card.
+// Real metrics drawn from Arun's actual work, framed as system output.
+const feed = [
+  { cmd: 'kubectl get deploy -n platform-one', out: 'party-bus   412/412   READY', ok: true },
+  { cmd: 'agent run agentdefense-bench', out: '0 prompt-injection escapes · 240 cases', ok: true },
+  { cmd: 'cortex.memory --stats', out: '1,284 entities · 3,902 relations', ok: true },
+  { cmd: 'uptime --mission allies-refuge', out: '124,334 supported · 0 incidents', ok: true },
+];
+---
+
+<section class="hero" id="top">
+  <div class="container hero__inner">
+    <div class="hero__copy">
+      <p class="eyebrow reveal" style="--reveal-delay: 0.05s">
+        <span data-num="//"></span>AI Security · Platform Engineering · Federal AI
+      </p>
+
+      <h1 class="hero__name reveal" style="--reveal-delay: 0.12s">{SITE.name}</h1>
+
+      <p class="hero__tagline reveal" style="--reveal-delay: 0.2s">
+        Enterprise <span class="grad-text">AI Architect</span> &amp; Forward Deployed Engineer
+      </p>
+
+      <p class="hero__lede reveal" style="--reveal-delay: 0.28s">{SITE.valueProp}</p>
+
+      <div class="hero__cta reveal" style="--reveal-delay: 0.36s">
+        <a href="/work" class="btn btn--primary">
+          View Work <Icon name="arrow" class="btn__icon" />
+        </a>
+        <a href={SITE.resume} class="btn btn--ghost" target="_blank" rel="noopener">
+          <Icon name="resume" class="btn__icon" /> Résumé
+        </a>
+        <div class="hero__social">
+          <a href={SITE.social.github} class="hero__icon" target="_blank" rel="noopener" aria-label="GitHub">
+            <Icon name="github" />
+          </a>
+          <a href={SITE.social.linkedin} class="hero__icon" target="_blank" rel="noopener" aria-label="LinkedIn">
+            <Icon name="linkedin" />
+          </a>
+          <a href={`mailto:${SITE.email}`} class="hero__icon" aria-label="Email">
+            <Icon name="mail" />
+          </a>
+        </div>
+      </div>
+
+      <dl class="hero__stats reveal" style="--reveal-delay: 0.44s">
+        {
+          stats.map((s) => (
+            <div class="hero__stat">
+              <dt class="hero__stat-value" data-count-to={s.target} data-suffix={s.suffix}>
+                {s.raw}
+              </dt>
+              <dd class="hero__stat-label">{s.label}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <aside class="hero__terminal reveal" style="--reveal-delay: 0.4s" aria-label="Live platform status">
+      <div class="term__bar">
+        <span class="term__dot" data-r></span>
+        <span class="term__dot" data-y></span>
+        <span class="term__dot" data-g></span>
+        <span class="term__title mono">arunlabs://platform · status</span>
+        <span class="term__live mono"><i></i>live</span>
+      </div>
+      <div class="term__body mono">
+        {
+          feed.map((line) => (
+            <div class="term__line">
+              <p class="term__cmd"><span class="term__prompt">$</span> {line.cmd}</p>
+              <p class="term__out">
+                <span class="term__check" aria-hidden="true">✓</span> {line.out}
+              </p>
+            </div>
+          ))
+        }
+        <p class="term__cursor" aria-hidden="true"><span class="term__prompt">$</span> <span class="term__blink">▋</span></p>
+      </div>
+      <div class="term__foot">
+        <span class="mono">shipped at</span>
+        <ul>
+          {SITE.shippedAt.slice(0, 5).map((org) => <li>{org}</li>)}
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <a href="#selected-work" class="hero__scroll mono" aria-label="Scroll to work">
+    scroll <span aria-hidden="true">↓</span>
+  </a>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    padding-block: 7rem 5rem;
+  }
+  .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(20rem, 0.78fr);
+    gap: clamp(2rem, 1.5rem + 3vw, 4.5rem);
+    align-items: center;
+    width: 100%;
+  }
+  .hero__copy {
+    max-width: 40rem;
+  }
+
+  .hero__name {
+    font-size: var(--step-5);
+    letter-spacing: -0.045em;
+    margin-top: 1.1rem;
+    background: var(--grad-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero__tagline {
+    font-size: var(--step-2);
+    font-weight: 600;
+    color: var(--text);
+    margin-top: 0.5rem;
+    letter-spacing: -0.02em;
+  }
+
+  .hero__lede {
+    font-size: var(--step-1);
+    color: var(--text-muted);
+    max-width: 38rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero__cta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2.25rem;
+    flex-wrap: wrap;
+  }
+  .hero__social {
+    display: flex;
+    gap: 0.6rem;
+  }
+  .btn__icon {
+    width: 1rem;
+    height: 1rem;
+  }
+  .hero__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.7rem;
+    height: 2.7rem;
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+  }
+  .hero__icon svg {
+    width: 1.1rem;
+    height: 1.1rem;
+    transition:
+      color var(--transition),
+      transform var(--transition);
+  }
+  .hero__icon:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  .hero__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2.5rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .hero__stat-value {
+    font-family: var(--font-mono);
+    font-size: clamp(1.8rem, 1.4rem + 1.6vw, 2.6rem);
+    font-weight: 600;
+    color: var(--accent);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .hero__stat-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    max-width: 11rem;
+  }
+
+  /* --- Signature: live platform terminal --- */
+  .hero__terminal {
+    border: 1px solid var(--border-strong);
+    border-radius: var(--radius);
+    background: var(--grad-surface);
+    box-shadow: var(--shadow-glow);
+    overflow: hidden;
+  }
+  .term__bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: hsl(156 6% 11%);
+  }
+  .term__dot {
+    width: 0.72rem;
+    height: 0.72rem;
+    border-radius: 999px;
+    background: var(--surface-3);
+  }
+  .term__dot[data-r] {
+    background: hsl(2 70% 60%);
+  }
+  .term__dot[data-y] {
+    background: hsl(40 80% 58%);
+  }
+  .term__dot[data-g] {
+    background: hsl(140 55% 52%);
+  }
+  .term__title {
+    margin-left: 0.4rem;
+    font-size: 0.72rem;
+    color: var(--text-faint);
+  }
+  .term__live {
+    margin-left: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    color: var(--accent-strong);
+  }
+  .term__live i {
+    width: 0.45rem;
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 var(--accent);
+    animation: pulse 2s var(--ease-out) infinite;
+  }
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 hsl(146 72% 50% / 0.5);
+    }
+    70% {
+      box-shadow: 0 0 0 6px hsl(146 72% 50% / 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 hsl(146 72% 50% / 0);
+    }
+  }
+
+  .term__body {
+    padding: 1.1rem 1.1rem 0.6rem;
+    font-size: 0.82rem;
+    line-height: 1.5;
+  }
+  .term__line {
+    margin-bottom: 0.85rem;
+  }
+  .term__prompt {
+    color: var(--accent);
+  }
+  .term__cmd {
+    color: var(--text);
+  }
+  .term__out {
+    color: var(--text-muted);
+    padding-left: 1.1rem;
+    margin-top: 0.1rem;
+  }
+  .term__check {
+    color: hsl(140 55% 55%);
+  }
+  .term__cursor {
+    color: var(--text);
+  }
+  .term__blink {
+    color: var(--accent);
+    animation: blink 1.1s steps(2) infinite;
+  }
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .term__foot {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem 0.9rem;
+    flex-wrap: wrap;
+    padding: 0.9rem 1.1rem;
+    border-top: 1px solid var(--border);
+    background: hsl(158 7% 8%);
+  }
+  .term__foot > .mono {
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+  }
+  .term__foot ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 0.9rem;
+  }
+  .term__foot li {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    position: relative;
+  }
+  .term__foot li + li::before {
+    content: '·';
+    position: absolute;
+    left: -0.55rem;
+    color: var(--text-faint);
+  }
+
+  .hero__scroll {
+    position: absolute;
+    left: 50%;
+    bottom: 1.6rem;
+    transform: translateX(-50%);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    display: inline-flex;
+    gap: 0.4rem;
+  }
+  .hero__scroll span {
+    animation: nudge 1.8s var(--ease-out) infinite;
+  }
+  @keyframes nudge {
+    50% {
+      transform: translateY(4px);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .term__live i,
+    .term__blink,
+    .hero__scroll span {
+      animation: none;
+    }
+  }
+
+  @media (max-width: 940px) {
+    .hero__inner {
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+    }
+    .hero__terminal {
+      max-width: 32rem;
+    }
+    .hero__scroll {
+      display: none;
+    }
+  }
+  @media (max-width: 520px) {
+    .hero__stats {
+      gap: 1.5rem 2rem;
+    }
+  }
+</style>

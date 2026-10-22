@@ -1,0 +1,460 @@
+/* ==========================================================================
+   arunsanna.com — design system (v4 · "Operator")
+   Neutral graphite-black, ONE phosphor-green signal accent, NO gradient.
+   Structure over glow: engineering grid + scanlines, hairline borders, mono as
+   a structural element. The deliberate anti-thesis of the generic-AI look.
+   Token NAMES are preserved so existing components keep working.
+   ========================================================================== */
+
+:root {
+  /* --- Surfaces: neutral graphite-black with a faint phosphor-green undertone
+     (CRT/operator). Deliberately NOT the old blue-purple "AI template" tint. --- */
+  --bg: hsl(158 8% 5%);
+  --bg-elev: hsl(158 7% 7%);
+  --surface: hsl(156 6% 9%);
+  --surface-2: hsl(154 5% 12.5%);
+  --surface-3: hsl(152 5% 16%);
+  --border: hsl(154 6% 15%);
+  --border-strong: hsl(150 5% 25%);
+
+  /* --- Text hierarchy --- */
+  --text: hsl(140 14% 96%);
+  --text-muted: hsl(150 7% 73%);
+  --text-faint: hsl(150 5% 55%);
+
+  /* --- Accent: phosphor green. ONE signal color. No gradient. --- */
+  --accent: hsl(146 72% 50%);
+  --accent-strong: hsl(146 82% 63%);
+  --accent-dim: hsl(146 55% 36%);
+  --accent-ghost: hsl(146 72% 50% / 0.12);
+  --accent-line: hsl(146 72% 50% / 0.3);
+
+  /* Aliases collapse any old reference onto the single accent — kills the
+     indigo + cyan→indigo gradient that read as "generic AI". --- */
+  --accent-2: var(--accent);
+  --accent-2-dim: var(--accent-dim);
+
+  /* --- "Gradients" → solid/honest now; the operator look avoids gradients. --- */
+  --grad-brand: var(--accent);
+  --grad-text: var(--text);
+  --grad-line: linear-gradient(90deg, transparent, var(--accent-line), transparent);
+  --grad-surface: linear-gradient(180deg, hsl(156 6% 10%), hsl(158 7% 7%));
+
+  /* --- Typography --- */
+  --font-sans:
+    'Hanken Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Fluid type scale */
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.08rem);
+  --step-1: clamp(1.2rem, 1.12rem + 0.4vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.34rem + 0.8vw, 2rem);
+  --step-3: clamp(1.95rem, 1.6rem + 1.7vw, 3rem);
+  --step-4: clamp(2.5rem, 1.9rem + 3vw, 4.25rem);
+  --step-5: clamp(3.1rem, 2.1rem + 4.6vw, 6rem);
+
+  /* --- Layout --- */
+  --maxw: 1180px;
+  --maxw-prose: 65ch;
+  --gutter: clamp(1.25rem, 0.8rem + 2.2vw, 2.5rem);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --radius-lg: 16px;
+
+  --shadow-1: 0 1px 2px hsl(0 0% 0% / 0.3);
+  --shadow-2: 0 18px 50px -22px hsl(0 0% 0% / 0.72);
+  --shadow-glow: 0 0 0 1px var(--accent-line), 0 22px 60px -28px hsl(0 0% 0% / 0.7);
+
+  /* --- Motion --- */
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  font-feature-settings: 'ss01', 'cv01';
+}
+
+/* Operator texture: a faint engineering grid that fades from the top, plus
+   grain + whisper-thin CRT scanlines. Structure, not glow — no brand gradient. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(hsl(150 8% 55% / 0.045) 1px, transparent 1px) 0 0 / 100% 46px,
+    linear-gradient(90deg, hsl(150 8% 55% / 0.045) 1px, transparent 1px) 0 0 / 46px 100%;
+  -webkit-mask-image: radial-gradient(125% 80% at 50% -8%, #000, transparent 72%);
+  mask-image: radial-gradient(125% 80% at 50% -8%, #000, transparent 72%);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 0.5;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(0deg, hsl(0 0% 0% / 0.05) 0 1px, transparent 1px 3px),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+
+/* --- Typography --- */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  text-wrap: balance;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+svg {
+  display: inline-block;
+  flex: none;
+}
+
+ul {
+  list-style: none;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+/* --- Layout primitives --- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.container--wide {
+  max-width: 1320px;
+}
+
+.section {
+  padding-block: clamp(4rem, 2.5rem + 6vw, 8rem);
+  position: relative;
+}
+
+.section--tint {
+  background: linear-gradient(180deg, transparent, hsl(158 7% 8% / 0.7), transparent);
+}
+
+/* A hairline divider with a brand-tinted center — section seam */
+.seam {
+  height: 1px;
+  border: 0;
+  background: var(--grad-line);
+}
+
+/* Mono eyebrow label with a section number — the technical-editorial signature */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.eyebrow::before {
+  content: attr(data-num);
+  color: var(--text-faint);
+}
+
+.section-head {
+  max-width: 48rem;
+  margin-bottom: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+}
+
+.section-head--split {
+  max-width: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.section-head h2 {
+  font-size: var(--step-3);
+  margin-top: 0.9rem;
+}
+
+.section-head p {
+  color: var(--text-muted);
+  font-size: var(--step-1);
+  margin-top: 1rem;
+  max-width: 42rem;
+}
+
+/* Gradient text — the signature treatment for hero name + key headings */
+.grad-text {
+  background: var(--grad-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* --- Buttons --- */
+.btn {
+  --btn-bg: transparent;
+  --btn-fg: var(--text);
+  --btn-bd: var(--border-strong);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.72rem 1.35rem;
+  border: 1px solid var(--btn-bd);
+  border-radius: var(--radius-sm);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition),
+    color var(--transition);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+.btn--primary {
+  --btn-fg: hsl(150 30% 6%);
+  --btn-bd: transparent;
+  background: var(--accent);
+  font-weight: 700;
+  box-shadow: 0 8px 24px -14px hsl(146 72% 45% / 0.5);
+}
+
+.btn--primary:hover {
+  background: var(--accent-strong);
+  box-shadow: 0 12px 30px -14px hsl(146 72% 50% / 0.55);
+}
+
+.btn--ghost {
+  --btn-bd: var(--border);
+}
+
+.btn--sm {
+  padding: 0.5rem 1rem;
+  font-size: 0.88rem;
+}
+
+/* Inline "read more" arrow link with a sliding chevron */
+.arrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+  font-size: 0.92rem;
+  color: var(--accent);
+}
+
+.arrow-link svg,
+.arrow-link span[aria-hidden] {
+  transition: transform var(--transition);
+}
+
+.arrow-link:hover svg,
+.arrow-link:hover span[aria-hidden] {
+  transform: translateX(4px);
+}
+
+/* --- Pills / tags / chips --- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--text-muted);
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  padding: 0.2rem 0.55rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
+
+/* A reusable elevated surface card */
+.card {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--grad-surface);
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-line);
+  box-shadow: var(--shadow-2);
+}
+
+/* --- Accessibility --- */
+:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -4rem;
+  z-index: 2000;
+  padding: 0.7rem 1.1rem;
+  background: var(--accent);
+  color: var(--bg);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  transition: top var(--transition);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* --- Motion system --- */
+@media (prefers-reduced-motion: no-preference) {
+  /* On-load orchestrated entrance (hero) */
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: reveal 0.7s var(--ease-out) forwards;
+    animation-delay: var(--reveal-delay, 0s);
+  }
+
+  @keyframes reveal {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  /* Scroll-driven reveal: elements tagged [data-reveal], toggled by site.js.
+     Gated on .reveal-ready (added by JS) so content is fully visible without
+     JS — progressive enhancement, no permanently-hidden content for crawlers.
+     Children with [data-reveal-child] stagger via --i index. */
+  .reveal-ready [data-reveal] {
+    opacity: 0;
+    transform: translateY(26px);
+    transition:
+      opacity 0.7s var(--ease-out),
+      transform 0.7s var(--ease-out);
+  }
+
+  .reveal-ready [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .reveal-ready [data-reveal] [data-reveal-child] {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s var(--ease-out),
+      transform 0.6s var(--ease-out);
+    transition-delay: calc(var(--i, 0) * 75ms);
+  }
+
+  .reveal-ready [data-reveal].is-visible [data-reveal-child] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* --- Shared text utilities --- */
+.text-accent {
+  color: var(--accent);
+}
+
+.mono {
+  font-family: var(--font-mono);
+}
+
+.muted {
+  color: var(--text-muted);
+}

@@ -1,0 +1,199 @@
+---
+import skills from '../data/skills.json';
+import Icon from './Icon.astro';
+
+// Map proficiency level → signal-strength bar count (out of 5)
+const levelToBars = (level: string): number => {
+  if (level.toLowerCase() === 'expert') return 5;
+  if (level.toLowerCase() === 'advanced') return 4;
+  return 3;
+};
+---
+
+<section class="section section--tint" id="skills" data-reveal>
+  <div class="container">
+    <div class="section-head section-head--split">
+      <div>
+        <p class="eyebrow"><span data-num="// 03"></span>Stack inventory</p>
+        <h2>The full capability matrix.</h2>
+        <p>Nine domains, fifty-plus technologies. Signal bars = depth of hands-on mastery.</p>
+      </div>
+      <div class="skills__legend mono">
+        <span class="skills__legend-item"><i class="bar bar--5"></i> Expert</span>
+        <span class="skills__legend-item"><i class="bar bar--4"></i> Advanced</span>
+        <span class="skills__legend-item"><i class="bar bar--3"></i> Working</span>
+      </div>
+    </div>
+
+    <div class="skills__grid">
+      {
+        skills.categories.map((cat, ci) => (
+          <article class="skills__cat card" data-reveal-child style={`--i:${ci}`}>
+            <header class="skills__cat-head">
+              <span class="skills__cat-glyph"><Icon name={cat.icon} /></span>
+              <div>
+                <h3 class="skills__cat-title">{cat.title}</h3>
+                <p class="skills__cat-sub mono">{cat.subtitle}</p>
+              </div>
+            </header>
+            <ul class="skills__list">
+              {cat.skills.map((s) => {
+                const bars = levelToBars(s.level);
+                return (
+                  <li class="skills__item">
+                    <span class="skills__name">{s.name}</span>
+                    <span class="skills__signal" aria-label={`${s.level}, ${s.years}`}>
+                      <span class="skills__bars">
+                        {[1, 2, 3, 4, 5].map((n) => (
+                          <i class:list={['bar', `bar--${n}`, n <= bars && 'bar--on']} />
+                        ))}
+                      </span>
+                      <span class="skills__years mono">{s.years}</span>
+                    </span>
+                  </li>
+                );
+              })}
+            </ul>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills__legend {
+    display: flex;
+    gap: 1.25rem;
+    font-size: 0.74rem;
+    color: var(--text-faint);
+    align-items: center;
+  }
+  .skills__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .skills__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .skills__cat {
+    padding: 1.4rem;
+  }
+  .skills__cat-head {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .skills__cat-glyph {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-sm);
+    background: var(--accent-ghost);
+    color: var(--accent);
+    border: 1px solid var(--border);
+  }
+  .skills__cat-glyph svg {
+    width: 1.15rem;
+    height: 1.15rem;
+  }
+  .skills__cat-title {
+    font-size: 0.98rem;
+    line-height: 1.2;
+  }
+  .skills__cat-sub {
+    color: var(--text-faint);
+    font-size: 0.74rem;
+    margin-top: 0.2rem;
+  }
+
+  .skills__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .skills__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .skills__name {
+    font-size: 0.84rem;
+    color: var(--text);
+    flex: 1;
+    line-height: 1.3;
+  }
+
+  /* Signal-strength proficiency meter */
+  .skills__signal {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .skills__bars {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 14px;
+  }
+  .skills__bars .bar {
+    width: 3px;
+    border-radius: 1px;
+    background: var(--surface-3);
+    transition: background var(--transition);
+  }
+  .skills__bars .bar--1 { height: 4px; }
+  .skills__bars .bar--2 { height: 6px; }
+  .skills__bars .bar--3 { height: 8px; }
+  .skills__bars .bar--4 { height: 11px; }
+  .skills__bars .bar--5 { height: 14px; }
+  .skills__bars .bar--on {
+    background: var(--accent);
+    box-shadow: 0 0 4px hsl(146 72% 50% / 0.4);
+  }
+  .skills__years {
+    font-size: 0.68rem;
+    color: var(--text-faint);
+    white-space: nowrap;
+    min-width: 3rem;
+    text-align: right;
+  }
+
+  /* Legend bars (static) */
+  .skills__legend .bar {
+    width: 3px;
+    border-radius: 1px;
+    display: inline-block;
+    vertical-align: bottom;
+  }
+  .skills__legend .bar--5 { height: 14px; background: var(--accent); }
+  .skills__legend .bar--4 { height: 11px; background: var(--accent-dim); }
+  .skills__legend .bar--3 { height: 8px; background: var(--surface-3); }
+
+  @media (max-width: 900px) {
+    .skills__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 560px) {
+    .skills__grid {
+      grid-template-columns: 1fr;
+    }
+    .skills__legend {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+</style>

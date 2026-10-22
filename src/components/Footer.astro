@@ -1,0 +1,76 @@
+---
+import { SITE } from '../data/site';
+import { NAV } from '../data/content';
+
+// Auto-generated year — fixes the stale "© 2024" footer for good.
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <div>
+      <a href="/" class="footer__logo">AS<span aria-hidden="true">_</span></a>
+      <p class="footer__tag">{SITE.tagline}</p>
+    </div>
+    <nav class="footer__links" aria-label="Footer">
+      {NAV.map((l) => <a href={l.href}>{l.label}</a>)}
+      <a href={SITE.social.github} target="_blank" rel="noopener">GitHub</a>
+      <a href={SITE.social.linkedin} target="_blank" rel="noopener">LinkedIn</a>
+      <a href={`mailto:${SITE.email}`}>Email</a>
+    </nav>
+  </div>
+  <div class="container footer__base">
+    <p>© {year} {SITE.name}.</p>
+    <p class="mono">Built with Astro · shipped on k3s</p>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    padding-block: 3rem 2.5rem;
+    margin-top: 2rem;
+  }
+  .footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 2rem;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .footer__logo {
+    font-family: var(--font-mono);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+  .footer__tag {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    margin-top: 0.35rem;
+  }
+  .footer__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  .footer__links a {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    transition: color var(--transition);
+  }
+  .footer__links a:hover {
+    color: var(--accent);
+  }
+  .footer__base {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+    color: var(--text-faint);
+    font-size: 0.82rem;
+  }
+</style>

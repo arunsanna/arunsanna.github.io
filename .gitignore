@@ -25,6 +25,14 @@ yarn-error.log*
 node_modules/
 bower_components/
 
+# Astro build output
+dist/
+.astro/
+
+# Browser automation / scratch artifacts
+.playwright-mcp/
+arunsanna-desktop-full.png
+
 # Environment variables
 .env
 .env.local
