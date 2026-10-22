@@ -1,16 +1,21 @@
 ---
 title: "PHP2Shell: How Two Critical PHP Flaws Gave Attackers Unauthenticated RCE"
-summary: "On October 20, 2026, two critical remote code execution vulnerabilities in PHP leaked online before coordinated disclosure. I set up a local demonstration environment to understand exactly how they work. Here's what I found — and what you need to do if you run PHP."
-date: "2026-10-21"
-readingTime: "8 min"
-tags: ["Security", "PHP", "CVE"]
+summary: "Two CVSS 9.2 memory corruption bugs in PHP core enable unauthenticated RCE via the session upload progress mechanism. I set up isolated containers to understand the attack — here's what I found."
+date: 2026-10-21
+readingTime: 8
+tags:
+  - Security
+  - PHP
+  - CVE
 ---
 
-On October 20, 2026, details of two critical remote code execution vulnerabilities in PHP leaked online a day before coordinated disclosure. Within hours, PHP released emergency patches. By the next morning, the first in-the-wild attacks were already emerging.
+# PHP2Shell: How Two Critical PHP Flaws Gave Attackers Unauthenticated RCE
 
-These aren't application-layer bugs. They're in the PHP core itself — meaning every website, API, and service running unpatched PHP is exposed. No login. No authentication. Just a crafted HTTP request.
+**October 21, 2026 · 8 min read**
 
-I set up a local demonstration environment to understand exactly how these vulnerabilities work. Here's what I found.
+PHP just got owned. Not by some clever application-layer trick, not by a misconfigured WordPress plugin, but by two memory corruption bugs in the PHP core itself. And the worst part? The details leaked a full day before the patches dropped.
+
+That means attackers had a head start. If you run PHP and haven't patched yet, you're not vulnerable — you're compromised. Check your logs.
 
 ## The Vulnerabilities
 
@@ -19,7 +24,7 @@ Two CVEs, both CVSS 9.2 (Critical):
 - **CVE-2026-109618** — RCE via out-of-memory error handling leaving request data partially initialized
 - **CVE-2026-109619** — RCE via stale global state use-after-free
 
-Both exploit PHP's session upload progress mechanism (RFC 1867), which is enabled by default. This feature tracks the progress of file uploads via a session variable — useful for progress bars, but also a perfect attack surface.
+Both exploit the same attack surface: PHP's session upload progress mechanism (RFC 1867). It's enabled by default. It's designed to track file upload progress so you can show a progress bar. It's now the front door to your server.
 
 ## How the Attack Works
 
@@ -42,31 +47,39 @@ abc123
 
 ### Phase 2: Cache Poisoned Pointers
 
-When the progress callback fires, PHP stores raw `zval*` pointers into the session HashTable. These pointers reference internal PHP data structures that will be freed when the request ends.
+When the callback fires, PHP stores raw `zval*` pointers into the session HashTable. These pointers reference internal PHP data structures. When the request ends, those structures get freed. But the pointers? They stay.
 
-This is where CVE-2026-109619 takes root: PHP workers retain global state between requests. When a fatal error or OOM condition occurs, request-owned state survives in global memory, but the backing memory gets freed.
+This is where CVE-2026-109619 takes root. PHP workers are long-lived. They process hundreds of requests. And they hold onto global state between them. When a fatal error or OOM condition occurs, request-owned state survives in global memory, but the backing memory gets freed.
+
+You now have dangling pointers. In C, that's a bug. In PHP, that's a vulnerability.
 
 ### Phase 3: Stall the Request
 
 The attacker stalls the upload for longer than `session.upload_progress.min_freq` (default: 1 second). During this stall, the session re-initializes and frees the HashTable containing those cached pointers.
 
-Now we have dangling pointers — the session HashTable still references memory that's been freed.
+The session HashTable still references memory that's been freed. The pointers are now dangling. The attacker controls the timing.
 
 ### Phase 4: Write Through Stale Pointers
 
-The attacker sends more upload data. PHP's progress callback writes through the stale `zval*` pointers, corrupting whatever memory now occupies those addresses.
+The attacker sends more upload data. PHP's progress callback writes through the stale `zval*` pointers, corrupting whatever memory now occupies those addresses. The attacker is writing to memory they don't own, through pointers PHP thinks are still valid.
 
 ### Phase 5: Heap Spray
 
-The attacker sprays the heap with forged `zend_fcall_info` structures. These are PHP's internal function call descriptors — if you can place one where PHP expects to find one, you can control what function gets called and with what arguments.
+The attacker sprays the heap with forged `zend_fcall_info` structures. These are PHP's internal function call descriptors. If you can place one where PHP expects to find one, you control what function gets called and with what arguments.
+
+Heap spraying is old-school exploitation. It's probabilistic. It requires luck. But it works.
 
 ### Phase 6: Trigger Execution
 
-A subsequent request on the same worker process hits the corrupted state. PHP dereferences the poisoned pointers, finds the forged `zend_fcall_info`, and calls `zend_call_function` — executing attacker-controlled code.
+A subsequent request on the same worker process hits the corrupted state. PHP dereferences the poisoned pointers, finds the forged `zend_fcall_info`, and calls `zend_call_function`.
+
+Attacker-controlled code is now executing inside the PHP worker process.
 
 ### Phase 7: Remote Code Execution
 
 The attacker now has unauthenticated RCE as the web worker user (typically `www-data` or `apache`). From here, they can read files, execute shell commands, install persistence, or pivot to the internal network.
+
+The entire attack chain runs over HTTP. No authentication required. No application code involved. Pure PHP core exploitation.
 
 ## CVE-2026-109618: The OOM Variant
 
@@ -77,11 +90,13 @@ This variant exploits PHP's out-of-memory error handling. When PHP runs out of m
 3. During request cleanup, PHP treats the half-initialized data as valid
 4. This creates a path to execute arbitrary code
 
-The key insight: PHP's OOM handling was designed to gracefully abort the request, but it didn't account for an attacker intentionally triggering OOM to leave the internal state in a corrupted-but-not-crashed condition.
+The key insight: PHP's OOM handling was designed to gracefully abort the request. It wasn't designed to handle an attacker who intentionally triggers OOM to leave the internal state in a corrupted-but-not-crashed condition.
+
+That's the difference between a bug and a vulnerability. A bug is when the software crashes. A vulnerability is when the attacker controls what happens after the crash.
 
 ## CVE-2026-109619: The Use-After-Free Variant
 
-This is the classic use-after-free pattern:
+This is the classic use-after-free pattern, and it's the more dangerous of the two:
 
 1. Request A allocates memory, stores pointers in global state
 2. Request A ends, memory is freed, but global state still holds the pointers
@@ -89,7 +104,7 @@ This is the classic use-after-free pattern:
 4. PHP reads the stale global state, dereferences the old pointers
 5. Attacker controls what's at those addresses → code execution
 
-The fact that PHP workers are long-lived and reuse memory between requests is what makes this exploitable over HTTP.
+The fact that PHP workers are long-lived and reuse memory between requests is what makes this exploitable over HTTP. Each request is supposed to be isolated. It isn't.
 
 ## What I Found in Testing
 
@@ -104,6 +119,8 @@ This means:
 - However, the attack surface (session upload progress) is universal across all PHP versions that support it
 
 I was unable to achieve actual RCE in my test environment due to the symbol offset mismatch, which is expected. Heap exploits are probabilistic and version-dependent. But the underlying vulnerability is real and confirmed by the PHP security team.
+
+The patched version (8.3.36) handled the same exploit attempts without issue. The difference is stark: the vulnerable version corrupts memory, the patched version doesn't.
 
 ## Immediate Mitigation
 
@@ -121,7 +138,7 @@ For PHP-FPM:
 php_admin_flag[session.upload_progress.enabled] = off
 ```
 
-This removes the attack surface entirely. The trade-off: you lose upload progress tracking.
+This removes the attack surface entirely. The trade-off: you lose upload progress tracking. That's a fair trade for not being owned.
 
 ## Permanent Fix
 
@@ -134,7 +151,7 @@ Upgrade to a patched version:
 | PHP 8.4 | 8.4.27 |
 | PHP 8.5 | 8.5.12 |
 
-PHP 5.x and 7.x are not patched (they're end-of-life). If you're running those, upgrade immediately.
+PHP 5.x and 7.x are not patched (they're end-of-life). If you're running those, upgrade immediately. There's no mitigation for EOL software.
 
 ## Detection
 
@@ -145,11 +162,15 @@ Look for these indicators in your web server logs:
 3. Unusual memory usage patterns in PHP worker processes
 4. `id`, `whoami`, or shell command execution in PHP error logs
 
+If you see any of these, assume compromise and start incident response.
+
 ## The Bigger Picture
 
 This vulnerability class — core language memory corruption leading to unauthenticated RCE — is why running the latest version of your runtime matters. These aren't bugs in WordPress or Laravel; they're bugs in PHP itself. Every application built on PHP inherits these vulnerabilities.
 
 The fact that details leaked a day early means attackers had a head start. If you're running PHP, assume you've been scanned. Check your logs. Patch now.
+
+And if you're still running PHP 5 or 7, you're not running a web server. You're running an invitation.
 
 ## References
 
