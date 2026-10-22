@@ -77,6 +77,15 @@ export interface Post {
 // these render the Writing surface so the design is reviewable now.
 export const POSTS: Post[] = [
   {
+    slug: "php2shell-critical-php-rce",
+    title: "PHP2Shell: How Two Critical PHP Flaws Gave Attackers Unauthenticated RCE",
+    summary:
+      "On October 20, 2026, two critical remote code execution vulnerabilities in PHP leaked online before coordinated disclosure. I set up a local demonstration environment to understand exactly how they work. Here's what I found — and what you need to do if you run PHP.",
+    date: "2026-10-21",
+    readingTime: "8 min",
+    tags: ["Security", "PHP", "CVE"],
+  },
+  {
     "slug": "pdf-conversion-evidence-survival",
     "title": "A Successful PDF Conversion Can Still Lose the Evidence",
     "summary": "Six-document observations, their limits, and a practical design for checking what survives extraction.",
